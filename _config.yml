@@ -1,35 +1,57 @@
-# Site settings
-title: Tine Starič
-description: 'Business Card Page'
-url: 'https://tine.staric.net'
-baseurl: ''
-profilepic: '/images/Tine.jpg'
-bkimage: '/images/bk1.jpg'
-google_analytics: UA-XXXXXX-X
-font_awesome: 'XXXXXXXXXX.js'
-
-author:
-  name: 'Tine Starič'
-  email: tine@staric.net
-  twitter_username: tinestaric
-#  facebook_username: joshgerdes
-  github_username:  tinestaric
-  linkedin_username:  tstaric
-
 # Build settings
-destination: _site
+permalink: /blog/:year/:title/
 markdown: kramdown
 highlighter: rouge
+plugins: [jekyll-paginate-v2]
 
+pagination:
+  enabled: true
+  per_page: 100
+  permalink: "/page/:num/"
+  sort_field: date
+  sort_reverse: true
+
+comments: false
+
+webmentions:
+  username: tinestaric.github.io
+
+future: false
+source: source
+destination: _site
 sass:
-    sass_dir: _sass
-    style: compressed
+  sass_dir: _sass
+  style: compressed # expanded
 
-kramdown:
-  # use Github Flavored Markdown
-  input: GFM
-  # do not replace newlines by <br>s
-  hard_wrap: false
+# SEO settings
+title: "A Blog by Tine Starič"
+description: "A Business Central tech brain dump"
+keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365"
+url: "https://tinestaric.github.io"
+baseurl: ""
 
-#plugins: ['jekyll-paginate']
-exclude: ['README.md', 'screenshot-overview.png']
+# google_analytics: UA-XXXXXXXX-X
+
+# Author settings
+author:
+  name: Tine Starič
+  title: "A Business Central tech brain dump"
+  job: Senior Software Developer at Companial
+  bio: "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL."
+  thumb: /images/author.jpeg
+  email: tine@staric.net
+  url: https://tinestaric.github.io
+  github: https://github.com/tinestaric
+  twitter: https://twitter.com/TineStaric
+  linkedin: https://linkedin.com/in/tstaric
+
+# navbar pages
+navbar:
+  - slug: about
+    title: About
+  - slug: blog
+    title: Blog
+
+exclude: ["config.rb", "src", "Gemfile", "Gemfile.lock", "package.json","README.md", "Rakefile"]
+
+include: [ "/.well-known" ]

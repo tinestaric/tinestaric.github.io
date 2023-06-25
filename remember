@@ -1,0 +1,16 @@
+test: JEKYLL_ENV=production bundle exec jekyll serve --limit_post 50
+prod: rake
+
+{% highlight http linenos %}
+{% endhighlight %}
+
+![interface-base](/images/traefik2.png)
+{: .centered}
+
+[^1] footnote
+
+rake post title="Welcome to my new blog" 
+rake page name="test.md"
+rake page name="what/test.md"
+
+icons from https://icomoon.io/app/
