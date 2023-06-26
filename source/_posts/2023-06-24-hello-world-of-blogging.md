@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Hello, World of Blogging!"
-date: 2023-06-25 22:08:27
+title: "A Blogging Journey Begins!"
+date: 2023-06-24 22:08:27
 comments: false
 categories: welcome
-image: https://jekyllrb.com/img/octojekyll.png
+image: /images/blogging.png
 ---
-Mama, look, I have a blog!
+Finally! I have a blog!
 
-I've been wanting to have a place where I can dump my ideas around Business Central tech for the past few years now. It took me a while, I know, but now I have it! I've never really done any writing in the past, so this will be an interesting journey for me, and hopefully for you as well.
+I've been wanting to have a place where I can dump my ideas around Business Central tech for the past few years now. It took me a while, I know, but now I have it! I've never really done any writing in the past, so this will be an interesting journey for me, and hopefully for you as well.<br><br>
 The areas I want to explore and share with you are:
 - Edges of AL, points, where AL patterns breaks, and where we need to go beyond the borders of BC
 - Weird situations with AL I come across, that I want to document for myself and the next poor soul that needs to deal with them

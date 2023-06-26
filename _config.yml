@@ -25,7 +25,7 @@ sass:
 
 # SEO settings
 title: "A Blog by Tine Starič"
-description: "A Business Central tech brain dump"
+description: "Tech Adventures in Business Central"
 keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365"
 url: "https://tinestaric.github.io"
 baseurl: ""
@@ -35,10 +35,10 @@ baseurl: ""
 # Author settings
 author:
   name: Tine Starič
-  title: "A Business Central tech brain dump"
-  job: Senior Software Developer at Companial
-  bio: "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL."
-  thumb: /images/author.jpeg
+  title: "Tech Adventures in Business Central"
+  job: Software Developer at Companial
+  bio: "Homebrewer, not a hipster. <br>A Business Central enthusiast, with a passion for all things weird with AL."
+  thumb: /images/author.jpg
   email: tine@staric.net
   url: https://tinestaric.github.io
   github: https://github.com/tinestaric
