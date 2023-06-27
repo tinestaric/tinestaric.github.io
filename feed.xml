@@ -5,21 +5,21 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tinestaric.github.io/</link>
     <atom:link href="https://tinestaric.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Jun 2023 11:32:44 +0300</pubDate>
-    <lastBuildDate>Tue, 27 Jun 2023 11:32:44 +0300</lastBuildDate>
+    <pubDate>Tue, 27 Jun 2023 21:21:52 +0300</pubDate>
+    <lastBuildDate>Tue, 27 Jun 2023 21:21:52 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>A Blogging Journey Begins!</title>
         <description>&lt;p&gt;Finally! I have a blog!&lt;/p&gt;
 
-&lt;p&gt;I’ve been wanting to have a place where I can dump my ideas around Business Central tech for the past few years now. It took me a while, I know, but now I have it! I’ve never really done any writing in the past, so this will be an interesting journey for me, and hopefully for you as well.&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;For the past few years, I’ve been wanting to have a place where I can share my ideas about Business Central tech. It took me a while, I know, but now I finally have it! I haven’t really done much writing in the past, so this will be an interesting journey for me, and hopefully for you as well.&lt;br /&gt;&lt;br /&gt;
 The areas I want to explore and share with you are:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Edges of AL, points, where AL patterns breaks, and where we need to go beyond the borders of BC&lt;/li&gt;
-  &lt;li&gt;Weird situations with AL I come across, that I want to document for myself and the next poor soul that needs to deal with them&lt;/li&gt;
-  &lt;li&gt;Recap of Conference sessions I present, to have them in a written and searchable format&lt;/li&gt;
-  &lt;li&gt;Recap of BC Conferences, I wish, everyone could attend them, but for those that cannot, I want to share key takeaways, as the community findings are always intriguing&lt;/li&gt;
+  &lt;li&gt;The edges of AL, where AL patterns break, and where we need to go beyond the borders of BC.&lt;/li&gt;
+  &lt;li&gt;Weird situations with AL that I come across, which I want to document for myself and the next poor soul that needs to deal with them.&lt;/li&gt;
+  &lt;li&gt;Recaps of conference sessions I present, so that they are in a written and searchable format.&lt;/li&gt;
+  &lt;li&gt;Recaps of BC conferences. I wish everyone could attend them, but for those who cannot, I want to share key takeaways, as the community findings are always intriguing.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I think this will be a fun activity for me, and hopefully sometimes insightful for you!&lt;/p&gt;
