@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>A Blog by Tine Starič</title>
-    <description>Tech Adventures in Business Central</description>
+    <title>Tech Adventures in Business Central</title>
+    <description>A Blog by Tine Starič</description>
     <link>https://tinestaric.github.io/</link>
     <atom:link href="https://tinestaric.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Jun 2023 23:40:50 +0300</pubDate>
-    <lastBuildDate>Mon, 26 Jun 2023 23:40:50 +0300</lastBuildDate>
+    <pubDate>Tue, 27 Jun 2023 11:00:53 +0300</pubDate>
+    <lastBuildDate>Tue, 27 Jun 2023 11:00:53 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
