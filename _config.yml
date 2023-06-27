@@ -24,8 +24,8 @@ sass:
   style: compressed # expanded
 
 # SEO settings
-title: "A Blog by Tine Starič"
-description: "Tech Adventures in Business Central"
+title: "Tech Adventures in Business Central"
+description: "A Blog by Tine Starič"
 keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365"
 url: "https://tinestaric.github.io"
 baseurl: ""
