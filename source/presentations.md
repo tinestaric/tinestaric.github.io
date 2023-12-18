@@ -7,7 +7,7 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2023
-- 2023-12 **You need to implement AI now! ...But what even is AI?** as a webinar for [Companial][companialhome]: [presentation][companialaipress] and recording
+- 2023-12 **You need to implement AI now! ...But what even is AI?** as a webinar for [Companial][companialhome]: [presentation][companialaipress] and [recording][companialairecording]
 - 2023-11 Multiple sessions at [Directions EMEA][2023emea]
     - **You need to implement AI now! ...But what even is AI?**: [session link][2023emeaaischedule] and [presentation][2023emeaaipress]
     - **Beyond Firefighting: Proactive Error Handling in Power Automate to Prevent Business Disruptions**: [session link][2023emeafirefightingschedule] and [presentation][2023emeafirefightingpress]
@@ -59,3 +59,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [2023emeaaischedule]: https://www.directionsforpartners.com/conferences-and-events/directions/emea-2023/schedule?session=501344
 [2023emeaaipress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/EMEA/YouNeedToImplementAI-EMEA2023.pdf
 [companialaipress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/Webinars/YouNeedToImplementAI-Companial.pdf
+[companialairecording]: https://www.youtube.com/watch?v=A3-p-7iL0Go&feature=youtu.be
