@@ -27,7 +27,7 @@ sass:
 title: "Tech Adventures in Business Central"
 description: "A Blog by Tine Starič"
 keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365"
-url: "https://tinestaric.github.io"
+url: "https://tine.staric.net"
 baseurl: ""
 
 # google_analytics: UA-XXXXXXXX-X
@@ -40,7 +40,7 @@ author:
   bio: "Homebrewer, not a hipster. <br>A Business Central enthusiast, with a passion for all things weird with AL."
   thumb: /images/author.jpg
   email: tine@staric.net
-  url: https://tinestaric.github.io
+  url: https://tine.staric.net
   github: https://github.com/tinestaric
   twitter: https://twitter.com/TineStaric
   linkedin: https://linkedin.com/in/tstaric
