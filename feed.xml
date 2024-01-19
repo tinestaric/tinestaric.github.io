@@ -3,10 +3,10 @@
   <channel>
     <title>Tech Adventures in Business Central</title>
     <description>A Blog by Tine Starič</description>
-    <link>https://tinestaric.github.io/</link>
-    <atom:link href="https://tinestaric.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 Jan 2024 13:00:15 +0200</pubDate>
-    <lastBuildDate>Fri, 19 Jan 2024 13:00:15 +0200</lastBuildDate>
+    <link>https://tine.staric.net/</link>
+    <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 19 Jan 2024 13:39:09 +0200</pubDate>
+    <lastBuildDate>Fri, 19 Jan 2024 13:39:09 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -102,8 +102,8 @@
 
 </description>
         <pubDate>Wed, 10 Jan 2024 10:00:00 +0200</pubDate>
-        <link>https://tinestaric.github.io/blog/2024/3-pitfalls-of-var-parameters/</link>
-        <guid isPermaLink="true">https://tinestaric.github.io/blog/2024/3-pitfalls-of-var-parameters/</guid>
+        <link>https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/</guid>
         
         
         <category>al</category>
@@ -126,8 +126,8 @@ The areas I want to explore and share with you are:&lt;/p&gt;
 &lt;p&gt;I think this will be a fun activity for me, and hopefully sometimes insightful for you!&lt;/p&gt;
 </description>
         <pubDate>Sun, 25 Jun 2023 01:08:27 +0300</pubDate>
-        <link>https://tinestaric.github.io/blog/2023/hello-world-of-blogging/</link>
-        <guid isPermaLink="true">https://tinestaric.github.io/blog/2023/hello-world-of-blogging/</guid>
+        <link>https://tine.staric.net/blog/2023/hello-world-of-blogging/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2023/hello-world-of-blogging/</guid>
         
         
         <category>welcome</category>
