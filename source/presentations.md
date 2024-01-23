@@ -8,6 +8,7 @@ Here's a list of the presentations I did through the years with attached slides,
 
 ## 2024
 - 2024-01 **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]
+
 ## 2023
 - 2023-12 **You need to implement AI now! ...But what even is AI?** as a webinar for [Companial][companialhome]: [presentation][companialaipress] and [recording][companialairecording]
 - 2023-11 Multiple sessions at [Directions EMEA][2023emea]
