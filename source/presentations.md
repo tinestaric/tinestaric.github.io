@@ -7,7 +7,7 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2024
-- 2024-01 **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress]
+- 2024-01 **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
 
 ## 2023
 - 2023-12 **You need to implement AI now! ...But what even is AI?** as a webinar for [Companial][companialhome]: [presentation][companialaipress] and [recording][companialairecording]
@@ -64,3 +64,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [companialaipress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/Webinars/YouNeedToImplementAI-Companial.pdf
 [companialairecording]: https://www.youtube.com/watch?v=A3-p-7iL0Go&feature=youtu.be
 [companialblobpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/Webinars/AzureBlobsMadeSimple-Companial.pdf
+[companialblobrecording]: https://www.youtube.com/watch?v=Hc7sKwG6nFw
