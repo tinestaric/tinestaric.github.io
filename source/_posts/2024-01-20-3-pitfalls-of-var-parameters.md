@@ -33,6 +33,8 @@ And Lists are not alone, there are a couple of data types that are always passed
 - JsonToken
 - OutStream
 - InStream
+- Codeunit
+- Interface
 - ErrorInfo
 - Notification
 - Query
