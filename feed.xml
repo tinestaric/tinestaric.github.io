@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Feb 2024 10:29:49 +0200</pubDate>
-    <lastBuildDate>Fri, 02 Feb 2024 10:29:49 +0200</lastBuildDate>
+    <pubDate>Fri, 02 Feb 2024 11:48:17 +0200</pubDate>
+    <lastBuildDate>Fri, 02 Feb 2024 11:48:17 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -51,7 +51,8 @@
 &lt;p&gt;How that works during the exam is, that you have a button at the bottom of the screen that says MS Learn. You click it, and it &lt;strong&gt;opens a web page side-by-side to your exam&lt;/strong&gt; and you can freely search through it while answering your questions. Keep in mind, that you won’t be able to leave the MS Learn website. So if documentation points to GitHub, that link won’t work.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/microsoft-learn-1.png&quot; alt=&quot;MS Learn Button&quot; /&gt;
-&lt;img src=&quot;/images/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;
+&lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;So no need to memorize all available properties and triggers! &lt;em&gt;Yaaay!&lt;/em&gt; Thank you MS, now I’m more forgiving of »Googleable questions«. But if you’re like me, and you’ve always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That’s the only search option you’ll have.&lt;/p&gt;
 
@@ -86,7 +87,8 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/mb820-review-qst.png&quot; alt=&quot;Mark Questions&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;
+&lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Especially for people taking the Beta exam, mark the questions you are confused about and &lt;strong&gt;leave a comment for Microsoft.&lt;/strong&gt; Sure, it won’t do much for you, but at least people who are coming after you might have a better exam-taking experience.&lt;/p&gt;
 
