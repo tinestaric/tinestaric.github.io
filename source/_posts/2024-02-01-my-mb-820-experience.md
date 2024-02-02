@@ -47,6 +47,7 @@ How that works during the exam is, that you have a button at the bottom of the s
 
 ![MS Learn Button](/images/microsoft-learn-1.png)
 ![MS Learn side-by-side](/images/microsoft-learn-2.png)
+<br>
 *Screenshots are taken from MS Learn, not the actual exam*
 
 So no need to memorize all available properties and triggers! *Yaaay!* Thank you MS, now I'm more forgiving of »Googleable questions«. But if you're like me, and you've always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That's the only search option you'll have.
@@ -81,6 +82,7 @@ When you're answering a question, you can mark it as »Review Later« and »Leav
 ![Mark Questions](/images/mb820-review-qst.png)
 
 ![Review Screen](/images/mb820-review-screen.png)
+<br>
 *Screenshots are taken from MS Learn, not the actual exam*
 
 Especially for people taking the Beta exam, mark the questions you are confused about and **leave a comment for Microsoft.** Sure, it won't do much for you, but at least people who are coming after you might have a better exam-taking experience.
