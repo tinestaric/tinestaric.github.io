@@ -62,7 +62,7 @@ I'll add here, that when I tried to close the MS Learn window, my whole exam cra
 
 The questions do cover a wide area of topics, **from telemetry, KQL, AppSource submissions, and ContainerHelper, to actual AL objects, data types, and permission sets**. [Alberto][albertolinkedin]  did a brilliant job **attaching various links for each topic** that MS specified can be included in the exam. You can find the full list **[here][certificationguide]**. 
 
-When I was preparing, I went through exam areas and marked all where I didn't feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a **» Check your knowledge«** which gives you a feeling of what kind of questions to expect from that area.
+When I was preparing, I went through exam areas and marked all where I didn't feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a **»Check your knowledge«** which gives you a feeling of what kind of questions to expect from that area.
 
 The questions come in 5 types:
 - Multiple choice with a single correct answer
@@ -91,7 +91,7 @@ Especially for people taking the Beta exam, mark the questions you are confused 
 
 ### The results
 
-For anyone reading this after the **exam is live** (no longer in Beta), you will get your results **immediately**, and you'll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; ...). For anyone taking the **Beta exam**, we'll get our results **within 10 days from the day the Certification goes live** (goes out of beta). We don't have a date yet when that's supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live **somewhere in March**.
+For anyone reading this **after the exam is live** (no longer in Beta), you will get your results **immediately**, and you'll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; ...). For anyone taking the **Beta exam**, we'll get our results **within 10 days from the day the Certification goes live** (goes out of beta). We don't have a date yet when that's supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live **somewhere in March**.
 
 <hr/>
 
