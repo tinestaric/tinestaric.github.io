@@ -5,9 +5,119 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Jan 2024 05:59:40 +0200</pubDate>
-    <lastBuildDate>Mon, 29 Jan 2024 05:59:40 +0200</lastBuildDate>
+    <pubDate>Fri, 02 Feb 2024 10:29:49 +0200</pubDate>
+    <lastBuildDate>Fri, 02 Feb 2024 10:29:49 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>My MB-820 Experience and why you shouldn&apos;t worry (that much)</title>
+        <description>&lt;p&gt;Last Friday I took the &lt;strong&gt;MB-820&lt;/strong&gt;. I wanted to do it as soon as possible. I guess I wanted to prove to myself that the years spent working as a developer were enough preparation to pass this certification.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Did I pass? I don’t know.&lt;/em&gt; More on that later.&lt;/p&gt;
+
+&lt;p&gt;But as I was sharing my experience with my colleagues who are planning to take it as well, I realized a lot of worries come from &lt;strong&gt;not knowing how the exam process works&lt;/strong&gt;. The point of this post is not to leak questions, I don’t think there’s a point in memorizing questions. It’s more about explaining the process, how you take the exam, what can you expect, and what style of questions can you expect.&lt;/p&gt;
+
+&lt;p&gt;If you’ve taken any other MS exam, you’ll already know most of these things. But I believe for a lot of BC Developers, this will be the first certification they’ll attempt.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;remember&quot;&gt;Remember!&lt;/h3&gt;
+&lt;p&gt;I’ll repeat this at the end, but my takeaway is, that an experienced developer, that worked on a wider set of projects &lt;strong&gt;should be able to pass this exam with a few days of preparation&lt;/strong&gt;. So go over some areas you’re uncertain about, and most importantly, &lt;strong&gt;trust yourself&lt;/strong&gt;. You’ve done most of the things they’re asking you about, now you just have to &lt;strong&gt;show it to them&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;exam-environment&quot;&gt;Exam Environment&lt;/h3&gt;
+
+&lt;p&gt;You’ll take the exam through Pearson VUE. You can either take it &lt;strong&gt;in-person&lt;/strong&gt; or &lt;strong&gt;online&lt;/strong&gt;. I tried both. I took the MB-800 in person, and MB-820 online. The experience is more or less the same. The in-person option did make me less worried about anything going wrong during the exam, but Online allows much more flexibility around when you can take the exam.&lt;/p&gt;
+
+&lt;p&gt;To take the exam online, you’ll download an app from their site and you’ll have to ensure that the room you’re in has no distracting factors (monitors and TVs need to be off, no books, anything that could be considered “cheating”). You’ll have to take pictures of the front, back, and sides of your exam area. Don’t worry, &lt;strong&gt;the app guides you through everything&lt;/strong&gt;. Additionally, your PC shouldn’t be running any additional apps. You can read more about it &lt;a href=&quot;https://learn.microsoft.com/en-us/credentials/certifications/online-exams&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;exam-style&quot;&gt;Exam Style&lt;/h3&gt;
+&lt;p&gt;When you start the exam, you’ll have all the exam rules written out, take your time to read them, this doesn’t take away from your exam time yet. Once the actual exam starts, you’ll have &lt;strong&gt;2 hours to finish it&lt;/strong&gt;. My take was, that 2 hours is &lt;strong&gt;enough time&lt;/strong&gt;, to comfortably go through all questions and return to the ones I found iffy.&lt;/p&gt;
+
+&lt;p&gt;The exam has &lt;strong&gt;3 sections of questions&lt;/strong&gt;. Within each section, you can always move back and forth between questions. So if you’re unsure about some, you can move forward to the next one, and return to it later. However, &lt;strong&gt;once you leave a section, you will not be able to return to it anymore&lt;/strong&gt;. The app lets you know of that, so don’t worry about accidentally leaving a section.&lt;/p&gt;
+
+&lt;p&gt;In my case, the sections were split into 8/6/42 questions, but this might change, the exam is in Beta after all. The first two sections were more scenario-based. &lt;em&gt;“The customer calls in with this and that problem, what do you do?”&lt;/em&gt;. The last section was more “to the point”, you have a snippet of code, what you have to change, or what property you use for this and that purpose.&lt;/p&gt;
+
+&lt;p&gt;Now you might think &lt;em&gt;“Ugh, are we really going to get questions that we could easily google?!”&lt;/em&gt;. Yes, yes we will.&lt;/p&gt;
+
+&lt;p&gt;However, a hugely important detail that you have to keep in mind is, that since August last year, &lt;strong&gt;you can use MS Learn during all “role-based” exams!&lt;/strong&gt; You can read about it &lt;a href=&quot;https://techcommunity.microsoft.com/t5/microsoft-learn-blog/introducing-a-new-resource-for-all-role-based-microsoft/ba-p/3500870&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;you-can-use-ms-learn-during-the-exam&quot;&gt;You can use MS Learn during the exam!&lt;/h3&gt;
+&lt;p&gt;How that works during the exam is, that you have a button at the bottom of the screen that says MS Learn. You click it, and it &lt;strong&gt;opens a web page side-by-side to your exam&lt;/strong&gt; and you can freely search through it while answering your questions. Keep in mind, that you won’t be able to leave the MS Learn website. So if documentation points to GitHub, that link won’t work.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/microsoft-learn-1.png&quot; alt=&quot;MS Learn Button&quot; /&gt;
+&lt;img src=&quot;/images/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So no need to memorize all available properties and triggers! &lt;em&gt;Yaaay!&lt;/em&gt; Thank you MS, now I’m more forgiving of »Googleable questions«. But if you’re like me, and you’ve always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That’s the only search option you’ll have.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Be careful though&lt;/strong&gt;. MS Learn is a great help, but it’s not a substitute for exam prep. If you try to find the answer to every question in MS Learn, you can easily &lt;strong&gt;run out of the 2 hours&lt;/strong&gt; allotted for the exam.&lt;/p&gt;
+
+&lt;p&gt;I’ll add here, that when I tried to close the MS Learn window, my whole exam crashed. But you can always message your proctor, and they simply restarted my exam from the last question I attempted. I didn’t lose any time due to the crash. This is not to scare you into not using MS Learn, but to emphasize, that even if something goes wrong, &lt;strong&gt;don’t worry, proctors are there to help you.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;question-topics-and-types&quot;&gt;Question Topics and Types&lt;/h3&gt;
+
+&lt;p&gt;The questions do cover a wide area of topics, &lt;strong&gt;from telemetry, KQL, AppSource submissions, and ContainerHelper, to actual AL objects, data types, and permission sets&lt;/strong&gt;. &lt;a href=&quot;https://www.linkedin.com/in/alberto-soben-a91090162/&quot;&gt;Alberto&lt;/a&gt;  did a brilliant job &lt;strong&gt;attaching various links for each topic&lt;/strong&gt; that MS specified can be included in the exam. You can find the full list &lt;strong&gt;&lt;a href=&quot;https://businesscentralgeek.com/business-central-developer-certification-ultimate-guide&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;When I was preparing, I went through exam areas and marked all where I didn’t feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a &lt;strong&gt;» Check your knowledge«&lt;/strong&gt; which gives you a feeling of what kind of questions to expect from that area.&lt;/p&gt;
+
+&lt;p&gt;The questions come in 5 types:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Multiple choice with a single correct answer&lt;/li&gt;
+  &lt;li&gt;Multiple choice with multiple correct answers&lt;/li&gt;
+  &lt;li&gt;Snippet where you fill in the blanks from a selection&lt;/li&gt;
+  &lt;li&gt;A selection of answers in the left column, and you have to select the correct answers and put them in order in the right column&lt;/li&gt;
+  &lt;li&gt;A Yes/No question&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The exam always specifies how many answers are required. It will prevent you from selecting more answers than expected and it will notify you if you try to leave the question by selecting less than the required amount of answers. You can read more about different question types &lt;a href=&quot;https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;review-later&quot;&gt;Review later&lt;/h3&gt;
+
+&lt;p&gt;When you’re answering a question, you can mark it as »Review Later« and »Leave a Comment«. I suggest you use the Review Later one for any questions where you’re unsure about your answer. Once you get to the end of a section, you’ll get an overview of all answered, unanswered, marked as review, and marked as comment questions, and you can navigate quickly to the ones you’d like to take another look at.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/mb820-review-qst.png&quot; alt=&quot;Mark Questions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Especially for people taking the Beta exam, mark the questions you are confused about and &lt;strong&gt;leave a comment for Microsoft.&lt;/strong&gt; Sure, it won’t do much for you, but at least people who are coming after you might have a better exam-taking experience.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-results&quot;&gt;The results&lt;/h3&gt;
+
+&lt;p&gt;For anyone reading this after the &lt;strong&gt;exam is live&lt;/strong&gt; (no longer in Beta), you will get your results &lt;strong&gt;immediately&lt;/strong&gt;, and you’ll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; …). For anyone taking the &lt;strong&gt;Beta exam&lt;/strong&gt;, we’ll get our results &lt;strong&gt;within 10 days from the day the Certification goes live&lt;/strong&gt; (goes out of beta). We don’t have a date yet when that’s supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live &lt;strong&gt;somewhere in March&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;my-take-away&quot;&gt;My take away&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;MS Learn&lt;/strong&gt; really does help so we’re not tripping over questions that are a &lt;strong&gt;quick search away&lt;/strong&gt;. There were questions about data types I haven’t used in years, like &lt;strong&gt;XMLPorts&lt;/strong&gt;, but I could find what I needed in the documentation. Does it mean there are no “stupid” questions left? No, I was quite annoyed with some, especially the &lt;strong&gt;KQL-related&lt;/strong&gt; ones. But I left my comments, hopefully, they’ll be improved in the future. Overall, the exam was quite enjoyable for me, and I think it does try to capture development knowledge for the most part. At least it’s a &lt;strong&gt;starting point&lt;/strong&gt; that will improve and we now have a &lt;strong&gt;developer certification available&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;And again, if you’ve been in the AL world for a while now, and you’ve worked on various projects, &lt;strong&gt;you got this&lt;/strong&gt;! 
+Some preparation for areas you’re not too comfortable with, and you’re ready to go! &lt;strong&gt;Trust yourself&lt;/strong&gt;, you’ve done most of this before!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;For anyone reading this after taking the exam, have I missed anything? Is there something else, you wish you knew before taking it? Let me know, and I’ll add it. Help the next person get certified!&lt;/em&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 01 Feb 2024 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2024/my-mb-820-experience/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/my-mb-820-experience/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>3 Pitfalls of Var Parameters</title>
@@ -39,6 +149,8 @@
   &lt;li&gt;JsonToken&lt;/li&gt;
   &lt;li&gt;OutStream&lt;/li&gt;
   &lt;li&gt;InStream&lt;/li&gt;
+  &lt;li&gt;Codeunit&lt;/li&gt;
+  &lt;li&gt;Interface&lt;/li&gt;
   &lt;li&gt;ErrorInfo&lt;/li&gt;
   &lt;li&gt;Notification&lt;/li&gt;
   &lt;li&gt;Query&lt;/li&gt;
