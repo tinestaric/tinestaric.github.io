@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Feb 2024 11:54:36 +0200</pubDate>
-    <lastBuildDate>Fri, 02 Feb 2024 11:54:36 +0200</lastBuildDate>
+    <pubDate>Fri, 02 Feb 2024 12:14:32 +0200</pubDate>
+    <lastBuildDate>Fri, 02 Feb 2024 12:14:32 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -67,7 +67,7 @@
 
 &lt;p&gt;The questions do cover a wide area of topics, &lt;strong&gt;from telemetry, KQL, AppSource submissions, and ContainerHelper, to actual AL objects, data types, and permission sets&lt;/strong&gt;. &lt;a href=&quot;https://www.linkedin.com/in/alberto-soben-a91090162/&quot;&gt;Alberto&lt;/a&gt;  did a brilliant job &lt;strong&gt;attaching various links for each topic&lt;/strong&gt; that MS specified can be included in the exam. You can find the full list &lt;strong&gt;&lt;a href=&quot;https://businesscentralgeek.com/business-central-developer-certification-ultimate-guide&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;When I was preparing, I went through exam areas and marked all where I didn’t feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a &lt;strong&gt;» Check your knowledge«&lt;/strong&gt; which gives you a feeling of what kind of questions to expect from that area.&lt;/p&gt;
+&lt;p&gt;When I was preparing, I went through exam areas and marked all where I didn’t feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a &lt;strong&gt;»Check your knowledge«&lt;/strong&gt; which gives you a feeling of what kind of questions to expect from that area.&lt;/p&gt;
 
 &lt;p&gt;The questions come in 5 types:&lt;/p&gt;
 &lt;ul&gt;
@@ -98,7 +98,7 @@
 
 &lt;h3 id=&quot;the-results&quot;&gt;The results&lt;/h3&gt;
 
-&lt;p&gt;For anyone reading this after the &lt;strong&gt;exam is live&lt;/strong&gt; (no longer in Beta), you will get your results &lt;strong&gt;immediately&lt;/strong&gt;, and you’ll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; …). For anyone taking the &lt;strong&gt;Beta exam&lt;/strong&gt;, we’ll get our results &lt;strong&gt;within 10 days from the day the Certification goes live&lt;/strong&gt; (goes out of beta). We don’t have a date yet when that’s supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live &lt;strong&gt;somewhere in March&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For anyone reading this &lt;strong&gt;after the exam is live&lt;/strong&gt; (no longer in Beta), you will get your results &lt;strong&gt;immediately&lt;/strong&gt;, and you’ll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; …). For anyone taking the &lt;strong&gt;Beta exam&lt;/strong&gt;, we’ll get our results &lt;strong&gt;within 10 days from the day the Certification goes live&lt;/strong&gt; (goes out of beta). We don’t have a date yet when that’s supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live &lt;strong&gt;somewhere in March&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
