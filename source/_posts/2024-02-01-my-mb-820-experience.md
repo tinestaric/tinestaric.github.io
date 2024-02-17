@@ -50,7 +50,7 @@ How that works during the exam is, that you have a button at the bottom of the s
 <br>
 *Screenshots are taken from MS Learn, not the actual exam*
 
-So no need to memorize all available properties and triggers! *Yaaay!* Thank you MS, now I'm more forgiving of »Googleable questions«. But if you're like me, and you've always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That's the only search option you'll have.
+So no need to memorize all available properties and triggers! *Yaaay!* Thank you MS, now I'm more forgiving of »Googleable questions«. But if you're like me, and you've always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That's the only search option you'll have. [Natalie][bcdocslibrarian] has a good [post][searchdocs] about searching docs effectively.
 
 **Be careful though**. MS Learn is a great help, but it's not a substitute for exam prep. If you try to find the answer to every question in MS Learn, you can easily **run out of the 2 hours** allotted for the exam.
 
@@ -111,3 +111,5 @@ Some preparation for areas you're not too comfortable with, and you're ready to 
 [certificationguide]: https://businesscentralgeek.com/business-central-developer-certification-ultimate-guide
 [pearsonvueonline]: https://learn.microsoft.com/en-us/credentials/certifications/online-exams
 [questiontypes]: https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience
+[bcdocslibrarian]: https://twitter.com/KarolakNatalie
+[searchdocs]: https://nataliekarolak.wordpress.com/2023/09/05/bc-docs-search-vs-filter-by-title/
