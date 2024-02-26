@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Reference Parameters - Var Does Matters</title>
+<meta name="description"
+    content="I previously posted about Pitfalls of var parameters and how things can go sideways if we’re not careful when using them.">
+
+<meta property="og:title" content="Reference Parameters - Var Does Matters" />
+<meta property="og:description"
+    content="I previously posted about Pitfalls of var parameters and how things can go sideways if we’re not careful when using them." />
+<meta property="og:url" content="https://tine.staric.net/blog/2024/reference-parameters-var-matters/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/by-reference-by-value.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/by-reference-by-value.jpeg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2024/reference-parameters-var-matters/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Reference Parameters - Var Does Matters</h1>
+      <em class="post-meta">
+        <time>Feb 26, 2024</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>I previously posted about <a href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/">Pitfalls of var parameters</a> and how things can go sideways if we’re not careful when using them.</p>
+
+<p>What I wrote there was:</p>
+
+<blockquote>
+  <p><em>Var modifiers don’t make a difference, but you should still use them to signal the intentionality of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.</em></p>
+</blockquote>
+
+<p>Now, what I wrote there still holds, regardless of using var with a reference data type parameter we’re able to make changes to it and those changes are reflected outside our local procedure. But thanks to <a href="https://www.linkedin.com/in/ajkauffmann">Arend-Jan Kauffmann</a> for pointing out, that that <strong>wasn’t the full truth</strong>. Marking a reference parameter with a var or not <strong>actually does play a role</strong>, and this post is about clarifying how and why it’s important we think about it in our <strong>event-driven world of extensions</strong>.</p>
+
+<hr />
+
+<h3 id="tldr">tl/dr</h3>
+<p>When we’re passing a reference type parameter to a procedure <strong>without var</strong>, we’re passing in a <strong>reference to an instance</strong> of an object. The procedure can do all the changes to that instance, however, what it <strong>cannot</strong> do, is <strong>change the reference so it would point to a different instance</strong>. When passing the parameter <strong>with var</strong>, we can <strong>also change the reference</strong>.</p>
+
+<hr />
+
+<p>Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
+Let’s take the same List example as last time. We know that <strong>both of these result in the same outcome</strong>. In both cases, var or no var, we end up with a list with 2 items.</p>
+
+<p><img src="/images/ref-param-list-add-no-var.png" alt="Add to List - No var" /></p>
+
+<p><img src="/images/ref-param-list-add-var.png" alt="Add to List - var" /></p>
+
+<hr />
+
+<p>Let’s make these examples weirder, so we can see where <strong>var</strong> starts making a difference.</p>
+
+<p><img src="/images/ref-param-list-change-reference-no-var.png" alt="Change List Reference - No var" /></p>
+
+<p>What do you think the count is going to be here? <em>1? 2? 3?</em> Well, let’s see…</p>
+
+<p><img src="/images/ref-param-list-change-reference-no-var-count.png" alt="Change List Reference - Count - No var" /></p>
+
+<p><strong>It’s one.</strong> Before we explain again what’s happening, let’s take a look at the same example, if the list parameter is marked with var:</p>
+
+<p><img src="/images/ref-param-list-change-reference-var.png" alt="Change List Reference - var" /></p>
+
+<p><img src="/images/ref-param-list-change-reference-var-count.png" alt="Change List Reference - Count - var" /></p>
+
+<p>This time the result is more along the lines of what we’d expect. <em>So why this difference in behavior?</em></p>
+
+<p>When passing a reference type, something like a list, we’re <strong>not passing an actual list</strong>, but only a <strong>reference to that list</strong>. <em>A pointer, a location.</em> Similar to having a piece of paper where the address of a house is written on. When passing it to a procedure, you’re not passing the whole house, just this <em>piece of paper</em> with the address. So when we’re talking about passing it by reference (with var) or by value (without var), we’re talking about passing the <strong>reference</strong> by value or by reference. In our case, this piece of paper with the address. In both cases, someone can go to the house and <strong>put something in</strong> the house, or <strong>take something out</strong> of it. However, if we give them the address by value (without var), we’re saying, <em>you can find the house here, do what you want in the house, but you <strong>can’t change the address</strong> on this paper.</em> When we pass it by reference (with var), they can also <strong>change the address</strong> so it points to a <strong>different house altogether</strong>.</p>
+
+<p>And that’s what’s happening in our list example above. We got the <em>address</em> to our List (MyList), but then we created a <strong>completely new list</strong> (MyList2) and tried saying, <em>“Hey, MyList address should now point to MyList2”</em>. When the parameter is passed without var, we <strong>cannot do that</strong>, hence, when the procedure finishes, MyList still <strong>points to the original List</strong> with only 1 item (“Hello”).</p>
+
+<p>In the second example, because MyList is <strong>passed with var</strong>, we can change it, so that it <strong>points to the new List</strong>, MyList2.</p>
+
+<hr />
+
+<p><em>“Okay Tine, fine, I get it, but so what? I mean, who in their right mind goes and creates a new list, if they get one passed in as a parameter…”</em></p>
+
+<p>Yeah, fair point. But keep in mind, that any procedure that <strong>returns a list</strong> actually <strong>creates a new instance</strong>. So it’s not that uncommon.</p>
+
+<p> <img src="/images/ref-param-invoice-change-reference-no-var.png" alt="Assign Invoices - No var" /></p>
+
+<p>Above example <strong>won’t work</strong>, but it will if the parameter is marked with var:</p>
+
+<p> <img src="/images/ref-param-invoice-change-reference-var.png" alt="Assign Invoices - var" /></p>
+
+<p>so will this:</p>
+
+<p> <img src="/images/ref-param-invoice-add.png" alt="Assign Invoices - var" /></p>
+
+<p><em>“Fine, be mindful of how you assign to lists. Why don’t I just <strong>always mark reference parameters with var</strong>? One less thing to worry about…”</em></p>
+
+<p><strong>Bad idea.</strong></p>
+
+<p>Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:</p>
+
+<p> <img src="/images/ref-param-interface-main.png" alt="Interface - Main" /></p>
+
+<p>We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:</p>
+
+<p> <img src="/images/ref-param-interface-normal.png" alt="Interface Implementation - Normal" /></p>
+
+<p><em>Simple, right?</em> One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface <strong>by value</strong>, subscribers can <strong>only access the procedures of that interface</strong>.</p>
+
+<p> <img src="/images/ref-param-interface-event-no-var.png" alt="Interface Event - No var" /></p>
+
+<p>On the other hand, if you expose it <strong>by reference</strong>, a subscriber can also <strong>change the implementation</strong> that interface is referencing:</p>
+
+<p> <img src="/images/ref-param-interface-event-var.png" alt="Interface Event - var" /></p>
+
+<p>And that can lead to <strong>unpredictable behavior</strong> for your app, especially if the new implementation does something stupid like:</p>
+
+<p> <img src="/images/ref-param-interface-wild.png" alt="Interface Implementation - Wild" /></p>
+
+<p>But hey, maybe that’s exactly <strong>what you wanted</strong>. The option for subscribers to <strong>change the implementation</strong> interface points to. So there’s no <em>always right</em> or <em>always wrong</em> answer here.</p>
+
+<hr />
+
+<p>Now, in summary, <em>should you use var with reference parameters? or should you not?</em> It comes down to the usual <strong>“It depends”</strong>. What I’m hoping to achieve with this blog is for us to <strong>be mindful that there is a difference</strong> and you should think about <em>“Do I want the procedure to only modify the instance of a variable, or should I let it change the reference to a completely different instance?”</em> and that we don’t just <strong>blindly mark or not mark parameters with var</strong>.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

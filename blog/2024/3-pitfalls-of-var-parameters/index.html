@@ -16,8 +16,8 @@
 <meta property="og:url" content="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/" />
 <meta property="og:site_name" content="Tech Adventures in Business Central" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png" />
-<meta property="twitter:image" content="https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png" />
+<meta property="og:image" content="https://tine.staric.net/images/confused-dev.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/confused-dev.jpeg" />
 
 <link rel="stylesheet" href="/css/main.css">
 <link rel="canonical" href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/">
@@ -112,7 +112,9 @@
 
 <p><strong>Be careful</strong> with these data types, you might get them back in a different state when the procedure finishes. This is especially true for <strong>exposing them through events</strong>, as we have no control if a subscriber can change the contents of the variable or not.</p>
 
-<p>Var modifiers don’t make a difference, but you should still use them to <strong>signal the intentionality</strong> of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.</p>
+<p><del>Var modifiers don’t make a difference, but you should still use them to <strong>signal the intentionality</strong> of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.</del></p>
+
+<p>This was actually not the full truth. Var <strong>does make a difference</strong>, even with reference parameters. You can read more about it here: <a href="/blog/2024/reference-parameters-var-matters">Reference parameters - var does matter</a></p>
 
 <hr />
 

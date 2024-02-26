@@ -5,9 +5,115 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Feb 2024 12:14:32 +0200</pubDate>
-    <lastBuildDate>Fri, 02 Feb 2024 12:14:32 +0200</lastBuildDate>
+    <pubDate>Mon, 26 Feb 2024 16:50:56 +0200</pubDate>
+    <lastBuildDate>Mon, 26 Feb 2024 16:50:56 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Reference Parameters - Var Does Matters</title>
+        <description>&lt;p&gt;I previously posted about &lt;a href=&quot;https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/&quot;&gt;Pitfalls of var parameters&lt;/a&gt; and how things can go sideways if we’re not careful when using them.&lt;/p&gt;
+
+&lt;p&gt;What I wrote there was:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;Var modifiers don’t make a difference, but you should still use them to signal the intentionality of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now, what I wrote there still holds, regardless of using var with a reference data type parameter we’re able to make changes to it and those changes are reflected outside our local procedure. But thanks to &lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;Arend-Jan Kauffmann&lt;/a&gt; for pointing out, that that &lt;strong&gt;wasn’t the full truth&lt;/strong&gt;. Marking a reference parameter with a var or not &lt;strong&gt;actually does play a role&lt;/strong&gt;, and this post is about clarifying how and why it’s important we think about it in our &lt;strong&gt;event-driven world of extensions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;tldr&quot;&gt;tl/dr&lt;/h3&gt;
+&lt;p&gt;When we’re passing a reference type parameter to a procedure &lt;strong&gt;without var&lt;/strong&gt;, we’re passing in a &lt;strong&gt;reference to an instance&lt;/strong&gt; of an object. The procedure can do all the changes to that instance, however, what it &lt;strong&gt;cannot&lt;/strong&gt; do, is &lt;strong&gt;change the reference so it would point to a different instance&lt;/strong&gt;. When passing the parameter &lt;strong&gt;with var&lt;/strong&gt;, we can &lt;strong&gt;also change the reference&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
+Let’s take the same List example as last time. We know that &lt;strong&gt;both of these result in the same outcome&lt;/strong&gt;. In both cases, var or no var, we end up with a list with 2 items.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-add-no-var.png&quot; alt=&quot;Add to List - No var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-add-var.png&quot; alt=&quot;Add to List - var&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let’s make these examples weirder, so we can see where &lt;strong&gt;var&lt;/strong&gt; starts making a difference.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-no-var.png&quot; alt=&quot;Change List Reference - No var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What do you think the count is going to be here? &lt;em&gt;1? 2? 3?&lt;/em&gt; Well, let’s see…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-no-var-count.png&quot; alt=&quot;Change List Reference - Count - No var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;It’s one.&lt;/strong&gt; Before we explain again what’s happening, let’s take a look at the same example, if the list parameter is marked with var:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-var.png&quot; alt=&quot;Change List Reference - var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-var-count.png&quot; alt=&quot;Change List Reference - Count - var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This time the result is more along the lines of what we’d expect. &lt;em&gt;So why this difference in behavior?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When passing a reference type, something like a list, we’re &lt;strong&gt;not passing an actual list&lt;/strong&gt;, but only a &lt;strong&gt;reference to that list&lt;/strong&gt;. &lt;em&gt;A pointer, a location.&lt;/em&gt; Similar to having a piece of paper where the address of a house is written on. When passing it to a procedure, you’re not passing the whole house, just this &lt;em&gt;piece of paper&lt;/em&gt; with the address. So when we’re talking about passing it by reference (with var) or by value (without var), we’re talking about passing the &lt;strong&gt;reference&lt;/strong&gt; by value or by reference. In our case, this piece of paper with the address. In both cases, someone can go to the house and &lt;strong&gt;put something in&lt;/strong&gt; the house, or &lt;strong&gt;take something out&lt;/strong&gt; of it. However, if we give them the address by value (without var), we’re saying, &lt;em&gt;you can find the house here, do what you want in the house, but you &lt;strong&gt;can’t change the address&lt;/strong&gt; on this paper.&lt;/em&gt; When we pass it by reference (with var), they can also &lt;strong&gt;change the address&lt;/strong&gt; so it points to a &lt;strong&gt;different house altogether&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;And that’s what’s happening in our list example above. We got the &lt;em&gt;address&lt;/em&gt; to our List (MyList), but then we created a &lt;strong&gt;completely new list&lt;/strong&gt; (MyList2) and tried saying, &lt;em&gt;“Hey, MyList address should now point to MyList2”&lt;/em&gt;. When the parameter is passed without var, we &lt;strong&gt;cannot do that&lt;/strong&gt;, hence, when the procedure finishes, MyList still &lt;strong&gt;points to the original List&lt;/strong&gt; with only 1 item (“Hello”).&lt;/p&gt;
+
+&lt;p&gt;In the second example, because MyList is &lt;strong&gt;passed with var&lt;/strong&gt;, we can change it, so that it &lt;strong&gt;points to the new List&lt;/strong&gt;, MyList2.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;“Okay Tine, fine, I get it, but so what? I mean, who in their right mind goes and creates a new list, if they get one passed in as a parameter…”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yeah, fair point. But keep in mind, that any procedure that &lt;strong&gt;returns a list&lt;/strong&gt; actually &lt;strong&gt;creates a new instance&lt;/strong&gt;. So it’s not that uncommon.&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-change-reference-no-var.png&quot; alt=&quot;Assign Invoices - No var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Above example &lt;strong&gt;won’t work&lt;/strong&gt;, but it will if the parameter is marked with var:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-change-reference-var.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;so will this:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-add.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“Fine, be mindful of how you assign to lists. Why don’t I just &lt;strong&gt;always mark reference parameters with var&lt;/strong&gt;? One less thing to worry about…”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bad idea.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-main.png&quot; alt=&quot;Interface - Main&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-normal.png&quot; alt=&quot;Interface Implementation - Normal&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Simple, right?&lt;/em&gt; One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface &lt;strong&gt;by value&lt;/strong&gt;, subscribers can &lt;strong&gt;only access the procedures of that interface&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-event-no-var.png&quot; alt=&quot;Interface Event - No var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if you expose it &lt;strong&gt;by reference&lt;/strong&gt;, a subscriber can also &lt;strong&gt;change the implementation&lt;/strong&gt; that interface is referencing:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-event-var.png&quot; alt=&quot;Interface Event - var&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And that can lead to &lt;strong&gt;unpredictable behavior&lt;/strong&gt; for your app, especially if the new implementation does something stupid like:&lt;/p&gt;
+
+&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-wild.png&quot; alt=&quot;Interface Implementation - Wild&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But hey, maybe that’s exactly &lt;strong&gt;what you wanted&lt;/strong&gt;. The option for subscribers to &lt;strong&gt;change the implementation&lt;/strong&gt; interface points to. So there’s no &lt;em&gt;always right&lt;/em&gt; or &lt;em&gt;always wrong&lt;/em&gt; answer here.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now, in summary, &lt;em&gt;should you use var with reference parameters? or should you not?&lt;/em&gt; It comes down to the usual &lt;strong&gt;“It depends”&lt;/strong&gt;. What I’m hoping to achieve with this blog is for us to &lt;strong&gt;be mindful that there is a difference&lt;/strong&gt; and you should think about &lt;em&gt;“Do I want the procedure to only modify the instance of a variable, or should I let it change the reference to a completely different instance?”&lt;/em&gt; and that we don’t just &lt;strong&gt;blindly mark or not mark parameters with var&lt;/strong&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 26 Feb 2024 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2024/reference-parameters-var-matters/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/reference-parameters-var-matters/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>My MB-820 Experience and why you shouldn&apos;t worry (that much)</title>
@@ -55,7 +161,7 @@
 &lt;br /&gt;
 &lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;So no need to memorize all available properties and triggers! &lt;em&gt;Yaaay!&lt;/em&gt; Thank you MS, now I’m more forgiving of »Googleable questions«. But if you’re like me, and you’ve always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That’s the only search option you’ll have.&lt;/p&gt;
+&lt;p&gt;So no need to memorize all available properties and triggers! &lt;em&gt;Yaaay!&lt;/em&gt; Thank you MS, now I’m more forgiving of »Googleable questions«. But if you’re like me, and you’ve always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That’s the only search option you’ll have. &lt;a href=&quot;https://twitter.com/KarolakNatalie&quot;&gt;Natalie&lt;/a&gt; has a good &lt;a href=&quot;https://nataliekarolak.wordpress.com/2023/09/05/bc-docs-search-vs-filter-by-title/&quot;&gt;post&lt;/a&gt; about searching docs effectively.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Be careful though&lt;/strong&gt;. MS Learn is a great help, but it’s not a substitute for exam prep. If you try to find the answer to every question in MS Learn, you can easily &lt;strong&gt;run out of the 2 hours&lt;/strong&gt; allotted for the exam.&lt;/p&gt;
 
@@ -163,7 +269,9 @@ Some preparation for areas you’re not too comfortable with, and you’re ready
 
 &lt;p&gt;&lt;strong&gt;Be careful&lt;/strong&gt; with these data types, you might get them back in a different state when the procedure finishes. This is especially true for &lt;strong&gt;exposing them through events&lt;/strong&gt;, as we have no control if a subscriber can change the contents of the variable or not.&lt;/p&gt;
 
-&lt;p&gt;Var modifiers don’t make a difference, but you should still use them to &lt;strong&gt;signal the intentionality&lt;/strong&gt; of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Var modifiers don’t make a difference, but you should still use them to &lt;strong&gt;signal the intentionality&lt;/strong&gt; of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;This was actually not the full truth. Var &lt;strong&gt;does make a difference&lt;/strong&gt;, even with reference parameters. You can read more about it here: &lt;a href=&quot;/blog/2024/reference-parameters-var-matters&quot;&gt;Reference parameters - var does matter&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
