@@ -5,12 +5,12 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Feb 2024 17:20:51 +0200</pubDate>
-    <lastBuildDate>Mon, 26 Feb 2024 17:20:51 +0200</lastBuildDate>
+    <pubDate>Mon, 26 Feb 2024 17:25:47 +0200</pubDate>
+    <lastBuildDate>Mon, 26 Feb 2024 17:25:47 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
-        <title>Reference Parameters - Var Does Matters</title>
+        <title>Reference Parameters - var does matter</title>
         <description>&lt;p&gt;I previously posted about &lt;a href=&quot;https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/&quot;&gt;Pitfalls of var parameters&lt;/a&gt; and how things can go sideways if we’re not careful when using them.&lt;/p&gt;
 
 &lt;p&gt;What I wrote there in regards to marking &lt;em&gt;reference&lt;/em&gt; parameters with var was:&lt;/p&gt;
@@ -107,8 +107,8 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
 
 </description>
         <pubDate>Mon, 26 Feb 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/reference-parameters-var-matters/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/reference-parameters-var-matters/</guid>
+        <link>https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</guid>
         
         
         <category>al</category>
