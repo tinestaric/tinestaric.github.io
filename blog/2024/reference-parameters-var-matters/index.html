@@ -76,7 +76,7 @@
     <div class="post-content">
       <p>I previously posted about <a href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/">Pitfalls of var parameters</a> and how things can go sideways if we’re not careful when using them.</p>
 
-<p>What I wrote there was:</p>
+<p>What I wrote there in regards to marking <em>reference</em> parameters with var was:</p>
 
 <blockquote>
   <p><em>Var modifiers don’t make a difference, but you should still use them to signal the intentionality of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.</em></p>
@@ -87,12 +87,12 @@
 <hr />
 
 <h3 id="tldr">tl/dr</h3>
-<p>When we’re passing a reference type parameter to a procedure <strong>without var</strong>, we’re passing in a <strong>reference to an instance</strong> of an object. The procedure can do all the changes to that instance, however, what it <strong>cannot</strong> do, is <strong>change the reference so it would point to a different instance</strong>. When passing the parameter <strong>with var</strong>, we can <strong>also change the reference</strong>.</p>
+<p>When we’re passing a reference type parameter to a procedure <strong>without var</strong>, we’re passing the <strong>reference</strong> by value. The procedure can make all the changes to the instance it points to, however, it <strong>cannot change the reference so it would point to a different instance</strong>. When passing the parameter <strong>with var</strong>, we can <strong>also change the reference</strong>.</p>
 
 <hr />
 
 <p>Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
-Let’s take the same List example as last time. We know that <strong>both of these result in the same outcome</strong>. In both cases, var or no var, we end up with a list with 2 items.</p>
+Let’s take the same List example as last time. We know that <strong>both of these result in the same outcome</strong>. In both cases, <strong>var or no var</strong>, we end up with a list with <strong>2 items</strong>.</p>
 
 <p><img src="/images/ref-param-list-add-no-var.png" alt="Add to List - No var" /></p>
 
@@ -108,7 +108,7 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p><img src="/images/ref-param-list-change-reference-no-var-count.png" alt="Change List Reference - Count - No var" /></p>
 
-<p><strong>It’s one.</strong> Before we explain again what’s happening, let’s take a look at the same example, if the list parameter is marked with var:</p>
+<p><strong>It’s one.</strong> Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:</p>
 
 <p><img src="/images/ref-param-list-change-reference-var.png" alt="Change List Reference - var" /></p>
 
@@ -118,7 +118,7 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p>When passing a reference type, something like a list, we’re <strong>not passing an actual list</strong>, but only a <strong>reference to that list</strong>. <em>A pointer, a location.</em> Similar to having a piece of paper where the address of a house is written on. When passing it to a procedure, you’re not passing the whole house, just this <em>piece of paper</em> with the address. So when we’re talking about passing it by reference (with var) or by value (without var), we’re talking about passing the <strong>reference</strong> by value or by reference. In our case, this piece of paper with the address. In both cases, someone can go to the house and <strong>put something in</strong> the house, or <strong>take something out</strong> of it. However, if we give them the address by value (without var), we’re saying, <em>you can find the house here, do what you want in the house, but you <strong>can’t change the address</strong> on this paper.</em> When we pass it by reference (with var), they can also <strong>change the address</strong> so it points to a <strong>different house altogether</strong>.</p>
 
-<p>And that’s what’s happening in our list example above. We got the <em>address</em> to our List (MyList), but then we created a <strong>completely new list</strong> (MyList2) and tried saying, <em>“Hey, MyList address should now point to MyList2”</em>. When the parameter is passed without var, we <strong>cannot do that</strong>, hence, when the procedure finishes, MyList still <strong>points to the original List</strong> with only 1 item (“Hello”).</p>
+<p>And that’s what’s happening in our list example above. We got the <em>address</em> to our List (MyList), but then we created a <strong>completely new list</strong> (MyList2) and tried saying, <em>“Hey, MyList address should now point to this new list”</em>. When the parameter is passed without var, we <strong>cannot do that</strong>, hence, when the procedure finishes, MyList still <strong>points to the original List</strong> with only 1 item (“Hello”).</p>
 
 <p>In the second example, because MyList is <strong>passed with var</strong>, we can change it, so that it <strong>points to the new List</strong>, MyList2.</p>
 
@@ -130,7 +130,7 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p> <img src="/images/ref-param-invoice-change-reference-no-var.png" alt="Assign Invoices - No var" /></p>
 
-<p>Above example <strong>won’t work</strong>, but it will if the parameter is marked with var:</p>
+<p>The above example <strong>won’t work</strong>, but it will if the parameter is marked with var:</p>
 
 <p> <img src="/images/ref-param-invoice-change-reference-var.png" alt="Assign Invoices - var" /></p>
 
@@ -154,7 +154,7 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p> <img src="/images/ref-param-interface-event-no-var.png" alt="Interface Event - No var" /></p>
 
-<p>On the other hand, if you expose it <strong>by reference</strong>, a subscriber can also <strong>change the implementation</strong> that interface is referencing:</p>
+<p>On the other hand, if you expose it <strong>by reference</strong>, a subscriber can also <strong>change the implementation</strong> that the interface is referencing:</p>
 
 <p> <img src="/images/ref-param-interface-event-var.png" alt="Interface Event - var" /></p>
 
