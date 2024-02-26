@@ -8,7 +8,7 @@ image: /images/by-reference-by-value.jpeg
 ---
 I previously posted about [Pitfalls of var parameters][pitfallsofvarparameters] and how things can go sideways if we’re not careful when using them.
 
-What I wrote there was:
+What I wrote there in regards to marking *reference* parameters with var was:
 
 > *Var modifiers don’t make a difference, but you should still use them to signal the intentionality of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.*
 
@@ -17,12 +17,12 @@ Now, what I wrote there still holds, regardless of using var with a reference da
 <hr/>
 
 ### tl/dr
-When we’re passing a reference type parameter to a procedure **without var**, we’re passing in a **reference to an instance** of an object. The procedure can do all the changes to that instance, however, what it **cannot** do, is **change the reference so it would point to a different instance**. When passing the parameter **with var**, we can **also change the reference**.
+When we’re passing a reference type parameter to a procedure **without var**, we’re passing the **reference** by value. The procedure can make all the changes to the instance it points to, however, it **cannot change the reference so it would point to a different instance**. When passing the parameter **with var**, we can **also change the reference**.
 
 <hr/>
 
 Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
-Let’s take the same List example as last time. We know that **both of these result in the same outcome**. In both cases, var or no var, we end up with a list with 2 items.
+Let’s take the same List example as last time. We know that **both of these result in the same outcome**. In both cases, **var or no var**, we end up with a list with **2 items**.
 
 ![Add to List - No var](/images/ref-param-list-add-no-var.png)
 
@@ -38,7 +38,7 @@ What do you think the count is going to be here? *1? 2? 3?* Well, let's see...
 
 ![Change List Reference - Count - No var](/images/ref-param-list-change-reference-no-var-count.png)
 
-**It’s one.** Before we explain again what’s happening, let’s take a look at the same example, if the list parameter is marked with var:
+**It’s one.** Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:
 
 ![Change List Reference - var](/images/ref-param-list-change-reference-var.png)
 
@@ -48,7 +48,7 @@ This time the result is more along the lines of what we’d expect. *So why this
 
 When passing a reference type, something like a list, we’re **not passing an actual list**, but only a **reference to that list**. *A pointer, a location.* Similar to having a piece of paper where the address of a house is written on. When passing it to a procedure, you’re not passing the whole house, just this *piece of paper* with the address. So when we’re talking about passing it by reference (with var) or by value (without var), we're talking about passing the **reference** by value or by reference. In our case, this piece of paper with the address. In both cases, someone can go to the house and **put something in** the house, or **take something out** of it. However, if we give them the address by value (without var), we’re saying, *you can find the house here, do what you want in the house, but you **can’t change the address** on this paper.* When we pass it by reference (with var), they can also **change the address** so it points to a **different house altogether**. 
 
-And that’s what’s happening in our list example above. We got the *address* to our List (MyList), but then we created a **completely new list** (MyList2) and tried saying, *"Hey, MyList address should now point to MyList2"*. When the parameter is passed without var, we **cannot do that**, hence, when the procedure finishes, MyList still **points to the original List** with only 1 item (“Hello”).
+And that’s what’s happening in our list example above. We got the *address* to our List (MyList), but then we created a **completely new list** (MyList2) and tried saying, *"Hey, MyList address should now point to this new list"*. When the parameter is passed without var, we **cannot do that**, hence, when the procedure finishes, MyList still **points to the original List** with only 1 item (“Hello”).
 
 In the second example, because MyList is **passed with var**, we can change it, so that it **points to the new List**, MyList2.
 
@@ -60,7 +60,7 @@ Yeah, fair point. But keep in mind, that any procedure that **returns a list** a
 
  ![Assign Invoices - No var](/images/ref-param-invoice-change-reference-no-var.png)
 
-Above example **won’t work**, but it will if the parameter is marked with var:
+The above example **won’t work**, but it will if the parameter is marked with var:
 
  ![Assign Invoices - var](/images/ref-param-invoice-change-reference-var.png)
 
@@ -84,7 +84,7 @@ We have a simple procedure that sets a value, exposes the interface through an e
 
  ![Interface Event - No var](/images/ref-param-interface-event-no-var.png)
 
-On the other hand, if you expose it **by reference**, a subscriber can also **change the implementation** that interface is referencing:
+On the other hand, if you expose it **by reference**, a subscriber can also **change the implementation** that the interface is referencing:
 
  ![Interface Event - var](/images/ref-param-interface-event-var.png)
 
