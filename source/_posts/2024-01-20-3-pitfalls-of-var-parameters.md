@@ -42,7 +42,9 @@ And Lists are not alone, there are a couple of data types that are always passed
 
 **Be careful** with these data types, you might get them back in a different state when the procedure finishes. This is especially true for **exposing them through events**, as we have no control if a subscriber can change the contents of the variable or not.
 
-Var modifiers don't make a difference, but you should still use them to **signal the intentionality** of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it's only reading data, skip it.
+~~Var modifiers don't make a difference, but you should still use them to **signal the intentionality** of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it's only reading data, skip it.~~
+
+This was actually not the full truth. Var **does make a difference**, even with reference parameters. You can read more about it here: [Reference parameters - var does matter][refparamvarmatters]
 
 <hr/>
 
@@ -97,3 +99,5 @@ Note: **UploadIntoStream** works just fine, as the uploaded file is allocated ou
 ![Read from UploadToInStream function with InStream](/images/var-param-stream-upload.png)
 
 [listdocs]: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/list/list-data-type
+
+[refparamvarmatters]: /blog/2024/reference-parameters-var-matters
