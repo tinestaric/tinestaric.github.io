@@ -9,6 +9,7 @@ Here's a list of the presentations I did through the years with attached slides,
 ## 2024
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
 - 2024-05 **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
+- 2024-04 Multiple sessions at [Directions North America][directionsnahome]
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
     - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], Nordic, Central
     - **Reviewing the Code Review**: session link [UK][dokuk24codereview], Central
@@ -82,3 +83,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokuk24codereview]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=21-03-2024&categories=225424%2C224022%2C224017&session=588514
 [dokuk24blobs]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?session=588515
 [dokuk24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=22-03-2024&session=588513
+[directionsnahome]: https://directionsna.com/
