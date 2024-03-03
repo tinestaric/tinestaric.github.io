@@ -7,21 +7,30 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2024
-- 2024-01 **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
+- 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
+- 2024-05 **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
+- 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
+    - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], Nordic, Central
+    - **Reviewing the Code Review**: session link [UK][dokuk24codereview], Central
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], Nordic
+- 2024-03 **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]
+- 2024-01 
+    - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
+    - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
 
 ## 2023
 - 2023-12 **You need to implement AI now! ...But what even is AI?** as a webinar for [Companial][companialhome]: [presentation][companialaipress] and [recording][companialairecording]
 - 2023-11 Multiple sessions at [Directions EMEA][2023emea]
     - **You need to implement AI now! ...But what even is AI?**: [session link][2023emeaaischedule] and [presentation][2023emeaaipress]
     - **Beyond Firefighting: Proactive Error Handling in Power Automate to Prevent Business Disruptions**: [session link][2023emeafirefightingschedule] and [presentation][2023emeafirefightingpress]
-- 2023-10 **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques** as a webinar for [Areopa][areopa]: [presentation][areopaendpointspress] and [recording][areopaendpointsrecording]
+- 2023-10 **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques** as a webinar for [Areopa][areopa]: [presentation][areopaendpointspress], [code][secureendpointsrepo], and [recording][areopaendpointsrecording]
 - 2023-05 Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
-    - **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques**: [presentation][2023dynamicsmindspress1] and [code example][secureendpointscode]
+    - **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques**: [presentation][2023dynamicsmindspress1] and [code example][secureendpointsrepo]
     - **Elevating API Defense: Adding Extra Layers of Security to Dynamics 365 Business Central with Azure**: [presentation][2023dynamicsmindspress2]
     - **Efficient Translation: A Guide to Improving Translation Process in Dynamics Business Central**: [presentation][2023dynamicsmindspress3]
 - 2023-03,06 Multiple sessions at [Days of Knowledge UK][2023dokuk] and [Days of Knowledge Nordic][2023doknordic]:
     - **Business Central Self-Service Portals with Power Pages**: session link [UK][2023dokuk1], [Nordic][2023doknordic1] and [presentation][2023doknordicpres1]
-    - **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques**: session link [Nordic][2023doknordic2], [presentation][2023dokNordicpres2] and [code examples][secureendpointscode]
+    - **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques**: session link [Nordic][2023doknordic2], [presentation][2023dokNordicpres2] and [code examples][secureendpointsrepo]
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL**: session link [Nordic][2023doknordic3] and [presentation][2023dokNordicpres3]
 - 2023-02 **Automating Code Quality: A Guide to using Custom Code Analysis for AL**: as a webinar for [Companial][companialhome]:  [presentation][companialcodequalitypress] and [recording][companialcodequalityrecording] 
 
@@ -44,7 +53,6 @@ Here's a list of the presentations I did through the years with attached slides,
 [2023dynamicsmindspress2]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DynamicsMinds/DynamicsMinds_ElevatingAPIDefence.pdf
 [2023dynamicsmindspress3]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DynamicsMinds/DynamicsMinds_UnlockingSecureEndpoints.pdf
 [2023dynamicsminds]: https://www.dynamicsminds.com/
-[secureendpointscode]: https://github.com/tinestaric/BCExamples/tree/Master/SecureEndpoints
 [companialhome]: https://companial.com/
 [companialcodequalitypress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/Webinars/Companial-CodeAnalysis.pdf
 [companialcodequalityrecording]:https://www.youtube.com/watch?v=TP_xy0seRQs
@@ -65,3 +73,12 @@ Here's a list of the presentations I did through the years with attached slides,
 [companialairecording]: https://www.youtube.com/watch?v=A3-p-7iL0Go&feature=youtu.be
 [companialblobpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/Webinars/AzureBlobsMadeSimple-Companial.pdf
 [companialblobrecording]: https://www.youtube.com/watch?v=Hc7sKwG6nFw
+[companialtalkieai]: https://www.youtube.com/watch?v=tuvg8Jh4fnw
+[secureendpointsrepo]: https://github.com/tinestaric/BCExamples/tree/Master/SecureEndpoints
+[dokuk24]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024
+[doknordic24]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024
+[dokcentral24]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024
+[bctechdays]: https://www.bctechdays.com/event
+[dokuk24codereview]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=21-03-2024&categories=225424%2C224022%2C224017&session=588514
+[dokuk24blobs]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?session=588515
+[dokuk24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=22-03-2024&session=588513
