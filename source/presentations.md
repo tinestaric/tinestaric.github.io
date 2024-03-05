@@ -10,6 +10,8 @@ Here's a list of the presentations I did through the years with attached slides,
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
 - 2024-05 **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
+    - **Reviewing the Code Review**
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
     - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], Nordic, Central
     - **Reviewing the Code Review**: session link [UK][dokuk24codereview], Central
