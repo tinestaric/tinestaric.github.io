@@ -8,15 +8,20 @@ Here's a list of the presentations I did through the years with attached slides,
 
 ## 2024
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
-- 2024-05 **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
+- 2024-05 
+    - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
+    - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as an Expert Session for [Plataan][plataanhome]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
     - **Reviewing the Code Review**
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
-    - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], Nordic, Central
-    - **Reviewing the Code Review**: session link [UK][dokuk24codereview], Central
-    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], Nordic
-- 2024-03 **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]
+    - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], [Nordic][doknordic24blobs], [Central][dokcentral24blobs]
+    - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview]
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror]
+- 2024-03 
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]
+    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]
 - 2024-01 
     - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
     - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
@@ -82,7 +87,12 @@ Here's a list of the presentations I did through the years with attached slides,
 [doknordic24]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024
 [dokcentral24]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024
 [bctechdays]: https://www.bctechdays.com/event
-[dokuk24codereview]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=21-03-2024&categories=225424%2C224022%2C224017&session=588514
+[dokuk24codereview]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?session=588514
 [dokuk24blobs]:https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?session=588515
-[dokuk24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?day=22-03-2024&session=588513
+[dokuk24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2024/schedule?session=588513
 [directionsnahome]: https://directionsna.com/
+[doknordic24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024/schedule?session=588519
+[doknordic24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024/schedule?session=588518
+[dokcentral24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588525
+[dokcentral24codereview]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588528
+[plataanhome]: https://plataan.tv/en
