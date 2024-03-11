@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 11 Mar 2024 10:17:59 +0200</pubDate>
-    <lastBuildDate>Mon, 11 Mar 2024 10:17:59 +0200</lastBuildDate>
+    <pubDate>Mon, 11 Mar 2024 10:51:26 +0200</pubDate>
+    <lastBuildDate>Mon, 11 Mar 2024 10:51:26 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -113,11 +113,11 @@
 &lt;h3 id=&quot;so-what-should-we-do-about-it&quot;&gt;So what should we do about it?&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Should we stop using SIFT?&lt;/em&gt; &lt;strong&gt;No!&lt;/strong&gt; Well, maybe. Sometimes. It depends. There are a couple of different approaches we took to resolve our insert lockouts.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Keep the table as is, change the logic of the process so it &lt;strong&gt;inserts in the TempTable&lt;/strong&gt; first, and only inserts in the actual table at the very end, &lt;strong&gt;holding locks for a minimal time&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Remove SumIndexFields&lt;/strong&gt; and accept the read performance penalty&lt;/li&gt;
-  &lt;li&gt;Run the process &lt;strong&gt;asynchronously&lt;/strong&gt; through a job queue entry&lt;/li&gt;
-  &lt;li&gt;Insert to a staging table that’s &lt;strong&gt;optimized for inserting&lt;/strong&gt; and have a job transfer data to &lt;strong&gt;read optimized tables&lt;/strong&gt;.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Lower read isolation&lt;/strong&gt; on reads that were reading the indexed view with &lt;strong&gt;UpdLock&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Keep the table as is, change the logic of the process so it &lt;strong&gt;inserts in the TempTable&lt;/strong&gt; first, and only inserts in the actual table at the very end, &lt;strong&gt;holding locks for a minimal time&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Run the processes &lt;strong&gt;asynchronously&lt;/strong&gt; through a job queue entry&lt;/li&gt;
+  &lt;li&gt;Switch user inserts to a staging table that’s &lt;strong&gt;optimized for inserting&lt;/strong&gt; and have a job transfer data to &lt;strong&gt;read optimized tables&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Remove SumIndexFields&lt;/strong&gt; and accept the read performance penalty&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;There’s another one, that we haven’t tried. Just the other day, I was watching &lt;a href=&quot;https://www.linkedin.com/in/ericwauters&quot;&gt;Waldo’s&lt;/a&gt; &lt;a href=&quot;https://youtu.be/E3ADZsisFbE?si=mPtH-c2A8hO0sYhA&amp;amp;t=1003&quot;&gt;Coding 4 Performance&lt;/a&gt; session from &lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC Tech Days&lt;/a&gt; where he mentions &lt;strong&gt;IncludedFields&lt;/strong&gt; as an alternative to SIFT. That’s another option to look into.&lt;/p&gt;

@@ -176,11 +176,11 @@
 <h3 id="so-what-should-we-do-about-it">So what should we do about it?</h3>
 <p><em>Should we stop using SIFT?</em> <strong>No!</strong> Well, maybe. Sometimes. It depends. There are a couple of different approaches we took to resolve our insert lockouts.</p>
 <ul>
-  <li>Keep the table as is, change the logic of the process so it <strong>inserts in the TempTable</strong> first, and only inserts in the actual table at the very end, <strong>holding locks for a minimal time</strong>.</li>
-  <li><strong>Remove SumIndexFields</strong> and accept the read performance penalty</li>
-  <li>Run the process <strong>asynchronously</strong> through a job queue entry</li>
-  <li>Insert to a staging table that’s <strong>optimized for inserting</strong> and have a job transfer data to <strong>read optimized tables</strong>.</li>
   <li><strong>Lower read isolation</strong> on reads that were reading the indexed view with <strong>UpdLock</strong>.</li>
+  <li>Keep the table as is, change the logic of the process so it <strong>inserts in the TempTable</strong> first, and only inserts in the actual table at the very end, <strong>holding locks for a minimal time</strong>.</li>
+  <li>Run the processes <strong>asynchronously</strong> through a job queue entry</li>
+  <li>Switch user inserts to a staging table that’s <strong>optimized for inserting</strong> and have a job transfer data to <strong>read optimized tables</strong>.</li>
+  <li><strong>Remove SumIndexFields</strong> and accept the read performance penalty</li>
 </ul>
 
 <p>There’s another one, that we haven’t tried. Just the other day, I was watching <a href="https://www.linkedin.com/in/ericwauters">Waldo’s</a> <a href="https://youtu.be/E3ADZsisFbE?si=mPtH-c2A8hO0sYhA&amp;t=1003">Coding 4 Performance</a> session from <a href="https://www.bctechdays.com/event">BC Tech Days</a> where he mentions <strong>IncludedFields</strong> as an alternative to SIFT. That’s another option to look into.</p>
