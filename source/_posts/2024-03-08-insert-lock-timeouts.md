@@ -8,7 +8,7 @@ image: /images/insertlocks/main.jpeg
 ---
 I’ve been a BC dev for a while now. It’s been a learning experience through and through. But there was always an area that I kept pushing away. **SQL**. I don’t really know why, I never had issues with it, so I guess in my mind I just pushed it away as unimportant. It sat in some distant pile with *permissions, tooltips, and translations* — ***my afterthought pile.***
 
-This meant I never really understood **indexes, database locks, or SIFTs**. And I didn’t need to. There are **no locking issues** when you’re testing with **just one user**. When performance issues arose, the seniors usually took over. Well fast forward a few years, and that all had to change.
+This meant I never really understood **indexes, database locks, or SIFTs**. And I didn’t need to. There are **no locking issues** when you’re testing with **just one user**. Well fast forward a few years, and that all had to change.
 
 <hr/>
 
@@ -16,7 +16,7 @@ For the better part of last year, I was working on a project where we were tryin
 
 We set up **BCPT tests**, start running them, and find our first batch of **deadlocks** and **lock timeouts**.
 
-Okay, time to figure out how locks work. I knew we got **ReadIsolation** a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by [Alexander Drogin][alexanderdrogin]. They helped me understand what locks are and how read isolation changes them. That’s **not what I’m going to focus on** here, but if you’re interested in that, here are the links: [Transaction Isolation in Business Central][isolationpart1], [ReadCommitted Isolation in Azure SQL][isolationpart2], [ReadCommittedSnapshotIsolation and the Write Skew Anomaly][isolationpart3].
+*Time to figure out how locks work.* I knew we got **ReadIsolation** a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by [Alexander Drogin][alexanderdrogin]. They helped me understand what locks are and how read isolation changes them. That’s **not what I’m going to focus on here**, but if you’re interested in that, here are the links: [Transaction Isolation in Business Central][isolationpart1], [ReadCommitted Isolation in Azure SQL][isolationpart2], [ReadCommittedSnapshotIsolation and the Write Skew Anomaly][isolationpart3].
 
 Some changes to *read isolation*, some *missing filters added* and some *write transactions started later in the process*, and we made our first progress. No locks on 100 concurrent users! Okay, add another scenario, rinse, and repeat.
 
@@ -38,9 +38,9 @@ The answer was staring me *right in the face*. Here’s how the **locks look aft
 
 ![Active Locks After Insert](/images/insertlocks/active-locks.png)
 
-But due to my lack of knowledge of **what is SIFT** and how it works, my mind dismissed it as *“huh, that’s odd, anyway, moving on, where else can I change the read isolation?”*. Seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.
+Due to my lack of knowledge of **what is SIFT** and how it works, my mind dismissed it as *“huh, that’s odd, anyway, moving on.”*. But seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.
 
-If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand **what SIFTs are first**.
+If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand **what SIFTs are** first.
 
 <hr/>
 
