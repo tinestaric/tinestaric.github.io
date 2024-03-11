@@ -5,15 +5,15 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 11 Mar 2024 09:59:08 +0200</pubDate>
-    <lastBuildDate>Mon, 11 Mar 2024 09:59:08 +0200</lastBuildDate>
+    <pubDate>Mon, 11 Mar 2024 10:17:59 +0200</pubDate>
+    <lastBuildDate>Mon, 11 Mar 2024 10:17:59 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>Curious case of Insert Lock Timeouts</title>
         <description>&lt;p&gt;I’ve been a BC dev for a while now. It’s been a learning experience through and through. But there was always an area that I kept pushing away. &lt;strong&gt;SQL&lt;/strong&gt;. I don’t really know why, I never had issues with it, so I guess in my mind I just pushed it away as unimportant. It sat in some distant pile with &lt;em&gt;permissions, tooltips, and translations&lt;/em&gt; — &lt;strong&gt;&lt;em&gt;my afterthought pile.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;This meant I never really understood &lt;strong&gt;indexes, database locks, or SIFTs&lt;/strong&gt;. And I didn’t need to. There are &lt;strong&gt;no locking issues&lt;/strong&gt; when you’re testing with &lt;strong&gt;just one user&lt;/strong&gt;. When performance issues arose, the seniors usually took over. Well fast forward a few years, and that all had to change.&lt;/p&gt;
+&lt;p&gt;This meant I never really understood &lt;strong&gt;indexes, database locks, or SIFTs&lt;/strong&gt;. And I didn’t need to. There are &lt;strong&gt;no locking issues&lt;/strong&gt; when you’re testing with &lt;strong&gt;just one user&lt;/strong&gt;. Well fast forward a few years, and that all had to change.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -21,7 +21,7 @@
 
 &lt;p&gt;We set up &lt;strong&gt;BCPT tests&lt;/strong&gt;, start running them, and find our first batch of &lt;strong&gt;deadlocks&lt;/strong&gt; and &lt;strong&gt;lock timeouts&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Okay, time to figure out how locks work. I knew we got &lt;strong&gt;ReadIsolation&lt;/strong&gt; a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by &lt;a href=&quot;https://www.linkedin.com/in/alexander-drogin-0635422b/&quot;&gt;Alexander Drogin&lt;/a&gt;. They helped me understand what locks are and how read isolation changes them. That’s &lt;strong&gt;not what I’m going to focus on&lt;/strong&gt; here, but if you’re interested in that, here are the links: &lt;a href=&quot;https://www.keytogoodcode.com/post/transaction-isolation-in-business-central&quot;&gt;Transaction Isolation in Business Central&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/readcommitted-isolation-in-azure-sql&quot;&gt;ReadCommitted Isolation in Azure SQL&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/read-committed-snapshot-isolation-and-the-write-skew-anomaly&quot;&gt;ReadCommittedSnapshotIsolation and the Write Skew Anomaly&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Time to figure out how locks work.&lt;/em&gt; I knew we got &lt;strong&gt;ReadIsolation&lt;/strong&gt; a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by &lt;a href=&quot;https://www.linkedin.com/in/alexander-drogin-0635422b/&quot;&gt;Alexander Drogin&lt;/a&gt;. They helped me understand what locks are and how read isolation changes them. That’s &lt;strong&gt;not what I’m going to focus on here&lt;/strong&gt;, but if you’re interested in that, here are the links: &lt;a href=&quot;https://www.keytogoodcode.com/post/transaction-isolation-in-business-central&quot;&gt;Transaction Isolation in Business Central&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/readcommitted-isolation-in-azure-sql&quot;&gt;ReadCommitted Isolation in Azure SQL&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/read-committed-snapshot-isolation-and-the-write-skew-anomaly&quot;&gt;ReadCommittedSnapshotIsolation and the Write Skew Anomaly&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Some changes to &lt;em&gt;read isolation&lt;/em&gt;, some &lt;em&gt;missing filters added&lt;/em&gt; and some &lt;em&gt;write transactions started later in the process&lt;/em&gt;, and we made our first progress. No locks on 100 concurrent users! Okay, add another scenario, rinse, and repeat.&lt;/p&gt;
 
@@ -43,9 +43,9 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/insertlocks/active-locks.png&quot; alt=&quot;Active Locks After Insert&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;But due to my lack of knowledge of &lt;strong&gt;what is SIFT&lt;/strong&gt; and how it works, my mind dismissed it as &lt;em&gt;“huh, that’s odd, anyway, moving on, where else can I change the read isolation?”&lt;/em&gt;. Seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.&lt;/p&gt;
+&lt;p&gt;Due to my lack of knowledge of &lt;strong&gt;what is SIFT&lt;/strong&gt; and how it works, my mind dismissed it as &lt;em&gt;“huh, that’s odd, anyway, moving on.”&lt;/em&gt;. But seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.&lt;/p&gt;
 
-&lt;p&gt;If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand &lt;strong&gt;what SIFTs are first&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand &lt;strong&gt;what SIFTs are&lt;/strong&gt; first.&lt;/p&gt;
 
 &lt;hr /&gt;
 

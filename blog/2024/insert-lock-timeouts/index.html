@@ -76,7 +76,7 @@
     <div class="post-content">
       <p>I’ve been a BC dev for a while now. It’s been a learning experience through and through. But there was always an area that I kept pushing away. <strong>SQL</strong>. I don’t really know why, I never had issues with it, so I guess in my mind I just pushed it away as unimportant. It sat in some distant pile with <em>permissions, tooltips, and translations</em> — <strong><em>my afterthought pile.</em></strong></p>
 
-<p>This meant I never really understood <strong>indexes, database locks, or SIFTs</strong>. And I didn’t need to. There are <strong>no locking issues</strong> when you’re testing with <strong>just one user</strong>. When performance issues arose, the seniors usually took over. Well fast forward a few years, and that all had to change.</p>
+<p>This meant I never really understood <strong>indexes, database locks, or SIFTs</strong>. And I didn’t need to. There are <strong>no locking issues</strong> when you’re testing with <strong>just one user</strong>. Well fast forward a few years, and that all had to change.</p>
 
 <hr />
 
@@ -84,7 +84,7 @@
 
 <p>We set up <strong>BCPT tests</strong>, start running them, and find our first batch of <strong>deadlocks</strong> and <strong>lock timeouts</strong>.</p>
 
-<p>Okay, time to figure out how locks work. I knew we got <strong>ReadIsolation</strong> a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by <a href="https://www.linkedin.com/in/alexander-drogin-0635422b/">Alexander Drogin</a>. They helped me understand what locks are and how read isolation changes them. That’s <strong>not what I’m going to focus on</strong> here, but if you’re interested in that, here are the links: <a href="https://www.keytogoodcode.com/post/transaction-isolation-in-business-central">Transaction Isolation in Business Central</a>, <a href="https://www.keytogoodcode.com/post/readcommitted-isolation-in-azure-sql">ReadCommitted Isolation in Azure SQL</a>, <a href="https://www.keytogoodcode.com/post/read-committed-snapshot-isolation-and-the-write-skew-anomaly">ReadCommittedSnapshotIsolation and the Write Skew Anomaly</a>.</p>
+<p><em>Time to figure out how locks work.</em> I knew we got <strong>ReadIsolation</strong> a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by <a href="https://www.linkedin.com/in/alexander-drogin-0635422b/">Alexander Drogin</a>. They helped me understand what locks are and how read isolation changes them. That’s <strong>not what I’m going to focus on here</strong>, but if you’re interested in that, here are the links: <a href="https://www.keytogoodcode.com/post/transaction-isolation-in-business-central">Transaction Isolation in Business Central</a>, <a href="https://www.keytogoodcode.com/post/readcommitted-isolation-in-azure-sql">ReadCommitted Isolation in Azure SQL</a>, <a href="https://www.keytogoodcode.com/post/read-committed-snapshot-isolation-and-the-write-skew-anomaly">ReadCommittedSnapshotIsolation and the Write Skew Anomaly</a>.</p>
 
 <p>Some changes to <em>read isolation</em>, some <em>missing filters added</em> and some <em>write transactions started later in the process</em>, and we made our first progress. No locks on 100 concurrent users! Okay, add another scenario, rinse, and repeat.</p>
 
@@ -106,9 +106,9 @@
 
 <p><img src="/images/insertlocks/active-locks.png" alt="Active Locks After Insert" /></p>
 
-<p>But due to my lack of knowledge of <strong>what is SIFT</strong> and how it works, my mind dismissed it as <em>“huh, that’s odd, anyway, moving on, where else can I change the read isolation?”</em>. Seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.</p>
+<p>Due to my lack of knowledge of <strong>what is SIFT</strong> and how it works, my mind dismissed it as <em>“huh, that’s odd, anyway, moving on.”</em>. But seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.</p>
 
-<p>If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand <strong>what SIFTs are first</strong>.</p>
+<p>If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand <strong>what SIFTs are</strong> first.</p>
 
 <hr />
 
