@@ -107,11 +107,11 @@ Yes, **flow fields also lock rows**. They lock them with the **same lock type as
 
 ### So what should we do about it?
 *Should we stop using SIFT?* **No!** Well, maybe. Sometimes. It depends. There are a couple of different approaches we took to resolve our insert lockouts. 
-- Keep the table as is, change the logic of the process so it **inserts in the TempTable** first, and only inserts in the actual table at the very end, **holding locks for a minimal time**.
-- **Remove SumIndexFields** and accept the read performance penalty
-- Run the process **asynchronously** through a job queue entry
-- Insert to a staging table that’s **optimized for inserting** and have a job transfer data to **read optimized tables**.
 - **Lower read isolation** on reads that were reading the indexed view with **UpdLock**.
+- Keep the table as is, change the logic of the process so it **inserts in the TempTable** first, and only inserts in the actual table at the very end, **holding locks for a minimal time**.
+- Run the processes **asynchronously** through a job queue entry
+- Switch user inserts to a staging table that’s **optimized for inserting** and have a job transfer data to **read optimized tables**.
+- **Remove SumIndexFields** and accept the read performance penalty
 
 There’s another one, that we haven’t tried. Just the other day, I was watching [Waldo’s][waldo] [Coding 4 Performance][coding4performance] session from [BC Tech Days][bctechdays] where he mentions **IncludedFields** as an alternative to SIFT. That’s another option to look into.
 
