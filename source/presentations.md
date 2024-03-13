@@ -21,7 +21,7 @@ Here's a list of the presentations I did through the years with attached slides,
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror]
 - 2024-03 
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]
-    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]
+    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress]
 - 2024-01 
     - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
     - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
