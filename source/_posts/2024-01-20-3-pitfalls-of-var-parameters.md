@@ -100,4 +100,4 @@ Note: **UploadIntoStream** works just fine, as the uploaded file is allocated ou
 
 [listdocs]: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/list/list-data-type
 
-[refparamvarmatters]: /blog/2024/reference-parameters-var-matters
+[refparamvarmatters]: /blog/2024/reference-parameters-var-does-matter/
