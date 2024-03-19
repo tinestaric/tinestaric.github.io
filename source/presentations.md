@@ -16,12 +16,12 @@ Here's a list of the presentations I did through the years with attached slides,
     - **Reviewing the Code Review**
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
-    - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], [Nordic][doknordic24blobs], [Central][dokcentral24blobs]
-    - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview]
-    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror]
+    - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], [Nordic][doknordic24blobs], [Central][dokcentral24blobs] and [presentation][dok24ukblobpres]
+    - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview] and [presentation][dok24ukcodereviewpres]
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror] and [presentation][dok24ukpaerrorpres]
 - 2024-03 
-    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]: [presentation][2023doknordiccodequality] [recording][codeanalysisareoparecording]
-    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]: [presentation][2023doknordiccodequality] and [recording][codeanalysisareoparecording]
+    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress] and [recording][plataanblobrecording] (password protected)
 - 2024-01 
     - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
     - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
@@ -97,3 +97,7 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokcentral24codereview]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588528
 [plataanhome]: https://plataan.tv/en
 [codeanalysisareoparecording]: https://www.youtube.com/watch?v=U0W1MhNNwWI&embeds_referring_euri=https%3A%2F%2Ftwitter.com%2F&source_ve_path=Mjg2NjY&feature=emb_logo
+[dok24ukblobpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/AzureBlobsMadeSimple-DOK-UK.pdf
+[dok24ukpaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/PowerAutomateErrorHandling-DOK-UK.pdf
+[dok24ukcodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/ReviewingTheCodeReview-DOK-UK.pdf
+[plataanblobrecording]: https://vimeo.com/923010943?share=copy
