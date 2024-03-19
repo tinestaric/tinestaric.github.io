@@ -20,7 +20,7 @@ Here's a list of the presentations I did through the years with attached slides,
     - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview]
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror]
 - 2024-03 
-    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]: [presentation][2023doknordiccodequality] [recording][codeanalysisareoparecording]
     - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress]
 - 2024-01 
     - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
@@ -39,7 +39,7 @@ Here's a list of the presentations I did through the years with attached slides,
 - 2023-03,06 Multiple sessions at [Days of Knowledge UK][2023dokuk] and [Days of Knowledge Nordic][2023doknordic]:
     - **Business Central Self-Service Portals with Power Pages**: session link [UK][2023dokuk1], [Nordic][2023doknordic1] and [presentation][2023doknordicpres1]
     - **Unlocking the Secrets of Secure Endpoints: Connecting BC with Advanced Authentication Techniques**: session link [Nordic][2023doknordic2], [presentation][2023dokNordicpres2] and [code examples][secureendpointsrepo]
-    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL**: session link [Nordic][2023doknordic3] and [presentation][2023dokNordicpres3]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL**: session link [Nordic][2023doknordic3] and [presentation][2023doknordiccodequality]
 - 2023-02 **Automating Code Quality: A Guide to using Custom Code Analysis for AL**: as a webinar for [Companial][companialhome]:  [presentation][companialcodequalitypress] and [recording][companialcodequalityrecording] 
 
 ## 2022
@@ -55,7 +55,7 @@ Here's a list of the presentations I did through the years with attached slides,
 [2023doknordic2]: https://directions4partners.com/days-of-knowledge/nordic-2023/schedule/?tid=468227
 [2023doknordicpres2]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DOK/Nordic/UnlockingSecuredEndpoints-DOKNordic.pdf
 [2023doknordic3]: https://directions4partners.com/days-of-knowledge/nordic-2023/schedule/?tid=468228
-[2023doknordicpres3]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DOK/Nordic/CodeAnalysis-DOKNordic.pdf
+[2023doknordiccodequality]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DOK/Nordic/CodeAnalysis-DOKNordic.pdf
 [2023doknordic]: https://directions4partners.com/days-of-knowledge/nordic-2023/
 [2023dynamicsmindspress1]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DynamicsMinds/DynamicsMinds_UnlockingSecureEndpoints.pdf
 [2023dynamicsmindspress2]: https://github.com/tinestaric/BC-Sessions/raw/Master/2023/DynamicsMinds/DynamicsMinds_ElevatingAPIDefence.pdf
@@ -96,3 +96,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokcentral24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588525
 [dokcentral24codereview]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588528
 [plataanhome]: https://plataan.tv/en
+[codeanalysisareoparecording]: https://www.youtube.com/watch?v=U0W1MhNNwWI&embeds_referring_euri=https%3A%2F%2Ftwitter.com%2F&source_ve_path=Mjg2NjY&feature=emb_logo
