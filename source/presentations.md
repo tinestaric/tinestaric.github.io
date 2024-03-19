@@ -96,7 +96,7 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokcentral24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588525
 [dokcentral24codereview]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588528
 [plataanhome]: https://plataan.tv/en
-[codeanalysisareoparecording]: https://www.youtube.com/watch?v=U0W1MhNNwWI&embeds_referring_euri=https%3A%2F%2Ftwitter.com%2F&source_ve_path=Mjg2NjY&feature=emb_logo
+[codeanalysisareoparecording]: https://www.youtube.com/watch?v=U0W1MhNNwWI
 [dok24ukblobpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/AzureBlobsMadeSimple-DOK-UK.pdf
 [dok24ukpaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/PowerAutomateErrorHandling-DOK-UK.pdf
 [dok24ukcodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/ReviewingTheCodeReview-DOK-UK.pdf
