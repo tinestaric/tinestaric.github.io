@@ -13,8 +13,8 @@ Here's a list of the presentations I did through the years with attached slides,
     - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as an Expert Session for [Plataan][plataanhome]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
-    - **Reviewing the Code Review**
-    - **Error-Proof Automation: Proactive Error Handling in Power Automate**
+    - **Reviewing the Code Review**: [presentation][directionsnacodereviewpres]
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: [presentation][directionsnaerrorpres]
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
     - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], [Nordic][doknordic24blobs], [Central][dokcentral24blobs] and [presentation][dok24ukblobpres]
     - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview] and [presentation][dok24ukcodereviewpres]
@@ -101,3 +101,5 @@ Here's a list of the presentations I did through the years with attached slides,
 [dok24ukpaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/PowerAutomateErrorHandling-DOK-UK.pdf
 [dok24ukcodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DOK/UK/ReviewingTheCodeReview-DOK-UK.pdf
 [plataanblobrecording]: https://vimeo.com/923010943?share=copy
+[directionsnacodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/ReviewingTheCodeReview-Directions-NA.pdf
+[directionsnaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/PowerAutomateErrorHandling-Directions-NA.pdf
