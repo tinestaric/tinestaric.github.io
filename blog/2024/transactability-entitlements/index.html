@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>AppSource Transactability - The AL side of the story</title>
+<meta name="description"
+    content="I spent the last few weeks taking another look at the AppSource transactability we got a wave or two ago. The idea is quite neat, we’re not monetization spec...">
+
+<meta property="og:title" content="AppSource Transactability - The AL side of the story" />
+<meta property="og:description"
+    content="I spent the last few weeks taking another look at the AppSource transactability we got a wave or two ago. The idea is quite neat, we’re not monetization spec..." />
+<meta property="og:url" content="https://tine.staric.net/blog/2024/transactability-entitlements/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/entitlements/main.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/entitlements/main.jpeg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2024/transactability-entitlements/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">AppSource Transactability - The AL side of the story</h1>
+      <em class="post-meta">
+        <time>Apr 8, 2024</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>I spent the last few weeks taking another look at the <strong>AppSource transactability</strong> we got a wave or two ago. The idea is quite neat, we’re not <em>monetization specialists</em>, we add value by <strong>enhancing the product</strong>, so why should we bother with a monetization engine, let Microsoft do that for us. <em>Sure, it sounds good</em>, but the experience was less smooth than I’d like it to be. So here’s a rundown of what you should know before you start your <strong>transition to AppSource transactability</strong> from a technical perspective.</p>
+
+<hr />
+
+<h3 id="a-quick-recap">A quick recap</h3>
+
+<p>We’re used to using <strong>license</strong> (<em>.flf/.bclicense</em>) files <strong>OnPrem</strong> to ensure only licensed users can access our range of objects, so even if a user has <strong>SUPER</strong> permissions, they <strong>won’t be able to access an object</strong> that’s not in their license.</p>
+
+<p>But the <strong>Cloud</strong> doesn’t use license files anymore. That means if a customer installs your app, they have <strong>access to all objects</strong>, and mind you, even if you have your offer set to »Contact Partner« in AppSource, your app can still be installed on any tenant if you <strong>know the App ID.</strong></p>
+
+<p>Generally, I’ve seen partners take two approaches to solve this. Most of them went with <em>»You can’t really set up and use our apps without our consultants, so go ahead«</em>, partially because adding some sort of <strong>licensing is overhead</strong>. The other option was that partners implemented their <strong>own monetization or licensing logic</strong> that prevented you from using the functionality if you hadn’t bought their license.</p>
+
+<p>But with AppSource transactability, the overhead is now <strong>taken care by Microsoft</strong>. Keep in mind that currently <strong>only a per-user plan is supported</strong>. Each user that wants to have access to your app needs to have a license purchased. If you’re using different pricing models, like <em>per app, per company, per number of invoices, …</em> you’re currently out of luck. Microsoft says they’ll <em>work on <strong>adding different models</strong> depending on what the community needs</em>, but who knows when that will be.</p>
+
+<hr />
+
+<h3 id="everything-works-through-entitlements">Everything works through entitlements</h3>
+
+<p><strong>Cloud</strong> doesn’t use license files, it <strong>uses entitlements</strong>, but the logic is still the same. If you don’t have access to an object through entitlements, it <strong>doesn’t matter if you have SUPER permissions</strong>. This picture illustrates it well.</p>
+
+<p><img src="/images/entitlements/entitlement-vs-permission.png" alt="Entitlements vs. Permissions" /></p>
+
+<p><strong>Without the necessary entitlement</strong>, the user won’t see the pages of your app and <strong>won’t have permission</strong> to manipulate the data. So let’s start with the entitlement object. The base and system apps define several different entitlements. But for us, we should pay attention to the following 4 types:</p>
+<ul>
+  <li>PerOfferUserPlan</li>
+  <li>Role - Delegated</li>
+  <li>ApplicationScope – API.ReadWrite.All</li>
+  <li>Unlicensed</li>
+</ul>
+
+<hr />
+
+<h3 id="perofferuserplan">PerOfferUserPlan</h3>
+
+<p>This is the main entitlement type for monetization, it <strong>maps to the license</strong> users will buy through AppSource.</p>
+
+<p><img src="/images/entitlements/entitlement-gold.png" alt="Gold Entitlement" /></p>
+
+<p><strong>Id</strong> in this case is the <strong>ServiceId</strong> of the offer plan you create when creating the AppSource <strong>submission</strong>.</p>
+
+<p><img src="/images/entitlements/offer-plan-service-id.png" alt="Entitlements vs. Permissions" /></p>
+
+<p><strong>ObjectEntitlements</strong> is where you <strong>map a permission set to an entitlement</strong>. This is how an entitlement defines the <strong>maximum permissions</strong> that can be assigned to a user holding this entitlement.</p>
+
+<p>You can have <strong>multiple PerUserOfferPlans</strong> if you want to implement different license levels (<em>bronze, silver, gold</em>). Each of the lower plans would have a more restrictive permissions set attached to an entitlement, and that’s how you’d <strong>control the level of access</strong>.</p>
+
+<hr />
+
+<h3 id="delegated-admin-entitlements">Delegated Admin entitlements</h3>
+
+<p>You <strong>don’t have to implement these</strong> entitlements, but without them, the <strong>delegated admin users won’t have access</strong> to your application objects and won’t be able to troubleshoot customers.</p>
+
+<p><img src="/images/entitlements/entitlement-admin.png" alt="Delegated Admin Entitlement" /></p>
+
+<p>There are <strong>4 different delegated admin roles</strong> currently available for BC:</p>
+<ul>
+  <li>Delegated Admin Agent - <em>00000000-0000-0000-0000-000000000007</em></li>
+  <li>Delegated Helpdesk Agent - <em>00000000-0000-0000-0000-000000000008</em></li>
+  <li>Dynamics 365 Agent - <em>00000000-0000-0000-0000-000000000009</em></li>
+  <li>Delegated BC Admin Agent - <em>00000000-0000-0000-0000-000000000010</em></li>
+</ul>
+
+<p>The <strong>IDs have to be exactly as specified above</strong>, which relate to the actual role in Entra ID. My preference is to give all delegated roles full permissions, so they can access and troubleshoot any part of the application. You can however make it more restrictive by assigning a different permission set.</p>
+
+<hr />
+
+<h3 id="applicationscope--apireadwriteall">ApplicationScope – API.ReadWrite.All</h3>
+
+<p>This is the entitlement that gets assigned to the <strong>S2S API sessions with the API.ReadWrite.All Scope</strong>. If an external application is integrating with Business Central using user impersonation/delegation authentication, the entitlements/permissions of the <strong>impersonated users apply</strong>. Nothing special there. However, if the client is using <strong>Service-2-Service (S2S) authentication</strong>, The following entitlement is assigned to it:</p>
+
+<p><img src="/images/entitlements/entitlement-api.png" alt="API Entitlement" /></p>
+
+<p>The <strong>permissions for the S2S applications</strong> are managed on the <strong>Microsoft Entra Applications</strong> page, but they follow the same rules as users. If the client <strong>doesn’t have entitlements</strong> for an object, it doesn’t matter if it has SUPER permissions, the <strong>access is not granted</strong>. So if your app is exposing any APIs and you want to support S2S, you should include this entitlement object and give it sufficient access, otherwise, a simple Ping API starts throwing permission errors:</p>
+
+<p><img src="/images/entitlements/ping-api.png" alt="Ping API" /></p>
+
+<p><img src="/images/entitlements/entitlement-api-error.png" alt="API Entitlement Error" /></p>
+
+<hr />
+
+<h3 id="unlicensed-entitlement">Unlicensed Entitlement</h3>
+
+<p>This is the entitlement object that gets <strong>assigned if no others match</strong>, meaning if the user doesn’t have a PerUserOfferPlan license, is not a delegated admin (or delegated admin entitlements are not defined), or is an S2S authenticated client and ApplicationScope entitlement isn’t defined.</p>
+
+<p><img src="/images/entitlements/entitlement-unlicensed.png" alt="Unlicensed Entitlement" /></p>
+
+<p>This one is primarily used for <strong>side-by-side</strong> functionality, meaning, when you <strong>already have your monetization solution</strong>, and you want to <strong>move to AppSource monetization</strong> without causing any issues for your existing customers.</p>
+
+<p>As soon as you <strong>define a single entitlement object</strong> in your code base and publish that version to AppSource, the <strong>entitlement check starts being enforced</strong>. So if you define a PerUserOfferPlan and release a new version, <strong>all existing customers</strong> that update the app <strong>won’t be able to use your app</strong> anymore until they buy appropriate licenses through AppSource. This can be annoying, especially if they’ve already purchased a license through your own monetization model. Hence we implement a <strong>side-by-side solution</strong>, that will <strong>allow customers to use the app normally while they’re transitioning</strong> to the MS monetization model. More on the side-by-side in the next section.</p>
+
+<p>If you have existing customers, the unlicensed entitlement should give all the access that the existing customers need (usually all available permissions). If you’re <strong>creating a new app</strong> without any existing customers, you can <strong>skip the unlicensed entitlement</strong> altogether.</p>
+
+<hr />
+
+<h3 id="side-by-side">Side-by-Side</h3>
+
+<p>If you went down the route of creating your own monetization engine, you probably found <strong>key areas</strong> of your functionality and implemented a <strong>license check</strong> in those points. I common approach is to subscribe to the OnBeforeInsertEvent of a key table and check if the app is licensed.</p>
+
+<p><img src="/images/entitlements/license-check.png" alt="Check for license on Insert of a Table" /></p>
+
+<p>If this was your approach, you now have to <strong>wrap these checkers in IsUnlicensed checks</strong>.</p>
+
+<p><img src="/images/entitlements/license-check-isunlicensed.png" alt="Check for license on Insert of a Table with IsUnlicensed" /></p>
+
+<p>If a user has <strong>purchased a license through AppSource</strong>, they will have the corresponding <strong>entitlement assigned</strong> and the code will <strong>skip the license check</strong>. If they haven’t, they get the <strong>Unlicensed entitlement</strong> assigned and the code will <strong>check with your monetization engine</strong>.</p>
+
+<p>IsUnlicensed will return true if a user has <strong>any other entitlement from the current app assigned</strong>. If you’re planning to implement <strong>multiple access levels</strong> like <em>Gold, Silver, or Bronze</em>, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the <strong>IsEntitled</strong> function.</p>
+
+<p><img src="/images/entitlements/entitlement-check.png" alt="Check for a specific entitlement" /></p>
+
+<p>The important thing to note here is that <strong>entitlements are completely ignored OnPrem</strong> and <strong>IsUnlicensed or IsEntitled will always return false</strong>. So if you have any <strong>automated tests</strong> ensuring your monetization approach works, those <strong>won’t work</strong>. I’ve asked Microsoft what to do in this case, and they’re <em>discussing it</em>. Until they come up with an approach, it’s best to wrap the IsUnlicensed in an interface so that we can <strong>mock it in tests</strong>.</p>
+
+<hr />
+
+<h3 id="cross-app-entitlement-check">Cross-app entitlement check</h3>
+
+<p>The final aspect of entitlements that we’ll take a look at is <strong>checking for entitlements of a different app</strong>. A scenario when you’d want this is if, for example, you’re offering three apps, <strong>App A, App B, and App C</strong>. They’re all standalone apps that work independently, however you want to give the users of App A the other two apps for free. If App B and C are <strong>only checking for their own entitlements</strong>, a user would need to <strong>purchase three licenses</strong>. However, if we implement a <strong>cross-app check</strong>, we can ensure that users with licenses for App A, also have access to the other two apps.
+So if we refactor the above example</p>
+
+<p><img src="/images/entitlements/entitlement-check-manager.png" alt="Check for a specific entitlement with an Entitlement Manager" /></p>
+
+<p>Let’s say this DownloadEntries procedure is in App C. This is how the entitlement manager would look like:</p>
+
+<p><img src="/images/entitlements/entitlement-manager.png" alt="Check for entitlements across apps" /></p>
+
+<p>We check for either a Gold entitlement <strong>in App C</strong>, or a Gold entitlement <strong>in App A</strong> and either entitlement is enough for the check to pass. The next logical step here would now be to <strong>move the entitlement manager to a separate app</strong>, so we can manage all these app relationship combinations in a <strong>central place</strong>. But this was a quick example of how we can check if a user has an entitlement for a different app. The same applies to the IsUnlicensed function, it too can take a GUID parameter and we can check if a user has the Unlicensed entitlement for a different app.</p>
+
+<hr />
+
+<p>Okay, this brings us to the end. I know this was quite a read, but as I was researching the topic of entitlements there were just <strong>so many pieces missing</strong> in the official documentation. I tried opening issues for it, I tried creating PRs to adjust the information, but there was no response from maintainers, so I decided to package all this information in a blog post. Partially for myself, for the next time, I have to deal with entitlements, but also for anyone else going down the same route.</p>
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

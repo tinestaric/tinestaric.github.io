@@ -5,9 +5,151 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 19 Mar 2024 13:42:15 +0200</pubDate>
-    <lastBuildDate>Tue, 19 Mar 2024 13:42:15 +0200</lastBuildDate>
+    <pubDate>Mon, 08 Apr 2024 17:38:26 +0300</pubDate>
+    <lastBuildDate>Mon, 08 Apr 2024 17:38:26 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>AppSource Transactability - The AL side of the story</title>
+        <description>&lt;p&gt;I spent the last few weeks taking another look at the &lt;strong&gt;AppSource transactability&lt;/strong&gt; we got a wave or two ago. The idea is quite neat, we’re not &lt;em&gt;monetization specialists&lt;/em&gt;, we add value by &lt;strong&gt;enhancing the product&lt;/strong&gt;, so why should we bother with a monetization engine, let Microsoft do that for us. &lt;em&gt;Sure, it sounds good&lt;/em&gt;, but the experience was less smooth than I’d like it to be. So here’s a rundown of what you should know before you start your &lt;strong&gt;transition to AppSource transactability&lt;/strong&gt; from a technical perspective.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;a-quick-recap&quot;&gt;A quick recap&lt;/h3&gt;
+
+&lt;p&gt;We’re used to using &lt;strong&gt;license&lt;/strong&gt; (&lt;em&gt;.flf/.bclicense&lt;/em&gt;) files &lt;strong&gt;OnPrem&lt;/strong&gt; to ensure only licensed users can access our range of objects, so even if a user has &lt;strong&gt;SUPER&lt;/strong&gt; permissions, they &lt;strong&gt;won’t be able to access an object&lt;/strong&gt; that’s not in their license.&lt;/p&gt;
+
+&lt;p&gt;But the &lt;strong&gt;Cloud&lt;/strong&gt; doesn’t use license files anymore. That means if a customer installs your app, they have &lt;strong&gt;access to all objects&lt;/strong&gt;, and mind you, even if you have your offer set to »Contact Partner« in AppSource, your app can still be installed on any tenant if you &lt;strong&gt;know the App ID.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Generally, I’ve seen partners take two approaches to solve this. Most of them went with &lt;em&gt;»You can’t really set up and use our apps without our consultants, so go ahead«&lt;/em&gt;, partially because adding some sort of &lt;strong&gt;licensing is overhead&lt;/strong&gt;. The other option was that partners implemented their &lt;strong&gt;own monetization or licensing logic&lt;/strong&gt; that prevented you from using the functionality if you hadn’t bought their license.&lt;/p&gt;
+
+&lt;p&gt;But with AppSource transactability, the overhead is now &lt;strong&gt;taken care by Microsoft&lt;/strong&gt;. Keep in mind that currently &lt;strong&gt;only a per-user plan is supported&lt;/strong&gt;. Each user that wants to have access to your app needs to have a license purchased. If you’re using different pricing models, like &lt;em&gt;per app, per company, per number of invoices, …&lt;/em&gt; you’re currently out of luck. Microsoft says they’ll &lt;em&gt;work on &lt;strong&gt;adding different models&lt;/strong&gt; depending on what the community needs&lt;/em&gt;, but who knows when that will be.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;everything-works-through-entitlements&quot;&gt;Everything works through entitlements&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Cloud&lt;/strong&gt; doesn’t use license files, it &lt;strong&gt;uses entitlements&lt;/strong&gt;, but the logic is still the same. If you don’t have access to an object through entitlements, it &lt;strong&gt;doesn’t matter if you have SUPER permissions&lt;/strong&gt;. This picture illustrates it well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-vs-permission.png&quot; alt=&quot;Entitlements vs. Permissions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Without the necessary entitlement&lt;/strong&gt;, the user won’t see the pages of your app and &lt;strong&gt;won’t have permission&lt;/strong&gt; to manipulate the data. So let’s start with the entitlement object. The base and system apps define several different entitlements. But for us, we should pay attention to the following 4 types:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;PerOfferUserPlan&lt;/li&gt;
+  &lt;li&gt;Role - Delegated&lt;/li&gt;
+  &lt;li&gt;ApplicationScope – API.ReadWrite.All&lt;/li&gt;
+  &lt;li&gt;Unlicensed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;perofferuserplan&quot;&gt;PerOfferUserPlan&lt;/h3&gt;
+
+&lt;p&gt;This is the main entitlement type for monetization, it &lt;strong&gt;maps to the license&lt;/strong&gt; users will buy through AppSource.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-gold.png&quot; alt=&quot;Gold Entitlement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Id&lt;/strong&gt; in this case is the &lt;strong&gt;ServiceId&lt;/strong&gt; of the offer plan you create when creating the AppSource &lt;strong&gt;submission&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/offer-plan-service-id.png&quot; alt=&quot;Entitlements vs. Permissions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ObjectEntitlements&lt;/strong&gt; is where you &lt;strong&gt;map a permission set to an entitlement&lt;/strong&gt;. This is how an entitlement defines the &lt;strong&gt;maximum permissions&lt;/strong&gt; that can be assigned to a user holding this entitlement.&lt;/p&gt;
+
+&lt;p&gt;You can have &lt;strong&gt;multiple PerUserOfferPlans&lt;/strong&gt; if you want to implement different license levels (&lt;em&gt;bronze, silver, gold&lt;/em&gt;). Each of the lower plans would have a more restrictive permissions set attached to an entitlement, and that’s how you’d &lt;strong&gt;control the level of access&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;delegated-admin-entitlements&quot;&gt;Delegated Admin entitlements&lt;/h3&gt;
+
+&lt;p&gt;You &lt;strong&gt;don’t have to implement these&lt;/strong&gt; entitlements, but without them, the &lt;strong&gt;delegated admin users won’t have access&lt;/strong&gt; to your application objects and won’t be able to troubleshoot customers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-admin.png&quot; alt=&quot;Delegated Admin Entitlement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are &lt;strong&gt;4 different delegated admin roles&lt;/strong&gt; currently available for BC:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Delegated Admin Agent - &lt;em&gt;00000000-0000-0000-0000-000000000007&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Delegated Helpdesk Agent - &lt;em&gt;00000000-0000-0000-0000-000000000008&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Dynamics 365 Agent - &lt;em&gt;00000000-0000-0000-0000-000000000009&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Delegated BC Admin Agent - &lt;em&gt;00000000-0000-0000-0000-000000000010&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;strong&gt;IDs have to be exactly as specified above&lt;/strong&gt;, which relate to the actual role in Entra ID. My preference is to give all delegated roles full permissions, so they can access and troubleshoot any part of the application. You can however make it more restrictive by assigning a different permission set.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;applicationscope--apireadwriteall&quot;&gt;ApplicationScope – API.ReadWrite.All&lt;/h3&gt;
+
+&lt;p&gt;This is the entitlement that gets assigned to the &lt;strong&gt;S2S API sessions with the API.ReadWrite.All Scope&lt;/strong&gt;. If an external application is integrating with Business Central using user impersonation/delegation authentication, the entitlements/permissions of the &lt;strong&gt;impersonated users apply&lt;/strong&gt;. Nothing special there. However, if the client is using &lt;strong&gt;Service-2-Service (S2S) authentication&lt;/strong&gt;, The following entitlement is assigned to it:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-api.png&quot; alt=&quot;API Entitlement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;permissions for the S2S applications&lt;/strong&gt; are managed on the &lt;strong&gt;Microsoft Entra Applications&lt;/strong&gt; page, but they follow the same rules as users. If the client &lt;strong&gt;doesn’t have entitlements&lt;/strong&gt; for an object, it doesn’t matter if it has SUPER permissions, the &lt;strong&gt;access is not granted&lt;/strong&gt;. So if your app is exposing any APIs and you want to support S2S, you should include this entitlement object and give it sufficient access, otherwise, a simple Ping API starts throwing permission errors:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/ping-api.png&quot; alt=&quot;Ping API&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-api-error.png&quot; alt=&quot;API Entitlement Error&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;unlicensed-entitlement&quot;&gt;Unlicensed Entitlement&lt;/h3&gt;
+
+&lt;p&gt;This is the entitlement object that gets &lt;strong&gt;assigned if no others match&lt;/strong&gt;, meaning if the user doesn’t have a PerUserOfferPlan license, is not a delegated admin (or delegated admin entitlements are not defined), or is an S2S authenticated client and ApplicationScope entitlement isn’t defined.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-unlicensed.png&quot; alt=&quot;Unlicensed Entitlement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This one is primarily used for &lt;strong&gt;side-by-side&lt;/strong&gt; functionality, meaning, when you &lt;strong&gt;already have your monetization solution&lt;/strong&gt;, and you want to &lt;strong&gt;move to AppSource monetization&lt;/strong&gt; without causing any issues for your existing customers.&lt;/p&gt;
+
+&lt;p&gt;As soon as you &lt;strong&gt;define a single entitlement object&lt;/strong&gt; in your code base and publish that version to AppSource, the &lt;strong&gt;entitlement check starts being enforced&lt;/strong&gt;. So if you define a PerUserOfferPlan and release a new version, &lt;strong&gt;all existing customers&lt;/strong&gt; that update the app &lt;strong&gt;won’t be able to use your app&lt;/strong&gt; anymore until they buy appropriate licenses through AppSource. This can be annoying, especially if they’ve already purchased a license through your own monetization model. Hence we implement a &lt;strong&gt;side-by-side solution&lt;/strong&gt;, that will &lt;strong&gt;allow customers to use the app normally while they’re transitioning&lt;/strong&gt; to the MS monetization model. More on the side-by-side in the next section.&lt;/p&gt;
+
+&lt;p&gt;If you have existing customers, the unlicensed entitlement should give all the access that the existing customers need (usually all available permissions). If you’re &lt;strong&gt;creating a new app&lt;/strong&gt; without any existing customers, you can &lt;strong&gt;skip the unlicensed entitlement&lt;/strong&gt; altogether.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;side-by-side&quot;&gt;Side-by-Side&lt;/h3&gt;
+
+&lt;p&gt;If you went down the route of creating your own monetization engine, you probably found &lt;strong&gt;key areas&lt;/strong&gt; of your functionality and implemented a &lt;strong&gt;license check&lt;/strong&gt; in those points. I common approach is to subscribe to the OnBeforeInsertEvent of a key table and check if the app is licensed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/license-check.png&quot; alt=&quot;Check for license on Insert of a Table&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If this was your approach, you now have to &lt;strong&gt;wrap these checkers in IsUnlicensed checks&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/license-check-isunlicensed.png&quot; alt=&quot;Check for license on Insert of a Table with IsUnlicensed&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If a user has &lt;strong&gt;purchased a license through AppSource&lt;/strong&gt;, they will have the corresponding &lt;strong&gt;entitlement assigned&lt;/strong&gt; and the code will &lt;strong&gt;skip the license check&lt;/strong&gt;. If they haven’t, they get the &lt;strong&gt;Unlicensed entitlement&lt;/strong&gt; assigned and the code will &lt;strong&gt;check with your monetization engine&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;IsUnlicensed will return true if a user has &lt;strong&gt;any other entitlement from the current app assigned&lt;/strong&gt;. If you’re planning to implement &lt;strong&gt;multiple access levels&lt;/strong&gt; like &lt;em&gt;Gold, Silver, or Bronze&lt;/em&gt;, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the &lt;strong&gt;IsEntitled&lt;/strong&gt; function.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-check.png&quot; alt=&quot;Check for a specific entitlement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The important thing to note here is that &lt;strong&gt;entitlements are completely ignored OnPrem&lt;/strong&gt; and &lt;strong&gt;IsUnlicensed or IsEntitled will always return false&lt;/strong&gt;. So if you have any &lt;strong&gt;automated tests&lt;/strong&gt; ensuring your monetization approach works, those &lt;strong&gt;won’t work&lt;/strong&gt;. I’ve asked Microsoft what to do in this case, and they’re &lt;em&gt;discussing it&lt;/em&gt;. Until they come up with an approach, it’s best to wrap the IsUnlicensed in an interface so that we can &lt;strong&gt;mock it in tests&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;cross-app-entitlement-check&quot;&gt;Cross-app entitlement check&lt;/h3&gt;
+
+&lt;p&gt;The final aspect of entitlements that we’ll take a look at is &lt;strong&gt;checking for entitlements of a different app&lt;/strong&gt;. A scenario when you’d want this is if, for example, you’re offering three apps, &lt;strong&gt;App A, App B, and App C&lt;/strong&gt;. They’re all standalone apps that work independently, however you want to give the users of App A the other two apps for free. If App B and C are &lt;strong&gt;only checking for their own entitlements&lt;/strong&gt;, a user would need to &lt;strong&gt;purchase three licenses&lt;/strong&gt;. However, if we implement a &lt;strong&gt;cross-app check&lt;/strong&gt;, we can ensure that users with licenses for App A, also have access to the other two apps.
+So if we refactor the above example&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-check-manager.png&quot; alt=&quot;Check for a specific entitlement with an Entitlement Manager&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s say this DownloadEntries procedure is in App C. This is how the entitlement manager would look like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-manager.png&quot; alt=&quot;Check for entitlements across apps&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We check for either a Gold entitlement &lt;strong&gt;in App C&lt;/strong&gt;, or a Gold entitlement &lt;strong&gt;in App A&lt;/strong&gt; and either entitlement is enough for the check to pass. The next logical step here would now be to &lt;strong&gt;move the entitlement manager to a separate app&lt;/strong&gt;, so we can manage all these app relationship combinations in a &lt;strong&gt;central place&lt;/strong&gt;. But this was a quick example of how we can check if a user has an entitlement for a different app. The same applies to the IsUnlicensed function, it too can take a GUID parameter and we can check if a user has the Unlicensed entitlement for a different app.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, this brings us to the end. I know this was quite a read, but as I was researching the topic of entitlements there were just &lt;strong&gt;so many pieces missing&lt;/strong&gt; in the official documentation. I tried opening issues for it, I tried creating PRs to adjust the information, but there was no response from maintainers, so I decided to package all this information in a blog post. Partially for myself, for the next time, I have to deal with entitlements, but also for anyone else going down the same route.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 08 Apr 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/transactability-entitlements/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/transactability-entitlements/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Curious case of Insert Lock Timeouts</title>
