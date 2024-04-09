@@ -108,7 +108,7 @@ If this was your approach, you now have to **wrap these checkers in IsUnlicensed
 
 If a user has **purchased a license through AppSource**, they will have the corresponding **entitlement assigned** and the code will **skip the license check**. If they haven’t, they get the **Unlicensed entitlement** assigned and the code will **check with your monetization engine**. 
 
-IsUnlicensed will return true if a user has **any other entitlement from the current app assigned**. If you’re planning to implement **multiple access levels** like *Gold, Silver, or Bronze*, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the **IsEntitled** function.
+IsUnlicensed will return true if a user has **any other entitlement from the current app assigned**. If you’re planning to implement **multiple access levels** like *Gold, Silver, or Bronze*, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the **IsEntitled** function. The name of the entitlement to check is the **entitlement object name**.
 
 ![Check for a specific entitlement](/images/entitlements/entitlement-check.png)
 
