@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Apr 2024 07:30:25 +0300</pubDate>
-    <lastBuildDate>Tue, 09 Apr 2024 07:30:25 +0300</lastBuildDate>
+    <pubDate>Tue, 09 Apr 2024 07:37:02 +0300</pubDate>
+    <lastBuildDate>Tue, 09 Apr 2024 07:37:02 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -117,7 +117,7 @@
 
 &lt;p&gt;If a user has &lt;strong&gt;purchased a license through AppSource&lt;/strong&gt;, they will have the corresponding &lt;strong&gt;entitlement assigned&lt;/strong&gt; and the code will &lt;strong&gt;skip the license check&lt;/strong&gt;. If they haven’t, they get the &lt;strong&gt;Unlicensed entitlement&lt;/strong&gt; assigned and the code will &lt;strong&gt;check with your monetization engine&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;IsUnlicensed will return true if a user has &lt;strong&gt;any other entitlement from the current app assigned&lt;/strong&gt;. If you’re planning to implement &lt;strong&gt;multiple access levels&lt;/strong&gt; like &lt;em&gt;Gold, Silver, or Bronze&lt;/em&gt;, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the &lt;strong&gt;IsEntitled&lt;/strong&gt; function.&lt;/p&gt;
+&lt;p&gt;IsUnlicensed will return true if a user has &lt;strong&gt;any other entitlement from the current app assigned&lt;/strong&gt;. If you’re planning to implement &lt;strong&gt;multiple access levels&lt;/strong&gt; like &lt;em&gt;Gold, Silver, or Bronze&lt;/em&gt;, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the &lt;strong&gt;IsEntitled&lt;/strong&gt; function. The name of the entitlement to check is the &lt;strong&gt;entitlement object name&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/entitlements/entitlement-check.png&quot; alt=&quot;Check for a specific entitlement&quot; /&gt;&lt;/p&gt;
 

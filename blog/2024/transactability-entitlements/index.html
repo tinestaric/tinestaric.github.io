@@ -180,7 +180,7 @@
 
 <p>If a user has <strong>purchased a license through AppSource</strong>, they will have the corresponding <strong>entitlement assigned</strong> and the code will <strong>skip the license check</strong>. If they haven’t, they get the <strong>Unlicensed entitlement</strong> assigned and the code will <strong>check with your monetization engine</strong>.</p>
 
-<p>IsUnlicensed will return true if a user has <strong>any other entitlement from the current app assigned</strong>. If you’re planning to implement <strong>multiple access levels</strong> like <em>Gold, Silver, or Bronze</em>, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the <strong>IsEntitled</strong> function.</p>
+<p>IsUnlicensed will return true if a user has <strong>any other entitlement from the current app assigned</strong>. If you’re planning to implement <strong>multiple access levels</strong> like <em>Gold, Silver, or Bronze</em>, you might sometimes want to direct your code flow in a direction only if the user has the appropriate entitlement level assigned. You can do that using the <strong>IsEntitled</strong> function. The name of the entitlement to check is the <strong>entitlement object name</strong>.</p>
 
 <p><img src="/images/entitlements/entitlement-check.png" alt="Check for a specific entitlement" /></p>
 
