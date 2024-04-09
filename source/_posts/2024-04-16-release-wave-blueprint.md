@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the new Release Wave as a Department - The Blueprint"
-date: 2024-04-16 08:00:00
+date: 2024-04-15 08:00:00
 comments: true
 categories: al
 image: /images/new-release.jpeg
@@ -39,11 +39,22 @@ Some topics are bigger than others. We approached it in two ways. If an area was
 
 We decided to spend a day off-site to work on our exploration. Nothing fancy, just away from the office. There’s always an email or a bug waiting otherwise. We scheduled it during *Microsoft’s* **[Launch Event][launchevent]**, primarily because one of the goals each person had was to **come up with at least 3 questions** to ask during the **Q&A sessions**. It’s how we ensured that each one has gone **deep enough** into the topic and also **critically thought about it**, *what’s missing? What’s the future? What could be clearer?*
 
-During the day we had a couple of quick catch-ups to present our findings among ourselves and just brainstorm on potential questions we’d like to get answered. The only preparation we did beforehand was for everyone to set up their **cloud sandboxes** where we demoed the features.
+During the day, the focus was mainly on launch event videos, documentation and hands-on demos. We had a couple of quick catch-ups to present our findings among ourselves and just brainstorm on potential questions we’d like to get answered. The only preparation we did beforehand was for everyone to set up their **cloud sandboxes** where we demoed the features. 
 
 After our exploration day had ended, we started preparing for a **90-minute Knowledge Sharing session for the whole department** we held a week later. We wanted each one to have their time slot, instead of one person presenting everything. Partially so everyone could **hone their presentation skills**, but also so they become the go-to person for their area. Not like *the* go-to person, but just **someone who others can now reach out to** if they have a question in this area.
 
-This worked out pretty well. We now have a department that is *aware* of new features and **6 people who have a deep understanding** of every area. The plan for the next release is to **rotate them** and get **6 new people** diving into the **Release Wave 2**. That way, we’ll slowly upskill more people into ***“off-brand” topics*** like *governance* or *data analysis*, and additionally, they’ll have people from the first Wave to discuss topics with.
+This worked out pretty well. We now have a department that is *aware* of new features and **6 people who have a deep understanding** of new release areas. The plan for the next release is to **rotate them** and get **6 new people** diving into the **Release Wave 2**. That way, we’ll slowly upskill more people into ***“off-brand” topics*** like *governance* or *data analysis*, and additionally, they’ll have people from the first Wave to discuss topics with.
+
+<hr/>
+
+### Lessons learned
+
+Things *sound* great so far, but here's a couple of lessons learned that we'll try to **address next time**:
+- Don't expect that people will **catch up on 4 years of release waves in 8 hours**. Keep investigations contained.
+- People can get caught on a single topic for a full day. **Time box and move on**.
+- Ask **very specific questions** to Microsoft. *"What's the future of Copilot?"* will get a vague response. They won't commit to any future plans. But they'll gladly clarify details of new features.
+- 8 hours of research is **draining**. Remember to take breaks and keep things light.
+- Even a seemingly **small release can easily occupy 6 people** for a day.
 
 <hr/>
 
