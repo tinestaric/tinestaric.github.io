@@ -5,9 +5,81 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Apr 2024 07:37:02 +0300</pubDate>
-    <lastBuildDate>Tue, 09 Apr 2024 07:37:02 +0300</lastBuildDate>
+    <pubDate>Tue, 16 Apr 2024 02:06:58 +0300</pubDate>
+    <lastBuildDate>Tue, 16 Apr 2024 02:06:58 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Exploring the new Release Wave as a Department - The Blueprint</title>
+        <description>&lt;h3 id=&quot;a-new-release-is-on-the-streets-yay&quot;&gt;A new release is on the streets! Yay!&lt;/h3&gt;
+
+&lt;p&gt;I like new stuff, it’s exciting. But a &lt;strong&gt;Release Wave every 6 months&lt;/strong&gt;, even if it’s not the biggest wave, makes it difficult for us as a &lt;em&gt;Business Central&lt;/em&gt; department to &lt;strong&gt;stay up to date&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Usually, it comes down to individuals taking their time to investigate &lt;strong&gt;&lt;em&gt;what’s new&lt;/em&gt;&lt;/strong&gt;, and maybe sharing with a couple of colleagues &lt;em&gt;over a coffee&lt;/em&gt;. But that wasn’t the best approach, as not everyone took the time to look into the release notes, and even if we did, we usually focused on things that &lt;em&gt;sounded&lt;/em&gt; interesting to us. That means, we know what the new topics in &lt;strong&gt;development&lt;/strong&gt; are, but &lt;em&gt;Power Platform? Governance? Reporting? &lt;strong&gt;Eh, not my area…&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Turns out, the longer you ignore &lt;em&gt;“not my area”&lt;/em&gt; topics, the more difficult it becomes to pick them up when a project rolls around that needs to leverage the &lt;em&gt;Power Platform&lt;/em&gt; for example. This wasn’t the best approach, so for this release, we decided to take a &lt;strong&gt;more structured approach&lt;/strong&gt; to how we’re going to stay on top of everything &lt;em&gt;Microsoft&lt;/em&gt; released. And hence, here’s &lt;strong&gt;&lt;em&gt;“The Blueprint”&lt;/em&gt;&lt;/strong&gt; of how we went about it. &lt;em&gt;Is it the best way?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;We don’t know yet.&lt;/em&gt;&lt;/strong&gt; It worked out pretty okay this time, but we’ll know when &lt;strong&gt;future releases start rolling out.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-problems-we-wanted-to-solve&quot;&gt;The problems we wanted to solve:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;How do we explore &lt;strong&gt;ALL&lt;/strong&gt; the topics of a new release&lt;/li&gt;
+  &lt;li&gt;How do we share the findings with the &lt;strong&gt;whole department&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;How do we ensure that &lt;strong&gt;knowledge is retained&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now we could go for &lt;em&gt;Directions for Partners&lt;/em&gt; &lt;a href=&quot;https://community.directions4partners.com/news/1923113&quot;&gt;What’s new webinar&lt;/a&gt; or &lt;em&gt;Companial’s&lt;/em&gt; &lt;a href=&quot;https://companial.com/webinars/microsoft-dynamics-365-business-central-2024-release-wave-1/&quot;&gt;overview of functional and technical enhancements&lt;/a&gt;. But as great of an overview as these two webinars provide, they still &lt;strong&gt;only scratch the surface&lt;/strong&gt;, and as a department we don’t have any &lt;strong&gt;hands-on experience&lt;/strong&gt; with the new topics. So we needed something more.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;heres-our-approach&quot;&gt;Here’s our approach&lt;/h3&gt;
+&lt;p&gt;We built a team of 6 people, all experienced, but not only seniors, who were tasked with exploring the new release and we broke the &lt;strong&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/release-plan/2024wave1/smb/dynamics365-business-central/planned-features&quot;&gt;release plan&lt;/a&gt;&lt;/strong&gt; down into 6 topics, one for each:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Power Platform&lt;/li&gt;
+  &lt;li&gt;Application, Country and Regional, Legislation&lt;/li&gt;
+  &lt;li&gt;Copilot and AI innovation&lt;/li&gt;
+  &lt;li&gt;Development&lt;/li&gt;
+  &lt;li&gt;Governance and administration&lt;/li&gt;
+  &lt;li&gt;Reporting and data analysis, user experiences&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some topics are bigger than others. We approached it in two ways. If an area was too big, someone with a smaller area took some of the topics. The alternative was, that the person with a smaller area went a &lt;strong&gt;release further back&lt;/strong&gt;, to v23 in this case, and explored what was new there. As mentioned at the start, we weren’t exactly thorough with previous releases, so there are plenty of things to &lt;strong&gt;catch up on&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We decided to spend a day off-site to work on our exploration. Nothing fancy, just away from the office. There’s always an email or a bug waiting otherwise. We scheduled it during &lt;em&gt;Microsoft’s&lt;/em&gt; &lt;strong&gt;&lt;a href=&quot;aka.ms/bcle&quot;&gt;Launch Event&lt;/a&gt;&lt;/strong&gt;, primarily because one of the goals each person had was to &lt;strong&gt;come up with at least 3 questions&lt;/strong&gt; to ask during the &lt;strong&gt;Q&amp;amp;A sessions&lt;/strong&gt;. It’s how we ensured that each one has gone &lt;strong&gt;deep enough&lt;/strong&gt; into the topic and also &lt;strong&gt;critically thought about it&lt;/strong&gt;, &lt;em&gt;what’s missing? What’s the future? What could be clearer?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;During the day, the focus was mainly on launch event videos, documentation and hands-on demos. We had a couple of quick catch-ups to present our findings among ourselves and just brainstorm on potential questions we’d like to get answered. The only preparation we did beforehand was for everyone to set up their &lt;strong&gt;cloud sandboxes&lt;/strong&gt; where we demoed the features.&lt;/p&gt;
+
+&lt;p&gt;After our exploration day had ended, we started preparing for a &lt;strong&gt;90-minute Knowledge Sharing session for the whole department&lt;/strong&gt; we held a week later. We wanted each one to have their time slot, instead of one person presenting everything. Partially so everyone could &lt;strong&gt;hone their presentation skills&lt;/strong&gt;, but also so they become the go-to person for their area. Not like &lt;em&gt;the&lt;/em&gt; go-to person, but just &lt;strong&gt;someone who others can now reach out to&lt;/strong&gt; if they have a question in this area.&lt;/p&gt;
+
+&lt;p&gt;This worked out pretty well. We now have a department that is &lt;em&gt;aware&lt;/em&gt; of new features and &lt;strong&gt;6 people who have a deep understanding&lt;/strong&gt; of new release areas. The plan for the next release is to &lt;strong&gt;rotate them&lt;/strong&gt; and get &lt;strong&gt;6 new people&lt;/strong&gt; diving into the &lt;strong&gt;Release Wave 2&lt;/strong&gt;. That way, we’ll slowly upskill more people into &lt;strong&gt;&lt;em&gt;“off-brand” topics&lt;/em&gt;&lt;/strong&gt; like &lt;em&gt;governance&lt;/em&gt; or &lt;em&gt;data analysis&lt;/em&gt;, and additionally, they’ll have people from the first Wave to discuss topics with.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;lessons-learned&quot;&gt;Lessons learned&lt;/h3&gt;
+
+&lt;p&gt;Things &lt;em&gt;sound&lt;/em&gt; great so far, but here’s a couple of lessons learned that we’ll try to &lt;strong&gt;address next time&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Don’t expect that people will &lt;strong&gt;catch up on 4 years of release waves in 8 hours&lt;/strong&gt;. Keep investigations contained.&lt;/li&gt;
+  &lt;li&gt;People can get caught on a single topic for a full day. &lt;strong&gt;Time box and move on&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Ask &lt;strong&gt;very specific questions&lt;/strong&gt; to Microsoft. &lt;em&gt;“What’s the future of Copilot?”&lt;/em&gt; will get a vague response. They won’t commit to any future plans. But they’ll gladly clarify details of new features.&lt;/li&gt;
+  &lt;li&gt;8 hours of research is &lt;strong&gt;draining&lt;/strong&gt;. Remember to take breaks and keep things light.&lt;/li&gt;
+  &lt;li&gt;Even a seemingly &lt;strong&gt;small release can easily occupy 6 people&lt;/strong&gt; for a day.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I know &lt;em&gt;“losing”&lt;/em&gt; 6 people for a day might be a big ask for some partners, but I believe it’s totally worth it. The tasks regarding &lt;em&gt;tenant administration&lt;/em&gt;, or &lt;em&gt;virtual tables&lt;/em&gt; will feel far &lt;strong&gt;less daunting&lt;/strong&gt;, as we now have people who can support us on these &lt;strong&gt;non-traditional work items&lt;/strong&gt;. Also, I can’t speak for the rest of the team, but I found diving into topics &lt;em&gt;“beyond”&lt;/em&gt; BC quite exciting!&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 15 Apr 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/release-wave-blueprint/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/release-wave-blueprint/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>AppSource Transactability - The AL side of the story</title>
