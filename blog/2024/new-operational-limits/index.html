@@ -84,13 +84,15 @@
 
 <p><strong><em>This is an important detail</em></strong>. <strong>More users</strong> means <strong>more parallel jobs</strong>, but not if all jobs are scheduled by a single user. The limit is per user, so different users need to schedule jobs to make use of this higher limit, otherwise 5 jobs will be executed and others will wait.</p>
 
-<p>Now this is annoying, especially since it’s not uncommon to have <strong>just one person responsible for scheduling jobs</strong>. However, we can take advantage of these new limits <strong>also apply to S2S users</strong>. Something I was playing around with is, that I registered multiple <em>Entra Applications</em> in BC, and created an action on the <em>Job Queue Entry Card</em> to schedule the job as a <em>System user</em>. More on that in the second part.</p>
+<p>Now this is annoying, especially since it’s not uncommon to have <strong>just one person responsible for scheduling jobs</strong>. However, we can take advantage of these new limits as they <strong>also apply to S2S users</strong>. Something I was playing around with is, that I registered multiple <em>Entra Applications</em> in BC, and created an action on the <em>Job Queue Entry Card</em> to schedule the job as a <em>System user</em>. More on that in the second part.</p>
 
 <hr />
 
 <h3 id="new-odata-request-limits">New OData request limits</h3>
 
-<p>Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. We could send <strong>up to 600 requests per minute</strong> (300 for sandbox environments), of which <strong>5 were concurrently processed</strong>, the rest piled in a queue of up to 95. When the queue was full, 429 - Too Many Requests was returned.</p>
+<p>Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits.</p>
+
+<p>We could send <strong>up to 600 requests per minute</strong> (300 for sandbox environments), of which <strong>5 were concurrently processed</strong>, the rest piled in a queue of up to 95. When the queue was full, <em>429 - Too Many Requests</em> was returned.</p>
 
 <p>The new limit is again per user. Say we have <strong>5 users</strong>, we can have <strong>25 OData requests processed concurrently</strong> if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same <strong><em>“important detail”</em></strong> applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. <strong><em>They will only be processed in parallel if they come in as 5 different users.</em></strong></p>
 
@@ -100,7 +102,9 @@
 
 <p>You can read more about the new operational limits <a href="https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online">here</a>.</p>
 
-<p>But now let’s jump into how to make the most of the new limits.</p>
+<hr />
+
+<p>But now let’s jump into <strong>how to make the most of the new limits</strong>.</p>
 
 <hr />
 
@@ -180,9 +184,7 @@
 
 <hr />
 
-<p>One final thing to keep in mind. At some point, Microsoft will introduce <strong>global limits or “quotas”</strong>, so this <em>“free performance”</em> won’t scale <em>forever</em>, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the <strong>docs will be updated</strong> accordingly.</p>
-
-<p>I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…</p>
+<p>One final thing to keep in mind. At some point, <em>Microsoft</em> will introduce <strong>global limits or “quotas”</strong>, so this <em>“free performance”</em> won’t scale <em>forever</em>, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the <strong>docs will be updated</strong> accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…</p>
 
 
     </div>

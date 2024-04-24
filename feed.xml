@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 24 Apr 2024 22:16:34 +0300</pubDate>
-    <lastBuildDate>Wed, 24 Apr 2024 22:16:34 +0300</lastBuildDate>
+    <pubDate>Wed, 24 Apr 2024 22:33:46 +0300</pubDate>
+    <lastBuildDate>Wed, 24 Apr 2024 22:33:46 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -21,13 +21,15 @@
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;This is an important detail&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;More users&lt;/strong&gt; means &lt;strong&gt;more parallel jobs&lt;/strong&gt;, but not if all jobs are scheduled by a single user. The limit is per user, so different users need to schedule jobs to make use of this higher limit, otherwise 5 jobs will be executed and others will wait.&lt;/p&gt;
 
-&lt;p&gt;Now this is annoying, especially since it’s not uncommon to have &lt;strong&gt;just one person responsible for scheduling jobs&lt;/strong&gt;. However, we can take advantage of these new limits &lt;strong&gt;also apply to S2S users&lt;/strong&gt;. Something I was playing around with is, that I registered multiple &lt;em&gt;Entra Applications&lt;/em&gt; in BC, and created an action on the &lt;em&gt;Job Queue Entry Card&lt;/em&gt; to schedule the job as a &lt;em&gt;System user&lt;/em&gt;. More on that in the second part.&lt;/p&gt;
+&lt;p&gt;Now this is annoying, especially since it’s not uncommon to have &lt;strong&gt;just one person responsible for scheduling jobs&lt;/strong&gt;. However, we can take advantage of these new limits as they &lt;strong&gt;also apply to S2S users&lt;/strong&gt;. Something I was playing around with is, that I registered multiple &lt;em&gt;Entra Applications&lt;/em&gt; in BC, and created an action on the &lt;em&gt;Job Queue Entry Card&lt;/em&gt; to schedule the job as a &lt;em&gt;System user&lt;/em&gt;. More on that in the second part.&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h3 id=&quot;new-odata-request-limits&quot;&gt;New OData request limits&lt;/h3&gt;
 
-&lt;p&gt;Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. We could send &lt;strong&gt;up to 600 requests per minute&lt;/strong&gt; (300 for sandbox environments), of which &lt;strong&gt;5 were concurrently processed&lt;/strong&gt;, the rest piled in a queue of up to 95. When the queue was full, 429 - Too Many Requests was returned.&lt;/p&gt;
+&lt;p&gt;Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits.&lt;/p&gt;
+
+&lt;p&gt;We could send &lt;strong&gt;up to 600 requests per minute&lt;/strong&gt; (300 for sandbox environments), of which &lt;strong&gt;5 were concurrently processed&lt;/strong&gt;, the rest piled in a queue of up to 95. When the queue was full, &lt;em&gt;429 - Too Many Requests&lt;/em&gt; was returned.&lt;/p&gt;
 
 &lt;p&gt;The new limit is again per user. Say we have &lt;strong&gt;5 users&lt;/strong&gt;, we can have &lt;strong&gt;25 OData requests processed concurrently&lt;/strong&gt; if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same &lt;strong&gt;&lt;em&gt;“important detail”&lt;/em&gt;&lt;/strong&gt; applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. &lt;strong&gt;&lt;em&gt;They will only be processed in parallel if they come in as 5 different users.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -37,7 +39,9 @@
 
 &lt;p&gt;You can read more about the new operational limits &lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;But now let’s jump into how to make the most of the new limits.&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;But now let’s jump into &lt;strong&gt;how to make the most of the new limits&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -117,9 +121,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;One final thing to keep in mind. At some point, Microsoft will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly.&lt;/p&gt;
-
-&lt;p&gt;I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…&lt;/p&gt;
+&lt;p&gt;One final thing to keep in mind. At some point, &lt;em&gt;Microsoft&lt;/em&gt; will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Apr 2024 11:00:00 +0300</pubDate>
