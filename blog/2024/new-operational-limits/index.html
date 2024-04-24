@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>BC Online has new operational limits! Here's how to make the most out of them...</title>
+<meta name="description"
+    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. The...">
+
+<meta property="og:title" content="BC Online has new operational limits! Here's how to make the most out of them..." />
+<meta property="og:description"
+    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. The..." />
+<meta property="og:url" content="https://tine.staric.net/blog/2024/new-operational-limits/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/operationallimits/main.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/operationallimits/main.jpeg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2024/new-operational-limits/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">BC Online has new operational limits! Here's how to make the most out of them...</h1>
+      <em class="post-meta">
+        <time>Apr 24, 2024</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>While in <em>San Diego</em> for <a href="https://directionsna.com/">Directions NA</a> I attended a couple of sessions held by <a href="https://www.linkedin.com/in/swinarko">Sandy Winarko</a> on <strong>new operational limits for Job and API limits in BC Online</strong>. They’re a great improvement, but to make the most out of them we should change how we run jobs or integrate with BC. We’ll get to that in the second part, let’s first talk about what changed.</p>
+
+<hr />
+
+<h3 id="new-schedule-task-limits">New schedule task limits</h3>
+
+<p>Let’s start with the <em>scheduled tasks</em> more commonly known as <em>job queue entries</em>. <strong>Previously</strong>, the maximum number of concurrent jobs that could run simultaneously was <strong>3</strong>. That was a hard limit set <strong>per environment</strong>. Three concurrent jobs were not enough, especially if multiple companies needed to run scheduled jobs. They have now changed this limit from 3-per-environment to <strong>5-per-user</strong>. This means that I can now schedule <strong>10 jobs to run simultaneously</strong>, as long as <strong>5 jobs</strong> are scheduled by <strong>User1</strong> and <strong>5</strong> by <strong>User2</strong>.</p>
+
+<p><strong><em>This is an important detail</em></strong>. <strong>More users</strong> means <strong>more parallel jobs</strong>, but not if all jobs are scheduled by a single user. The limit is per user, so different users need to schedule jobs to make use of this higher limit, otherwise 5 jobs will be executed and others will wait.</p>
+
+<p>Now this is annoying, especially since it’s not uncommon to have <strong>just one person responsible for scheduling jobs</strong>. However, we can take advantage of these new limits <strong>also apply to S2S users</strong>. Something I was playing around with is, that I registered multiple <em>Entra Applications</em> in BC, and created an action on the <em>Job Queue Entry Card</em> to schedule the job as a <em>System user</em>. More on that in the second part.</p>
+
+<hr />
+
+<h3 id="new-odata-request-limits">New OData request limits</h3>
+
+<p>Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. We could send <strong>up to 600 requests per minute</strong> (300 for sandbox environments), of which <strong>5 were concurrently processed</strong>, the rest piled in a queue of up to 95. When the queue was full, 429 - Too Many Requests was returned.</p>
+
+<p>The new limit is again per user. Say we have <strong>5 users</strong>, we can have <strong>25 OData requests processed concurrently</strong> if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same <strong><em>“important detail”</em></strong> applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. <strong><em>They will only be processed in parallel if they come in as 5 different users.</em></strong></p>
+
+<p>I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into <strong>distributing the requests across multiple Entra Applications</strong> and thus benefiting from parallel processing. More on that in the second part.</p>
+
+<p>There’s also a change in rate limits, it changed from 600 per minute to <strong>6000 per 5 minutes</strong>. Meaning, we can now have <strong>higher peaks</strong> of requests within one minute, as long as we’re within the 5-minute window limit.</p>
+
+<p>You can read more about the new operational limits <a href="https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online">here</a>.</p>
+
+<p>But now let’s jump into how to make the most of the new limits.</p>
+
+<hr />
+
+<h3 id="schedule-a-job-as-an-s2s-user">Schedule a Job as an S2S user</h3>
+
+<p><em>Okay, I can achieve higher throughput by scheduling jobs as different users. But scheduling jobs is my responsibility, I don’t want to go around asking people to schedule jobs for me…</em></p>
+
+<p>To solve this, I started playing around with the functionality that would allow me to <strong>schedule a job as a system user</strong>, using one of the S2S application users. To get there, I created a couple of app registrations</p>
+
+<p><img src="/images/operationallimits/entra-apps.png" alt="Entra Applications" /></p>
+
+<p>I’ve added two new fields to the card, to specify if the application should be <strong>used for scheduling jobs</strong> and its <strong>client secret</strong></p>
+
+<p><img src="/images/operationallimits/entra-app-card.png" alt="Entra Application Card" /></p>
+
+<p>Now I can go and create a new Job Queue Entry as I normally would. Once I set it up the way I want it, I have a new action to <strong>schedule the task as a System User</strong>:</p>
+
+<p><img src="/images/operationallimits/schedule-job-card.png" alt="Schedule a new job" /></p>
+
+<p>Once the action is executed, the job is scheduled as one of the <strong>available Entra App users</strong></p>
+
+<p><img src="/images/operationallimits/scheduled-job.png" alt="Job scheduled as S2S user" /></p>
+
+<hr />
+
+<p>Let’s take a look at what’s happening in the <em>background</em> when the action is executed.</p>
+
+<p>A <strong><em>tl;dr</em></strong> is, the action <strong>finds an Entra App</strong> with the least number of scheduled jobs assigned to it and <strong>calls a BC API to schedule the selected job</strong> as this Entra App. But let’s still look at the code a bit.</p>
+
+<p>The action calls this <em>EnqueueJob</em> procedure:</p>
+
+<p><img src="/images/operationallimits/enqueue-job.png" alt="Enqueue job procedure" /></p>
+
+<p><em>Check Web Service</em> simply ensures that my API for enqueuing jobs is <strong>published</strong></p>
+
+<p><img src="/images/operationallimits/check-web-service.png" alt="Check Web Service Procedure" /></p>
+
+<p>This is the API that will <strong>schedule the job</strong></p>
+
+<p><img src="/images/operationallimits/enqueue-job-api.png" alt="Enqueue job API" /></p>
+
+<p><em>Find Least Loaded App</em> finds the Entra Application with the <strong>least amount of Job Queue Entries assigned</strong> to it. Only Entra Applications that are set up for Job Queue scheduling are considered. Currently, it just looks over all the job queue entries. The next step would be to take the scheduled period into account. If the new job should be scheduled for <em>Monday morning</em>, then I’m only interested in Entra Apps that are least loaded on <em>Monday morning</em>.</p>
+
+<p><img src="/images/operationallimits/scheduled-job-query.png" alt="Find least loaded app query" /></p>
+
+<p>I won’t get into the details of <em>GetToken</em> and <em>SendRequest</em>, one retrieves an <em>AccessToken</em> from <em>Entra</em> for the given app, and the other builds and sends a request to the above-mentioned API. If you’d like to see the <strong>full source</strong> for this example, you can find it <a href="https://github.com/tinestaric/BCExamples/tree/Master/ScheduleJobsAsS2S">here</a>.</p>
+
+<p>This approach now lets me take full advantage of <strong>new concurrency limits</strong> by simply adding <strong>more Entra Applications</strong> as needed and scheduling the jobs under these apps.</p>
+
+<hr />
+
+<h3 id="integrate-with-bc-online-using-a-s2s-user-pool">Integrate with BC Online using a S2S user pool</h3>
+
+<p>So we know how to make the most out of the new scheduled tasks concurrency limits. <strong><em>What about OData?</em></strong> Well, to make the most out of this one, we’ll have to <strong>change the way we authenticate our requests</strong> that go to BC. As mentioned earlier, in the past, we created an <strong>Entra App</strong> and used this app <strong>for all requests</strong>. Now, we should instead introduce an <strong>app pool</strong>, and <strong>distribute</strong> our requests <strong>across many Entra Apps</strong>. I built a simple example in <strong>C#</strong> to show how this can be used. You can find the <strong>full source code</strong> <a href="https://github.com/tinestaric/BCExamples/tree/Master/CallApiWithUserPool">here</a>.</p>
+
+<p>Again, a quick <strong><em>tl;dr</em></strong> first. The program initializes a <em>User Pool Manager</em> with my <em>Entra Applications</em>, creates an <em>Api Service</em> using this pool manager, and then when calling the API, it will <strong>rotate the Entra applications</strong> used in authentication in a <strong>round-robin manner</strong>.</p>
+
+<p>Keep in mind, that this is only a <em>quick demo</em>, so there are many shortcomings. Don’t hardcode secrets, don’t request a new token each time, as they’re valid for a longer period, … But I hope this example still illustrates how we can <strong>rotate S2S users for request authentication</strong>.</p>
+
+<p>Here’s the <em>Main class</em></p>
+
+<p><img src="/images/operationallimits/main-class.png" alt="Main Class for integrating with user pool" /></p>
+
+<p><em>S2SUser</em> is just a simple class to contain credentials</p>
+
+<p><img src="/images/operationallimits/s2s-class.png" alt="S2S User Class" /></p>
+
+<p><em>UserPoolManager</em> manages the pool of users and rotates them</p>
+
+<p><img src="/images/operationallimits/user-pool-manager.png" alt="User Pool Manager Class" /></p>
+
+<p><em>ApiService</em> is where we then actually call the API using a <strong>different user every time</strong></p>
+
+<p><img src="/images/operationallimits/api-service.png" alt="Api Service Class" /></p>
+
+<p>Using this approach, I can now shoot calls off to BC and have <strong>15 requests processed in parallel</strong> instead of the usual 5. If I’d need even more throughput, I’d create <strong>more Entra Apps</strong>, and <strong>spread the load across</strong>.</p>
+
+<hr />
+
+<p>One final thing to keep in mind. At some point, Microsoft will introduce <strong>global limits or “quotas”</strong>, so this <em>“free performance”</em> won’t scale <em>forever</em>, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the <strong>docs will be updated</strong> accordingly.</p>
+
+<p>I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

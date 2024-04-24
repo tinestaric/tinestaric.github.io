@@ -5,9 +5,131 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Apr 2024 02:06:58 +0300</pubDate>
-    <lastBuildDate>Tue, 16 Apr 2024 02:06:58 +0300</lastBuildDate>
+    <pubDate>Wed, 24 Apr 2024 22:16:34 +0300</pubDate>
+    <lastBuildDate>Wed, 24 Apr 2024 22:16:34 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>BC Online has new operational limits! Here&apos;s how to make the most out of them...</title>
+        <description>&lt;p&gt;While in &lt;em&gt;San Diego&lt;/em&gt; for &lt;a href=&quot;https://directionsna.com/&quot;&gt;Directions NA&lt;/a&gt; I attended a couple of sessions held by &lt;a href=&quot;https://www.linkedin.com/in/swinarko&quot;&gt;Sandy Winarko&lt;/a&gt; on &lt;strong&gt;new operational limits for Job and API limits in BC Online&lt;/strong&gt;. They’re a great improvement, but to make the most out of them we should change how we run jobs or integrate with BC. We’ll get to that in the second part, let’s first talk about what changed.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;new-schedule-task-limits&quot;&gt;New schedule task limits&lt;/h3&gt;
+
+&lt;p&gt;Let’s start with the &lt;em&gt;scheduled tasks&lt;/em&gt; more commonly known as &lt;em&gt;job queue entries&lt;/em&gt;. &lt;strong&gt;Previously&lt;/strong&gt;, the maximum number of concurrent jobs that could run simultaneously was &lt;strong&gt;3&lt;/strong&gt;. That was a hard limit set &lt;strong&gt;per environment&lt;/strong&gt;. Three concurrent jobs were not enough, especially if multiple companies needed to run scheduled jobs. They have now changed this limit from 3-per-environment to &lt;strong&gt;5-per-user&lt;/strong&gt;. This means that I can now schedule &lt;strong&gt;10 jobs to run simultaneously&lt;/strong&gt;, as long as &lt;strong&gt;5 jobs&lt;/strong&gt; are scheduled by &lt;strong&gt;User1&lt;/strong&gt; and &lt;strong&gt;5&lt;/strong&gt; by &lt;strong&gt;User2&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;This is an important detail&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;More users&lt;/strong&gt; means &lt;strong&gt;more parallel jobs&lt;/strong&gt;, but not if all jobs are scheduled by a single user. The limit is per user, so different users need to schedule jobs to make use of this higher limit, otherwise 5 jobs will be executed and others will wait.&lt;/p&gt;
+
+&lt;p&gt;Now this is annoying, especially since it’s not uncommon to have &lt;strong&gt;just one person responsible for scheduling jobs&lt;/strong&gt;. However, we can take advantage of these new limits &lt;strong&gt;also apply to S2S users&lt;/strong&gt;. Something I was playing around with is, that I registered multiple &lt;em&gt;Entra Applications&lt;/em&gt; in BC, and created an action on the &lt;em&gt;Job Queue Entry Card&lt;/em&gt; to schedule the job as a &lt;em&gt;System user&lt;/em&gt;. More on that in the second part.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;new-odata-request-limits&quot;&gt;New OData request limits&lt;/h3&gt;
+
+&lt;p&gt;Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. We could send &lt;strong&gt;up to 600 requests per minute&lt;/strong&gt; (300 for sandbox environments), of which &lt;strong&gt;5 were concurrently processed&lt;/strong&gt;, the rest piled in a queue of up to 95. When the queue was full, 429 - Too Many Requests was returned.&lt;/p&gt;
+
+&lt;p&gt;The new limit is again per user. Say we have &lt;strong&gt;5 users&lt;/strong&gt;, we can have &lt;strong&gt;25 OData requests processed concurrently&lt;/strong&gt; if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same &lt;strong&gt;&lt;em&gt;“important detail”&lt;/em&gt;&lt;/strong&gt; applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. &lt;strong&gt;&lt;em&gt;They will only be processed in parallel if they come in as 5 different users.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into &lt;strong&gt;distributing the requests across multiple Entra Applications&lt;/strong&gt; and thus benefiting from parallel processing. More on that in the second part.&lt;/p&gt;
+
+&lt;p&gt;There’s also a change in rate limits, it changed from 600 per minute to &lt;strong&gt;6000 per 5 minutes&lt;/strong&gt;. Meaning, we can now have &lt;strong&gt;higher peaks&lt;/strong&gt; of requests within one minute, as long as we’re within the 5-minute window limit.&lt;/p&gt;
+
+&lt;p&gt;You can read more about the new operational limits &lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But now let’s jump into how to make the most of the new limits.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;schedule-a-job-as-an-s2s-user&quot;&gt;Schedule a Job as an S2S user&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Okay, I can achieve higher throughput by scheduling jobs as different users. But scheduling jobs is my responsibility, I don’t want to go around asking people to schedule jobs for me…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To solve this, I started playing around with the functionality that would allow me to &lt;strong&gt;schedule a job as a system user&lt;/strong&gt;, using one of the S2S application users. To get there, I created a couple of app registrations&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/entra-apps.png&quot; alt=&quot;Entra Applications&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve added two new fields to the card, to specify if the application should be &lt;strong&gt;used for scheduling jobs&lt;/strong&gt; and its &lt;strong&gt;client secret&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/entra-app-card.png&quot; alt=&quot;Entra Application Card&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I can go and create a new Job Queue Entry as I normally would. Once I set it up the way I want it, I have a new action to &lt;strong&gt;schedule the task as a System User&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/schedule-job-card.png&quot; alt=&quot;Schedule a new job&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the action is executed, the job is scheduled as one of the &lt;strong&gt;available Entra App users&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/scheduled-job.png&quot; alt=&quot;Job scheduled as S2S user&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let’s take a look at what’s happening in the &lt;em&gt;background&lt;/em&gt; when the action is executed.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;&lt;em&gt;tl;dr&lt;/em&gt;&lt;/strong&gt; is, the action &lt;strong&gt;finds an Entra App&lt;/strong&gt; with the least number of scheduled jobs assigned to it and &lt;strong&gt;calls a BC API to schedule the selected job&lt;/strong&gt; as this Entra App. But let’s still look at the code a bit.&lt;/p&gt;
+
+&lt;p&gt;The action calls this &lt;em&gt;EnqueueJob&lt;/em&gt; procedure:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/enqueue-job.png&quot; alt=&quot;Enqueue job procedure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Check Web Service&lt;/em&gt; simply ensures that my API for enqueuing jobs is &lt;strong&gt;published&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/check-web-service.png&quot; alt=&quot;Check Web Service Procedure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the API that will &lt;strong&gt;schedule the job&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/enqueue-job-api.png&quot; alt=&quot;Enqueue job API&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Find Least Loaded App&lt;/em&gt; finds the Entra Application with the &lt;strong&gt;least amount of Job Queue Entries assigned&lt;/strong&gt; to it. Only Entra Applications that are set up for Job Queue scheduling are considered. Currently, it just looks over all the job queue entries. The next step would be to take the scheduled period into account. If the new job should be scheduled for &lt;em&gt;Monday morning&lt;/em&gt;, then I’m only interested in Entra Apps that are least loaded on &lt;em&gt;Monday morning&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/scheduled-job-query.png&quot; alt=&quot;Find least loaded app query&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I won’t get into the details of &lt;em&gt;GetToken&lt;/em&gt; and &lt;em&gt;SendRequest&lt;/em&gt;, one retrieves an &lt;em&gt;AccessToken&lt;/em&gt; from &lt;em&gt;Entra&lt;/em&gt; for the given app, and the other builds and sends a request to the above-mentioned API. If you’d like to see the &lt;strong&gt;full source&lt;/strong&gt; for this example, you can find it &lt;a href=&quot;https://github.com/tinestaric/BCExamples/tree/Master/ScheduleJobsAsS2S&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This approach now lets me take full advantage of &lt;strong&gt;new concurrency limits&lt;/strong&gt; by simply adding &lt;strong&gt;more Entra Applications&lt;/strong&gt; as needed and scheduling the jobs under these apps.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;integrate-with-bc-online-using-a-s2s-user-pool&quot;&gt;Integrate with BC Online using a S2S user pool&lt;/h3&gt;
+
+&lt;p&gt;So we know how to make the most out of the new scheduled tasks concurrency limits. &lt;strong&gt;&lt;em&gt;What about OData?&lt;/em&gt;&lt;/strong&gt; Well, to make the most out of this one, we’ll have to &lt;strong&gt;change the way we authenticate our requests&lt;/strong&gt; that go to BC. As mentioned earlier, in the past, we created an &lt;strong&gt;Entra App&lt;/strong&gt; and used this app &lt;strong&gt;for all requests&lt;/strong&gt;. Now, we should instead introduce an &lt;strong&gt;app pool&lt;/strong&gt;, and &lt;strong&gt;distribute&lt;/strong&gt; our requests &lt;strong&gt;across many Entra Apps&lt;/strong&gt;. I built a simple example in &lt;strong&gt;C#&lt;/strong&gt; to show how this can be used. You can find the &lt;strong&gt;full source code&lt;/strong&gt; &lt;a href=&quot;https://github.com/tinestaric/BCExamples/tree/Master/CallApiWithUserPool&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Again, a quick &lt;strong&gt;&lt;em&gt;tl;dr&lt;/em&gt;&lt;/strong&gt; first. The program initializes a &lt;em&gt;User Pool Manager&lt;/em&gt; with my &lt;em&gt;Entra Applications&lt;/em&gt;, creates an &lt;em&gt;Api Service&lt;/em&gt; using this pool manager, and then when calling the API, it will &lt;strong&gt;rotate the Entra applications&lt;/strong&gt; used in authentication in a &lt;strong&gt;round-robin manner&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Keep in mind, that this is only a &lt;em&gt;quick demo&lt;/em&gt;, so there are many shortcomings. Don’t hardcode secrets, don’t request a new token each time, as they’re valid for a longer period, … But I hope this example still illustrates how we can &lt;strong&gt;rotate S2S users for request authentication&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the &lt;em&gt;Main class&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/main-class.png&quot; alt=&quot;Main Class for integrating with user pool&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;S2SUser&lt;/em&gt; is just a simple class to contain credentials&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/s2s-class.png&quot; alt=&quot;S2S User Class&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;UserPoolManager&lt;/em&gt; manages the pool of users and rotates them&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/user-pool-manager.png&quot; alt=&quot;User Pool Manager Class&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;ApiService&lt;/em&gt; is where we then actually call the API using a &lt;strong&gt;different user every time&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/operationallimits/api-service.png&quot; alt=&quot;Api Service Class&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using this approach, I can now shoot calls off to BC and have &lt;strong&gt;15 requests processed in parallel&lt;/strong&gt; instead of the usual 5. If I’d need even more throughput, I’d create &lt;strong&gt;more Entra Apps&lt;/strong&gt;, and &lt;strong&gt;spread the load across&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;One final thing to keep in mind. At some point, Microsoft will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly.&lt;/p&gt;
+
+&lt;p&gt;I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more…&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 24 Apr 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/new-operational-limits/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/new-operational-limits/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Exploring the new Release Wave as a Department - The Blueprint</title>
