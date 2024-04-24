@@ -16,13 +16,15 @@ Let’s start with the *scheduled tasks* more commonly known as *job queue entri
 
 ***This is an important detail***. **More users** means **more parallel jobs**, but not if all jobs are scheduled by a single user. The limit is per user, so different users need to schedule jobs to make use of this higher limit, otherwise 5 jobs will be executed and others will wait.
 
-Now this is annoying, especially since it’s not uncommon to have **just one person responsible for scheduling jobs**. However, we can take advantage of these new limits **also apply to S2S users**. Something I was playing around with is, that I registered multiple *Entra Applications* in BC, and created an action on the *Job Queue Entry Card* to schedule the job as a *System user*. More on that in the second part.
+Now this is annoying, especially since it’s not uncommon to have **just one person responsible for scheduling jobs**. However, we can take advantage of these new limits as they **also apply to S2S users**. Something I was playing around with is, that I registered multiple *Entra Applications* in BC, and created an action on the *Job Queue Entry Card* to schedule the job as a *System user*. More on that in the second part.
 
 <hr/>
 
 ### New OData request limits
 
-Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. We could send **up to 600 requests per minute** (300 for sandbox environments), of which **5 were concurrently processed**, the rest piled in a queue of up to 95. When the queue was full, 429 - Too Many Requests was returned. 
+Similarly, the OData limits also got a refresh from per-environment to per-user limits. Let’s first take a look at the old limits. 
+
+We could send **up to 600 requests per minute** (300 for sandbox environments), of which **5 were concurrently processed**, the rest piled in a queue of up to 95. When the queue was full, *429 - Too Many Requests* was returned. 
 
 The new limit is again per user. Say we have **5 users**, we can have **25 OData requests processed concurrently** if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same ***“important detail”*** applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. ***They will only be processed in parallel if they come in as 5 different users.*** 
 
@@ -32,7 +34,9 @@ There’s also a change in rate limits, it changed from 600 per minute to **6000
 
 You can read more about the new operational limits [here][OperationalLimitsDocs]. 
 
-But now let’s jump into how to make the most of the new limits.
+<hr/>
+
+But now let’s jump into **how to make the most of the new limits**.
 
 <hr/>
 
@@ -112,9 +116,7 @@ Using this approach, I can now shoot calls off to BC and have **15 requests proc
 
 <hr/>
 
-One final thing to keep in mind. At some point, Microsoft will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly.
-
-I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more...
+One final thing to keep in mind. At some point, *Microsoft* will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more...
 
 [CallApiWithUserPoolExample]: https://github.com/tinestaric/BCExamples/tree/Master/CallApiWithUserPool
 [ScheduleJobsAsS2S]: https://github.com/tinestaric/BCExamples/tree/Master/ScheduleJobsAsS2S
