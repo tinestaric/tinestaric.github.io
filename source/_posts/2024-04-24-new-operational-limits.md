@@ -6,7 +6,7 @@ comments: true
 categories: al
 image: /images/operationallimits/main.jpeg
 ---
-While in *San Diego* for [Directions NA][DirectionsNA] I attended a couple of sessions held by [Sandy Winarko][SandyLinkedIn] on **new operational limits for Job and API limits in BC Online**. They’re a great improvement, but to make the most out of them we should change how we run jobs or integrate with BC. We’ll get to that in the second part, let’s first talk about what changed.
+While in *San Diego* for [Directions NA][DirectionsNA] I attended a couple of sessions held by [Sandy Winarko][SandyLinkedIn] on **new operational limits for Job and API limits in BC Online**. They’re a great improvement, but to make the most out of them we have to change how we run jobs or integrate with BC. *How?* We’ll get to that in the second part, let’s first talk about what changed.
 
 <hr/>
 
@@ -30,13 +30,13 @@ The new limit is again per user. Say we have **5 users**, we can have **25 OData
 
 I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into **distributing the requests across multiple Entra Applications** and thus benefiting from parallel processing. More on that in the second part.
 
-There’s also a change in rate limits, it changed from 600 per minute to **6000 per 5 minutes**. Meaning, we can now have **higher peaks** of requests within one minute, as long as we’re within the 5-minute window limit.
+There’s also a change in rate limits, it changed from 600 per minute to **6000 per 5 minutes**. Meaning, we can now have **higher peaks** of requests as long as they're not too close together.
 
 You can read more about the new operational limits [here][OperationalLimitsDocs]. 
 
 <hr/>
 
-But now let’s jump into **how to make the most of the new limits**.
+But now let’s jump into **how to make the most of the new limits**. I would like to add that I'm **not much a fan** of these session-hacking approaches. *Should we really be doing this?* Microsoft said yes, but honestly, if they're giving us **additional capacity per user**, why add this (*mabye stupid*) limitation that it also needs to be **consumed per user?**
 
 <hr/>
 
@@ -116,7 +116,7 @@ Using this approach, I can now shoot calls off to BC and have **15 requests proc
 
 <hr/>
 
-One final thing to keep in mind. At some point, *Microsoft* will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope there’s going to be more...
+One final thing to keep in mind. At some point, *Microsoft* will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope we'll move away from having to abuse multiple sessions, but anyway, looking forward to what's coming next.
 
 [CallApiWithUserPoolExample]: https://github.com/tinestaric/BCExamples/tree/Master/CallApiWithUserPool
 [ScheduleJobsAsS2S]: https://github.com/tinestaric/BCExamples/tree/Master/ScheduleJobsAsS2S
