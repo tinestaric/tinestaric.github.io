@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 25 Apr 2024 11:12:29 +0300</pubDate>
-    <lastBuildDate>Thu, 25 Apr 2024 11:12:29 +0300</lastBuildDate>
+    <pubDate>Thu, 25 Apr 2024 11:33:20 +0300</pubDate>
+    <lastBuildDate>Thu, 25 Apr 2024 11:33:20 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -41,7 +41,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;But now let’s jump into &lt;strong&gt;how to make the most of the new limits&lt;/strong&gt;. I would like to add that I’m &lt;strong&gt;not much a fan&lt;/strong&gt; of these session-hacking approaches. &lt;em&gt;Should we really be doing this?&lt;/em&gt; Microsoft said yes, but honestly, if they’re giving us &lt;strong&gt;additional capacity per user&lt;/strong&gt;, why add this (&lt;em&gt;mabye stupid&lt;/em&gt;) limitation that it also needs to be &lt;strong&gt;consumed per user?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;But now let’s jump into &lt;strong&gt;how to make the most of the new limits&lt;/strong&gt;. I would like to add that I’m &lt;strong&gt;not much of a fan&lt;/strong&gt; of these session-hacking approaches. &lt;em&gt;Should we really be doing this?&lt;/em&gt; Microsoft said yes, but honestly if they’re giving us &lt;strong&gt;additional capacity per user&lt;/strong&gt;, why add this (&lt;em&gt;maybe stupid&lt;/em&gt;) limitation that it also needs to be &lt;strong&gt;consumed per user?&lt;/strong&gt; This feels more like a workaround than an architectural approach. But hey, &lt;strong&gt;sometimes workarounds are needed&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
