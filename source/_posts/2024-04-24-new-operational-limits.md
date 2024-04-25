@@ -36,7 +36,7 @@ You can read more about the new operational limits [here][OperationalLimitsDocs]
 
 <hr/>
 
-But now let’s jump into **how to make the most of the new limits**. I would like to add that I'm **not much of a fan** of these session-hacking approaches. *Should we really be doing this?* Microsoft said yes, but honestly, if they're giving us **additional capacity per user**, why add this (*mabye stupid*) limitation that it also needs to be **consumed per user?**
+But now let’s jump into **how to make the most of the new limits**. I would like to add that I'm **not much of a fan** of these session-hacking approaches. *Should we really be doing this?* Microsoft said yes, but honestly if they're giving us **additional capacity per user**, why add this (*maybe stupid*) limitation that it also needs to be **consumed per user?** This feels more like a workaround than an architectural approach. But hey, **sometimes workarounds are needed**.
 
 <hr/>
 
