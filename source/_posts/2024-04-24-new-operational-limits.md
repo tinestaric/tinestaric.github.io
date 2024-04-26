@@ -6,7 +6,7 @@ comments: true
 categories: al
 image: /images/operationallimits/main.jpeg
 ---
-While in *San Diego* for [Directions NA][DirectionsNA] I attended a couple of sessions held by [Sandy Winarko][SandyLinkedIn] on **new operational limits for Job and API limits in BC Online**. They’re a great improvement, but to make the most out of them we have to change how we run jobs or integrate with BC. *How?* We’ll get to that in the second part, let’s first talk about what changed.
+While in *San Diego* for [Directions NA][DirectionsNA] I attended a couple of sessions held by [Sandy Winarko][SandyLinkedIn] on **new operational limits for Job and API limits in BC Online**. I think it's great that they're working on making the cloud more appealing, but to make the most out of the new limits we have to change how we run jobs or integrate with BC. *How?* We’ll get to that in the second part, let’s first talk about what changed.
 
 <hr/>
 
@@ -26,17 +26,17 @@ Similarly, the OData limits also got a refresh from per-environment to per-user 
 
 We could send **up to 600 requests per minute** (300 for sandbox environments), of which **5 were concurrently processed**, the rest piled in a queue of up to 95. When the queue was full, *429 - Too Many Requests* was returned. 
 
-The new limit is again per user. Say we have **5 users**, we can have **25 OData requests processed concurrently** if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same ***“important detail”*** applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. ***They will only be processed in parallel if they come in as 5 different users.*** 
+First, the change in rate limits. It changed from 600 per minute to **6000 per 5 minutes**. Meaning, we can now have **higher peaks** of requests as long as they're not too close together.
+
+The new concurrency limit is again per user. Say we have **5 users**, we can have **25 OData requests processed concurrently** if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same ***“important detail”*** applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. ***They will only be processed in parallel if they come in as 5 different users.*** 
 
 I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into **distributing the requests across multiple Entra Applications** and thus benefiting from parallel processing. More on that in the second part.
-
-There’s also a change in rate limits, it changed from 600 per minute to **6000 per 5 minutes**. Meaning, we can now have **higher peaks** of requests as long as they're not too close together.
 
 You can read more about the new operational limits [here][OperationalLimitsDocs]. 
 
 <hr/>
 
-But now let’s jump into **how to make the most of the new limits**. I would like to add that I'm **not much of a fan** of these session-hacking approaches. *Should we really be doing this?* Microsoft said yes, but honestly if they're giving us **additional capacity per user**, why add this (*maybe stupid*) limitation that it also needs to be **consumed per user?** This feels more like a workaround than an architectural approach. But hey, **sometimes workarounds are needed**.
+But now let’s jump into **how to make the most of the new limits**. I would like to add that I'm **not a fan** of these session-hacking approaches. *Should we really be doing this?* Microsoft said yes, but honestly if they're giving us **additional capacity per user**, why add this (*maybe stupid*) limitation that it also needs to be **consumed per user?** Is it really *additional capacity per user*, when we can create an **unlimited amount of Entra Application users**? I have a feeling this will **change again soon**, as this is more of a workaround than an architectural approach. But hey, **sometimes workarounds are needed**.
 
 <hr/>
 
@@ -116,7 +116,7 @@ Using this approach, I can now shoot calls off to BC and have **15 requests proc
 
 <hr/>
 
-One final thing to keep in mind. At some point, *Microsoft* will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope we'll move away from having to abuse multiple sessions, but anyway, looking forward to what's coming next.
+One final thing to keep in mind. At some point, *Microsoft* will introduce **global limits or “quotas”**, so this *“free performance”* won’t scale *forever*, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the **docs will be updated** accordingly. But overall, It's great seeing improvements on the infrastructure side of BC. I hope we'll move away from having to abuse multiple sessions, but anyway, looking forward to what's coming next.
 
 [CallApiWithUserPoolExample]: https://github.com/tinestaric/BCExamples/tree/Master/CallApiWithUserPool
 [ScheduleJobsAsS2S]: https://github.com/tinestaric/BCExamples/tree/Master/ScheduleJobsAsS2S
