@@ -5,13 +5,13 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 25 Apr 2024 11:33:20 +0300</pubDate>
-    <lastBuildDate>Thu, 25 Apr 2024 11:33:20 +0300</lastBuildDate>
+    <pubDate>Fri, 26 Apr 2024 10:26:40 +0300</pubDate>
+    <lastBuildDate>Fri, 26 Apr 2024 10:26:40 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>BC Online has new operational limits! Here&apos;s how to make the most out of them...</title>
-        <description>&lt;p&gt;While in &lt;em&gt;San Diego&lt;/em&gt; for &lt;a href=&quot;https://directionsna.com/&quot;&gt;Directions NA&lt;/a&gt; I attended a couple of sessions held by &lt;a href=&quot;https://www.linkedin.com/in/swinarko&quot;&gt;Sandy Winarko&lt;/a&gt; on &lt;strong&gt;new operational limits for Job and API limits in BC Online&lt;/strong&gt;. They’re a great improvement, but to make the most out of them we have to change how we run jobs or integrate with BC. &lt;em&gt;How?&lt;/em&gt; We’ll get to that in the second part, let’s first talk about what changed.&lt;/p&gt;
+        <description>&lt;p&gt;While in &lt;em&gt;San Diego&lt;/em&gt; for &lt;a href=&quot;https://directionsna.com/&quot;&gt;Directions NA&lt;/a&gt; I attended a couple of sessions held by &lt;a href=&quot;https://www.linkedin.com/in/swinarko&quot;&gt;Sandy Winarko&lt;/a&gt; on &lt;strong&gt;new operational limits for Job and API limits in BC Online&lt;/strong&gt;. I think it’s great that they’re working on making the cloud more appealing, but to make the most out of the new limits we have to change how we run jobs or integrate with BC. &lt;em&gt;How?&lt;/em&gt; We’ll get to that in the second part, let’s first talk about what changed.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -31,17 +31,17 @@
 
 &lt;p&gt;We could send &lt;strong&gt;up to 600 requests per minute&lt;/strong&gt; (300 for sandbox environments), of which &lt;strong&gt;5 were concurrently processed&lt;/strong&gt;, the rest piled in a queue of up to 95. When the queue was full, &lt;em&gt;429 - Too Many Requests&lt;/em&gt; was returned.&lt;/p&gt;
 
-&lt;p&gt;The new limit is again per user. Say we have &lt;strong&gt;5 users&lt;/strong&gt;, we can have &lt;strong&gt;25 OData requests processed concurrently&lt;/strong&gt; if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same &lt;strong&gt;&lt;em&gt;“important detail”&lt;/em&gt;&lt;/strong&gt; applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. &lt;strong&gt;&lt;em&gt;They will only be processed in parallel if they come in as 5 different users.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First, the change in rate limits. It changed from 600 per minute to &lt;strong&gt;6000 per 5 minutes&lt;/strong&gt;. Meaning, we can now have &lt;strong&gt;higher peaks&lt;/strong&gt; of requests as long as they’re not too close together.&lt;/p&gt;
+
+&lt;p&gt;The new concurrency limit is again per user. Say we have &lt;strong&gt;5 users&lt;/strong&gt;, we can have &lt;strong&gt;25 OData requests processed concurrently&lt;/strong&gt; if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same &lt;strong&gt;&lt;em&gt;“important detail”&lt;/em&gt;&lt;/strong&gt; applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. &lt;strong&gt;&lt;em&gt;They will only be processed in parallel if they come in as 5 different users.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into &lt;strong&gt;distributing the requests across multiple Entra Applications&lt;/strong&gt; and thus benefiting from parallel processing. More on that in the second part.&lt;/p&gt;
-
-&lt;p&gt;There’s also a change in rate limits, it changed from 600 per minute to &lt;strong&gt;6000 per 5 minutes&lt;/strong&gt;. Meaning, we can now have &lt;strong&gt;higher peaks&lt;/strong&gt; of requests as long as they’re not too close together.&lt;/p&gt;
 
 &lt;p&gt;You can read more about the new operational limits &lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;But now let’s jump into &lt;strong&gt;how to make the most of the new limits&lt;/strong&gt;. I would like to add that I’m &lt;strong&gt;not much of a fan&lt;/strong&gt; of these session-hacking approaches. &lt;em&gt;Should we really be doing this?&lt;/em&gt; Microsoft said yes, but honestly if they’re giving us &lt;strong&gt;additional capacity per user&lt;/strong&gt;, why add this (&lt;em&gt;maybe stupid&lt;/em&gt;) limitation that it also needs to be &lt;strong&gt;consumed per user?&lt;/strong&gt; This feels more like a workaround than an architectural approach. But hey, &lt;strong&gt;sometimes workarounds are needed&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;But now let’s jump into &lt;strong&gt;how to make the most of the new limits&lt;/strong&gt;. I would like to add that I’m &lt;strong&gt;not a fan&lt;/strong&gt; of these session-hacking approaches. &lt;em&gt;Should we really be doing this?&lt;/em&gt; Microsoft said yes, but honestly if they’re giving us &lt;strong&gt;additional capacity per user&lt;/strong&gt;, why add this (&lt;em&gt;maybe stupid&lt;/em&gt;) limitation that it also needs to be &lt;strong&gt;consumed per user?&lt;/strong&gt; Is it really &lt;em&gt;additional capacity per user&lt;/em&gt;, when we can create an &lt;strong&gt;unlimited amount of Entra Application users&lt;/strong&gt;? I have a feeling this will &lt;strong&gt;change again soon&lt;/strong&gt;, as this is more of a workaround than an architectural approach. But hey, &lt;strong&gt;sometimes workarounds are needed&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -121,7 +121,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;One final thing to keep in mind. At some point, &lt;em&gt;Microsoft&lt;/em&gt; will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope we’ll move away from having to abuse multiple sessions, but anyway, looking forward to what’s coming next.&lt;/p&gt;
+&lt;p&gt;One final thing to keep in mind. At some point, &lt;em&gt;Microsoft&lt;/em&gt; will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly. But overall, It’s great seeing improvements on the infrastructure side of BC. I hope we’ll move away from having to abuse multiple sessions, but anyway, looking forward to what’s coming next.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Apr 2024 11:00:00 +0300</pubDate>

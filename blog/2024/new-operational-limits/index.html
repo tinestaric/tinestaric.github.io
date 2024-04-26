@@ -8,11 +8,11 @@
 
 <title>BC Online has new operational limits! Here's how to make the most out of them...</title>
 <meta name="description"
-    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. The...">
+    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. I t...">
 
 <meta property="og:title" content="BC Online has new operational limits! Here's how to make the most out of them..." />
 <meta property="og:description"
-    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. The..." />
+    content="While in San Diego for Directions NA I attended a couple of sessions held by Sandy Winarko on new operational limits for Job and API limits in BC Online. I t..." />
 <meta property="og:url" content="https://tine.staric.net/blog/2024/new-operational-limits/" />
 <meta property="og:site_name" content="Tech Adventures in Business Central" />
 <meta property="og:type" content="website" />
@@ -74,7 +74,7 @@
     </header>
 
     <div class="post-content">
-      <p>While in <em>San Diego</em> for <a href="https://directionsna.com/">Directions NA</a> I attended a couple of sessions held by <a href="https://www.linkedin.com/in/swinarko">Sandy Winarko</a> on <strong>new operational limits for Job and API limits in BC Online</strong>. They’re a great improvement, but to make the most out of them we have to change how we run jobs or integrate with BC. <em>How?</em> We’ll get to that in the second part, let’s first talk about what changed.</p>
+      <p>While in <em>San Diego</em> for <a href="https://directionsna.com/">Directions NA</a> I attended a couple of sessions held by <a href="https://www.linkedin.com/in/swinarko">Sandy Winarko</a> on <strong>new operational limits for Job and API limits in BC Online</strong>. I think it’s great that they’re working on making the cloud more appealing, but to make the most out of the new limits we have to change how we run jobs or integrate with BC. <em>How?</em> We’ll get to that in the second part, let’s first talk about what changed.</p>
 
 <hr />
 
@@ -94,17 +94,17 @@
 
 <p>We could send <strong>up to 600 requests per minute</strong> (300 for sandbox environments), of which <strong>5 were concurrently processed</strong>, the rest piled in a queue of up to 95. When the queue was full, <em>429 - Too Many Requests</em> was returned.</p>
 
-<p>The new limit is again per user. Say we have <strong>5 users</strong>, we can have <strong>25 OData requests processed concurrently</strong> if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same <strong><em>“important detail”</em></strong> applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. <strong><em>They will only be processed in parallel if they come in as 5 different users.</em></strong></p>
+<p>First, the change in rate limits. It changed from 600 per minute to <strong>6000 per 5 minutes</strong>. Meaning, we can now have <strong>higher peaks</strong> of requests as long as they’re not too close together.</p>
+
+<p>The new concurrency limit is again per user. Say we have <strong>5 users</strong>, we can have <strong>25 OData requests processed concurrently</strong> if they’re coming in as 5 different users. This also means we have 5 queues where the requests will wait. But the same <strong><em>“important detail”</em></strong> applies here. Just because we have 5 users in our environment doesn’t mean we can process 25 parallel requests. <strong><em>They will only be processed in parallel if they come in as 5 different users.</em></strong></p>
 
 <p>I personally always built integrations with BC by creating an Entra App Registration and sending all the requests as this one user, but to make use of this additional throughput, I started looking into <strong>distributing the requests across multiple Entra Applications</strong> and thus benefiting from parallel processing. More on that in the second part.</p>
-
-<p>There’s also a change in rate limits, it changed from 600 per minute to <strong>6000 per 5 minutes</strong>. Meaning, we can now have <strong>higher peaks</strong> of requests as long as they’re not too close together.</p>
 
 <p>You can read more about the new operational limits <a href="https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/operational-limits-online">here</a>.</p>
 
 <hr />
 
-<p>But now let’s jump into <strong>how to make the most of the new limits</strong>. I would like to add that I’m <strong>not much of a fan</strong> of these session-hacking approaches. <em>Should we really be doing this?</em> Microsoft said yes, but honestly if they’re giving us <strong>additional capacity per user</strong>, why add this (<em>maybe stupid</em>) limitation that it also needs to be <strong>consumed per user?</strong> This feels more like a workaround than an architectural approach. But hey, <strong>sometimes workarounds are needed</strong>.</p>
+<p>But now let’s jump into <strong>how to make the most of the new limits</strong>. I would like to add that I’m <strong>not a fan</strong> of these session-hacking approaches. <em>Should we really be doing this?</em> Microsoft said yes, but honestly if they’re giving us <strong>additional capacity per user</strong>, why add this (<em>maybe stupid</em>) limitation that it also needs to be <strong>consumed per user?</strong> Is it really <em>additional capacity per user</em>, when we can create an <strong>unlimited amount of Entra Application users</strong>? I have a feeling this will <strong>change again soon</strong>, as this is more of a workaround than an architectural approach. But hey, <strong>sometimes workarounds are needed</strong>.</p>
 
 <hr />
 
@@ -184,7 +184,7 @@
 
 <hr />
 
-<p>One final thing to keep in mind. At some point, <em>Microsoft</em> will introduce <strong>global limits or “quotas”</strong>, so this <em>“free performance”</em> won’t scale <em>forever</em>, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the <strong>docs will be updated</strong> accordingly. But overall, I love seeing improvements on the infrastructure side of BC. I hope we’ll move away from having to abuse multiple sessions, but anyway, looking forward to what’s coming next.</p>
+<p>One final thing to keep in mind. At some point, <em>Microsoft</em> will introduce <strong>global limits or “quotas”</strong>, so this <em>“free performance”</em> won’t scale <em>forever</em>, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the <strong>docs will be updated</strong> accordingly. But overall, It’s great seeing improvements on the infrastructure side of BC. I hope we’ll move away from having to abuse multiple sessions, but anyway, looking forward to what’s coming next.</p>
 
 
     </div>
