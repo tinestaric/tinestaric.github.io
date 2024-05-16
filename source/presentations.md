@@ -18,7 +18,7 @@ Here's a list of the presentations I did through the years with attached slides,
 - 2024-03,04,06 Multiple sessions at [Days of Knowledge UK][dokuk24], [Days of Knowledge Nordic][doknordic24], and [Days of Knowledge Central][dokcentral24]:
     - **Azure Blobs Made Simple: For Non-Developers**: Session link [UK][dokuk24blobs], [Nordic][doknordic24blobs], [Central][dokcentral24blobs] and [presentation][dok24ukblobpres]
     - **Reviewing the Code Review**: session link [UK][dokuk24codereview], [Central][dokcentral24codereview] and [presentation][dok24ukcodereviewpres]
-    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror] and [presentation][dok24ukpaerrorpres]
+    - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror], [Central][dokcentral24paerror] and [presentation][dok24ukpaerrorpres]
 - 2024-03 
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]: [presentation][2023doknordiccodequality] and [recording][codeanalysisareoparecording]
     - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress] and [recording][plataanblobrecording] (password protected)
@@ -94,6 +94,7 @@ Here's a list of the presentations I did through the years with attached slides,
 [doknordic24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024/schedule?session=588519
 [doknordic24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2024/schedule?session=588518
 [dokcentral24blobs]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588525
+[dokcentral24paerror]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588527
 [dokcentral24codereview]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2024/schedule?session=588528
 [plataanhome]: https://plataan.tv/en
 [codeanalysisareoparecording]: https://www.youtube.com/watch?v=U0W1MhNNwWI
