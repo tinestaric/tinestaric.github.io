@@ -2,7 +2,7 @@
 layout: post
 title: "AppSource Transactability - The AL side of the story"
 date: 2024-04-08 08:00:00
-comments: true
+comments: false
 categories: al
 image: /images/entitlements/main.jpeg
 ---

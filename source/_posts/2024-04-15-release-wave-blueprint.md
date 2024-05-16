@@ -2,7 +2,7 @@
 layout: post
 title: "Exploring the new Release Wave as a Department - The Blueprint"
 date: 2024-04-15 08:00:00
-comments: true
+comments: false
 categories: al
 image: /images/new-release.jpeg
 ---

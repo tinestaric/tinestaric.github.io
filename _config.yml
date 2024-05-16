@@ -26,7 +26,7 @@ sass:
 # SEO settings
 title: "Tech Adventures in Business Central"
 description: "A Blog by Tine Starič"
-keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365"
+keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc"
 url: "https://tine.staric.net"
 baseurl: ""
 
@@ -36,7 +36,7 @@ baseurl: ""
 author:
   name: Tine Starič
   title: "Tech Adventures in Business Central"
-  job: Software Developer at Companial
+  job: Software Architect at Companial and a Microsoft MVP for Business Applications
   bio: "Homebrewer, not a hipster. <br>A Business Central enthusiast, with a passion for all things weird with AL."
   thumb: /images/author.jpg
   email: tine@staric.net

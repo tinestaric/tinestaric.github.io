@@ -2,7 +2,7 @@
 layout: post
 title: "BC Online has new operational limits! Here's how to make the most out of them..."
 date: 2024-04-24 08:00:00
-comments: true
+comments: false
 categories: al
 image: /images/operationallimits/main.jpeg
 ---
