@@ -9,7 +9,7 @@ Here's a list of the presentations I did through the years with attached slides,
 ## 2024
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
 - 2024-05 
-    - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]
+    - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]: [presentation][dm24paerrorpress]
     - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as an Expert Session for [Plataan][plataanhome]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
@@ -104,3 +104,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [plataanblobrecording]: https://vimeo.com/923010943?share=copy
 [directionsnacodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/ReviewingTheCodeReview-Directions-NA.pdf
 [directionsnaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/PowerAutomateErrorHandling-Directions-NA.pdf
+[dm24paerrorpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DynamicsMinds/FightForTestAutomation-DynamicsMinds.pdf
