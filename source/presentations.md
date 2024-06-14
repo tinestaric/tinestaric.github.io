@@ -7,7 +7,7 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2024
-- 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]
+- 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
 - 2024-05 
     - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]: [presentation][dm24paerrorpress]
     - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
@@ -105,3 +105,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [directionsnacodereviewpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/ReviewingTheCodeReview-Directions-NA.pdf
 [directionsnaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/PowerAutomateErrorHandling-Directions-NA.pdf
 [dm24paerrorpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DynamicsMinds/FightForTestAutomation-DynamicsMinds.pdf
+[bctechdays24codereviewpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/BCTechDays/ReviewingTheCodeReview-TechDays.pdf
