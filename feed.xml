@@ -5,9 +5,141 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 14 Jun 2024 14:45:35 +0300</pubDate>
-    <lastBuildDate>Fri, 14 Jun 2024 14:45:35 +0300</lastBuildDate>
+    <pubDate>Wed, 10 Jul 2024 16:54:24 +0300</pubDate>
+    <lastBuildDate>Wed, 10 Jul 2024 16:54:24 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Conferences are awesome! Here&apos;s a quick recap...</title>
+        <description>&lt;p&gt;I’m about to go off on a longer vacation, but there’s one more post I wanted to make before I go offline. I was partially inspired by &lt;a href=&quot;https://nataliekarolak.wordpress.com/2024/06/16/waking-up-after-the-bc-techdays-2024/&quot;&gt;Natalie’s non-technical post&lt;/a&gt; right after BC Tech Days about her experience there, and I wanted to do the same, but for the full spring conference swing.&lt;/p&gt;
+
+&lt;p&gt;I was lucky enough to participate in &lt;strong&gt;&lt;em&gt;6&lt;/em&gt; (six!)&lt;/strong&gt; events in the past 4 months. &lt;em&gt;Days of Knowledge (DOK) UK, DOK Nordic, Directions NA, Dynamics Minds, DOK Central, and BC Tech Days&lt;/em&gt;. I loved every second of them. But even for this &lt;strong&gt;&lt;em&gt;“youngling”&lt;/em&gt;&lt;/strong&gt;, that was a lot of traveling, and I’m taking a more relaxed approach to summer.&lt;/p&gt;
+
+&lt;p&gt;I was thinking a bit about how I wanted to structure this post. I want to &lt;strong&gt;present the events&lt;/strong&gt; if you may not yet know them, and don’t know if you (or your employees) should attend them. And I also want to &lt;strong&gt;share my takeaways&lt;/strong&gt; from each of them. Now these takeaways might be completely random and highly personal, but to me, that’s the best part about these in-person events. You get to talk to people and at some point, you might hear some &lt;strong&gt;&lt;em&gt;highly&lt;/em&gt; interesting views!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;days-of-knowledge-tour&quot;&gt;&lt;a href=&quot;https://www.directionsforpartners.com/&quot;&gt;Days of Knowledge Tour&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Days of Knowledge&lt;/em&gt; is a set of events organized by the same amazing people that bring us &lt;strong&gt;Directions EMEA&lt;/strong&gt; (and Asia) every year. However, unlike Directions, these events are entirely &lt;strong&gt;focused on upskilling people&lt;/strong&gt;. There are three tracks of sessions running in parallel. Developer, consultant, and Power Platform track. I’ve been speaking at three events this year; &lt;em&gt;UK, Nordics (Denmark), and Central (Germany)&lt;/em&gt;, but &lt;strong&gt;there’s another one happening in the US (Atlanta) in September&lt;/strong&gt;, and you can still register for it &lt;strong&gt;&lt;a href=&quot;https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/americas-2024/program&quot;&gt;here.&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I love the concept!&lt;/strong&gt; Bringing deeper knowledge (plenty of &lt;em&gt;level 300 or 400 sessions&lt;/em&gt;) than what you’d get at Directions, and for a &lt;strong&gt;lower price&lt;/strong&gt;. I wish there were even more events in the upcoming years, so more people could experience it. But as we’ve already noticed this year, with the growing number of events in the BC sphere, it’s &lt;strong&gt;taking a toll on speakers&lt;/strong&gt;, as they have to travel quite a lot.&lt;/p&gt;
+
+&lt;p&gt;My take is that there’s &lt;strong&gt;no better event for consultants&lt;/strong&gt; than &lt;em&gt;Days of Knowledge&lt;/em&gt;. But also for developers, who want to understand more of the functional and Power Platform side. I think &lt;strong&gt;more often should developers&lt;/strong&gt; try and &lt;strong&gt;understand the functional side&lt;/strong&gt;, it makes us better. Here we can, with a dedicated track for non-development sessions. I’m not saying that developer sessions are not great, but the functional track is why you should consider sending developers to other events than simply Tech Days.&lt;/p&gt;
+
+&lt;p&gt;Some interesting things I’ve heard or seen at DOK events that made me go &lt;em&gt;“huh”&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Being &lt;strong&gt;natively fluent in English&lt;/strong&gt; can be a huge boost in how your session turns out&lt;/li&gt;
+  &lt;li&gt;Most AL developers are &lt;strong&gt;not technical&lt;/strong&gt; (by education)&lt;/li&gt;
+  &lt;li&gt;It’s hard to present details if people don’t know the basics&lt;/li&gt;
+  &lt;li&gt;This one was interestingly controversial. &lt;strong&gt;Don’t be passionate about AL.&lt;/strong&gt; AL is a language that pays our bills. If you want to be passionate about technology, find a side project where you can be creative.&lt;/li&gt;
+  &lt;li&gt;Don’t run Power Automate flows on &lt;strong&gt;user accounts&lt;/strong&gt;. You fire a guy, and half the integrations stop working.&lt;/li&gt;
+  &lt;li&gt;The delivery of a topic is as (if not more) important as the content itself.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are some of the people that made these events &lt;strong&gt;fun!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/doknordic.jpg&quot; alt=&quot;DOK Nordic speakers&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/dokcentral.png&quot; alt=&quot;DOK Central speakers&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;directions-north-america&quot;&gt;&lt;a href=&quot;https://directionsna.com/&quot;&gt;Directions North America&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;I doubt Directions North America needs an introduction. It’s been around for a while. I also don’t have much of a recommendation of who should you send to these events. I’ll mainly share my &lt;em&gt;“huh”&lt;/em&gt; moments, but before I get there, here are a couple of things I found…&lt;strong&gt;different&lt;/strong&gt;, compared to Directions EMEA.&lt;/p&gt;
+
+&lt;p&gt;Look at these statistics they shared (disregard the yellow lines, those were for entertainment purposes):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/dna-statistics.jpg&quot; alt=&quot;Directions NA attendee statistics&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When I saw these numbers, I was mainly surprised by two parts. The &lt;strong&gt;age of participants, and their role.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Two-thirds&lt;/strong&gt; of the participants were &lt;strong&gt;over 40&lt;/strong&gt;. I know there are probably a lot of actual reasons for that (it’s an expensive event, it’s a commercial event, …), but as someone who sees these conferences as the main reason why I decided to stay in this industry, &lt;em&gt;I felt uneasy.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I want more younglings here! :D&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Close to &lt;strong&gt;three-quarters&lt;/strong&gt; of attendees were in &lt;strong&gt;Sales and Leadership&lt;/strong&gt; positions. You could feel that in the sessions as well, they were &lt;em&gt;less attended&lt;/em&gt;. I get that we’re more &lt;em&gt;“builders”&lt;/em&gt; here in Europe, and the US prefers to buy solutions, okay, fine. But still, &lt;strong&gt;where do your people then get upskilled&lt;/strong&gt; if not at these kinds of events?&lt;/p&gt;
+
+&lt;p&gt;Some &lt;em&gt;“huh”&lt;/em&gt; moments:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Copilots are everywhere.&lt;/strong&gt; It’s not that long since it was introduced, and partners are &lt;strong&gt;already trailing&lt;/strong&gt; regarding AI knowledge.&lt;/li&gt;
+  &lt;li&gt;MS is hesitant to &lt;strong&gt;publicly&lt;/strong&gt; announce what they’re doing, but when approached individually they’re happy to share the direction in which they’re going.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/dna.jpg&quot; alt=&quot;Directions North America Speakers&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;dynamicsminds&quot;&gt;&lt;a href=&quot;https://www.dynamicsminds.com/&quot;&gt;DynamicsMinds&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;This is probably the most &lt;strong&gt;“under the radar”&lt;/strong&gt; event in the BC sphere. But it shouldn’t be. It’s a fairly small event (if you can call 1250 attendees small) in Portorož, Slovenia, aimed at the &lt;strong&gt;full D365 stack (FO, CE, PP, BC).&lt;/strong&gt; It’s a brilliant event! Organization-wise, second to none. It’s hard to describe what makes it so amazing. The attention to detail, the creativity behind the keynote, the fact that MS only gets 5 minutes per product for their sales pitch during the keynote, the location, the food, … it’s probably just all of the above.&lt;/p&gt;
+
+&lt;p&gt;When sharing everything they did to ensure speakers had a good time, someone summed it up perfectly: &lt;em&gt;“It’s &lt;strong&gt;not that you expect&lt;/strong&gt; that they would do all these things for you, &lt;strong&gt;but they do them anyway&lt;/strong&gt;”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to experience an event like no other, this is the place to go. But even though, I’m &lt;strong&gt;highly supportive&lt;/strong&gt; of this event, there is something to consider when you’re deciding who should attend it.&lt;/p&gt;
+
+&lt;p&gt;If you have practices that work with FO, CE, or PP, &lt;strong&gt;stop thinking, and send them all&lt;/strong&gt;. How many other events do you have that &lt;strong&gt;cater to FO?&lt;/strong&gt; But if your focus is primarily BC, my recommendation is to send more architect or manager-level people. There’s so much you can learn from where other parts of D365 are evolving. But if you’re &lt;strong&gt;only looking for BC&lt;/strong&gt; sessions, you might sometimes &lt;strong&gt;struggle&lt;/strong&gt; with what to listen to. Especially if you’re used to BC events where you have multiple sessions specifically for BC in each time slot.&lt;/p&gt;
+
+&lt;p&gt;I’m super sure that this event will sell out next year, so if you’re interested, get your tickets early.&lt;/p&gt;
+
+&lt;p&gt;Some &lt;em&gt;“huh”&lt;/em&gt; moments from this one:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;There’s so much &lt;strong&gt;more to Power Platform&lt;/strong&gt; that we &lt;em&gt;“the BC”&lt;/em&gt; people are aware of&lt;/li&gt;
+  &lt;li&gt;PP has a hard time working with BC due to the &lt;strong&gt;&lt;em&gt;“we can solve it in BC”&lt;/em&gt; mentality&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/dynamicsminds.jpg&quot; alt=&quot;Dynamics Minds speakers&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;bc-techdays&quot;&gt;&lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC TechDays&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Another event that needs no introduction. &lt;strong&gt;The crown jewel&lt;/strong&gt; if you’re a BC developer. BC Tech Days was the &lt;strong&gt;first conference I ever attended&lt;/strong&gt;. Two years ago, I was that unsure developer, standing in the corner somewhere, not really knowing what to do during coffee breaks. Fast forward two years, and I couldn’t believe just &lt;strong&gt;how fast the event passed by&lt;/strong&gt;. So many people to meet, so many people to talk to.&lt;/p&gt;
+
+&lt;p&gt;To me, this was also &lt;strong&gt;the most demanding event&lt;/strong&gt; to prepare for. My sessions are usually &lt;em&gt;45 minutes&lt;/em&gt; long, this was the first time I did a &lt;em&gt;90-minute&lt;/em&gt; one, and boy did it take some prep time… &lt;strong&gt;But it was all worth it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the great things about BC TechDays is that &lt;strong&gt;all sessions are recorded&lt;/strong&gt;, so if you’d like to check out what I was talking about, you can find it &lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=v-EaIJ0f9tU&quot;&gt;here&lt;/a&gt;.&lt;/strong&gt; And you can find all the other recordings &lt;a href=&quot;https://www.youtube.com/mibusocom&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The only &lt;em&gt;“huh”&lt;/em&gt; moment I took from this one, which isn’t even that surprising, is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;This community and its people are awesome!&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/conferencerecap24/techdays.jpg&quot; alt=&quot;BC Tech Days fun people&quot; style=&quot;display:block; margin-left:auto; margin-right:auto&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, so now you know a little bit about the sessions you should attend next year. Here’s a quick recap of my take on the target audiences:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Days of Knowledge&lt;/strong&gt; – Awesome event for upskilling consultants and especially Senior Developers wanting to broaden their functional or PP knowledge.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Directions NA&lt;/strong&gt; – Sales &amp;amp; Leadership mainly, but there are a lot of cool sessions as well&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DynamicsMinds&lt;/strong&gt; – One-of-a-kind conference experience. Content is best suited for Architects, cross-product developers, D365 people, and Leadership&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;BC Tech Days&lt;/strong&gt; – Developer’s favorite. BC Developers of all levels&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This conference season was a blast for me. I already knew &lt;strong&gt;I loved sharing knowledge&lt;/strong&gt; and doing sessions last year, but this year truly &lt;strong&gt;cemented it&lt;/strong&gt;. I put a lot of effort into my sessions.&lt;/p&gt;
+
+&lt;p&gt;Before I ever started doing conference sessions, I talked with one of the &lt;strong&gt;greats in our industry&lt;/strong&gt; about just how much time it takes them to prepare sessions. The answer was 50 - 100 hours depending on the session. That made me realize from the beginning that &lt;strong&gt;great content and great delivery take time&lt;/strong&gt;, and I’m more than willing to put that time in. &lt;strong&gt;It all becomes worth it&lt;/strong&gt; when people reach out after the session, or when ratings and comments come in.&lt;/p&gt;
+
+&lt;p&gt;I delivered a total of &lt;strong&gt;&lt;em&gt;12 sessions&lt;/em&gt;&lt;/strong&gt; at these events with an average &lt;strong&gt;speaker rating of 4.92/5&lt;/strong&gt; and a &lt;strong&gt;content rating of 4.76/5&lt;/strong&gt; out of roughly 200 ratings. If you’re ever sitting in a conference, I’d invite you to &lt;strong&gt;leave a rating and a comment&lt;/strong&gt;. If you liked it, the &lt;strong&gt;good comments stay with us like a long-lasting applause&lt;/strong&gt;. If you think there’s something to improve, comment as well. I believe my session at BC Tech Days turned out very well mainly &lt;strong&gt;because I received constructive feedback&lt;/strong&gt; on previous events. That’s how I knew what content the audience was missing, that I should interact with them more, or that everyone likes memes, and I should include more. :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, enough. Now you know what cool events are out there and you should definitely look out for them next year! Now, it’s time for me to pack and &lt;strong&gt;take some time off.&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 10 Jul 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/conference-recap-24/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/conference-recap-24/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>BC Online has new operational limits! Here&apos;s how to make the most out of them...</title>
