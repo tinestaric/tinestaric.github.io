@@ -52,7 +52,7 @@ When I saw these numbers, I was mainly surprised by two parts. The **age of part
 
 **I want more younglings here! :D**
 
-Close to **three-quarters** of attendees were in **Sales and Leadership** positions. You could feel that in the sessions as well, they were *less attended*. I get that we’re more *“builders”* here in Europe, and the US prefers to buy solutions, okay, fine. But still, **where do your people then get upskilled** if not at these kinds of events?
+Close to **three-quarters** of attendees were in **Sales and Leadership** positions. You could feel that in the sessions as well, they were *less attended*. I get that Europe has more of a *“builder”* mindset, while the US prefers to buy solutions, okay, fine. But still, **where do your people then get upskilled** if not at these kinds of events?
 
 Some *“huh”* moments:
 
@@ -67,7 +67,7 @@ Some *“huh”* moments:
 
 This is probably the most **“under the radar”** event in the BC sphere. But it shouldn’t be. It’s a fairly small event (if you can call 1250 attendees small) in Portorož, Slovenia, aimed at the **full D365 stack (FO, CE, PP, BC).** It’s a brilliant event! Organization-wise, second to none. It’s hard to describe what makes it so amazing. The attention to detail, the creativity behind the keynote, the fact that MS only gets 5 minutes per product for their sales pitch during the keynote, the location, the food, ... it’s probably just all of the above.
 
-When sharing everything they did to ensure speakers had a good time, someone summed it up perfectly: *“It’s **not that you expect** that they would do all these things for you, **but they do them anyway**”*.
+When I was sharing everything they did to ensure speakers had a good time, someone summed it up perfectly: *“It’s **not that you expect** that they would do all these things for you, **but they do them anyway**”*.
 
 If you want to experience an event like no other, this is the place to go. But even though, I’m **highly supportive** of this event, there is something to consider when you’re deciding who should attend it. 
 
@@ -76,7 +76,7 @@ If you have practices that work with FO, CE, or PP, **stop thinking, and send th
 I’m super sure that this event will sell out next year, so if you’re interested, get your tickets early.
 
 Some *“huh”* moments from this one:
--	There’s so much **more to Power Platform** that we *“the BC”* people are aware of
+-	There’s so much **more to Power Platform** than what we *“the BC”* people are aware of
 -	PP has a hard time working with BC due to the ***“we can solve it in BC”* mentality**
 
 ![Dynamics Minds speakers](/images/conferencerecap24/dynamicsminds.jpg){:style="display:block; margin-left:auto; margin-right:auto" width="600" }
@@ -87,7 +87,7 @@ Some *“huh”* moments from this one:
 
 Another event that needs no introduction. **The crown jewel** if you’re a BC developer. BC Tech Days was the **first conference I ever attended**. Two years ago, I was that unsure developer, standing in the corner somewhere, not really knowing what to do during coffee breaks. Fast forward two years, and I couldn’t believe just **how fast the event passed by**. So many people to meet, so many people to talk to. 
 
-To me, this was also **the most demanding event** to prepare for. My sessions are usually *45 minutes* long, this was the first time I did a *90-minute* one, and boy did it take some prep time... **But it was all worth it.** 
+To me, this was also **the most demanding event** to prepare for. My sessions are usually *45 minutes* long, this was the first time I did a *90-minute* one, and boy did it take some prep time... **It was all worth it.** 
 
 One of the great things about BC TechDays is that **all sessions are recorded**, so if you’d like to check out what I was talking about, you can find it **[here][techdaysrecording].** And you can find all the other recordings [here][techdaysallrecordings].
 
@@ -110,7 +110,7 @@ This conference season was a blast for me. I already knew **I loved sharing know
 
 Before I ever started doing conference sessions, I talked with one of the **greats in our industry** about just how much time it takes them to prepare sessions. The answer was 50 - 100 hours depending on the session. That made me realize from the beginning that **great content and great delivery take time**, and I’m more than willing to put that time in. **It all becomes worth it** when people reach out after the session, or when ratings and comments come in.
 
-I delivered a total of ***12 sessions*** at these events with an average **speaker rating of 4.92/5** and a **content rating of 4.76/5** out of roughly 200 ratings. If you’re ever sitting in a conference, I’d invite you to **leave a rating and a comment**. If you liked it, the **good comments stay with us like a long-lasting applause**. If you think there’s something to improve, comment as well. I believe my session at BC Tech Days turned out very well mainly **because I received constructive feedback** on previous events. That’s how I knew what content the audience was missing, that I should interact with them more, or that everyone likes memes, and I should include more. :P
+I delivered a total of ***12 sessions*** at these events with an average **speaker rating of 4.92/5** and a **content rating of 4.76/5** out of roughly 200 ratings. If you’re ever sitting in a conference session, I want you to **leave a rating and a comment**. If you liked it, the **good comments stay with the speaker like a long-lasting applause**. If you think there’s something to improve, comment as well. I believe my session at BC Tech Days turned out as well as it did mainly **because I received constructive feedback** on previous events. That’s how I knew what content the audience was missing, that I should interact with them more, or that everyone likes memes, and I should include more. :P
 
 <hr>
 
