@@ -4,7 +4,7 @@ title: "Conferences are awesome! Here's a quick recap..."
 date: 2024-07-10 08:00:00
 comments: false
 categories: al
-image: /images/conferencerecap24/main.jpg
+image: /images/conferencerecap24/main.jpeg
 ---
 I’m about to go off on a longer vacation, but there’s one more post I wanted to make before I go offline. I was partially inspired by [Natalie’s non-technical post][natalierecap] right after BC Tech Days about her experience there, and I wanted to do the same, but for the full spring conference swing.
 
