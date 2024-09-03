@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Sep 2024 08:45:01 +0300</pubDate>
-    <lastBuildDate>Tue, 03 Sep 2024 08:45:01 +0300</lastBuildDate>
+    <pubDate>Tue, 03 Sep 2024 15:45:44 +0300</pubDate>
+    <lastBuildDate>Tue, 03 Sep 2024 15:45:44 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -213,18 +213,6 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h4 id=&quot;do-namespaces-mean-we-wont-need-object-prefixes&quot;&gt;Do namespaces mean we won’t need object prefixes?&lt;/h4&gt;
-
-&lt;p&gt;No. At least not for now. Hopefully one day. But hopefully you now know there’s other reasons why it’s a good idea to use namespaces.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;can-i-change-namespaces&quot;&gt;Can I change namespaces?&lt;/h4&gt;
-
-&lt;p&gt;Nope. Breaking change. It’s the same as with renaming objects. If you need to do that, you’ll have to go down the obsoleting path.&lt;/p&gt;
-
-&lt;hr /&gt;
-
 &lt;h4 id=&quot;is-adding-a-namespace-a-breaking-change&quot;&gt;Is adding a namespace a breaking change?&lt;/h4&gt;
 
 &lt;p&gt;No. Yes, we’ve seen how it can break dependencies, but it’s not a breaking change in the sense of the &lt;strong&gt;AppSource validation&lt;/strong&gt;. You can add namespaces to your objects and still pass the validation.&lt;/p&gt;
@@ -233,7 +221,13 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 
 &lt;h4 id=&quot;where-can-i-learn-more-about-namespaces&quot;&gt;Where can I learn more about namespaces?&lt;/h4&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;The recording&lt;/a&gt;&lt;/strong&gt; of &lt;em&gt;Microsoft’s&lt;/em&gt; session is a &lt;strong&gt;must-watch&lt;/strong&gt; if you’d like to see how they approached the challenge of &lt;strong&gt;namespacing the whole base app&lt;/strong&gt;. And of course, the &lt;strong&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-namespaces-overview&quot;&gt;official documentation&lt;/a&gt;&lt;/strong&gt; is always a good place to start.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;The recording&lt;/a&gt;&lt;/strong&gt; of &lt;em&gt;Microsoft’s&lt;/em&gt; session is a &lt;strong&gt;must-watch&lt;/strong&gt; if you’d like to see how they approached the challenge of &lt;strong&gt;namespacing the whole base app&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s a few common questions they answered in the session:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/rapid-fire-questions.png&quot; alt=&quot;Rapid Fire Questions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And of course, the &lt;strong&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-namespaces-overview&quot;&gt;official documentation&lt;/a&gt;&lt;/strong&gt; is always a good place to start.&lt;/p&gt;
 
 &lt;hr /&gt;
 
