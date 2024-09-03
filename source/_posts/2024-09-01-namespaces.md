@@ -202,18 +202,6 @@ In all other cases, I’d say **go for it!**
 
 <hr/>
 
-#### Do namespaces mean we won’t need object prefixes?
-
-No. At least not for now. Hopefully one day. But hopefully you now know there's other reasons why it's a good idea to use namespaces.
-
-<hr/>
-
-#### Can I change namespaces?
-
-Nope. Breaking change. It’s the same as with renaming objects. If you need to do that, you’ll have to go down the obsoleting path.
-
-<hr/>
-
 #### Is adding a namespace a breaking change?
 
 No. Yes, we've seen how it can break dependencies, but it’s not a breaking change in the sense of the **AppSource validation**. You can add namespaces to your objects and still pass the validation.
@@ -222,7 +210,13 @@ No. Yes, we've seen how it can break dependencies, but it’s not a breaking cha
 
 #### Where can I learn more about namespaces?
 
-**[The recording][bctechdaysnamespace]** of *Microsoft’s* session is a **must-watch** if you’d like to see how they approached the challenge of **namespacing the whole base app**. And of course, the **[official documentation][namespacedocs]** is always a good place to start.
+**[The recording][bctechdaysnamespace]** of *Microsoft’s* session is a **must-watch** if you’d like to see how they approached the challenge of **namespacing the whole base app**. 
+
+Here's a few common questions they answered in the session:
+
+![Rapid Fire Questions](/images/namespaces/rapid-fire-questions.png)
+
+And of course, the **[official documentation][namespacedocs]** is always a good place to start.
 
 <hr/>
 
