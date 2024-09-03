@@ -5,9 +5,255 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Jul 2024 05:57:25 +0300</pubDate>
-    <lastBuildDate>Thu, 11 Jul 2024 05:57:25 +0300</lastBuildDate>
+    <pubDate>Tue, 03 Sep 2024 08:45:01 +0300</pubDate>
+    <lastBuildDate>Tue, 03 Sep 2024 08:45:01 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Namespaces in AL - Is it time to start using them?</title>
+        <description>&lt;p&gt;&lt;em&gt;School’s back&lt;/em&gt;, so it’s time for the blogs to get back! This time I want to take a jab at &lt;strong&gt;namespaces&lt;/strong&gt;. Not really the technical &lt;strong&gt;&lt;em&gt;“how”&lt;/em&gt;&lt;/strong&gt; of namespaces. I believe that part is rather easy and has already been covered multiple times. Microsoft presented a &lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;brilliant session&lt;/a&gt; about namespaces at &lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BCTechDays&lt;/a&gt; this year.
+Instead I want to focus on &lt;strong&gt;&lt;em&gt;WHY&lt;/em&gt;&lt;/strong&gt;. That’s a question I recently received multiple times. &lt;em&gt;We never needed namespaces in the past, why do we need them now? Do they bring any benefits or are they just a hassle? Is it time to start using them?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Over the past few months, I got to work on apps that &lt;em&gt;were namespaced&lt;/em&gt;, apps that &lt;em&gt;weren’t&lt;/em&gt;, and completely &lt;em&gt;greenfield&lt;/em&gt; apps where I could decide if we wanted to adopt namespaces or not. So, this post is a view on namespaces from &lt;strong&gt;my perspective&lt;/strong&gt;, and feel free to disagree with me.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;why-namespaces&quot;&gt;Why Namespaces?&lt;/h3&gt;
+
+&lt;h4 id=&quot;structure&quot;&gt;Structure&lt;/h4&gt;
+
+&lt;p&gt;I often do &lt;strong&gt;&lt;em&gt;“audits”&lt;/em&gt; of large code bases&lt;/strong&gt; for partners, trying to determine the &lt;em&gt;extent of their tech debt&lt;/em&gt;, whether they will ever get to &lt;em&gt;multi-app architecture&lt;/em&gt;, or reach &lt;em&gt;AppSource compatibility&lt;/em&gt;. To be able to do that, I need to &lt;strong&gt;understand the app’s architecture&lt;/strong&gt;, &lt;em&gt;what am I even looking at&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;When I have to work with large apps where the src folder looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/folders-bad.png&quot; alt=&quot;Bad folder structure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I take a deep breath&lt;/em&gt;, ask myself 7 times why am I doing this to myself, and then try to make sense of files that are supposedly important, and work my way through their &lt;strong&gt;references&lt;/strong&gt;. &lt;em&gt;It’s never a fun experience.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if I open a project and the project is separated into areas like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/folders-good.png&quot; alt=&quot;Good folder structure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It makes a &lt;strong&gt;huge difference&lt;/strong&gt;. I can wrap my head around individual parts that &lt;strong&gt;logically fit together&lt;/strong&gt;. Structuring your code in &lt;strong&gt;functional areas&lt;/strong&gt; does wonders for &lt;strong&gt;discoverability&lt;/strong&gt;. &lt;em&gt;Shocker, right?&lt;/em&gt; Any new developer you try to onboard onto your codebase will have to go through the same process I have to go through, and &lt;strong&gt;high discoverability&lt;/strong&gt; makes this process &lt;strong&gt;much smoother&lt;/strong&gt;. &lt;em&gt;If I can’t convince you that the second folder structure is better than the first one, that I probably won’t ever get you to uptake namespaces…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fine Tine, &lt;strong&gt;organized code is better than not organized&lt;/strong&gt;, what do &lt;strong&gt;namespaces&lt;/strong&gt; have to do with that?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, structuring your code in &lt;strong&gt;folders per functional area&lt;/strong&gt; is in my opinion a &lt;strong&gt;prerequisite&lt;/strong&gt; for starting with namespaces. Discoverability is something &lt;strong&gt;legacy codebases lack the most&lt;/strong&gt;. Not surprising, considering we used to just work with a long list of objects sorted by type and ID.&lt;/p&gt;
+
+&lt;p&gt;Let’s say I open a file like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/enum-no-namespace.png&quot; alt=&quot;Enum without namespace&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Where does this Enum belong? Who knows…&lt;/em&gt; I have to go &lt;strong&gt;through the references&lt;/strong&gt; to figure that out.&lt;/p&gt;
+
+&lt;p&gt;But if it has a namespace defined:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/enum-yes-namespace.png&quot; alt=&quot;Enum with namespace&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I can quickly see it’s &lt;strong&gt;part of the Stock APIs functionality&lt;/strong&gt;. And you’re right, if I only care about the &lt;strong&gt;code discoverability&lt;/strong&gt;, then I could just look at the folder structure where the &lt;em&gt;Document Type&lt;/em&gt; file is placed and get the same idea, &lt;strong&gt;I don’t &lt;em&gt;need&lt;/em&gt; namespaces for that.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;But structuring your codebase and making it discoverable is just &lt;strong&gt;one of the benefits of namespaces&lt;/strong&gt;, while it’s the &lt;strong&gt;only benefit&lt;/strong&gt; if you use &lt;strong&gt;folders as the only method&lt;/strong&gt;. That’s why we should do &lt;strong&gt;both&lt;/strong&gt;. Organize code in folders and use namespaces. It makes the project easily discoverable, but also unlocks other benefits of namespaces like &lt;strong&gt;dependency analysis&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;dependency-analysis&quot;&gt;Dependency Analysis&lt;/h4&gt;
+
+&lt;p&gt;Let’s talk about &lt;em&gt;dependency analysis&lt;/em&gt; next. This one has been huge for me lately. It allows us to ensure that &lt;strong&gt;cleanly architected apps remain clean&lt;/strong&gt;. It also helped with &lt;strong&gt;de-tangling&lt;/strong&gt; functionalities in &lt;strong&gt;monolithic apps&lt;/strong&gt; and breaking down those horrible &lt;em&gt;“Management” codeunits&lt;/em&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I’ll assume you already know that when we start adopting namespaces we move from a &lt;strong&gt;&lt;em&gt;global namespace&lt;/em&gt;&lt;/strong&gt;, where we could define any object as a variable, to a &lt;strong&gt;&lt;em&gt;specific namespace&lt;/em&gt;&lt;/strong&gt;, where we can only define objects &lt;em&gt;defined in the same namespace&lt;/em&gt;, &lt;em&gt;fully qualify object names&lt;/em&gt;, or &lt;strong&gt;&lt;em&gt;“import” objects&lt;/em&gt;&lt;/strong&gt; from other namespaces using a &lt;strong&gt;“using” statement&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In other words, we used to be able to do this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-old.png&quot; alt=&quot;Old way of declaring variables&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With namespaces, &lt;em&gt;we can’t&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-namespace-error.png&quot; alt=&quot;Old way breaks when declaring a namespace on the file&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unless we do one of the two:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-new.png&quot; alt=&quot;New way of declaring variables&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Before we get back to dependency analysis, let’s talk about &lt;strong&gt;which of the two options we should go for&lt;/strong&gt;. &lt;em&gt;Fully qualified name, or the using statement.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We decided to &lt;strong&gt;always go with using statements&lt;/strong&gt; in favor of fully qualified names. &lt;strong&gt;&lt;em&gt;Why?&lt;/em&gt;&lt;/strong&gt; Because it allows us to &lt;strong&gt;easily see dependencies&lt;/strong&gt; at the top of the file (this is the &lt;em&gt;dependency analysis&lt;/em&gt; that we’ll get to in a second). We haven’t found a real use case when we’d prefer to go for &lt;em&gt;fully qualifying names&lt;/em&gt;. In the &lt;em&gt;C# world&lt;/em&gt;, I’d go for fully qualified names if I’m using &lt;strong&gt;two objects that have the same name&lt;/strong&gt; but reside &lt;strong&gt;in different namespaces.&lt;/strong&gt; However, in &lt;strong&gt;AL&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We’re quite used to making &lt;strong&gt;globally unique object names&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;As of now, &lt;strong&gt;can’t define an object with the same name&lt;/strong&gt; in the same app, regardless of namespaces&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Back to the &lt;strong&gt;&lt;em&gt;dependency analysis&lt;/em&gt;&lt;/strong&gt; now. We now know that anytime we want to define a variable for an object from a different namespace, we have to use a &lt;strong&gt;“using” statement&lt;/strong&gt;. This means that from a quick look, we can see &lt;strong&gt;what other modules our object is tied to.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s how a &lt;strong&gt;&lt;em&gt;Sales Header&lt;/em&gt;&lt;/strong&gt; table looks once &lt;em&gt;Microsoft&lt;/em&gt; applied the namespace to it:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/sales-header-using.png&quot; alt=&quot;Using statements on Sales Header&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I couldn’t even capture all of them in one screenshot. There are &lt;strong&gt;&lt;em&gt;76&lt;/em&gt;&lt;/strong&gt; of them. &lt;strong&gt;&lt;em&gt;Crazy&lt;/em&gt;&lt;/strong&gt;. Also, a bit &lt;em&gt;ugly&lt;/em&gt;. But at the same time &lt;strong&gt;a good thing!&lt;/strong&gt; At least now &lt;em&gt;Microsoft&lt;/em&gt; has a &lt;strong&gt;high-level overview&lt;/strong&gt; of all the parts that are jammed in the &lt;em&gt;Sales Header&lt;/em&gt; table and can start working towards &lt;strong&gt;extracting irrelevant parts&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;By &lt;em&gt;irrelevant&lt;/em&gt; I don’t mean that the &lt;em&gt;functionality&lt;/em&gt; is &lt;em&gt;irrelevant&lt;/em&gt;. But does the &lt;em&gt;Sales Header&lt;/em&gt; have to be &lt;strong&gt;coupled to Dataverse?&lt;/strong&gt; Or &lt;em&gt;Outlook?&lt;/em&gt; Doesn’t it feel &lt;em&gt;a bit off?&lt;/em&gt; &lt;strong&gt;Removing Dataverse&lt;/strong&gt; functionality shouldn’t &lt;strong&gt;break sales documents&lt;/strong&gt;. I’m not trying to diss &lt;em&gt;Microsoft’s&lt;/em&gt; code. The base app is old, and there’s a lot of &lt;strong&gt;legacy code&lt;/strong&gt; in there. Here’s how the relationships in the Base App look like today:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/baseapp-web.png&quot; alt=&quot;Spider web of dependencies in the Base App&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To be honest, &lt;strong&gt;&lt;em&gt;we all wrote entangled code&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;like that in the past&lt;/em&gt;. But what I’m trying to say is that with namespaces we can now finally &lt;strong&gt;start spotting these spider webs&lt;/strong&gt;. Both in our &lt;strong&gt;old code&lt;/strong&gt; and when writing &lt;strong&gt;new code&lt;/strong&gt;. Does the latest pull request try to add two &lt;strong&gt;&lt;em&gt;new “using” statements to a management codeunit?&lt;/em&gt;&lt;/strong&gt; Are we creating another &lt;strong&gt;&lt;em&gt;Swiss army knife&lt;/em&gt;&lt;/strong&gt; codeunit? Maybe we should &lt;strong&gt;separate them&lt;/strong&gt; and stick to a &lt;strong&gt;single responsibility&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;naming&quot;&gt;Naming&lt;/h4&gt;
+
+&lt;p&gt;Naming is a &lt;em&gt;very common reason&lt;/em&gt; why we’d want to use namespaces in other languages. As we only ever had a &lt;strong&gt;&lt;em&gt;global namespace&lt;/em&gt;&lt;/strong&gt; in AL (and C/AL), all of our objects had to have &lt;strong&gt;globally unique names&lt;/strong&gt;. That’s why we had a &lt;em&gt;“Sales Header”&lt;/em&gt; and a &lt;em&gt;“Purchase Header”&lt;/em&gt;. If we were in the world of &lt;strong&gt;C#&lt;/strong&gt;, these would likely be &lt;em&gt;Microsoft.Sales.Document.Header&lt;/em&gt; and &lt;em&gt;Microsoft.Purchase.Document.Header&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Two &lt;em&gt;“Header”&lt;/em&gt; objects&lt;/strong&gt;, but since they reside in separate namespaces, it’s &lt;strong&gt;not a naming collision&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, we’re &lt;strong&gt;not there yet with AL&lt;/strong&gt;. Defining two objects with the same name in different namespaces in the same app &lt;strong&gt;produces an error&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/naming-collision.png&quot; alt=&quot;Two objects with the same name produce an error even with different namespaces&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Which is weird to me, since what I can do is &lt;strong&gt;define an object&lt;/strong&gt; with the &lt;strong&gt;same name&lt;/strong&gt; as an object in a &lt;strong&gt;different app&lt;/strong&gt;. Like creating my own &lt;em&gt;Customer&lt;/em&gt; table in my own namespace:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/another-customer.png&quot; alt=&quot;Defining a Customer object in my own app works fine&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, &lt;strong&gt;namespaces prevent naming collisions&lt;/strong&gt;, but not in the same app?…
+&lt;em&gt;Hopefully, this will work in the future…&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The one naming benefit we however do have is that we don’t have to try and &lt;strong&gt;jam long names in only 30 characters&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s an example from one of the projects: &lt;strong&gt;&lt;em&gt;“MYPETaxFSTBlock”&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
+&lt;em&gt;Any idea what this is? Yeah, me neither.&lt;/em&gt; &lt;em&gt;ETax&lt;/em&gt; and &lt;em&gt;Block&lt;/em&gt; I get, but what’s &lt;em&gt;FST?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, if we had &lt;strong&gt;namespaces&lt;/strong&gt; at the time, this file would likely be&lt;/p&gt;
+
+&lt;p&gt;Namespace MyPublisher.&lt;strong&gt;Banking.ETax.Declaration&lt;/strong&gt; &lt;br /&gt;
+Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
+
+&lt;p&gt;By moving the &lt;strong&gt;area&lt;/strong&gt; that this objects belongs to &lt;strong&gt;out of the file name&lt;/strong&gt;, we free up the 30 characters for &lt;strong&gt;actual name of the file&lt;/strong&gt;. This again makes the codebase more &lt;strong&gt;onboarding friendly&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-how-of-namespaces&quot;&gt;The how of namespaces&lt;/h3&gt;
+
+&lt;p&gt;I said I won’t go into the &lt;strong&gt;“how”&lt;/strong&gt; of namespaces, but I want to mention a couple more technical &lt;strong&gt;good-to-knows&lt;/strong&gt; about namespaces&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;how-should-i-structure-namespaces&quot;&gt;How should I structure namespaces?&lt;/h4&gt;
+
+&lt;p&gt;Here’s what we’re using. Again, only a recommendation and a guideline, deviate from it as much as you’d like.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;lt;Publisher&amp;gt;.&amp;lt;AppArea&amp;gt;.FolderStructure&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;em&gt;Companial.Banking.Setup&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Important!&lt;/em&gt;&lt;/strong&gt; We don’t (and won’t) register namespaces with MS (like we register affixes), so make sure yours are &lt;strong&gt;unique&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;The first part&lt;/strong&gt; should be your &lt;strong&gt;&lt;em&gt;publisher’s name&lt;/em&gt;&lt;/strong&gt; to ensure the &lt;strong&gt;namespace is unique&lt;/strong&gt; from other partners.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The second part&lt;/strong&gt; is the &lt;strong&gt;&lt;em&gt;App area&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;Not the App name mind you&lt;/strong&gt;. We try to find a more &lt;em&gt;generic&lt;/em&gt; name. Mainly, so that if we’d ever move an object to a different extension, we don’t end up with an object that has a &lt;strong&gt;very app specific namespace&lt;/strong&gt; and would &lt;em&gt;“stick out”&lt;/em&gt;. This point is &lt;strong&gt;very applicable to monoliths&lt;/strong&gt; that we’ll want to break down into smaller apps.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The third part&lt;/strong&gt; is then the &lt;strong&gt;folder structure&lt;/strong&gt;. The actual &lt;em&gt;path&lt;/em&gt; of the file. This ensures files are &lt;strong&gt;easily discoverable&lt;/strong&gt; by following the namespace.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For comparison, here’s &lt;em&gt;Microsoft’s&lt;/em&gt; recommendation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/ms-namespace-structure.png&quot; alt=&quot;Microsoft&apos;s namespace naming suggestion&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Whatever you do, please &lt;strong&gt;don’t just add one namespace to every object in your project&lt;/strong&gt;. Unless your project has &lt;em&gt;less than 25 objects&lt;/em&gt;, I believe you have &lt;strong&gt;multiple areas&lt;/strong&gt; hiding in there.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;how-to-ensure-i-dont-forget-to-add-namespaces&quot;&gt;How to ensure I don’t forget to add namespaces?&lt;/h4&gt;
+
+&lt;p&gt;There’s a &lt;strong&gt;CodeCop warning (&lt;em&gt;AA0247&lt;/em&gt;)&lt;/strong&gt; we can use to help us spot missing namespaces. It’s &lt;strong&gt;disabled by default&lt;/strong&gt;, so we have to raise it’s severity in the &lt;strong&gt;&lt;em&gt;ruleset.json&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/namespace-warning.png&quot; alt=&quot;Warning for missing namespaces&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;when-should-i-not-adopt-namespaces&quot;&gt;When should I not adopt namespaces?&lt;/h4&gt;
+
+&lt;p&gt;If you’re app has a &lt;strong&gt;dependency on another app that has not yet adopted namespaces&lt;/strong&gt;. Do not add namespaces to your objects in these cases as &lt;strong&gt;your app will break&lt;/strong&gt; once the dependency adopts them. Let me quickly show you &lt;strong&gt;why&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;heres-the-happy-path&quot;&gt;Here’s the &lt;em&gt;happy path&lt;/em&gt;:&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;App A&lt;/em&gt; depends on &lt;em&gt;App B&lt;/em&gt;. &lt;strong&gt;No namespaces are used.&lt;/strong&gt; Everything works.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-both-global.png&quot; alt=&quot;Two objects, both in global namespace&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dependency (&lt;em&gt;App B&lt;/em&gt;) introduces a namespace. &lt;strong&gt;No issues in &lt;em&gt;App A&lt;/em&gt;&lt;/strong&gt;, as we’re still using the &lt;strong&gt;global namespace&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-namespace-first.png&quot; alt=&quot;Dependency introduces namespaces&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;App A&lt;/em&gt; now introduces namespaces&lt;/strong&gt; and at the same time has to &lt;strong&gt;add a using statement&lt;/strong&gt; for the dependency codeunit and can compile against the new version of the &lt;em&gt;App B&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-main-namespace-second.png&quot; alt=&quot;Main app now introduces namespaces&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;now-the-unhappy-path&quot;&gt;Now the unhappy path:&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;App A&lt;/em&gt; is the first to define a namespace and everything works since the &lt;strong&gt;Dependency is still in the global namespace&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-main-namespace-first.png&quot; alt=&quot;Main app introduces namespaces first&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But now when &lt;em&gt;App B&lt;/em&gt; adds a namespace, &lt;strong&gt;&lt;em&gt;App A&lt;/em&gt; is broken&lt;/strong&gt; and cannot work with the new version of App B&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-namespace-second.png&quot; alt=&quot;Dependency introduces namespaces second&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The problem is, that &lt;strong&gt;you don’t know when your dependencies will adopt namespaces&lt;/strong&gt;, so I’d personally &lt;strong&gt;avoid them until all dependencies are namespaces&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In all other cases, I’d say &lt;strong&gt;go for it!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;do-namespaces-mean-we-wont-need-object-prefixes&quot;&gt;Do namespaces mean we won’t need object prefixes?&lt;/h4&gt;
+
+&lt;p&gt;No. At least not for now. Hopefully one day. But hopefully you now know there’s other reasons why it’s a good idea to use namespaces.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;can-i-change-namespaces&quot;&gt;Can I change namespaces?&lt;/h4&gt;
+
+&lt;p&gt;Nope. Breaking change. It’s the same as with renaming objects. If you need to do that, you’ll have to go down the obsoleting path.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;is-adding-a-namespace-a-breaking-change&quot;&gt;Is adding a namespace a breaking change?&lt;/h4&gt;
+
+&lt;p&gt;No. Yes, we’ve seen how it can break dependencies, but it’s not a breaking change in the sense of the &lt;strong&gt;AppSource validation&lt;/strong&gt;. You can add namespaces to your objects and still pass the validation.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;where-can-i-learn-more-about-namespaces&quot;&gt;Where can I learn more about namespaces?&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;The recording&lt;/a&gt;&lt;/strong&gt; of &lt;em&gt;Microsoft’s&lt;/em&gt; session is a &lt;strong&gt;must-watch&lt;/strong&gt; if you’d like to see how they approached the challenge of &lt;strong&gt;namespacing the whole base app&lt;/strong&gt;. And of course, the &lt;strong&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-namespaces-overview&quot;&gt;official documentation&lt;/a&gt;&lt;/strong&gt; is always a good place to start.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;so-is-it-time-to-use-namespaces-and-should-i-now-go-and-namespace-my-huge-monolithic-app&quot;&gt;So, is it time to use namespaces and should I now go and namespace my huge monolithic app?&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;Is it time to use namespaces?&lt;/em&gt; &lt;strong&gt;Absolutely.&lt;/strong&gt; Small apps, new apps, greenfield apps, all should start using namespaces. They bring a lot of benefits, and I believe they’re a &lt;strong&gt;step towards a cleaner codebase&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;But should you go and refactor your huge monolithic app to use namespaces?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Probably not.&lt;/em&gt;&lt;/strong&gt; I mean, yes, there are benefits to using namespaces, but if you have a huge project, it will take you &lt;strong&gt;a long time to properly segregate objects&lt;/strong&gt; into namespaces areas. Unless you have enough time to do it properly, I’d postpone it. Again, &lt;strong&gt;adding a single namespace across the whole project is not a good idea.&lt;/strong&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 01 Sep 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/namespaces/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/namespaces/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Conferences are awesome! Here&apos;s a quick recap...</title>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Namespaces in AL - Is it time to start using them?</title>
+<meta name="description"
+    content="School’s back, so it’s time for the blogs to get back! This time I want to take a jab at namespaces. Not really the technical “how” of namespaces. I believe ...">
+
+<meta property="og:title" content="Namespaces in AL - Is it time to start using them?" />
+<meta property="og:description"
+    content="School’s back, so it’s time for the blogs to get back! This time I want to take a jab at namespaces. Not really the technical “how” of namespaces. I believe ..." />
+<meta property="og:url" content="https://tine.staric.net/blog/2024/namespaces/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/namespaces/main.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/namespaces/main.jpeg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2024/namespaces/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Namespaces in AL - Is it time to start using them?</h1>
+      <em class="post-meta">
+        <time>Sep 1, 2024</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p><em>School’s back</em>, so it’s time for the blogs to get back! This time I want to take a jab at <strong>namespaces</strong>. Not really the technical <strong><em>“how”</em></strong> of namespaces. I believe that part is rather easy and has already been covered multiple times. Microsoft presented a <a href="https://www.youtube.com/watch?v=F8NH69BGnKk">brilliant session</a> about namespaces at <a href="https://www.bctechdays.com/event">BCTechDays</a> this year.
+Instead I want to focus on <strong><em>WHY</em></strong>. That’s a question I recently received multiple times. <em>We never needed namespaces in the past, why do we need them now? Do they bring any benefits or are they just a hassle? Is it time to start using them?</em></p>
+
+<p>Over the past few months, I got to work on apps that <em>were namespaced</em>, apps that <em>weren’t</em>, and completely <em>greenfield</em> apps where I could decide if we wanted to adopt namespaces or not. So, this post is a view on namespaces from <strong>my perspective</strong>, and feel free to disagree with me.</p>
+
+<hr />
+
+<h3 id="why-namespaces">Why Namespaces?</h3>
+
+<h4 id="structure">Structure</h4>
+
+<p>I often do <strong><em>“audits”</em> of large code bases</strong> for partners, trying to determine the <em>extent of their tech debt</em>, whether they will ever get to <em>multi-app architecture</em>, or reach <em>AppSource compatibility</em>. To be able to do that, I need to <strong>understand the app’s architecture</strong>, <em>what am I even looking at</em>.</p>
+
+<p>When I have to work with large apps where the src folder looks like this:</p>
+
+<p><img src="/images/namespaces/folders-bad.png" alt="Bad folder structure" /></p>
+
+<p><em>I take a deep breath</em>, ask myself 7 times why am I doing this to myself, and then try to make sense of files that are supposedly important, and work my way through their <strong>references</strong>. <em>It’s never a fun experience.</em></p>
+
+<p>On the other hand, if I open a project and the project is separated into areas like this:</p>
+
+<p><img src="/images/namespaces/folders-good.png" alt="Good folder structure" /></p>
+
+<p>It makes a <strong>huge difference</strong>. I can wrap my head around individual parts that <strong>logically fit together</strong>. Structuring your code in <strong>functional areas</strong> does wonders for <strong>discoverability</strong>. <em>Shocker, right?</em> Any new developer you try to onboard onto your codebase will have to go through the same process I have to go through, and <strong>high discoverability</strong> makes this process <strong>much smoother</strong>. <em>If I can’t convince you that the second folder structure is better than the first one, that I probably won’t ever get you to uptake namespaces…</em></p>
+
+<p><em>Fine Tine, <strong>organized code is better than not organized</strong>, what do <strong>namespaces</strong> have to do with that?</em></p>
+
+<p>Well, structuring your code in <strong>folders per functional area</strong> is in my opinion a <strong>prerequisite</strong> for starting with namespaces. Discoverability is something <strong>legacy codebases lack the most</strong>. Not surprising, considering we used to just work with a long list of objects sorted by type and ID.</p>
+
+<p>Let’s say I open a file like this:</p>
+
+<p><img src="/images/namespaces/enum-no-namespace.png" alt="Enum without namespace" /></p>
+
+<p><em>Where does this Enum belong? Who knows…</em> I have to go <strong>through the references</strong> to figure that out.</p>
+
+<p>But if it has a namespace defined:</p>
+
+<p><img src="/images/namespaces/enum-yes-namespace.png" alt="Enum with namespace" /></p>
+
+<p>Then I can quickly see it’s <strong>part of the Stock APIs functionality</strong>. And you’re right, if I only care about the <strong>code discoverability</strong>, then I could just look at the folder structure where the <em>Document Type</em> file is placed and get the same idea, <strong>I don’t <em>need</em> namespaces for that.</strong></p>
+
+<p>But structuring your codebase and making it discoverable is just <strong>one of the benefits of namespaces</strong>, while it’s the <strong>only benefit</strong> if you use <strong>folders as the only method</strong>. That’s why we should do <strong>both</strong>. Organize code in folders and use namespaces. It makes the project easily discoverable, but also unlocks other benefits of namespaces like <strong>dependency analysis</strong>.</p>
+
+<hr />
+
+<h4 id="dependency-analysis">Dependency Analysis</h4>
+
+<p>Let’s talk about <em>dependency analysis</em> next. This one has been huge for me lately. It allows us to ensure that <strong>cleanly architected apps remain clean</strong>. It also helped with <strong>de-tangling</strong> functionalities in <strong>monolithic apps</strong> and breaking down those horrible <em>“Management” codeunits</em>.</p>
+
+<hr />
+
+<p>I’ll assume you already know that when we start adopting namespaces we move from a <strong><em>global namespace</em></strong>, where we could define any object as a variable, to a <strong><em>specific namespace</em></strong>, where we can only define objects <em>defined in the same namespace</em>, <em>fully qualify object names</em>, or <strong><em>“import” objects</em></strong> from other namespaces using a <strong>“using” statement</strong>.</p>
+
+<p>In other words, we used to be able to do this:</p>
+
+<p><img src="/images/namespaces/var-declaration-old.png" alt="Old way of declaring variables" /></p>
+
+<p>With namespaces, <em>we can’t</em>:</p>
+
+<p><img src="/images/namespaces/var-declaration-namespace-error.png" alt="Old way breaks when declaring a namespace on the file" /></p>
+
+<p>Unless we do one of the two:</p>
+
+<p><img src="/images/namespaces/var-declaration-new.png" alt="New way of declaring variables" /></p>
+
+<p>Before we get back to dependency analysis, let’s talk about <strong>which of the two options we should go for</strong>. <em>Fully qualified name, or the using statement.</em></p>
+
+<p>We decided to <strong>always go with using statements</strong> in favor of fully qualified names. <strong><em>Why?</em></strong> Because it allows us to <strong>easily see dependencies</strong> at the top of the file (this is the <em>dependency analysis</em> that we’ll get to in a second). We haven’t found a real use case when we’d prefer to go for <em>fully qualifying names</em>. In the <em>C# world</em>, I’d go for fully qualified names if I’m using <strong>two objects that have the same name</strong> but reside <strong>in different namespaces.</strong> However, in <strong>AL</strong>:</p>
+<ul>
+  <li>We’re quite used to making <strong>globally unique object names</strong></li>
+  <li>As of now, <strong>can’t define an object with the same name</strong> in the same app, regardless of namespaces</li>
+</ul>
+
+<hr />
+
+<p>Back to the <strong><em>dependency analysis</em></strong> now. We now know that anytime we want to define a variable for an object from a different namespace, we have to use a <strong>“using” statement</strong>. This means that from a quick look, we can see <strong>what other modules our object is tied to.</strong></p>
+
+<p>Here’s how a <strong><em>Sales Header</em></strong> table looks once <em>Microsoft</em> applied the namespace to it:</p>
+
+<p><img src="/images/namespaces/sales-header-using.png" alt="Using statements on Sales Header" /></p>
+
+<p>I couldn’t even capture all of them in one screenshot. There are <strong><em>76</em></strong> of them. <strong><em>Crazy</em></strong>. Also, a bit <em>ugly</em>. But at the same time <strong>a good thing!</strong> At least now <em>Microsoft</em> has a <strong>high-level overview</strong> of all the parts that are jammed in the <em>Sales Header</em> table and can start working towards <strong>extracting irrelevant parts</strong>.</p>
+
+<p>By <em>irrelevant</em> I don’t mean that the <em>functionality</em> is <em>irrelevant</em>. But does the <em>Sales Header</em> have to be <strong>coupled to Dataverse?</strong> Or <em>Outlook?</em> Doesn’t it feel <em>a bit off?</em> <strong>Removing Dataverse</strong> functionality shouldn’t <strong>break sales documents</strong>. I’m not trying to diss <em>Microsoft’s</em> code. The base app is old, and there’s a lot of <strong>legacy code</strong> in there. Here’s how the relationships in the Base App look like today:</p>
+
+<p><img src="/images/namespaces/baseapp-web.png" alt="Spider web of dependencies in the Base App" /></p>
+
+<p>To be honest, <strong><em>we all wrote entangled code</em></strong> <em>like that in the past</em>. But what I’m trying to say is that with namespaces we can now finally <strong>start spotting these spider webs</strong>. Both in our <strong>old code</strong> and when writing <strong>new code</strong>. Does the latest pull request try to add two <strong><em>new “using” statements to a management codeunit?</em></strong> Are we creating another <strong><em>Swiss army knife</em></strong> codeunit? Maybe we should <strong>separate them</strong> and stick to a <strong>single responsibility</strong>.</p>
+
+<hr />
+
+<h4 id="naming">Naming</h4>
+
+<p>Naming is a <em>very common reason</em> why we’d want to use namespaces in other languages. As we only ever had a <strong><em>global namespace</em></strong> in AL (and C/AL), all of our objects had to have <strong>globally unique names</strong>. That’s why we had a <em>“Sales Header”</em> and a <em>“Purchase Header”</em>. If we were in the world of <strong>C#</strong>, these would likely be <em>Microsoft.Sales.Document.Header</em> and <em>Microsoft.Purchase.Document.Header</em></p>
+
+<p><strong>Two <em>“Header”</em> objects</strong>, but since they reside in separate namespaces, it’s <strong>not a naming collision</strong>.</p>
+
+<p>Unfortunately, we’re <strong>not there yet with AL</strong>. Defining two objects with the same name in different namespaces in the same app <strong>produces an error</strong>.</p>
+
+<p><img src="/images/namespaces/naming-collision.png" alt="Two objects with the same name produce an error even with different namespaces" /></p>
+
+<p>Which is weird to me, since what I can do is <strong>define an object</strong> with the <strong>same name</strong> as an object in a <strong>different app</strong>. Like creating my own <em>Customer</em> table in my own namespace:</p>
+
+<p><img src="/images/namespaces/another-customer.png" alt="Defining a Customer object in my own app works fine" /></p>
+
+<p>So, <strong>namespaces prevent naming collisions</strong>, but not in the same app?…
+<em>Hopefully, this will work in the future…</em></p>
+
+<hr />
+
+<p>The one naming benefit we however do have is that we don’t have to try and <strong>jam long names in only 30 characters</strong>.</p>
+
+<p>Here’s an example from one of the projects: <strong><em>“MYPETaxFSTBlock”</em></strong> <br />
+<em>Any idea what this is? Yeah, me neither.</em> <em>ETax</em> and <em>Block</em> I get, but what’s <em>FST?</em></p>
+
+<p>Well, if we had <strong>namespaces</strong> at the time, this file would likely be</p>
+
+<p>Namespace MyPublisher.<strong>Banking.ETax.Declaration</strong> <br />
+Codeunit 50000 “MYPFormStructureTypeBlock”</p>
+
+<p>By moving the <strong>area</strong> that this objects belongs to <strong>out of the file name</strong>, we free up the 30 characters for <strong>actual name of the file</strong>. This again makes the codebase more <strong>onboarding friendly</strong>.</p>
+
+<hr />
+
+<h3 id="the-how-of-namespaces">The how of namespaces</h3>
+
+<p>I said I won’t go into the <strong>“how”</strong> of namespaces, but I want to mention a couple more technical <strong>good-to-knows</strong> about namespaces</p>
+
+<hr />
+
+<h4 id="how-should-i-structure-namespaces">How should I structure namespaces?</h4>
+
+<p>Here’s what we’re using. Again, only a recommendation and a guideline, deviate from it as much as you’d like.</p>
+
+<p><em>&lt;Publisher&gt;.&lt;AppArea&gt;.FolderStructure</em></p>
+
+<p><strong>Example:</strong> <em>Companial.Banking.Setup</em></p>
+
+<blockquote>
+  <p><strong><em>Important!</em></strong> We don’t (and won’t) register namespaces with MS (like we register affixes), so make sure yours are <strong>unique</strong>.</p>
+</blockquote>
+
+<ul>
+  <li><strong>The first part</strong> should be your <strong><em>publisher’s name</em></strong> to ensure the <strong>namespace is unique</strong> from other partners.</li>
+  <li><strong>The second part</strong> is the <strong><em>App area</em></strong>. <strong>Not the App name mind you</strong>. We try to find a more <em>generic</em> name. Mainly, so that if we’d ever move an object to a different extension, we don’t end up with an object that has a <strong>very app specific namespace</strong> and would <em>“stick out”</em>. This point is <strong>very applicable to monoliths</strong> that we’ll want to break down into smaller apps.</li>
+  <li><strong>The third part</strong> is then the <strong>folder structure</strong>. The actual <em>path</em> of the file. This ensures files are <strong>easily discoverable</strong> by following the namespace.</li>
+</ul>
+
+<p>For comparison, here’s <em>Microsoft’s</em> recommendation:</p>
+
+<p><img src="/images/namespaces/ms-namespace-structure.png" alt="Microsoft's namespace naming suggestion" /></p>
+
+<p>Whatever you do, please <strong>don’t just add one namespace to every object in your project</strong>. Unless your project has <em>less than 25 objects</em>, I believe you have <strong>multiple areas</strong> hiding in there.</p>
+
+<hr />
+
+<h4 id="how-to-ensure-i-dont-forget-to-add-namespaces">How to ensure I don’t forget to add namespaces?</h4>
+
+<p>There’s a <strong>CodeCop warning (<em>AA0247</em>)</strong> we can use to help us spot missing namespaces. It’s <strong>disabled by default</strong>, so we have to raise it’s severity in the <strong><em>ruleset.json</em></strong></p>
+
+<p><img src="/images/namespaces/namespace-warning.png" alt="Warning for missing namespaces" /></p>
+
+<hr />
+
+<h4 id="when-should-i-not-adopt-namespaces">When should I not adopt namespaces?</h4>
+
+<p>If you’re app has a <strong>dependency on another app that has not yet adopted namespaces</strong>. Do not add namespaces to your objects in these cases as <strong>your app will break</strong> once the dependency adopts them. Let me quickly show you <strong>why</strong>:</p>
+
+<hr />
+
+<h4 id="heres-the-happy-path">Here’s the <em>happy path</em>:</h4>
+
+<p><em>App A</em> depends on <em>App B</em>. <strong>No namespaces are used.</strong> Everything works.</p>
+
+<p><img src="/images/namespaces/dependency-both-global.png" alt="Two objects, both in global namespace" /></p>
+
+<p>Dependency (<em>App B</em>) introduces a namespace. <strong>No issues in <em>App A</em></strong>, as we’re still using the <strong>global namespace</strong></p>
+
+<p><img src="/images/namespaces/dependency-namespace-first.png" alt="Dependency introduces namespaces" /></p>
+
+<p><strong><em>App A</em> now introduces namespaces</strong> and at the same time has to <strong>add a using statement</strong> for the dependency codeunit and can compile against the new version of the <em>App B</em>:</p>
+
+<p><img src="/images/namespaces/dependency-main-namespace-second.png" alt="Main app now introduces namespaces" /></p>
+
+<hr />
+
+<h4 id="now-the-unhappy-path">Now the unhappy path:</h4>
+
+<p><em>App A</em> is the first to define a namespace and everything works since the <strong>Dependency is still in the global namespace</strong>:</p>
+
+<p><img src="/images/namespaces/dependency-main-namespace-first.png" alt="Main app introduces namespaces first" /></p>
+
+<p>But now when <em>App B</em> adds a namespace, <strong><em>App A</em> is broken</strong> and cannot work with the new version of App B</p>
+
+<p><img src="/images/namespaces/dependency-namespace-second.png" alt="Dependency introduces namespaces second" /></p>
+
+<p>The problem is, that <strong>you don’t know when your dependencies will adopt namespaces</strong>, so I’d personally <strong>avoid them until all dependencies are namespaces</strong>.</p>
+
+<p>In all other cases, I’d say <strong>go for it!</strong></p>
+
+<hr />
+
+<h4 id="do-namespaces-mean-we-wont-need-object-prefixes">Do namespaces mean we won’t need object prefixes?</h4>
+
+<p>No. At least not for now. Hopefully one day. But hopefully you now know there’s other reasons why it’s a good idea to use namespaces.</p>
+
+<hr />
+
+<h4 id="can-i-change-namespaces">Can I change namespaces?</h4>
+
+<p>Nope. Breaking change. It’s the same as with renaming objects. If you need to do that, you’ll have to go down the obsoleting path.</p>
+
+<hr />
+
+<h4 id="is-adding-a-namespace-a-breaking-change">Is adding a namespace a breaking change?</h4>
+
+<p>No. Yes, we’ve seen how it can break dependencies, but it’s not a breaking change in the sense of the <strong>AppSource validation</strong>. You can add namespaces to your objects and still pass the validation.</p>
+
+<hr />
+
+<h4 id="where-can-i-learn-more-about-namespaces">Where can I learn more about namespaces?</h4>
+
+<p><strong><a href="https://www.youtube.com/watch?v=F8NH69BGnKk">The recording</a></strong> of <em>Microsoft’s</em> session is a <strong>must-watch</strong> if you’d like to see how they approached the challenge of <strong>namespacing the whole base app</strong>. And of course, the <strong><a href="https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-namespaces-overview">official documentation</a></strong> is always a good place to start.</p>
+
+<hr />
+
+<h4 id="so-is-it-time-to-use-namespaces-and-should-i-now-go-and-namespace-my-huge-monolithic-app">So, is it time to use namespaces and should I now go and namespace my huge monolithic app?</h4>
+
+<p><em>Is it time to use namespaces?</em> <strong>Absolutely.</strong> Small apps, new apps, greenfield apps, all should start using namespaces. They bring a lot of benefits, and I believe they’re a <strong>step towards a cleaner codebase</strong>.</p>
+
+<p><em>But should you go and refactor your huge monolithic app to use namespaces?</em></p>
+
+<p><strong><em>Probably not.</em></strong> I mean, yes, there are benefits to using namespaces, but if you have a huge project, it will take you <strong>a long time to properly segregate objects</strong> into namespaces areas. Unless you have enough time to do it properly, I’d postpone it. Again, <strong>adding a single namespace across the whole project is not a good idea.</strong></p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
