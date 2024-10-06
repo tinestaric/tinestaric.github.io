@@ -139,15 +139,21 @@ As I said, I’ve **only started exploring** the feasibility of this approach as
 
 Okay, this should give you an idea when ***using symbols can be a good idea.*** Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:
 
+<hr />
+
 #### When should we clean up the symbols?
 
 **Clean them up immediately** after you turn them on for a *production release*. ***Seriously.*** *I guarantee you*, that you’ll never *enable a symbol, build, test, and release the app*, and then realize, **oops,** we need to undo those changes. If we need an option to ***“undo”*** the behavior, *run-time feature flags* are a much better option.
 
 The only exception to this rule is the *preprocessing symbols* used to support *multiple versions*, like our **v24OrGreater** example above. Clean those up as soon as they’re ***enabled for all versions you support***. In our case, that would mean when we **drop the support for v23.** 
 
+<hr />
+
 #### How do I clean them up?
 
 I have a **small script** that you can find [here][cleanupscript]. It loops through all files in the project and **removes the code paths for a specified feature flag.** There are likely other tools already out there, that can handle the cleanup. *Preprocessing symbols* aren’t exactly a *novelty*, even in AL they’ve been around for a while.
+
+<hr />
 
 #### How do I enable a Symbol for the Base App?
 
