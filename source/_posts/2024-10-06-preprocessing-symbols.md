@@ -25,7 +25,7 @@ We never had *big long-lived branches* that would cause merge conflicts
 
 The above three bullet points took me **quite a while to realize**, but once I wrapped my head around it, it was finally clear to me when I’d want to use the *preprocessing symbols* and that’s what I want to share with you today.
 
-I’m not going to talk too much about ***how*** they work, [Yun][yunlinkedin] had a great [blog post][yunblog] on that topic, back when they were introduced. I’ll focus on ***when*** it is a good idea to use them for our apps.
+I’m not going to talk too much about ***how*** they work, [Yun][yunlinkedin] had a great [blog post][yunblog] on that topic, back when they were introduced. I’ll focus on ***when*** is a good idea to use them for our apps.
 
 <hr/>
 
@@ -45,37 +45,39 @@ Let’s look at the *“IC Partner G/L Acc. No.”* That will be removed from *G
 
 ![IC G/L Account at the begining](/images/preprocessing/icglacc-start.png)
 
-We know we can’t just remove a field. *App Source Cop* will be all up in our faces if we try that. So, we **obsolete** it first, and we’ll remove it in one of the subsequent releases. But no cop would yell at us for removing the field’s trigger, on any of its references...
+We know we can’t just remove a field. *App Source Cop* will be all up in our faces if we try that. So, we **obsolete** it first, and we’ll remove it in one of the subsequent releases. 
 
-Imagine if this is how we *obsoleted* the field:
+But no cop would yell at us for removing the field’s trigger, on any of its references... Imagine if this is how we *obsoleted* the field:
 
 ![IC G/L Account bad cleanup](/images/preprocessing/icglacc-clean-wrong.png) 
 
 ![IC G/L Account reference bad cleanup](/images/preprocessing/icglacc-ref-clean-wrong.png)
 
-We removed the trigger, and we removed the references, **but hey, we marked the field as obsolete**, so we’re *good to go right? We’re gradually introducing changes...*
+We removed the trigger, and we removed the references, **but hey, we marked the field as obsolete**. *We’re gradually introducing changes...*
 
-***Yeah, no***. We still **broke everyone** who was using this field, immediately after this **update is deployed**.
+***Yeah, no***. We still **broke everyone** using this field, immediately after this **update is deployed**.
 
-*So, what’s the better way?* Wrap the changes in preprocessing symbols and clean them a release later. Here’s how MS actually obsoleted this field. 
+*So, what’s the better way?* 
+
+Wrap the changes in preprocessing symbols and clean them in a later release. Here’s how MS actually obsoleted this field. 
 
 ![IC G/L Account at the end](/images/preprocessing/icglacc-end.png)
 
 ![IC G/L Account refence good cleanup](/images/preprocessing/icglacc-ref-clean-right.png)
 
-It means that today, the field still **works exactly as it did for years**. But if anyone is using it in their apps, they will get a *warning* that they should move away from it. When the time comes, we enable the ***CLEAN22 symbol***, the field becomes removed, and the code is no longer executed.
+It means that today, the field still **works exactly as it did for years**. But anyone using it in their apps will get a *warning* that they should move away from it. When the time comes, they will enable the ***CLEAN22 symbol***, the field becomes removed, and the code is no longer executed.
 
 This becomes especially important if we want to ***refactor events***. Let’s look at the following change.
 
 ![Bad event cleanup](/images/preprocessing/event-bad.png)
 
-*App Source Cop* is fine with this change. We’ve obsoleted an event. The next release can remove it. However, any changes that event subscribers brought have now been ignored. All external apps that were using this event are now **broken**.
+*App Source Cop* is fine with this change. We’ve obsoleted an event. The next release can remove it. However, since the event is no longer being fired, any changes from event subscribers are now ignored. All external apps that were using this event are now **broken**.
 
 If we want to introduce changes gradually, this should be the way to go:
 
 ![Good event cleanup](/images/preprocessing/event-good.png)
 
-Today, the event **fires off** as expected. Any subscribers are **warned** that the event is *going away* and that they should find a different solution. When it’s time, I can **enable and clean up the preprocessing symbols** to apply my change.
+Today, the event still **fires off**. Any subscribers are **warned** that the event is *going away* and that they should find a different solution. When it’s time, we can **enable and clean up the preprocessing symbols** to apply our change.
 
 <hr/>
 
@@ -85,29 +87,23 @@ Today, the event **fires off** as expected. Any subscribers are **warned** that 
 
 ![Every change breaks someone's workflow - xkcd](/images/preprocessing/xkcd.png)
 
-But that doesn’t mean we should be **afraid to make changes**. *Preprocessing everything* is a sure way to ***maintenance hell***. What I want to say is if we have a code path that **many external apps extend or use**, then maybe we should think about ***gradually introducing changes*** in that code path, and preprocessing symbols are the way to go about it. **Especially when dealing with events.**
+But that doesn’t mean we should be **afraid to make changes**. *Preprocessing everything* is a sure way to ***maintenance hell***.
+
+What I want to point out is that if we have a code path that **many external apps extend or use** we should think about ***gradually introducing changes*** in that code path, and preprocessing symbols are the way to go about it. **Especially when dealing with events.**
 
 <hr/>
 
 ### Support multiple versions
 
-Another reason to use *preprocessing symbols* is if we want to support **multiple BC versions** with the same codebase. **BC 25 just dropped**. In a few weeks, all cloud customers will be *upgraded to v25*. If your apps are only targeting *SaaS environments*, you only have to worry about being compatible with the *latest version*.
-
-However, ***OnPrem isn’t dead***. And OnPrem customers (*usually*) don’t get updated as regularly. So, you might want to *support more versions*. Common practice is to align with MS’s support cycle and **support the last three versions** (*e.g. 25, 24, 23*). 
-
-Now there are various approaches to how you can support multiple versions. **The most common ones** I’ve seen are either a branching strategy with a *branch per supported version*, a single codebase that remains compatible with the *lowest supported version*, or a single code base where different versions are maintained using *preprocessing symbols*.
-
-**All valid approaches** with their own set of *pros and cons.* No wrong choice in my opinion, but here’s why you should consider preprocessing symbols if you maintain multiple versions.
-
-<hr/>
+***OnPrem isn't dead.*** And when supporting *OnPrem* customers, we usually have to support more than one target version of BC. Supporting them through a branch-per-version approach the symbols are less relevant to you, but if you have a single codebase, here's why you should consider using them.
 
 #### Don’t wait until the last second to make changes
 
 When *Base App* obsoletes a functionality or an event, ***should you fix it immediately?*** Or wait until it ***becomes an error?*** Waiting until it becomes an error is a ***big no-no*** in my book. I believe in the ***no-warnings approach***. I know it’s not as easy for *old legacy codebases*, but new development should have *zero warnings. **Period.*** 
 
-In v24, ***No. Series* procedures became *obsolete*** due to the move to the ***Business Foundation***. I had a couple of apps where I had to fix these warnings. *I didn’t have to do that.* Old code will still ***work until (at least) v26.*** But I’d just be pushing work down the road. It’s fine if there’s a *higher priority* right now. But if we have the time, *why take that additional tech debt on?*
+In v24, ***No. Series* procedures became *obsolete*** due to the move to the ***Business Foundation***. I had a couple of apps where I had to fix these warnings. I didn’t ***have*** to do that. Old code will still ***work until (at least) v26.*** But I’d just be pushing work down the road. It's understandable, if there’s a *higher priority* right now. But if we have the time, *why take that additional tech debt on?*
 
-But what if I’d still have to ***support v23 as well?*** *That means I cannot just fix all warnings...*
+What if I’d still have to ***support v23 as well?*** *That means I cannot just fix all warnings...*
 
 *Well, I can, with preprocessing symbols:*
 
@@ -117,31 +113,31 @@ When I build higher versions, I enable the symbol, and the warnings are gone. Wh
 
 This point applies even more if we’re building ***a new feature***. If we build a new feature and decide to use the old *NoSeriesManagement* codeunit, we’re willingly throwing even more work on the ***tech debt pile.***
 
-> *Quick side note, this nice line highlighting that shows me which line is active and which obsolete is provided by **AZ AL Dev Tools**, so if you’re working with preprocessing symbols, the extension is a must-have.*
+> *Quick side note, this nice line highlighting showing me which line is active and which obsolete is provided by **AZ AL Dev Tools**, so if you’re working with preprocessing symbols, the extension is a must-have.*
 
 <hr/>
 
 ### Merge changes early
 
-Out of the three reasons when to use the *preprocessing symbols*, this is the one I used the least, but at the same time, I’m also most interested in it. 
+Out of the three reasons for using the *preprocessing symbols*, this is the one I used the least, but at the same time, I’m also most interested in it. 
 
-This summer I held a session at *Tech Days* about ***[Code Review][codereview]*** where I was trying to be quite dogmatic about **keeping pull requests small**. *Long-lived feature branches* are a recipe for issues; *constant merges, merge conflicts, and above all, a very painful code review*. And yet a *few months later*, **I find myself working on long-lived branches and huge pull requests**. It was easy to *“preach”* small pull requests when we were only building new features. Now we’re dealing with **refactoring a huge monolith**. 
+This summer I held a session at *Tech Days* about ***[Code Review][codereview]*** where I was trying to be quite dogmatic about **keeping pull requests small**. *Long-lived feature branches* are a recipe for issues; *constant merges, merge conflicts, and very painful code reviews*. And yet a *few months later*, **I find myself working on long-lived branches and huge pull requests**. It was easy to *“preach”* small pull requests when we were only building new features. Now we’re dealing with **refactoring a huge monolith**. 
 
-I’m changing *“just”* one field, and I have to *touch more than 150 other objects.* ***Crazy.*** But I get it, changes have to be made on an ***all-or-nothing basis.***
+I’m changing *“just”* one field and have to *touch more than 150 other objects.* ***Crazy.*** But I get it, changes have to be made on an ***all-or-nothing basis.***
 
 But that got me thinking, *why is that?* **Why** do they have to be made on an **all-or-nothing basis?** *Can we get around that somehow?* 
 
-I talked with a couple of friends who work with **other languages** about how they would deal with this issue. At first, it seemed to me like they didn’t quite get my problem. They just said ***“feature flags”*** to everything I said...
+I talked with friends who work in **other languages** about how they would deal with this issue. At first, it seemed they didn’t quite get my problem. They just said ***“feature flags”*** to everything I said...
 
-Okay, *feature flags*. Hide the functionality behind a flag and **merge to the main branch**. *But what about the fields that I have to add?* I can’t *“hide”* the additional fields on a table behind a feature flag, and if I just add them and make a mistake, **I won’t be able to remove them**, as it would be a **breaking change...**
+Okay, *feature flags*. Hide the functionality behind a flag and **merge to the main branch**. *But what about the table fields that I have to add?* I can’t *“hide”* the additional fields on a table behind a feature flag, and if I just add them and make a mistake, **I won’t be able to remove them**, as it would be a **breaking change...**
 
 And that’s when it hit me. ***What if I use preprocessing symbols as feature flags?*** This would solve my problems. **Merge smaller chunks of changes** to the *main branch* quicker, and once everything is in and tested, **turn it on and clean it up!**
 
-As I said, I’ve **only started exploring** the feasibility of this approach as an alternative to **long-lived branches and big PRs**. *But it does look promising...*
+As I said, I’ve **only started exploring** the feasibility of this approach as an alternative to **long-lived branches and big PRs**. *But I do like how it looks...*
 
 <hr/>
 
-Okay, I hope this gives you an idea when ***using symbols can be a good idea.*** Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:
+Okay, this should give you an idea when ***using symbols can be a good idea.*** Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:
 
 #### When should we clean up the symbols?
 
@@ -155,7 +151,7 @@ I have a **small script** that you can find [here][cleanupscript]. It loops thro
 
 #### How do I enable a Symbol for the Base App?
 
-I got this question quite a couple of times, and I remember I too was confused in the beginning when I didn’t understand *preprocessing symbols*. You open a base app object like *Sales-Post*, and you see a **CLEAN23** code path. ***How do I “enable” this new code path?***
+I got this question quite a couple of times, and I remember I too was confused in the beginning when I didn’t understand *preprocessing symbols*. You open a base app object like *Sales-Post* and see a **CLEAN23** code path. ***How do I “enable” this new code path?***
 
 *You don’t.*
 
@@ -165,7 +161,7 @@ I got this question quite a couple of times, and I remember I too was confused i
 
 ### Finally
 
-*Do preprocessing symbols make the code less readable?* ***Yes, yes, they do.*** *Do they make it harder to test, as there are now more possible code paths?* ***Another resounding yes.*** All these coding decisions always come with **trade-offs**. *Should you use them? Should you not?* ***I don’t know.*** I made this post, to make my reasoning about it easier. But it doesn’t mean that they will **apply to your situation.** But at least next time you have issues like these, you now know that *preprocessing symbols* can be a way to deal with them.
+*Do preprocessing symbols make the code less readable?* ***Yes, yes, they do.*** *Do they make testing harder, as there are now more possible code paths?* ***Another resounding yes.*** All these coding decisions always come with **trade-offs**. *Should you use them?* ***I don’t know.*** I made this post, to make my reasoning about it easier. But it doesn’t mean that they will **apply to your situation.** At least next time you have issues like these, you know that *preprocessing symbols* can be a way to deal with them.
 
 [cleanupscript]: https://github.com/tinestaric/BCExamples/blob/Master/PreprocessingSymbolCleanup/PreprocessingSymbolCleanup.ps1
 [codereview]: https://www.youtube.com/watch?v=v-EaIJ0f9tU
