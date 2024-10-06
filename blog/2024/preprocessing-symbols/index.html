@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Forget how; when should we use preprocessing symbols?</title>
+<meta name="description"
+    content="This was one of the most difficult blog posts to write so far. I kept changing directions of what I even wanted to explain with it…">
+
+<meta property="og:title" content="Forget how; when should we use preprocessing symbols?" />
+<meta property="og:description"
+    content="This was one of the most difficult blog posts to write so far. I kept changing directions of what I even wanted to explain with it…" />
+<meta property="og:url" content="https://tine.staric.net/blog/2024/preprocessing-symbols/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/preprocessing/main.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/preprocessing/main.jpeg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2024/preprocessing-symbols/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Forget how; when should we use preprocessing symbols?</h1>
+      <em class="post-meta">
+        <time>Oct 6, 2024</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>This was one of the most <em>difficult</em> blog posts to write so far. I kept changing directions of what I even wanted to explain with it…</p>
+
+<p>You see, I come up with blog ideas by <strong>explaining concepts</strong> to colleagues internally, and when a topic comes up <strong>often enough</strong>, I write it down as it’s easier to share with everyone. The other aspect is when I see a concept <em>“in the wild”</em> which gets me thinking about how we should <strong>adopt it internally</strong>, and to structure my thoughts, I write it down, making it easier to <strong>defend my position</strong>.</p>
+
+<p>The topic of <strong>preprocessing directives</strong> comes mainly from this second part. The way <strong><em>Companial</em></strong> is positioned, I get to work with <em>many different partners</em> every year. Sometimes I learn from them, sometimes I can suggest best practices that I’ve seen elsewhere. In my opinion, <strong><em>it’s a win-win</em></strong>.</p>
+
+<p>I recently started working with a partner that has a <em>huge</em> solution. I mean <strong><em>HUGE!</em></strong> <em>20k+ objects.</em> That’s a <em>crazy</em> amount of code. It was also my first time using <em>preprocessing directives</em>, which made me wonder <em>why I had never needed them before</em>.</p>
+
+<h4 id="heres-why">Here’s why:</h4>
+
+<ul>
+  <li>I was building apps <strong>from scratch</strong>, that no one had a dependency on yet <br />
+It means I didn’t have to <em>worry about breaking changes</em> or the obsoletion process</li>
+  <li>We targeted <strong>SaaS tenants only</strong> <br />
+There was no need to support <em>multiple versions</em> of codebases in parallel</li>
+  <li>The work items were never <strong>too big</strong> <br />
+We never had <em>big long-lived branches</em> that would cause merge conflicts</li>
+</ul>
+
+<p>The above three bullet points took me <strong>quite a while to realize</strong>, but once I wrapped my head around it, it was finally clear to me when I’d want to use the <em>preprocessing symbols</em> and that’s what I want to share with you today.</p>
+
+<p>I’m not going to talk too much about <strong><em>how</em></strong> they work, <a href="https://www.linkedin.com/in/yzhums">Yun</a> had a great <a href="https://yzhums.com/2606/">blog post</a> on that topic, back when they were introduced. I’ll focus on <strong><em>when</em></strong> is a good idea to use them for our apps.</p>
+
+<hr />
+
+<h3 id="introduce-changes-gradually-announce-changes">Introduce changes gradually (announce changes)</h3>
+
+<p>We’re now in the <em>AppSource</em> era. Anyone can potentially depend on the apps we publish there. We cannot just remove a public procedure from our app, as that <strong>might break any app</strong> that is using it.</p>
+
+<p><em>Hold on, aren’t obsoletion tags and <strong>App Source Cop</strong> there to prevent that?</em> <em>Yes!</em> However, these tools only prevent <strong>hard-breaking changes</strong>. Changes that would prevent an external party from even compiling their app against our new release. However, they do nothing when it comes to <strong>soft-breaking changes</strong>.</p>
+
+<p><em>Soft-breaking changes?</em></p>
+
+<p>Changes that won’t <strong>prevent</strong> an <em>external party</em> from compiling their app, but their apps will <strong>no longer work as expected</strong>.</p>
+
+<p>Take the removal of a field for example.</p>
+
+<p>Let’s look at the <em>“IC Partner G/L Acc. No.”</em> That will be removed from <em>Gen. Journal Line</em></p>
+
+<p><img src="/images/preprocessing/icglacc-start.png" alt="IC G/L Account at the begining" /></p>
+
+<p>We know we can’t just remove a field. <em>App Source Cop</em> will be all up in our faces if we try that. So, we <strong>obsolete</strong> it first, and we’ll remove it in one of the subsequent releases.</p>
+
+<p>But no cop would yell at us for removing the field’s trigger, on any of its references… Imagine if this is how we <em>obsoleted</em> the field:</p>
+
+<p><img src="/images/preprocessing/icglacc-clean-wrong.png" alt="IC G/L Account bad cleanup" /></p>
+
+<p><img src="/images/preprocessing/icglacc-ref-clean-wrong.png" alt="IC G/L Account reference bad cleanup" /></p>
+
+<p>We removed the trigger, and we removed the references, <strong>but hey, we marked the field as obsolete</strong>. <em>We’re gradually introducing changes…</em></p>
+
+<p><strong><em>Yeah, no</em></strong>. We still <strong>broke everyone</strong> using this field, immediately after this <strong>update is deployed</strong>.</p>
+
+<p><em>So, what’s the better way?</em></p>
+
+<p>Wrap the changes in preprocessing symbols and clean them in a later release. Here’s how MS actually obsoleted this field.</p>
+
+<p><img src="/images/preprocessing/icglacc-end.png" alt="IC G/L Account at the end" /></p>
+
+<p><img src="/images/preprocessing/icglacc-ref-clean-right.png" alt="IC G/L Account refence good cleanup" /></p>
+
+<p>It means that today, the field still <strong>works exactly as it did for years</strong>. But anyone using it in their apps will get a <em>warning</em> that they should move away from it. When the time comes, they will enable the <strong><em>CLEAN22 symbol</em></strong>, the field becomes removed, and the code is no longer executed.</p>
+
+<p>This becomes especially important if we want to <strong><em>refactor events</em></strong>. Let’s look at the following change.</p>
+
+<p><img src="/images/preprocessing/event-bad.png" alt="Bad event cleanup" /></p>
+
+<p><em>App Source Cop</em> is fine with this change. We’ve obsoleted an event. The next release can remove it. However, since the event is no longer being fired, any changes from event subscribers are now ignored. All external apps that were using this event are now <strong>broken</strong>.</p>
+
+<p>If we want to introduce changes gradually, this should be the way to go:</p>
+
+<p><img src="/images/preprocessing/event-good.png" alt="Good event cleanup" /></p>
+
+<p>Today, the event still <strong>fires off</strong>. Any subscribers are <strong>warned</strong> that the event is <em>going away</em> and that they should find a different solution. When it’s time, we can <strong>enable and clean up the preprocessing symbols</strong> to apply our change.</p>
+
+<hr />
+
+<p><strong><em>Does that mean I should wrap every change I make in preprocessing symbols?</em></strong></p>
+
+<p><a href="https://xkcd.com/1172/">Every change breaks someone’s workflow</a></p>
+
+<p><img src="/images/preprocessing/xkcd.png" alt="Every change breaks someone's workflow - xkcd" /></p>
+
+<p>But that doesn’t mean we should be <strong>afraid to make changes</strong>. <em>Preprocessing everything</em> is a sure way to <strong><em>maintenance hell</em></strong>.</p>
+
+<p>What I want to point out is that if we have a code path that <strong>many external apps extend or use</strong> we should think about <strong><em>gradually introducing changes</em></strong> in that code path, and preprocessing symbols are the way to go about it. <strong>Especially when dealing with events.</strong></p>
+
+<hr />
+
+<h3 id="support-multiple-versions">Support multiple versions</h3>
+
+<p><strong><em>OnPrem isn’t dead.</em></strong> And when supporting <em>OnPrem</em> customers, we usually have to support more than one target version of BC. Supporting them through a branch-per-version approach the symbols are less relevant to you, but if you have a single codebase, here’s why you should consider using them.</p>
+
+<h4 id="dont-wait-until-the-last-second-to-make-changes">Don’t wait until the last second to make changes</h4>
+
+<p>When <em>Base App</em> obsoletes a functionality or an event, <strong><em>should you fix it immediately?</em></strong> Or wait until it <strong><em>becomes an error?</em></strong> Waiting until it becomes an error is a <strong><em>big no-no</em></strong> in my book. I believe in the <strong><em>no-warnings approach</em></strong>. I know it’s not as easy for <em>old legacy codebases</em>, but new development should have <em>zero warnings. <strong>Period.</strong></em></p>
+
+<p>In v24, <strong><em>No. Series</em> procedures became <em>obsolete</em></strong> due to the move to the <strong><em>Business Foundation</em></strong>. I had a couple of apps where I had to fix these warnings. I didn’t <strong><em>have</em></strong> to do that. Old code will still <strong><em>work until (at least) v26.</em></strong> But I’d just be pushing work down the road. It’s understandable, if there’s a <em>higher priority</em> right now. But if we have the time, <em>why take that additional tech debt on?</em></p>
+
+<p>What if I’d still have to <strong><em>support v23 as well?</em></strong> <em>That means I cannot just fix all warnings…</em></p>
+
+<p><em>Well, I can, with preprocessing symbols:</em></p>
+
+<p><img src="/images/preprocessing/noseries.png" alt="No. Series cleanup with preprocessing symbols" /></p>
+
+<p>When I build higher versions, I enable the symbol, and the warnings are gone. When I <em>drop support for v23</em>, I can <strong><em>clean up the v24OrGreater symbol</em></strong>, and I’m done.</p>
+
+<p>This point applies even more if we’re building <strong><em>a new feature</em></strong>. If we build a new feature and decide to use the old <em>NoSeriesManagement</em> codeunit, we’re willingly throwing even more work on the <strong><em>tech debt pile.</em></strong></p>
+
+<blockquote>
+  <p><em>Quick side note, this nice line highlighting showing me which line is active and which obsolete is provided by <strong>AZ AL Dev Tools</strong>, so if you’re working with preprocessing symbols, the extension is a must-have.</em></p>
+</blockquote>
+
+<hr />
+
+<h3 id="merge-changes-early">Merge changes early</h3>
+
+<p>Out of the three reasons for using the <em>preprocessing symbols</em>, this is the one I used the least, but at the same time, I’m also most interested in it.</p>
+
+<p>This summer I held a session at <em>Tech Days</em> about <strong><em><a href="https://www.youtube.com/watch?v=v-EaIJ0f9tU">Code Review</a></em></strong> where I was trying to be quite dogmatic about <strong>keeping pull requests small</strong>. <em>Long-lived feature branches</em> are a recipe for issues; <em>constant merges, merge conflicts, and very painful code reviews</em>. And yet a <em>few months later</em>, <strong>I find myself working on long-lived branches and huge pull requests</strong>. It was easy to <em>“preach”</em> small pull requests when we were only building new features. Now we’re dealing with <strong>refactoring a huge monolith</strong>.</p>
+
+<p>I’m changing <em>“just”</em> one field and have to <em>touch more than 150 other objects.</em> <strong><em>Crazy.</em></strong> But I get it, changes have to be made on an <strong><em>all-or-nothing basis.</em></strong></p>
+
+<p>But that got me thinking, <em>why is that?</em> <strong>Why</strong> do they have to be made on an <strong>all-or-nothing basis?</strong> <em>Can we get around that somehow?</em></p>
+
+<p>I talked with friends who work in <strong>other languages</strong> about how they would deal with this issue. At first, it seemed they didn’t quite get my problem. They just said <strong><em>“feature flags”</em></strong> to everything I said…</p>
+
+<p>Okay, <em>feature flags</em>. Hide the functionality behind a flag and <strong>merge to the main branch</strong>. <em>But what about the table fields that I have to add?</em> I can’t <em>“hide”</em> the additional fields on a table behind a feature flag, and if I just add them and make a mistake, <strong>I won’t be able to remove them</strong>, as it would be a <strong>breaking change…</strong></p>
+
+<p>And that’s when it hit me. <strong><em>What if I use preprocessing symbols as feature flags?</em></strong> This would solve my problems. <strong>Merge smaller chunks of changes</strong> to the <em>main branch</em> quicker, and once everything is in and tested, <strong>turn it on and clean it up!</strong></p>
+
+<p>As I said, I’ve <strong>only started exploring</strong> the feasibility of this approach as an alternative to <strong>long-lived branches and big PRs</strong>. <em>But I do like how it looks…</em></p>
+
+<hr />
+
+<p>Okay, this should give you an idea when <strong><em>using symbols can be a good idea.</em></strong> Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:</p>
+
+<h4 id="when-should-we-clean-up-the-symbols">When should we clean up the symbols?</h4>
+
+<p><strong>Clean them up immediately</strong> after you turn them on for a <em>production release</em>. <strong><em>Seriously.</em></strong> <em>I guarantee you</em>, that you’ll never <em>enable a symbol, build, test, and release the app</em>, and then realize, <strong>oops,</strong> we need to undo those changes. If we need an option to <strong><em>“undo”</em></strong> the behavior, <em>run-time feature flags</em> are a much better option.</p>
+
+<p>The only exception to this rule is the <em>preprocessing symbols</em> used to support <em>multiple versions</em>, like our <strong>v24OrGreater</strong> example above. Clean those up as soon as they’re <strong><em>enabled for all versions you support</em></strong>. In our case, that would mean when we <strong>drop the support for v23.</strong></p>
+
+<h4 id="how-do-i-clean-them-up">How do I clean them up?</h4>
+
+<p>I have a <strong>small script</strong> that you can find <a href="https://github.com/tinestaric/BCExamples/blob/Master/PreprocessingSymbolCleanup/PreprocessingSymbolCleanup.ps1">here</a>. It loops through all files in the project and <strong>removes the code paths for a specified feature flag.</strong> There are likely other tools already out there, that can handle the cleanup. <em>Preprocessing symbols</em> aren’t exactly a <em>novelty</em>, even in AL they’ve been around for a while.</p>
+
+<h4 id="how-do-i-enable-a-symbol-for-the-base-app">How do I enable a Symbol for the Base App?</h4>
+
+<p>I got this question quite a couple of times, and I remember I too was confused in the beginning when I didn’t understand <em>preprocessing symbols</em>. You open a base app object like <em>Sales-Post</em> and see a <strong>CLEAN23</strong> code path. <strong><em>How do I “enable” this new code path?</em></strong></p>
+
+<p><em>You don’t.</em></p>
+
+<p><em>Microsoft</em> does. And when they will, you won’t see those symbols anymore, as they’ll <strong>also clean them up.</strong> Think of those code paths as <em>“what’s going to change in the future”</em>, but is currently not in use. As we talked about, it’s mainly about <em>Microsoft</em> <strong>introducing changes gradually.</strong></p>
+
+<hr />
+
+<h3 id="finally">Finally</h3>
+
+<p><em>Do preprocessing symbols make the code less readable?</em> <strong><em>Yes, yes, they do.</em></strong> <em>Do they make testing harder, as there are now more possible code paths?</em> <strong><em>Another resounding yes.</em></strong> All these coding decisions always come with <strong>trade-offs</strong>. <em>Should you use them?</em> <strong><em>I don’t know.</em></strong> I made this post, to make my reasoning about it easier. But it doesn’t mean that they will <strong>apply to your situation.</strong> At least next time you have issues like these, you know that <em>preprocessing symbols</em> can be a way to deal with them.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

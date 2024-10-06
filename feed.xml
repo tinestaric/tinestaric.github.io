@@ -5,9 +5,182 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Sep 2024 15:45:44 +0300</pubDate>
-    <lastBuildDate>Tue, 03 Sep 2024 15:45:44 +0300</lastBuildDate>
+    <pubDate>Sun, 06 Oct 2024 21:09:23 +0300</pubDate>
+    <lastBuildDate>Sun, 06 Oct 2024 21:09:23 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Forget how; when should we use preprocessing symbols?</title>
+        <description>&lt;p&gt;This was one of the most &lt;em&gt;difficult&lt;/em&gt; blog posts to write so far. I kept changing directions of what I even wanted to explain with it…&lt;/p&gt;
+
+&lt;p&gt;You see, I come up with blog ideas by &lt;strong&gt;explaining concepts&lt;/strong&gt; to colleagues internally, and when a topic comes up &lt;strong&gt;often enough&lt;/strong&gt;, I write it down as it’s easier to share with everyone. The other aspect is when I see a concept &lt;em&gt;“in the wild”&lt;/em&gt; which gets me thinking about how we should &lt;strong&gt;adopt it internally&lt;/strong&gt;, and to structure my thoughts, I write it down, making it easier to &lt;strong&gt;defend my position&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The topic of &lt;strong&gt;preprocessing directives&lt;/strong&gt; comes mainly from this second part. The way &lt;strong&gt;&lt;em&gt;Companial&lt;/em&gt;&lt;/strong&gt; is positioned, I get to work with &lt;em&gt;many different partners&lt;/em&gt; every year. Sometimes I learn from them, sometimes I can suggest best practices that I’ve seen elsewhere. In my opinion, &lt;strong&gt;&lt;em&gt;it’s a win-win&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I recently started working with a partner that has a &lt;em&gt;huge&lt;/em&gt; solution. I mean &lt;strong&gt;&lt;em&gt;HUGE!&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;20k+ objects.&lt;/em&gt; That’s a &lt;em&gt;crazy&lt;/em&gt; amount of code. It was also my first time using &lt;em&gt;preprocessing directives&lt;/em&gt;, which made me wonder &lt;em&gt;why I had never needed them before&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;heres-why&quot;&gt;Here’s why:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I was building apps &lt;strong&gt;from scratch&lt;/strong&gt;, that no one had a dependency on yet &lt;br /&gt;
+It means I didn’t have to &lt;em&gt;worry about breaking changes&lt;/em&gt; or the obsoletion process&lt;/li&gt;
+  &lt;li&gt;We targeted &lt;strong&gt;SaaS tenants only&lt;/strong&gt; &lt;br /&gt;
+There was no need to support &lt;em&gt;multiple versions&lt;/em&gt; of codebases in parallel&lt;/li&gt;
+  &lt;li&gt;The work items were never &lt;strong&gt;too big&lt;/strong&gt; &lt;br /&gt;
+We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge conflicts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The above three bullet points took me &lt;strong&gt;quite a while to realize&lt;/strong&gt;, but once I wrapped my head around it, it was finally clear to me when I’d want to use the &lt;em&gt;preprocessing symbols&lt;/em&gt; and that’s what I want to share with you today.&lt;/p&gt;
+
+&lt;p&gt;I’m not going to talk too much about &lt;strong&gt;&lt;em&gt;how&lt;/em&gt;&lt;/strong&gt; they work, &lt;a href=&quot;https://www.linkedin.com/in/yzhums&quot;&gt;Yun&lt;/a&gt; had a great &lt;a href=&quot;https://yzhums.com/2606/&quot;&gt;blog post&lt;/a&gt; on that topic, back when they were introduced. I’ll focus on &lt;strong&gt;&lt;em&gt;when&lt;/em&gt;&lt;/strong&gt; is a good idea to use them for our apps.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;introduce-changes-gradually-announce-changes&quot;&gt;Introduce changes gradually (announce changes)&lt;/h3&gt;
+
+&lt;p&gt;We’re now in the &lt;em&gt;AppSource&lt;/em&gt; era. Anyone can potentially depend on the apps we publish there. We cannot just remove a public procedure from our app, as that &lt;strong&gt;might break any app&lt;/strong&gt; that is using it.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Hold on, aren’t obsoletion tags and &lt;strong&gt;App Source Cop&lt;/strong&gt; there to prevent that?&lt;/em&gt; &lt;em&gt;Yes!&lt;/em&gt; However, these tools only prevent &lt;strong&gt;hard-breaking changes&lt;/strong&gt;. Changes that would prevent an external party from even compiling their app against our new release. However, they do nothing when it comes to &lt;strong&gt;soft-breaking changes&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Soft-breaking changes?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Changes that won’t &lt;strong&gt;prevent&lt;/strong&gt; an &lt;em&gt;external party&lt;/em&gt; from compiling their app, but their apps will &lt;strong&gt;no longer work as expected&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Take the removal of a field for example.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the &lt;em&gt;“IC Partner G/L Acc. No.”&lt;/em&gt; That will be removed from &lt;em&gt;Gen. Journal Line&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-start.png&quot; alt=&quot;IC G/L Account at the begining&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We know we can’t just remove a field. &lt;em&gt;App Source Cop&lt;/em&gt; will be all up in our faces if we try that. So, we &lt;strong&gt;obsolete&lt;/strong&gt; it first, and we’ll remove it in one of the subsequent releases.&lt;/p&gt;
+
+&lt;p&gt;But no cop would yell at us for removing the field’s trigger, on any of its references… Imagine if this is how we &lt;em&gt;obsoleted&lt;/em&gt; the field:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-clean-wrong.png&quot; alt=&quot;IC G/L Account bad cleanup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-ref-clean-wrong.png&quot; alt=&quot;IC G/L Account reference bad cleanup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We removed the trigger, and we removed the references, &lt;strong&gt;but hey, we marked the field as obsolete&lt;/strong&gt;. &lt;em&gt;We’re gradually introducing changes…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Yeah, no&lt;/em&gt;&lt;/strong&gt;. We still &lt;strong&gt;broke everyone&lt;/strong&gt; using this field, immediately after this &lt;strong&gt;update is deployed&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So, what’s the better way?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Wrap the changes in preprocessing symbols and clean them in a later release. Here’s how MS actually obsoleted this field.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-end.png&quot; alt=&quot;IC G/L Account at the end&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-ref-clean-right.png&quot; alt=&quot;IC G/L Account refence good cleanup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It means that today, the field still &lt;strong&gt;works exactly as it did for years&lt;/strong&gt;. But anyone using it in their apps will get a &lt;em&gt;warning&lt;/em&gt; that they should move away from it. When the time comes, they will enable the &lt;strong&gt;&lt;em&gt;CLEAN22 symbol&lt;/em&gt;&lt;/strong&gt;, the field becomes removed, and the code is no longer executed.&lt;/p&gt;
+
+&lt;p&gt;This becomes especially important if we want to &lt;strong&gt;&lt;em&gt;refactor events&lt;/em&gt;&lt;/strong&gt;. Let’s look at the following change.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/event-bad.png&quot; alt=&quot;Bad event cleanup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;App Source Cop&lt;/em&gt; is fine with this change. We’ve obsoleted an event. The next release can remove it. However, since the event is no longer being fired, any changes from event subscribers are now ignored. All external apps that were using this event are now &lt;strong&gt;broken&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;If we want to introduce changes gradually, this should be the way to go:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/event-good.png&quot; alt=&quot;Good event cleanup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Today, the event still &lt;strong&gt;fires off&lt;/strong&gt;. Any subscribers are &lt;strong&gt;warned&lt;/strong&gt; that the event is &lt;em&gt;going away&lt;/em&gt; and that they should find a different solution. When it’s time, we can &lt;strong&gt;enable and clean up the preprocessing symbols&lt;/strong&gt; to apply our change.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Does that mean I should wrap every change I make in preprocessing symbols?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://xkcd.com/1172/&quot;&gt;Every change breaks someone’s workflow&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/xkcd.png&quot; alt=&quot;Every change breaks someone&apos;s workflow - xkcd&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But that doesn’t mean we should be &lt;strong&gt;afraid to make changes&lt;/strong&gt;. &lt;em&gt;Preprocessing everything&lt;/em&gt; is a sure way to &lt;strong&gt;&lt;em&gt;maintenance hell&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;What I want to point out is that if we have a code path that &lt;strong&gt;many external apps extend or use&lt;/strong&gt; we should think about &lt;strong&gt;&lt;em&gt;gradually introducing changes&lt;/em&gt;&lt;/strong&gt; in that code path, and preprocessing symbols are the way to go about it. &lt;strong&gt;Especially when dealing with events.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;support-multiple-versions&quot;&gt;Support multiple versions&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;OnPrem isn’t dead.&lt;/em&gt;&lt;/strong&gt; And when supporting &lt;em&gt;OnPrem&lt;/em&gt; customers, we usually have to support more than one target version of BC. Supporting them through a branch-per-version approach the symbols are less relevant to you, but if you have a single codebase, here’s why you should consider using them.&lt;/p&gt;
+
+&lt;h4 id=&quot;dont-wait-until-the-last-second-to-make-changes&quot;&gt;Don’t wait until the last second to make changes&lt;/h4&gt;
+
+&lt;p&gt;When &lt;em&gt;Base App&lt;/em&gt; obsoletes a functionality or an event, &lt;strong&gt;&lt;em&gt;should you fix it immediately?&lt;/em&gt;&lt;/strong&gt; Or wait until it &lt;strong&gt;&lt;em&gt;becomes an error?&lt;/em&gt;&lt;/strong&gt; Waiting until it becomes an error is a &lt;strong&gt;&lt;em&gt;big no-no&lt;/em&gt;&lt;/strong&gt; in my book. I believe in the &lt;strong&gt;&lt;em&gt;no-warnings approach&lt;/em&gt;&lt;/strong&gt;. I know it’s not as easy for &lt;em&gt;old legacy codebases&lt;/em&gt;, but new development should have &lt;em&gt;zero warnings. &lt;strong&gt;Period.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In v24, &lt;strong&gt;&lt;em&gt;No. Series&lt;/em&gt; procedures became &lt;em&gt;obsolete&lt;/em&gt;&lt;/strong&gt; due to the move to the &lt;strong&gt;&lt;em&gt;Business Foundation&lt;/em&gt;&lt;/strong&gt;. I had a couple of apps where I had to fix these warnings. I didn’t &lt;strong&gt;&lt;em&gt;have&lt;/em&gt;&lt;/strong&gt; to do that. Old code will still &lt;strong&gt;&lt;em&gt;work until (at least) v26.&lt;/em&gt;&lt;/strong&gt; But I’d just be pushing work down the road. It’s understandable, if there’s a &lt;em&gt;higher priority&lt;/em&gt; right now. But if we have the time, &lt;em&gt;why take that additional tech debt on?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;What if I’d still have to &lt;strong&gt;&lt;em&gt;support v23 as well?&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;That means I cannot just fix all warnings…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Well, I can, with preprocessing symbols:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/noseries.png&quot; alt=&quot;No. Series cleanup with preprocessing symbols&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When I build higher versions, I enable the symbol, and the warnings are gone. When I &lt;em&gt;drop support for v23&lt;/em&gt;, I can &lt;strong&gt;&lt;em&gt;clean up the v24OrGreater symbol&lt;/em&gt;&lt;/strong&gt;, and I’m done.&lt;/p&gt;
+
+&lt;p&gt;This point applies even more if we’re building &lt;strong&gt;&lt;em&gt;a new feature&lt;/em&gt;&lt;/strong&gt;. If we build a new feature and decide to use the old &lt;em&gt;NoSeriesManagement&lt;/em&gt; codeunit, we’re willingly throwing even more work on the &lt;strong&gt;&lt;em&gt;tech debt pile.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;Quick side note, this nice line highlighting showing me which line is active and which obsolete is provided by &lt;strong&gt;AZ AL Dev Tools&lt;/strong&gt;, so if you’re working with preprocessing symbols, the extension is a must-have.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;merge-changes-early&quot;&gt;Merge changes early&lt;/h3&gt;
+
+&lt;p&gt;Out of the three reasons for using the &lt;em&gt;preprocessing symbols&lt;/em&gt;, this is the one I used the least, but at the same time, I’m also most interested in it.&lt;/p&gt;
+
+&lt;p&gt;This summer I held a session at &lt;em&gt;Tech Days&lt;/em&gt; about &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=v-EaIJ0f9tU&quot;&gt;Code Review&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; where I was trying to be quite dogmatic about &lt;strong&gt;keeping pull requests small&lt;/strong&gt;. &lt;em&gt;Long-lived feature branches&lt;/em&gt; are a recipe for issues; &lt;em&gt;constant merges, merge conflicts, and very painful code reviews&lt;/em&gt;. And yet a &lt;em&gt;few months later&lt;/em&gt;, &lt;strong&gt;I find myself working on long-lived branches and huge pull requests&lt;/strong&gt;. It was easy to &lt;em&gt;“preach”&lt;/em&gt; small pull requests when we were only building new features. Now we’re dealing with &lt;strong&gt;refactoring a huge monolith&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’m changing &lt;em&gt;“just”&lt;/em&gt; one field and have to &lt;em&gt;touch more than 150 other objects.&lt;/em&gt; &lt;strong&gt;&lt;em&gt;Crazy.&lt;/em&gt;&lt;/strong&gt; But I get it, changes have to be made on an &lt;strong&gt;&lt;em&gt;all-or-nothing basis.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;But that got me thinking, &lt;em&gt;why is that?&lt;/em&gt; &lt;strong&gt;Why&lt;/strong&gt; do they have to be made on an &lt;strong&gt;all-or-nothing basis?&lt;/strong&gt; &lt;em&gt;Can we get around that somehow?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I talked with friends who work in &lt;strong&gt;other languages&lt;/strong&gt; about how they would deal with this issue. At first, it seemed they didn’t quite get my problem. They just said &lt;strong&gt;&lt;em&gt;“feature flags”&lt;/em&gt;&lt;/strong&gt; to everything I said…&lt;/p&gt;
+
+&lt;p&gt;Okay, &lt;em&gt;feature flags&lt;/em&gt;. Hide the functionality behind a flag and &lt;strong&gt;merge to the main branch&lt;/strong&gt;. &lt;em&gt;But what about the table fields that I have to add?&lt;/em&gt; I can’t &lt;em&gt;“hide”&lt;/em&gt; the additional fields on a table behind a feature flag, and if I just add them and make a mistake, &lt;strong&gt;I won’t be able to remove them&lt;/strong&gt;, as it would be a &lt;strong&gt;breaking change…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;And that’s when it hit me. &lt;strong&gt;&lt;em&gt;What if I use preprocessing symbols as feature flags?&lt;/em&gt;&lt;/strong&gt; This would solve my problems. &lt;strong&gt;Merge smaller chunks of changes&lt;/strong&gt; to the &lt;em&gt;main branch&lt;/em&gt; quicker, and once everything is in and tested, &lt;strong&gt;turn it on and clean it up!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As I said, I’ve &lt;strong&gt;only started exploring&lt;/strong&gt; the feasibility of this approach as an alternative to &lt;strong&gt;long-lived branches and big PRs&lt;/strong&gt;. &lt;em&gt;But I do like how it looks…&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, this should give you an idea when &lt;strong&gt;&lt;em&gt;using symbols can be a good idea.&lt;/em&gt;&lt;/strong&gt; Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:&lt;/p&gt;
+
+&lt;h4 id=&quot;when-should-we-clean-up-the-symbols&quot;&gt;When should we clean up the symbols?&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Clean them up immediately&lt;/strong&gt; after you turn them on for a &lt;em&gt;production release&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Seriously.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I guarantee you&lt;/em&gt;, that you’ll never &lt;em&gt;enable a symbol, build, test, and release the app&lt;/em&gt;, and then realize, &lt;strong&gt;oops,&lt;/strong&gt; we need to undo those changes. If we need an option to &lt;strong&gt;&lt;em&gt;“undo”&lt;/em&gt;&lt;/strong&gt; the behavior, &lt;em&gt;run-time feature flags&lt;/em&gt; are a much better option.&lt;/p&gt;
+
+&lt;p&gt;The only exception to this rule is the &lt;em&gt;preprocessing symbols&lt;/em&gt; used to support &lt;em&gt;multiple versions&lt;/em&gt;, like our &lt;strong&gt;v24OrGreater&lt;/strong&gt; example above. Clean those up as soon as they’re &lt;strong&gt;&lt;em&gt;enabled for all versions you support&lt;/em&gt;&lt;/strong&gt;. In our case, that would mean when we &lt;strong&gt;drop the support for v23.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;how-do-i-clean-them-up&quot;&gt;How do I clean them up?&lt;/h4&gt;
+
+&lt;p&gt;I have a &lt;strong&gt;small script&lt;/strong&gt; that you can find &lt;a href=&quot;https://github.com/tinestaric/BCExamples/blob/Master/PreprocessingSymbolCleanup/PreprocessingSymbolCleanup.ps1&quot;&gt;here&lt;/a&gt;. It loops through all files in the project and &lt;strong&gt;removes the code paths for a specified feature flag.&lt;/strong&gt; There are likely other tools already out there, that can handle the cleanup. &lt;em&gt;Preprocessing symbols&lt;/em&gt; aren’t exactly a &lt;em&gt;novelty&lt;/em&gt;, even in AL they’ve been around for a while.&lt;/p&gt;
+
+&lt;h4 id=&quot;how-do-i-enable-a-symbol-for-the-base-app&quot;&gt;How do I enable a Symbol for the Base App?&lt;/h4&gt;
+
+&lt;p&gt;I got this question quite a couple of times, and I remember I too was confused in the beginning when I didn’t understand &lt;em&gt;preprocessing symbols&lt;/em&gt;. You open a base app object like &lt;em&gt;Sales-Post&lt;/em&gt; and see a &lt;strong&gt;CLEAN23&lt;/strong&gt; code path. &lt;strong&gt;&lt;em&gt;How do I “enable” this new code path?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;You don’t.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Microsoft&lt;/em&gt; does. And when they will, you won’t see those symbols anymore, as they’ll &lt;strong&gt;also clean them up.&lt;/strong&gt; Think of those code paths as &lt;em&gt;“what’s going to change in the future”&lt;/em&gt;, but is currently not in use. As we talked about, it’s mainly about &lt;em&gt;Microsoft&lt;/em&gt; &lt;strong&gt;introducing changes gradually.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;finally&quot;&gt;Finally&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Do preprocessing symbols make the code less readable?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;Yes, yes, they do.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Do they make testing harder, as there are now more possible code paths?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;Another resounding yes.&lt;/em&gt;&lt;/strong&gt; All these coding decisions always come with &lt;strong&gt;trade-offs&lt;/strong&gt;. &lt;em&gt;Should you use them?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;I don’t know.&lt;/em&gt;&lt;/strong&gt; I made this post, to make my reasoning about it easier. But it doesn’t mean that they will &lt;strong&gt;apply to your situation.&lt;/strong&gt; At least next time you have issues like these, you know that &lt;em&gt;preprocessing symbols&lt;/em&gt; can be a way to deal with them.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 06 Oct 2024 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2024/preprocessing-symbols/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2024/preprocessing-symbols/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Namespaces in AL - Is it time to start using them?</title>
@@ -1166,30 +1339,6 @@ Some preparation for areas you’re not too comfortable with, and you’re ready
         
         
         <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>A Blogging Journey Begins!</title>
-        <description>&lt;p&gt;Finally! I have a blog!&lt;/p&gt;
-
-&lt;p&gt;For the past few years, I’ve been wanting to have a place where I can share my ideas about Business Central tech. It took me a while, I know, but now I finally have it! I haven’t really done much writing in the past, so this will be an interesting journey for me, and hopefully for you as well.&lt;br /&gt;&lt;br /&gt;
-The areas I want to explore and share with you are:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The edges of AL, where AL patterns break, and where we need to go beyond the borders of BC.&lt;/li&gt;
-  &lt;li&gt;Weird situations with AL that I come across, which I want to document for myself and the next poor soul that needs to deal with them.&lt;/li&gt;
-  &lt;li&gt;Recaps of conference sessions I present, so that they are in a written and searchable format.&lt;/li&gt;
-  &lt;li&gt;Recaps of BC conferences. I wish everyone could attend them, but for those who cannot, I want to share key takeaways, as the community findings are always intriguing.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I think this will be a fun activity for me, and hopefully sometimes insightful for you!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 25 Jun 2023 01:08:27 +0300</pubDate>
-        <link>https://tine.staric.net/blog/2023/hello-world-of-blogging/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2023/hello-world-of-blogging/</guid>
-        
-        
-        <category>welcome</category>
         
       </item>
     
