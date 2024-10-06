@@ -211,15 +211,21 @@ We never had <em>big long-lived branches</em> that would cause merge conflicts</
 
 <p>Okay, this should give you an idea when <strong><em>using symbols can be a good idea.</em></strong> Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:</p>
 
+<hr />
+
 <h4 id="when-should-we-clean-up-the-symbols">When should we clean up the symbols?</h4>
 
 <p><strong>Clean them up immediately</strong> after you turn them on for a <em>production release</em>. <strong><em>Seriously.</em></strong> <em>I guarantee you</em>, that you’ll never <em>enable a symbol, build, test, and release the app</em>, and then realize, <strong>oops,</strong> we need to undo those changes. If we need an option to <strong><em>“undo”</em></strong> the behavior, <em>run-time feature flags</em> are a much better option.</p>
 
 <p>The only exception to this rule is the <em>preprocessing symbols</em> used to support <em>multiple versions</em>, like our <strong>v24OrGreater</strong> example above. Clean those up as soon as they’re <strong><em>enabled for all versions you support</em></strong>. In our case, that would mean when we <strong>drop the support for v23.</strong></p>
 
+<hr />
+
 <h4 id="how-do-i-clean-them-up">How do I clean them up?</h4>
 
 <p>I have a <strong>small script</strong> that you can find <a href="https://github.com/tinestaric/BCExamples/blob/Master/PreprocessingSymbolCleanup/PreprocessingSymbolCleanup.ps1">here</a>. It loops through all files in the project and <strong>removes the code paths for a specified feature flag.</strong> There are likely other tools already out there, that can handle the cleanup. <em>Preprocessing symbols</em> aren’t exactly a <em>novelty</em>, even in AL they’ve been around for a while.</p>
+
+<hr />
 
 <h4 id="how-do-i-enable-a-symbol-for-the-base-app">How do I enable a Symbol for the Base App?</h4>
 

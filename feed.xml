@@ -5,8 +5,8 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Oct 2024 21:09:23 +0300</pubDate>
-    <lastBuildDate>Sun, 06 Oct 2024 21:09:23 +0300</lastBuildDate>
+    <pubDate>Sun, 06 Oct 2024 21:26:51 +0300</pubDate>
+    <lastBuildDate>Sun, 06 Oct 2024 21:26:51 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -148,15 +148,21 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
 
 &lt;p&gt;Okay, this should give you an idea when &lt;strong&gt;&lt;em&gt;using symbols can be a good idea.&lt;/em&gt;&lt;/strong&gt; Before I wrap this long post up, here are a few more quick questions I sometimes get from developers:&lt;/p&gt;
 
+&lt;hr /&gt;
+
 &lt;h4 id=&quot;when-should-we-clean-up-the-symbols&quot;&gt;When should we clean up the symbols?&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;Clean them up immediately&lt;/strong&gt; after you turn them on for a &lt;em&gt;production release&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Seriously.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;I guarantee you&lt;/em&gt;, that you’ll never &lt;em&gt;enable a symbol, build, test, and release the app&lt;/em&gt;, and then realize, &lt;strong&gt;oops,&lt;/strong&gt; we need to undo those changes. If we need an option to &lt;strong&gt;&lt;em&gt;“undo”&lt;/em&gt;&lt;/strong&gt; the behavior, &lt;em&gt;run-time feature flags&lt;/em&gt; are a much better option.&lt;/p&gt;
 
 &lt;p&gt;The only exception to this rule is the &lt;em&gt;preprocessing symbols&lt;/em&gt; used to support &lt;em&gt;multiple versions&lt;/em&gt;, like our &lt;strong&gt;v24OrGreater&lt;/strong&gt; example above. Clean those up as soon as they’re &lt;strong&gt;&lt;em&gt;enabled for all versions you support&lt;/em&gt;&lt;/strong&gt;. In our case, that would mean when we &lt;strong&gt;drop the support for v23.&lt;/strong&gt;&lt;/p&gt;
 
+&lt;hr /&gt;
+
 &lt;h4 id=&quot;how-do-i-clean-them-up&quot;&gt;How do I clean them up?&lt;/h4&gt;
 
 &lt;p&gt;I have a &lt;strong&gt;small script&lt;/strong&gt; that you can find &lt;a href=&quot;https://github.com/tinestaric/BCExamples/blob/Master/PreprocessingSymbolCleanup/PreprocessingSymbolCleanup.ps1&quot;&gt;here&lt;/a&gt;. It loops through all files in the project and &lt;strong&gt;removes the code paths for a specified feature flag.&lt;/strong&gt; There are likely other tools already out there, that can handle the cleanup. &lt;em&gt;Preprocessing symbols&lt;/em&gt; aren’t exactly a &lt;em&gt;novelty&lt;/em&gt;, even in AL they’ve been around for a while.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h4 id=&quot;how-do-i-enable-a-symbol-for-the-base-app&quot;&gt;How do I enable a Symbol for the Base App?&lt;/h4&gt;
 
