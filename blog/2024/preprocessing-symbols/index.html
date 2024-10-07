@@ -95,7 +95,7 @@ We never had <em>big long-lived branches</em> that would cause merge conflicts</
 
 <p>The above three bullet points took me <strong>quite a while to realize</strong>, but once I wrapped my head around it, it was finally clear to me when I’d want to use the <em>preprocessing symbols</em> and that’s what I want to share with you today.</p>
 
-<p>I’m not going to talk too much about <strong><em>how</em></strong> they work, <a href="https://www.linkedin.com/in/yzhums">Yun</a> had a great <a href="https://yzhums.com/2606/">blog post</a> on that topic, back when they were introduced. I’ll focus on <strong><em>when</em></strong> is a good idea to use them for our apps.</p>
+<p>I’m not going to talk too much about <strong><em>how</em></strong> they work, <a href="https://www.linkedin.com/in/yzhums">Yun</a> had a great <a href="https://yzhums.com/2606/">blog post</a> on that topic, back when they were introduced. Another <a href="https://nataliekarolak.wordpress.com/2023/05/08/conditional-directives-clean22-demystified/">great post</a> I found was by <a href="https://x.com/KarolakNatalie">Natalie</a>. She describes how we should test code with conditional directives very well. But I’ll focus mainly on <strong><em>when</em></strong> is a good idea to use them for our apps.</p>
 
 <hr />
 
@@ -113,7 +113,7 @@ We never had <em>big long-lived branches</em> that would cause merge conflicts</
 
 <p>Let’s look at the <em>“IC Partner G/L Acc. No.”</em> That will be removed from <em>Gen. Journal Line</em></p>
 
-<p><img src="/images/preprocessing/icglacc-start.png" alt="IC G/L Account at the begining" /></p>
+<p><img src="/images/preprocessing/icglacc-start.png" alt="IC G/L Account at the beginning" /></p>
 
 <p>We know we can’t just remove a field. <em>App Source Cop</em> will be all up in our faces if we try that. So, we <strong>obsolete</strong> it first, and we’ll remove it in one of the subsequent releases.</p>
 
@@ -133,7 +133,7 @@ We never had <em>big long-lived branches</em> that would cause merge conflicts</
 
 <p><img src="/images/preprocessing/icglacc-end.png" alt="IC G/L Account at the end" /></p>
 
-<p><img src="/images/preprocessing/icglacc-ref-clean-right.png" alt="IC G/L Account refence good cleanup" /></p>
+<p><img src="/images/preprocessing/icglacc-ref-clean-right.png" alt="IC G/L Account reference good cleanup" /></p>
 
 <p>It means that today, the field still <strong>works exactly as it did for years</strong>. But anyone using it in their apps will get a <em>warning</em> that they should move away from it. When the time comes, they will enable the <strong><em>CLEAN22 symbol</em></strong>, the field becomes removed, and the code is no longer executed.</p>
 
