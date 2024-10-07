@@ -25,7 +25,7 @@ We never had *big long-lived branches* that would cause merge conflicts
 
 The above three bullet points took me **quite a while to realize**, but once I wrapped my head around it, it was finally clear to me when I’d want to use the *preprocessing symbols* and that’s what I want to share with you today.
 
-I’m not going to talk too much about ***how*** they work, [Yun][yunlinkedin] had a great [blog post][yunblog] on that topic, back when they were introduced. I’ll focus on ***when*** is a good idea to use them for our apps.
+I’m not going to talk too much about ***how*** they work, [Yun][yunlinkedin] had a great [blog post][yunblog] on that topic, back when they were introduced. Another [great post][nataliepost] I found was by [Natalie][nataliex]. She describes how we should test code with conditional directives very well. But I’ll focus mainly on ***when*** is a good idea to use them for our apps.
 
 <hr/>
 
@@ -43,7 +43,7 @@ Take the removal of a field for example.
 
 Let’s look at the *“IC Partner G/L Acc. No.”* That will be removed from *Gen. Journal Line*
 
-![IC G/L Account at the begining](/images/preprocessing/icglacc-start.png)
+![IC G/L Account at the beginning](/images/preprocessing/icglacc-start.png)
 
 We know we can’t just remove a field. *App Source Cop* will be all up in our faces if we try that. So, we **obsolete** it first, and we’ll remove it in one of the subsequent releases. 
 
@@ -63,7 +63,7 @@ Wrap the changes in preprocessing symbols and clean them in a later release. Her
 
 ![IC G/L Account at the end](/images/preprocessing/icglacc-end.png)
 
-![IC G/L Account refence good cleanup](/images/preprocessing/icglacc-ref-clean-right.png)
+![IC G/L Account reference good cleanup](/images/preprocessing/icglacc-ref-clean-right.png)
 
 It means that today, the field still **works exactly as it did for years**. But anyone using it in their apps will get a *warning* that they should move away from it. When the time comes, they will enable the ***CLEAN22 symbol***, the field becomes removed, and the code is no longer executed.
 
@@ -174,3 +174,5 @@ I got this question quite a couple of times, and I remember I too was confused i
 [xkcd]: https://xkcd.com/1172/
 [yunblog]: https://yzhums.com/2606/
 [yunlinkedin]: https://www.linkedin.com/in/yzhums
+[nataliepost]: https://nataliekarolak.wordpress.com/2023/05/08/conditional-directives-clean22-demystified/
+[nataliex]: https://x.com/KarolakNatalie
