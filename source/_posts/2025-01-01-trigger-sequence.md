@@ -3,7 +3,7 @@ layout: post
 title: "Trigger Sequence in AL"
 date: 2025-01-01 08:00:00
 comments: false
-categories: welcome
+categories: al
 image: /images/triggersequence.jpg
 ---
 Here’s a small ***“let me bookmark this”*** post. 
