@@ -4,7 +4,7 @@ title: "3 Pitfalls of Var Parameters"
 date: 2024-01-10 08:00:00
 comments: false
 categories: al
-image: /images/confused-dev.jpeg
+image: /images/varparameters/confused-dev.jpeg
 ---
 I believe I don’t have to introduce the purpose of **var** in procedure parameters too much. If the parameter has a var modifier, it’s passed **by reference**, and any changes within the procedure will affect the variable that was passed into the procedure. If it doesn’t, it’s passed **by value**, meaning that any changes will stay local to that procedure. However, that’s not always the case. There are a couple of edge cases when it comes to var parameters, and as I was about to write the explanation for our internal learning purposes anyway, I decided to use this as an opportunity to make a debut in the world of blogging.
 
@@ -17,11 +17,11 @@ Recently I had a younger colleague struggle with passing a parameter to a functi
 
 Well, a list, unlike your ordinary texts, integers or Booleans is a **reference type**, which means assigning it to a new variable or passing it to a method without var will create a separate variable that **writes to the same list**. 
 
-![List value assignment when passed without var](/images/var-param-list.png)
+![List value assignment when passed without var](/images/varparameters/var-param-list.png)
 
 It's actually quite well documented in the [docs][listdocs]:
 
-![List pass-by-reference documentation](/images/var-param-list-doc.png)
+![List pass-by-reference documentation](/images/varparameters/var-param-list-doc.png)
 
 But we're so used to the distinction that a non-var parameter is passed by value and we can manipulate it however we like, while var parameters are passed by reference, and changes will have an effect outside of the procedure.
 
@@ -61,7 +61,7 @@ If you pass a non-temporary Customer record in, the record will **remain non-tem
 
 Here’s how the records behave:
 
-![IsTemporary behavior depending on var and temporary parameter modifiers](/images/var-param-temp-all.png)
+![IsTemporary behavior depending on var and temporary parameter modifiers](/images/varparameters/var-param-temp-all.png)
 
 If your procedures are making any **dangerous operations** on a pass-by-reference record, like **DeleteAll**, I highly suggest adding an **IsTemporary gatekeeper** at the beginning, either exiting or throwing a record if the record is not temporary.
 
@@ -76,7 +76,7 @@ Short fact, **streams don't hold data, blobs hold data**. So if you're trying to
 
 Well, let's take a look at this simple example. 
 
-![Read from a local blob with InStream](/images/var-param-stream-bad.png)
+![Read from a local blob with InStream](/images/varparameters/var-param-stream-bad.png)
 
 We have a blob that holds» Hello World« text, and that's what we should be able to read with an InStream. This is another example of *» This should work, why doesn't this work?«*.
 
@@ -88,15 +88,15 @@ In the ImportFile procedure, we take our cup (Temp Blob), pour in a nice cold *H
 
 These two options on the other hand will work just fine:
 
-![Reading from a global blob with InStream](/images/var-param-stream-global.png)
+![Reading from a global blob with InStream](/images/varparameters/var-param-stream-global.png)
 
-![Reading from a parameter blob with InStream](/images/var-param-stream-param.png)
+![Reading from a parameter blob with InStream](/images/varparameters/var-param-stream-param.png)
 
 This time, as TempBlob is **not a local variable**, it doesn't get de-allocated, and the InStream can successfully read data from it. So just keep in mind, that **data source needs to still be available when you try to read from it** with an InStream, either as a global variable or by being passed as a parameter.
 
 Note: **UploadIntoStream** works just fine, as the uploaded file is allocated outside of procedure scope:
 
-![Read from UploadToInStream function with InStream](/images/var-param-stream-upload.png)
+![Read from UploadToInStream function with InStream](/images/varparameters/var-param-stream-upload.png)
 
 [listdocs]: https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/list/list-data-type
 

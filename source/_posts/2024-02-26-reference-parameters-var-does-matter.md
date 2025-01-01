@@ -4,7 +4,7 @@ title: "Reference Parameters - var does matter"
 date: 2024-02-26 08:00:00
 comments: false
 categories: al
-image: /images/by-reference-by-value.jpeg
+image: /images/refparameters/by-reference-by-value.jpeg
 ---
 I previously posted about [Pitfalls of var parameters][pitfallsofvarparameters] and how things can go sideways if we’re not careful when using them.
 
@@ -24,25 +24,25 @@ When we’re passing a reference type parameter to a procedure **without var**, 
 Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
 Let’s take the same List example as last time. We know that **both of these result in the same outcome**. In both cases, **var or no var**, we end up with a list with **2 items**.
 
-![Add to List - No var](/images/ref-param-list-add-no-var.png)
+![Add to List - No var](/images/refparameters/ref-param-list-add-no-var.png)
 
-![Add to List - var](/images/ref-param-list-add-var.png)
+![Add to List - var](/images/refparameters/ref-param-list-add-var.png)
 
 <hr/>
 
 Let's make these examples weirder, so we can see where **var** starts making a difference.
 
-![Change List Reference - No var](/images/ref-param-list-change-reference-no-var.png)
+![Change List Reference - No var](/images/refparameters/ref-param-list-change-reference-no-var.png)
 
 What do you think the count is going to be here? *1? 2? 3?* Well, let's see...
 
-![Change List Reference - Count - No var](/images/ref-param-list-change-reference-no-var-count.png)
+![Change List Reference - Count - No var](/images/refparameters/ref-param-list-change-reference-no-var-count.png)
 
 **It’s one.** Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:
 
-![Change List Reference - var](/images/ref-param-list-change-reference-var.png)
+![Change List Reference - var](/images/refparameters/ref-param-list-change-reference-var.png)
 
-![Change List Reference - Count - var](/images/ref-param-list-change-reference-var-count.png)
+![Change List Reference - Count - var](/images/refparameters/ref-param-list-change-reference-var-count.png)
 
 This time the result is more along the lines of what we’d expect. *So why this difference in behavior?*
 
@@ -58,15 +58,15 @@ In the second example, because MyList is **passed with var**, we can change it, 
 
 Yeah, fair point. But keep in mind, that any procedure that **returns a list** actually **creates a new instance**. So it’s not that uncommon.
 
- ![Assign Invoices - No var](/images/ref-param-invoice-change-reference-no-var.png)
+ ![Assign Invoices - No var](/images/refparameters/ref-param-invoice-change-reference-no-var.png)
 
 The above example **won’t work**, but it will if the parameter is marked with var:
 
- ![Assign Invoices - var](/images/ref-param-invoice-change-reference-var.png)
+ ![Assign Invoices - var](/images/refparameters/ref-param-invoice-change-reference-var.png)
 
 so will this:
 
- ![Assign Invoices - var](/images/ref-param-invoice-add.png)
+ ![Assign Invoices - var](/images/refparameters/ref-param-invoice-add.png)
 
 *“Fine, be mindful of how you assign to lists. Why don’t I just **always mark reference parameters with var**? One less thing to worry about...”* 
 
@@ -74,23 +74,23 @@ so will this:
 
 Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:
 
- ![Interface - Main](/images/ref-param-interface-main.png)
+ ![Interface - Main](/images/refparameters/ref-param-interface-main.png)
 
 We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:
 
- ![Interface Implementation - Normal](/images/ref-param-interface-normal.png)
+ ![Interface Implementation - Normal](/images/refparameters/ref-param-interface-normal.png)
 
 *Simple, right?* One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface **by value**, subscribers can **only access the procedures of that interface**.
 
- ![Interface Event - No var](/images/ref-param-interface-event-no-var.png)
+ ![Interface Event - No var](/images/refparameters/ref-param-interface-event-no-var.png)
 
 On the other hand, if you expose it **by reference**, a subscriber can also **change the implementation** that the interface is referencing:
 
- ![Interface Event - var](/images/ref-param-interface-event-var.png)
+ ![Interface Event - var](/images/refparameters/ref-param-interface-event-var.png)
 
 And that can lead to **unpredictable behavior** for your app, especially if the new implementation does something stupid like:
 
- ![Interface Implementation - Wild](/images/ref-param-interface-wild.png)
+ ![Interface Implementation - Wild](/images/refparameters/ref-param-interface-wild.png)
 
 But hey, maybe that's exactly **what you wanted**. The option for subscribers to **change the implementation** interface points to. So there's no *always right* or *always wrong* answer here. 
 

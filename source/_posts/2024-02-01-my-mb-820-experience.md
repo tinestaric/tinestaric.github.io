@@ -4,7 +4,7 @@ title: "My MB-820 Experience and why you shouldn't worry (that much)"
 date: 2024-02-01 08:00:00
 comments: false
 categories: al
-image: /images/mb820cert.png
+image: /images/mb820/mb820cert.png
 ---
 Last Friday I took the **MB-820**. I wanted to do it as soon as possible. I guess I wanted to prove to myself that the years spent working as a developer were enough preparation to pass this certification. 
 
@@ -45,8 +45,8 @@ However, a hugely important detail that you have to keep in mind is, that since 
 ### You can use MS Learn during the exam!
 How that works during the exam is, that you have a button at the bottom of the screen that says MS Learn. You click it, and it **opens a web page side-by-side to your exam** and you can freely search through it while answering your questions. Keep in mind, that you won't be able to leave the MS Learn website. So if documentation points to GitHub, that link won't work.
 
-![MS Learn Button](/images/microsoft-learn-1.png)
-![MS Learn side-by-side](/images/microsoft-learn-2.png)
+![MS Learn Button](/images/mb820/microsoft-learn-1.png)
+![MS Learn side-by-side](/images/mb820/microsoft-learn-2.png)
 <br>
 *Screenshots are taken from MS Learn, not the actual exam*
 
@@ -79,9 +79,9 @@ The exam always specifies how many answers are required. It will prevent you fro
 
 When you're answering a question, you can mark it as »Review Later« and »Leave a Comment«. I suggest you use the Review Later one for any questions where you're unsure about your answer. Once you get to the end of a section, you'll get an overview of all answered, unanswered, marked as review, and marked as comment questions, and you can navigate quickly to the ones you'd like to take another look at.
 
-![Mark Questions](/images/mb820-review-qst.png)
+![Mark Questions](/images/mb820/mb820-review-qst.png)
 
-![Review Screen](/images/mb820-review-screen.png)
+![Review Screen](/images/mb820/mb820-review-screen.png)
 <br>
 *Screenshots are taken from MS Learn, not the actual exam*
 
