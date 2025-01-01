@@ -16,8 +16,8 @@
 <meta property="og:url" content="https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/" />
 <meta property="og:site_name" content="Tech Adventures in Business Central" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://tine.staric.net/images/by-reference-by-value.jpeg" />
-<meta property="twitter:image" content="https://tine.staric.net/images/by-reference-by-value.jpeg" />
+<meta property="og:image" content="https://tine.staric.net/images/refparameters/by-reference-by-value.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/refparameters/by-reference-by-value.jpeg" />
 
 <link rel="stylesheet" href="/css/main.css">
 <link rel="canonical" href="https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/">
@@ -94,25 +94,25 @@
 <p>Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
 Let’s take the same List example as last time. We know that <strong>both of these result in the same outcome</strong>. In both cases, <strong>var or no var</strong>, we end up with a list with <strong>2 items</strong>.</p>
 
-<p><img src="/images/ref-param-list-add-no-var.png" alt="Add to List - No var" /></p>
+<p><img src="/images/refparameters/ref-param-list-add-no-var.png" alt="Add to List - No var" /></p>
 
-<p><img src="/images/ref-param-list-add-var.png" alt="Add to List - var" /></p>
+<p><img src="/images/refparameters/ref-param-list-add-var.png" alt="Add to List - var" /></p>
 
 <hr />
 
 <p>Let’s make these examples weirder, so we can see where <strong>var</strong> starts making a difference.</p>
 
-<p><img src="/images/ref-param-list-change-reference-no-var.png" alt="Change List Reference - No var" /></p>
+<p><img src="/images/refparameters/ref-param-list-change-reference-no-var.png" alt="Change List Reference - No var" /></p>
 
 <p>What do you think the count is going to be here? <em>1? 2? 3?</em> Well, let’s see…</p>
 
-<p><img src="/images/ref-param-list-change-reference-no-var-count.png" alt="Change List Reference - Count - No var" /></p>
+<p><img src="/images/refparameters/ref-param-list-change-reference-no-var-count.png" alt="Change List Reference - Count - No var" /></p>
 
 <p><strong>It’s one.</strong> Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:</p>
 
-<p><img src="/images/ref-param-list-change-reference-var.png" alt="Change List Reference - var" /></p>
+<p><img src="/images/refparameters/ref-param-list-change-reference-var.png" alt="Change List Reference - var" /></p>
 
-<p><img src="/images/ref-param-list-change-reference-var-count.png" alt="Change List Reference - Count - var" /></p>
+<p><img src="/images/refparameters/ref-param-list-change-reference-var-count.png" alt="Change List Reference - Count - var" /></p>
 
 <p>This time the result is more along the lines of what we’d expect. <em>So why this difference in behavior?</em></p>
 
@@ -128,15 +128,15 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p>Yeah, fair point. But keep in mind, that any procedure that <strong>returns a list</strong> actually <strong>creates a new instance</strong>. So it’s not that uncommon.</p>
 
-<p> <img src="/images/ref-param-invoice-change-reference-no-var.png" alt="Assign Invoices - No var" /></p>
+<p> <img src="/images/refparameters/ref-param-invoice-change-reference-no-var.png" alt="Assign Invoices - No var" /></p>
 
 <p>The above example <strong>won’t work</strong>, but it will if the parameter is marked with var:</p>
 
-<p> <img src="/images/ref-param-invoice-change-reference-var.png" alt="Assign Invoices - var" /></p>
+<p> <img src="/images/refparameters/ref-param-invoice-change-reference-var.png" alt="Assign Invoices - var" /></p>
 
 <p>so will this:</p>
 
-<p> <img src="/images/ref-param-invoice-add.png" alt="Assign Invoices - var" /></p>
+<p> <img src="/images/refparameters/ref-param-invoice-add.png" alt="Assign Invoices - var" /></p>
 
 <p><em>“Fine, be mindful of how you assign to lists. Why don’t I just <strong>always mark reference parameters with var</strong>? One less thing to worry about…”</em></p>
 
@@ -144,23 +144,23 @@ Let’s take the same List example as last time. We know that <strong>both of th
 
 <p>Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:</p>
 
-<p> <img src="/images/ref-param-interface-main.png" alt="Interface - Main" /></p>
+<p> <img src="/images/refparameters/ref-param-interface-main.png" alt="Interface - Main" /></p>
 
 <p>We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:</p>
 
-<p> <img src="/images/ref-param-interface-normal.png" alt="Interface Implementation - Normal" /></p>
+<p> <img src="/images/refparameters/ref-param-interface-normal.png" alt="Interface Implementation - Normal" /></p>
 
 <p><em>Simple, right?</em> One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface <strong>by value</strong>, subscribers can <strong>only access the procedures of that interface</strong>.</p>
 
-<p> <img src="/images/ref-param-interface-event-no-var.png" alt="Interface Event - No var" /></p>
+<p> <img src="/images/refparameters/ref-param-interface-event-no-var.png" alt="Interface Event - No var" /></p>
 
 <p>On the other hand, if you expose it <strong>by reference</strong>, a subscriber can also <strong>change the implementation</strong> that the interface is referencing:</p>
 
-<p> <img src="/images/ref-param-interface-event-var.png" alt="Interface Event - var" /></p>
+<p> <img src="/images/refparameters/ref-param-interface-event-var.png" alt="Interface Event - var" /></p>
 
 <p>And that can lead to <strong>unpredictable behavior</strong> for your app, especially if the new implementation does something stupid like:</p>
 
-<p> <img src="/images/ref-param-interface-wild.png" alt="Interface Implementation - Wild" /></p>
+<p> <img src="/images/refparameters/ref-param-interface-wild.png" alt="Interface Implementation - Wild" /></p>
 
 <p>But hey, maybe that’s exactly <strong>what you wanted</strong>. The option for subscribers to <strong>change the implementation</strong> interface points to. So there’s no <em>always right</em> or <em>always wrong</em> answer here.</p>
 
@@ -185,7 +185,7 @@ Let’s take the same List example as last time. We know that <strong>both of th
   <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
 </ul>
     <p class="txt-medium-gray">
-      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+      <small>&copy;2025 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
     </p>
   </div>
 </footer>

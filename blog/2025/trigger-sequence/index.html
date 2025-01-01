@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Trigger Sequence in AL</title>
+<meta name="description"
+    content="Here’s a small “let me bookmark this” post.">
+
+<meta property="og:title" content="Trigger Sequence in AL" />
+<meta property="og:description"
+    content="Here’s a small “let me bookmark this” post." />
+<meta property="og:url" content="https://tine.staric.net/blog/2025/trigger-sequence/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://tine.staric.net/images/triggersequence.jpg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/triggersequence.jpg" />
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2025/trigger-sequence/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+    href="https://tine.staric.net/feed.xml" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Trigger Sequence in AL</h1>
+      <em class="post-meta">
+        <time>Jan 1, 2025</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>Here’s a small <strong><em>“let me bookmark this”</em></strong> post.</p>
+
+<p>I often did not completely understand trigger and event sequences in AL. I <strong><em>sort of</em></strong> knew them, but I doubted myself just enough to keep going back to the documentation. It’s not like the documentation is bad, but every time it took me just a few additional minutes to figure out the answer, that I decided I wanted to <strong>visualize</strong> this.</p>
+
+<p>It came in handy for me, maybe it will for you too. I’d love to hear if you’d add any other sequence!</p>
+
+<hr />
+
+<p>Few things to remember that I didn’t want to jam into the visualizations</p>
+
+<ul>
+  <li>Apps with <strong>lower IDs</strong> execute their triggers and subscribers <strong>before those with higher IDs.</strong><br />
+For example, if <em>App A</em> has an ID like <em>“1bs3..”</em> and <em>App B</em> has <em>“c23f..”</em>, App A’s triggers and subscribers will always run first.</li>
+  <li>Within the same App, objects with <strong>lower Object IDs</strong> execute their triggers and subscribers <strong>before those with higher Object IDs</strong><br />
+A subscriber in <em>Codeunit 50000</em> will execute before one in <em>Codeunit 50001</em>. Similarly, triggers in <em>Table Extension 50000</em> will run before those in <em>Table Extension 50001</em>.</li>
+  <li>Subscribers in the same codeunit are executed in <strong>alphabetical order</strong> by procedure name<br />
+For instance, a procedure named <em>MySubscriber1</em> will run before <em>MySubscriber2</em>, regardless of their order in the code.</li>
+</ul>
+
+<p>When looking at the Lookup flow, remember that <strong>only one OnLookup trigger can be executed</strong> at a time. Once the first one is executed, others are ignored.</p>
+
+<p>I made a small trigger logger for the purpose of this post, you can find it <strong><a href="https://github.com/tinestaric/BCExamples/tree/Master/TriggerLogger">here</a></strong>. It’s a simple extension that logs the trigger and event sequence to a table.</p>
+
+<hr />
+
+<h3 style="text-align: center;">Trigger Flow Diagrams</h3>
+
+<link rel="stylesheet" href="/assets/css/graph-demo.css" />
+
+<div class="graph-demo-button-group">
+    <div class="graph-demo-group-heading">Record Operation Triggers:</div>
+    <div class="graph-demo-button-container">
+        <button class="graph-demo-flow-button" onclick="showFlow('insert')">Insert</button>
+        <button class="graph-demo-flow-button" onclick="showFlow('modify')">Modify</button>
+        <button class="graph-demo-flow-button" onclick="showFlow('delete')">Delete</button>
+        <button class="graph-demo-flow-button" onclick="showFlow('rename')">Rename</button>
+    </div>
+</div>
+
+<div class="graph-demo-button-group">
+    <div class="graph-demo-group-heading">Field Operation Triggers:</div>
+    <div class="graph-demo-button-container">
+        <button class="graph-demo-flow-button" onclick="showFlow('validate')">Validate</button>
+        <button class="graph-demo-flow-button" onclick="showFlow('lookup')">Lookup</button>
+    </div>
+</div>
+
+<div class="graph-demo-diagram-container">
+    <div class="mermaid" id="flowchart-container">
+        flowchart TD
+        Start --&gt; NoChart
+        NoChart(Click a button to display trigger flow)
+    </div>
+</div>
+
+<script src="https://unpkg.com/mermaid@9.4.3/dist/mermaid.min.js"></script>
+
+<script type="module">
+  let mermaidLoaded = false;
+  mermaid.initialize({ 
+    startOnLoad: true,
+    securityLevel: 'loose'
+  });
+  // Wait for mermaid to be fully loaded
+  mermaid.init();
+  mermaidLoaded = true;
+  import { loadFlow } from '/assets/scripts/loadFlows.js';
+  window.showFlow = async function(type) {
+    if (!mermaidLoaded) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    const chart = await loadFlow(type);
+    const container = document.getElementById('flowchart-container');
+    container.innerHTML = chart;    
+    mermaid.render('newFlow', chart, function(svgCode) {
+      container.innerHTML = svgCode;
+    });
+  }
+</script>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2025 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

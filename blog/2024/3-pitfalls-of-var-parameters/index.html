@@ -16,8 +16,8 @@
 <meta property="og:url" content="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/" />
 <meta property="og:site_name" content="Tech Adventures in Business Central" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://tine.staric.net/images/confused-dev.jpeg" />
-<meta property="twitter:image" content="https://tine.staric.net/images/confused-dev.jpeg" />
+<meta property="og:image" content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
+<meta property="twitter:image" content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
 
 <link rel="stylesheet" href="/css/main.css">
 <link rel="canonical" href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/">
@@ -85,11 +85,11 @@
 
 <p>Well, a list, unlike your ordinary texts, integers or Booleans is a <strong>reference type</strong>, which means assigning it to a new variable or passing it to a method without var will create a separate variable that <strong>writes to the same list</strong>.</p>
 
-<p><img src="/images/var-param-list.png" alt="List value assignment when passed without var" /></p>
+<p><img src="/images/varparameters/var-param-list.png" alt="List value assignment when passed without var" /></p>
 
 <p>It’s actually quite well documented in the <a href="https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/list/list-data-type">docs</a>:</p>
 
-<p><img src="/images/var-param-list-doc.png" alt="List pass-by-reference documentation" /></p>
+<p><img src="/images/varparameters/var-param-list-doc.png" alt="List pass-by-reference documentation" /></p>
 
 <p>But we’re so used to the distinction that a non-var parameter is passed by value and we can manipulate it however we like, while var parameters are passed by reference, and changes will have an effect outside of the procedure.</p>
 
@@ -130,7 +130,7 @@
 
 <p>Here’s how the records behave:</p>
 
-<p><img src="/images/var-param-temp-all.png" alt="IsTemporary behavior depending on var and temporary parameter modifiers" /></p>
+<p><img src="/images/varparameters/var-param-temp-all.png" alt="IsTemporary behavior depending on var and temporary parameter modifiers" /></p>
 
 <p>If your procedures are making any <strong>dangerous operations</strong> on a pass-by-reference record, like <strong>DeleteAll</strong>, I highly suggest adding an <strong>IsTemporary gatekeeper</strong> at the beginning, either exiting or throwing a record if the record is not temporary.</p>
 
@@ -145,7 +145,7 @@
 
 <p>Well, let’s take a look at this simple example.</p>
 
-<p><img src="/images/var-param-stream-bad.png" alt="Read from a local blob with InStream" /></p>
+<p><img src="/images/varparameters/var-param-stream-bad.png" alt="Read from a local blob with InStream" /></p>
 
 <p>We have a blob that holds» Hello World« text, and that’s what we should be able to read with an InStream. This is another example of <em>» This should work, why doesn’t this work?«</em>.</p>
 
@@ -157,15 +157,15 @@
 
 <p>These two options on the other hand will work just fine:</p>
 
-<p><img src="/images/var-param-stream-global.png" alt="Reading from a global blob with InStream" /></p>
+<p><img src="/images/varparameters/var-param-stream-global.png" alt="Reading from a global blob with InStream" /></p>
 
-<p><img src="/images/var-param-stream-param.png" alt="Reading from a parameter blob with InStream" /></p>
+<p><img src="/images/varparameters/var-param-stream-param.png" alt="Reading from a parameter blob with InStream" /></p>
 
 <p>This time, as TempBlob is <strong>not a local variable</strong>, it doesn’t get de-allocated, and the InStream can successfully read data from it. So just keep in mind, that <strong>data source needs to still be available when you try to read from it</strong> with an InStream, either as a global variable or by being passed as a parameter.</p>
 
 <p>Note: <strong>UploadIntoStream</strong> works just fine, as the uploaded file is allocated outside of procedure scope:</p>
 
-<p><img src="/images/var-param-stream-upload.png" alt="Read from UploadToInStream function with InStream" /></p>
+<p><img src="/images/varparameters/var-param-stream-upload.png" alt="Read from UploadToInStream function with InStream" /></p>
 
 
     </div>
@@ -184,7 +184,7 @@
   <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
 </ul>
     <p class="txt-medium-gray">
-      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+      <small>&copy;2025 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
     </p>
   </div>
 </footer>

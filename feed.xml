@@ -5,9 +5,101 @@
     <description>A Blog by Tine Starič</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Oct 2024 21:26:51 +0300</pubDate>
-    <lastBuildDate>Sun, 06 Oct 2024 21:26:51 +0300</lastBuildDate>
+    <pubDate>Wed, 01 Jan 2025 23:43:57 +0200</pubDate>
+    <lastBuildDate>Wed, 01 Jan 2025 23:43:57 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Trigger Sequence in AL</title>
+        <description>&lt;p&gt;Here’s a small &lt;strong&gt;&lt;em&gt;“let me bookmark this”&lt;/em&gt;&lt;/strong&gt; post.&lt;/p&gt;
+
+&lt;p&gt;I often did not completely understand trigger and event sequences in AL. I &lt;strong&gt;&lt;em&gt;sort of&lt;/em&gt;&lt;/strong&gt; knew them, but I doubted myself just enough to keep going back to the documentation. It’s not like the documentation is bad, but every time it took me just a few additional minutes to figure out the answer, that I decided I wanted to &lt;strong&gt;visualize&lt;/strong&gt; this.&lt;/p&gt;
+
+&lt;p&gt;It came in handy for me, maybe it will for you too. I’d love to hear if you’d add any other sequence!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Few things to remember that I didn’t want to jam into the visualizations&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apps with &lt;strong&gt;lower IDs&lt;/strong&gt; execute their triggers and subscribers &lt;strong&gt;before those with higher IDs.&lt;/strong&gt;&lt;br /&gt;
+For example, if &lt;em&gt;App A&lt;/em&gt; has an ID like &lt;em&gt;“1bs3..”&lt;/em&gt; and &lt;em&gt;App B&lt;/em&gt; has &lt;em&gt;“c23f..”&lt;/em&gt;, App A’s triggers and subscribers will always run first.&lt;/li&gt;
+  &lt;li&gt;Within the same App, objects with &lt;strong&gt;lower Object IDs&lt;/strong&gt; execute their triggers and subscribers &lt;strong&gt;before those with higher Object IDs&lt;/strong&gt;&lt;br /&gt;
+A subscriber in &lt;em&gt;Codeunit 50000&lt;/em&gt; will execute before one in &lt;em&gt;Codeunit 50001&lt;/em&gt;. Similarly, triggers in &lt;em&gt;Table Extension 50000&lt;/em&gt; will run before those in &lt;em&gt;Table Extension 50001&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Subscribers in the same codeunit are executed in &lt;strong&gt;alphabetical order&lt;/strong&gt; by procedure name&lt;br /&gt;
+For instance, a procedure named &lt;em&gt;MySubscriber1&lt;/em&gt; will run before &lt;em&gt;MySubscriber2&lt;/em&gt;, regardless of their order in the code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When looking at the Lookup flow, remember that &lt;strong&gt;only one OnLookup trigger can be executed&lt;/strong&gt; at a time. Once the first one is executed, others are ignored.&lt;/p&gt;
+
+&lt;p&gt;I made a small trigger logger for the purpose of this post, you can find it &lt;strong&gt;&lt;a href=&quot;https://github.com/tinestaric/BCExamples/tree/Master/TriggerLogger&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;. It’s a simple extension that logs the trigger and event sequence to a table.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 style=&quot;text-align: center;&quot;&gt;Trigger Flow Diagrams&lt;/h3&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/graph-demo.css&quot; /&gt;
+
+&lt;div class=&quot;graph-demo-button-group&quot;&gt;
+    &lt;div class=&quot;graph-demo-group-heading&quot;&gt;Record Operation Triggers:&lt;/div&gt;
+    &lt;div class=&quot;graph-demo-button-container&quot;&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;insert&apos;)&quot;&gt;Insert&lt;/button&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;modify&apos;)&quot;&gt;Modify&lt;/button&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;delete&apos;)&quot;&gt;Delete&lt;/button&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;rename&apos;)&quot;&gt;Rename&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;graph-demo-button-group&quot;&gt;
+    &lt;div class=&quot;graph-demo-group-heading&quot;&gt;Field Operation Triggers:&lt;/div&gt;
+    &lt;div class=&quot;graph-demo-button-container&quot;&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;validate&apos;)&quot;&gt;Validate&lt;/button&gt;
+        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;lookup&apos;)&quot;&gt;Lookup&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;graph-demo-diagram-container&quot;&gt;
+    &lt;div class=&quot;mermaid&quot; id=&quot;flowchart-container&quot;&gt;
+        flowchart TD
+        Start --&amp;gt; NoChart
+        NoChart(Click a button to display trigger flow)
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/mermaid@9.4.3/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+  let mermaidLoaded = false;
+  mermaid.initialize({ 
+    startOnLoad: true,
+    securityLevel: &apos;loose&apos;
+  });
+  // Wait for mermaid to be fully loaded
+  mermaid.init();
+  mermaidLoaded = true;
+  import { loadFlow } from &apos;/assets/scripts/loadFlows.js&apos;;
+  window.showFlow = async function(type) {
+    if (!mermaidLoaded) {
+      await new Promise(resolve =&gt; setTimeout(resolve, 500));
+    }
+    const chart = await loadFlow(type);
+    const container = document.getElementById(&apos;flowchart-container&apos;);
+    container.innerHTML = chart;    
+    mermaid.render(&apos;newFlow&apos;, chart, function(svgCode) {
+      container.innerHTML = svgCode;
+    });
+  }
+&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 01 Jan 2025 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2025/trigger-sequence/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2025/trigger-sequence/</guid>
+        
+        
+        <category>welcome</category>
+        
+      </item>
     
       <item>
         <title>Forget how; when should we use preprocessing symbols?</title>
@@ -32,7 +124,7 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
 
 &lt;p&gt;The above three bullet points took me &lt;strong&gt;quite a while to realize&lt;/strong&gt;, but once I wrapped my head around it, it was finally clear to me when I’d want to use the &lt;em&gt;preprocessing symbols&lt;/em&gt; and that’s what I want to share with you today.&lt;/p&gt;
 
-&lt;p&gt;I’m not going to talk too much about &lt;strong&gt;&lt;em&gt;how&lt;/em&gt;&lt;/strong&gt; they work, &lt;a href=&quot;https://www.linkedin.com/in/yzhums&quot;&gt;Yun&lt;/a&gt; had a great &lt;a href=&quot;https://yzhums.com/2606/&quot;&gt;blog post&lt;/a&gt; on that topic, back when they were introduced. I’ll focus on &lt;strong&gt;&lt;em&gt;when&lt;/em&gt;&lt;/strong&gt; is a good idea to use them for our apps.&lt;/p&gt;
+&lt;p&gt;I’m not going to talk too much about &lt;strong&gt;&lt;em&gt;how&lt;/em&gt;&lt;/strong&gt; they work, &lt;a href=&quot;https://www.linkedin.com/in/yzhums&quot;&gt;Yun&lt;/a&gt; had a great &lt;a href=&quot;https://yzhums.com/2606/&quot;&gt;blog post&lt;/a&gt; on that topic, back when they were introduced. Another &lt;a href=&quot;https://nataliekarolak.wordpress.com/2023/05/08/conditional-directives-clean22-demystified/&quot;&gt;great post&lt;/a&gt; I found was by &lt;a href=&quot;https://x.com/KarolakNatalie&quot;&gt;Natalie&lt;/a&gt;. She describes how we should test code with conditional directives very well. But I’ll focus mainly on &lt;strong&gt;&lt;em&gt;when&lt;/em&gt;&lt;/strong&gt; is a good idea to use them for our apps.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -50,7 +142,7 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
 
 &lt;p&gt;Let’s look at the &lt;em&gt;“IC Partner G/L Acc. No.”&lt;/em&gt; That will be removed from &lt;em&gt;Gen. Journal Line&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-start.png&quot; alt=&quot;IC G/L Account at the begining&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-start.png&quot; alt=&quot;IC G/L Account at the beginning&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We know we can’t just remove a field. &lt;em&gt;App Source Cop&lt;/em&gt; will be all up in our faces if we try that. So, we &lt;strong&gt;obsolete&lt;/strong&gt; it first, and we’ll remove it in one of the subsequent releases.&lt;/p&gt;
 
@@ -70,7 +162,7 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
 
 &lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-end.png&quot; alt=&quot;IC G/L Account at the end&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-ref-clean-right.png&quot; alt=&quot;IC G/L Account refence good cleanup&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/preprocessing/icglacc-ref-clean-right.png&quot; alt=&quot;IC G/L Account reference good cleanup&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It means that today, the field still &lt;strong&gt;works exactly as it did for years&lt;/strong&gt;. But anyone using it in their apps will get a &lt;em&gt;warning&lt;/em&gt; that they should move away from it. When the time comes, they will enable the &lt;strong&gt;&lt;em&gt;CLEAN22 symbol&lt;/em&gt;&lt;/strong&gt;, the field becomes removed, and the code is no longer executed.&lt;/p&gt;
 
@@ -1045,25 +1137,25 @@ So if we refactor the above example&lt;/p&gt;
 &lt;p&gt;Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
 Let’s take the same List example as last time. We know that &lt;strong&gt;both of these result in the same outcome&lt;/strong&gt;. In both cases, &lt;strong&gt;var or no var&lt;/strong&gt;, we end up with a list with &lt;strong&gt;2 items&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-add-no-var.png&quot; alt=&quot;Add to List - No var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-add-no-var.png&quot; alt=&quot;Add to List - No var&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-add-var.png&quot; alt=&quot;Add to List - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-add-var.png&quot; alt=&quot;Add to List - var&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;Let’s make these examples weirder, so we can see where &lt;strong&gt;var&lt;/strong&gt; starts making a difference.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-no-var.png&quot; alt=&quot;Change List Reference - No var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-no-var.png&quot; alt=&quot;Change List Reference - No var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;What do you think the count is going to be here? &lt;em&gt;1? 2? 3?&lt;/em&gt; Well, let’s see…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-no-var-count.png&quot; alt=&quot;Change List Reference - Count - No var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-no-var-count.png&quot; alt=&quot;Change List Reference - Count - No var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;It’s one.&lt;/strong&gt; Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-var.png&quot; alt=&quot;Change List Reference - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-var.png&quot; alt=&quot;Change List Reference - var&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ref-param-list-change-reference-var-count.png&quot; alt=&quot;Change List Reference - Count - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-var-count.png&quot; alt=&quot;Change List Reference - Count - var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This time the result is more along the lines of what we’d expect. &lt;em&gt;So why this difference in behavior?&lt;/em&gt;&lt;/p&gt;
 
@@ -1079,15 +1171,15 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
 
 &lt;p&gt;Yeah, fair point. But keep in mind, that any procedure that &lt;strong&gt;returns a list&lt;/strong&gt; actually &lt;strong&gt;creates a new instance&lt;/strong&gt;. So it’s not that uncommon.&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-change-reference-no-var.png&quot; alt=&quot;Assign Invoices - No var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-change-reference-no-var.png&quot; alt=&quot;Assign Invoices - No var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The above example &lt;strong&gt;won’t work&lt;/strong&gt;, but it will if the parameter is marked with var:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-change-reference-var.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-change-reference-var.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;so will this:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-invoice-add.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-add.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“Fine, be mindful of how you assign to lists. Why don’t I just &lt;strong&gt;always mark reference parameters with var&lt;/strong&gt;? One less thing to worry about…”&lt;/em&gt;&lt;/p&gt;
 
@@ -1095,23 +1187,23 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
 
 &lt;p&gt;Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-main.png&quot; alt=&quot;Interface - Main&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-main.png&quot; alt=&quot;Interface - Main&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-normal.png&quot; alt=&quot;Interface Implementation - Normal&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-normal.png&quot; alt=&quot;Interface Implementation - Normal&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Simple, right?&lt;/em&gt; One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface &lt;strong&gt;by value&lt;/strong&gt;, subscribers can &lt;strong&gt;only access the procedures of that interface&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-event-no-var.png&quot; alt=&quot;Interface Event - No var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-event-no-var.png&quot; alt=&quot;Interface Event - No var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;On the other hand, if you expose it &lt;strong&gt;by reference&lt;/strong&gt;, a subscriber can also &lt;strong&gt;change the implementation&lt;/strong&gt; that the interface is referencing:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-event-var.png&quot; alt=&quot;Interface Event - var&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-event-var.png&quot; alt=&quot;Interface Event - var&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And that can lead to &lt;strong&gt;unpredictable behavior&lt;/strong&gt; for your app, especially if the new implementation does something stupid like:&lt;/p&gt;
 
-&lt;p&gt; &lt;img src=&quot;/images/ref-param-interface-wild.png&quot; alt=&quot;Interface Implementation - Wild&quot; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-wild.png&quot; alt=&quot;Interface Implementation - Wild&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;But hey, maybe that’s exactly &lt;strong&gt;what you wanted&lt;/strong&gt;. The option for subscribers to &lt;strong&gt;change the implementation&lt;/strong&gt; interface points to. So there’s no &lt;em&gt;always right&lt;/em&gt; or &lt;em&gt;always wrong&lt;/em&gt; answer here.&lt;/p&gt;
 
@@ -1170,8 +1262,8 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
 &lt;h3 id=&quot;you-can-use-ms-learn-during-the-exam&quot;&gt;You can use MS Learn during the exam!&lt;/h3&gt;
 &lt;p&gt;How that works during the exam is, that you have a button at the bottom of the screen that says MS Learn. You click it, and it &lt;strong&gt;opens a web page side-by-side to your exam&lt;/strong&gt; and you can freely search through it while answering your questions. Keep in mind, that you won’t be able to leave the MS Learn website. So if documentation points to GitHub, that link won’t work.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/microsoft-learn-1.png&quot; alt=&quot;MS Learn Button&quot; /&gt;
-&lt;img src=&quot;/images/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/images/mb820/microsoft-learn-1.png&quot; alt=&quot;MS Learn Button&quot; /&gt;
+&lt;img src=&quot;/images/mb820/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;
 &lt;br /&gt;
 &lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
 
@@ -1206,9 +1298,9 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
 
 &lt;p&gt;When you’re answering a question, you can mark it as »Review Later« and »Leave a Comment«. I suggest you use the Review Later one for any questions where you’re unsure about your answer. Once you get to the end of a section, you’ll get an overview of all answered, unanswered, marked as review, and marked as comment questions, and you can navigate quickly to the ones you’d like to take another look at.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/mb820-review-qst.png&quot; alt=&quot;Mark Questions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/mb820/mb820-review-qst.png&quot; alt=&quot;Mark Questions&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/images/mb820/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;
 &lt;br /&gt;
 &lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
 
@@ -1237,111 +1329,6 @@ Some preparation for areas you’re not too comfortable with, and you’re ready
         <pubDate>Thu, 01 Feb 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/my-mb-820-experience/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/my-mb-820-experience/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>3 Pitfalls of Var Parameters</title>
-        <description>&lt;p&gt;I believe I don’t have to introduce the purpose of &lt;strong&gt;var&lt;/strong&gt; in procedure parameters too much. If the parameter has a var modifier, it’s passed &lt;strong&gt;by reference&lt;/strong&gt;, and any changes within the procedure will affect the variable that was passed into the procedure. If it doesn’t, it’s passed &lt;strong&gt;by value&lt;/strong&gt;, meaning that any changes will stay local to that procedure. However, that’s not always the case. There are a couple of edge cases when it comes to var parameters, and as I was about to write the explanation for our internal learning purposes anyway, I decided to use this as an opportunity to make a debut in the world of blogging.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;parameters-that-are-always-passed-by-reference&quot;&gt;Parameters that are always passed by reference&lt;/h3&gt;
-&lt;p&gt;Recently I had a younger colleague struggle with passing a parameter to a function by reference. Now this wasn’t your average “you forgot a var somewhere in the signature”, but rather a List that was being passed in. The List parameter was not marked as var, yet &lt;strong&gt;all the changes applied within the procedure also affected the instance of a List outside the procedure&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Wait what? How come?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, a list, unlike your ordinary texts, integers or Booleans is a &lt;strong&gt;reference type&lt;/strong&gt;, which means assigning it to a new variable or passing it to a method without var will create a separate variable that &lt;strong&gt;writes to the same list&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-list.png&quot; alt=&quot;List value assignment when passed without var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s actually quite well documented in the &lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/list/list-data-type&quot;&gt;docs&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-list-doc.png&quot; alt=&quot;List pass-by-reference documentation&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But we’re so used to the distinction that a non-var parameter is passed by value and we can manipulate it however we like, while var parameters are passed by reference, and changes will have an effect outside of the procedure.&lt;/p&gt;
-
-&lt;p&gt;And Lists are not alone, there are a couple of data types that are always passed &lt;strong&gt;by reference&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Dictionary&lt;/li&gt;
-  &lt;li&gt;JsonObject&lt;/li&gt;
-  &lt;li&gt;JsonArray&lt;/li&gt;
-  &lt;li&gt;JsonValue&lt;/li&gt;
-  &lt;li&gt;JsonToken&lt;/li&gt;
-  &lt;li&gt;OutStream&lt;/li&gt;
-  &lt;li&gt;InStream&lt;/li&gt;
-  &lt;li&gt;Codeunit&lt;/li&gt;
-  &lt;li&gt;Interface&lt;/li&gt;
-  &lt;li&gt;ErrorInfo&lt;/li&gt;
-  &lt;li&gt;Notification&lt;/li&gt;
-  &lt;li&gt;Query&lt;/li&gt;
-  &lt;li&gt;TextBuilder&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Be careful&lt;/strong&gt; with these data types, you might get them back in a different state when the procedure finishes. This is especially true for &lt;strong&gt;exposing them through events&lt;/strong&gt;, as we have no control if a subscriber can change the contents of the variable or not.&lt;/p&gt;
-
-&lt;p&gt;&lt;del&gt;Var modifiers don’t make a difference, but you should still use them to &lt;strong&gt;signal the intentionality&lt;/strong&gt; of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.&lt;/del&gt;&lt;/p&gt;
-
-&lt;p&gt;This was actually not the full truth. Var &lt;strong&gt;does make a difference&lt;/strong&gt;, even with reference parameters. You can read more about it here: &lt;a href=&quot;/blog/2024/reference-parameters-var-does-matter/&quot;&gt;Reference parameters - var does matter&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;temporary-records&quot;&gt;Temporary records&lt;/h3&gt;
-&lt;p&gt;If we do an Insert on a normal record, we write to the database. If the table is temporary, the record is only stored in memory. &lt;em&gt;Easy enough&lt;/em&gt;. However, be careful when you’re creating methods that expect temporary records. As it turns out, if the parameter is a record that is passed by reference (has a var modifier), then &lt;strong&gt;the “temporary” modifier has no effect&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you have a procedure that takes in a Customer record by reference and is marked as temporary:&lt;/p&gt;
-
-&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;procedure&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MyProcedure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Record&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Customer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temporary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you pass a non-temporary Customer record in, the record will &lt;strong&gt;remain non-temporary&lt;/strong&gt;, and any record operations that MyProcedure is doing will actually make changes to the database.&lt;/p&gt;
-
-&lt;p&gt;Here’s how the records behave:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-temp-all.png&quot; alt=&quot;IsTemporary behavior depending on var and temporary parameter modifiers&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If your procedures are making any &lt;strong&gt;dangerous operations&lt;/strong&gt; on a pass-by-reference record, like &lt;strong&gt;DeleteAll&lt;/strong&gt;, I highly suggest adding an &lt;strong&gt;IsTemporary gatekeeper&lt;/strong&gt; at the beginning, either exiting or throwing a record if the record is not temporary.&lt;/p&gt;
-
-&lt;p&gt;Again, even though the temporary modifier does not affect the execution, keep using it for &lt;strong&gt;signaling intentionality&lt;/strong&gt;. Are you expecting a temporary record? Mark the parameter as temporary.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;streams-and-blobs&quot;&gt;Streams and Blobs&lt;/h3&gt;
-&lt;p&gt;Short fact, &lt;strong&gt;streams don’t hold data, blobs hold data&lt;/strong&gt;. So if you’re trying to read information with a stream from a blob that no longer exists (because it was de-allocated from memory), the stream won’t have anything to read from.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Okay, but what does that have to do with passing parameters around by reference?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, let’s take a look at this simple example.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-stream-bad.png&quot; alt=&quot;Read from a local blob with InStream&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We have a blob that holds» Hello World« text, and that’s what we should be able to read with an InStream. This is another example of &lt;em&gt;» This should work, why doesn’t this work?«&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;And no, the answer is not &lt;em&gt;» because InStream is not passed by reference«&lt;/em&gt;. As per our first point, streams are &lt;strong&gt;always passed by reference.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, &lt;strong&gt;streams don’t hold data&lt;/strong&gt;. You can think of streams as straws we use to drink. If you try to drink from a full cup, well, that will work, you’ll drink. But now I’ll take your cup, throw it away, and ask you to take another sip. &lt;em&gt;You can’t, can you?&lt;/em&gt; And that’s exactly what’s happening in the above example.&lt;/p&gt;
-
-&lt;p&gt;In the ImportFile procedure, we take our cup (Temp Blob), pour in a nice cold &lt;em&gt;Hello World&lt;/em&gt;, and put in the straw we got as a parameter. But now as the procedure finishes, the local variables from our procedure get &lt;strong&gt;de-allocated from memory&lt;/strong&gt;. As TempBlob is one of our local variables, we’re now effectively left without our cup, drawing air through our straw, feeling sad.&lt;/p&gt;
-
-&lt;p&gt;These two options on the other hand will work just fine:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-stream-global.png&quot; alt=&quot;Reading from a global blob with InStream&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-stream-param.png&quot; alt=&quot;Reading from a parameter blob with InStream&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This time, as TempBlob is &lt;strong&gt;not a local variable&lt;/strong&gt;, it doesn’t get de-allocated, and the InStream can successfully read data from it. So just keep in mind, that &lt;strong&gt;data source needs to still be available when you try to read from it&lt;/strong&gt; with an InStream, either as a global variable or by being passed as a parameter.&lt;/p&gt;
-
-&lt;p&gt;Note: &lt;strong&gt;UploadIntoStream&lt;/strong&gt; works just fine, as the uploaded file is allocated outside of procedure scope:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/var-param-stream-upload.png&quot; alt=&quot;Read from UploadToInStream function with InStream&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 10 Jan 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/</guid>
         
         
         <category>al</category>
