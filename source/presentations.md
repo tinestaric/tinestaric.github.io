@@ -7,11 +7,14 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2024
+- 2024-11 **How to be a Prompt Engineer** as a sessiong at [Directions EMEA][emea24]: [presentation][emea24promptpress]
+- 2024-10 **Companial SofTalk: Exploring Copilot in Dynamics 365 Business Central** as a short podcast for [Companial][companialhome]: [recording][softalkairecording]
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
 - 2024-05 
     - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]: [presentation][dm24paerrorpress]
     - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as an Expert Session for [Plataan][plataanhome]
+    - **Episode 321: In the Dynamics Corner Chair: Nurture and Empower the Future of BC and AI Innovation** as a podcast for [Dynamics Corner][dynamicscornerhome]: [recording][dynamicscorner321recording]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
     - **Reviewing the Code Review**: [presentation][directionsnacodereviewpres]
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**: [presentation][directionsnaerrorpres]
@@ -106,3 +109,8 @@ Here's a list of the presentations I did through the years with attached slides,
 [directionsnaerrorpres]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionsNA/PowerAutomateErrorHandling-Directions-NA.pdf
 [dm24paerrorpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DynamicsMinds/FightForTestAutomation-DynamicsMinds.pdf
 [bctechdays24codereviewpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/BCTechDays/ReviewingTheCodeReview-TechDays.pdf
+[emea24]: https://www.directionsforpartners.com/conferences-and-events/directions/emea-2024
+[emea24promptpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2024/DirectionEMEA/HowToBeAPromptEngineer-EMEA.pdf
+[softalkairecording]: https://www.youtube.com/watch?v=TwqKJhQ3qLY
+[dynamicscornerhome]: https://dynamicscorner.com/
+[dynamicscorner321recording]: https://www.dynamicscorner.com/episode-321-in-the-dynamics-corner-chair-nurture-and-empower-the-future-of-bc-and-ai-innovation/
