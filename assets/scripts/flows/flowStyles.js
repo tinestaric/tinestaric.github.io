@@ -4,4 +4,5 @@ export const flowStyles = `
   classDef tableExt fill:#e74c3c,stroke:#333,stroke-width:2px
   classDef table fill:#f1c40f,stroke:#333,stroke-width:2px
   classDef subs fill:#95a5a6,stroke:#333,stroke-width:2px
+  classDef dboperation fill:#16a085,stroke:#333,stroke-width:2px
 `;

@@ -11,6 +11,7 @@ flowchart TB
         SubsOnBeforeDBDelete[Subscriber-Global <br> OnBeforeDatabaseDelete]:::subs
         SubsOnAfterDBDelete[Subscriber-Global <br> OnAfterDatabaseDelete]:::subs
         SubsOnDBDelete[Subscriber-Global <br> OnDatabaseDelete]:::subs
+        DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterDelete[TableExt <br> OnAfterDelete]:::tableExt
         SubsOnAfterDelete[Subscriber-Table <br> OnAfterDelete]:::subs
     end
@@ -46,7 +47,8 @@ flowchart TB
     SubsOnAfterDBDelete --> SubsOnAfterDBDeleteExt
     SubsOnAfterDBDeleteExt --> SubsOnDBDelete
     SubsOnDBDelete --> SubsOnDBDeleteExt
-    SubsOnDBDeleteExt --> TableExtOnAfterDelete
+    SubsOnDBDeleteExt --> DBOperation
+    DBOperation --> TableExtOnAfterDelete
     TableExtOnAfterDelete --> TableExtOnAfterDeleteExt
     TableExtOnAfterDeleteExt --> SubsOnAfterDelete
     SubsOnAfterDelete --> SubsOnAfterDeleteExt
