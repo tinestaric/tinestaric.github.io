@@ -11,6 +11,7 @@ flowchart TB
         SubsOnBeforeDBModify[Subscriber-Global <br> OnBeforeDatabaseModify]:::subs
         SubsOnAfterDBModify[Subscriber-Global <br> OnAfterDatabaseModify]:::subs
         SubsOnDBModify[Subscriber-Global <br> OnDatabaseModify]:::subs
+        DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterModify[TableExt <br> OnAfterModify]:::tableExt
         SubsOnAfterModify[Subscriber-Table <br> OnAfterModify]:::subs
     end
@@ -46,8 +47,8 @@ flowchart TB
     SubsOnAfterDBModify --> SubsOnAfterDBModifyExt
     SubsOnAfterDBModifyExt --> SubsOnDBModify
     SubsOnDBModify --> SubsOnDBModifyExt
-    SubsOnDBModifyExt --> TableExtOnAfterModify
+    SubsOnDBModifyExt --> DBOperation
+    DBOperation --> TableExtOnAfterModify
     TableExtOnAfterModify --> TableExtOnAfterModifyExt
-    TableExtOnAfterModifyExt --> SubsOnAfterModify
     SubsOnAfterModify --> SubsOnAfterModifyExt
 `;

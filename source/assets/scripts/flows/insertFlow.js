@@ -11,6 +11,7 @@ flowchart TB
         SubsOnBeforeDBInsert[Subscriber-Global <br> OnBeforeDatabaseInsert]:::subs
         SubsOnAfterDBInsert[Subscriber-Global <br> OnAfterDatabaseInsert]:::subs
         SubsOnDBInsert[Subscriber-Global <br> OnDatabaseInsert]:::subs
+        DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterInsert[TableExt <br> OnAfterInsert]:::tableExt
         SubsOnAfterInsert[Subscriber-Table <br> OnAfterInsert]:::subs
     end
@@ -46,7 +47,8 @@ flowchart TB
     SubsOnAfterDBInsert --> SubsOnAfterDBInsertExt
     SubsOnAfterDBInsertExt --> SubsOnDBInsert
     SubsOnDBInsert --> SubsOnDBInsertExt
-    SubsOnDBInsertExt --> TableExtOnAfterInsert
+    SubsOnDBInsertExt --> DBOperation
+    DBOperation --> TableExtOnAfterInsert
     TableExtOnAfterInsert --> TableExtOnAfterInsertExt
     TableExtOnAfterInsertExt --> SubsOnAfterInsert
     SubsOnAfterInsert --> SubsOnAfterInsertExt

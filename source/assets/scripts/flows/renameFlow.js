@@ -8,6 +8,7 @@ flowchart TB
         SubsOnBeforeDBRename[Subscriber-Global <br> OnBeforeDatabaseRename]:::subs
         SubsOnAfterDBRename[Subscriber-Global <br> OnAfterDatabaseRename]:::subs
         SubsOnDBRename[Subscriber-Global <br> OnDatabaseRename]:::subs
+        DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterRename[TableExt <br> OnAfterRename]:::tableExt
         SubsOnAfterRename[Subscriber-Table <br> OnAfterRename]:::subs
     end
@@ -19,6 +20,7 @@ flowchart TB
         SubsOnBeforeDBRenameExt[Subscriber-Global <br> OnBeforeDatabaseRename]:::subs
         SubsOnAfterDBRenameExt[Subscriber-Global <br> OnAfterDatabaseRename]:::subs
         SubsOnDBRenameExt[Subscriber-Global <br> OnDatabaseRename]:::subs
+        DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterRenameExt[TableExt <br> OnAfterRename]:::tableExt
         SubsOnAfterRenameExt[Subscriber-Table <br> OnAfterRename]:::subs
     end
@@ -36,7 +38,8 @@ flowchart TB
     SubsOnAfterDBRename --> SubsOnAfterDBRenameExt
     SubsOnAfterDBRenameExt --> SubsOnDBRename
     SubsOnDBRename --> SubsOnDBRenameExt
-    SubsOnDBRenameExt --> TableExtOnAfterRename
+    SubsOnDBRenameExt --> DBOperation
+    DBOperation --> TableExtOnAfterRename
     TableExtOnAfterRename --> TableExtOnAfterRenameExt
     TableExtOnAfterRenameExt --> SubsOnAfterRename
     SubsOnAfterRename --> SubsOnAfterRenameExt
