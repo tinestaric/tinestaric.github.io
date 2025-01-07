@@ -50,5 +50,6 @@ flowchart TB
     SubsOnDBModifyExt --> DBOperation
     DBOperation --> TableExtOnAfterModify
     TableExtOnAfterModify --> TableExtOnAfterModifyExt
+    TableExtOnAfterModifyExt --> SubsOnAfterModify
     SubsOnAfterModify --> SubsOnAfterModifyExt
 `;
