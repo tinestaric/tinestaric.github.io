@@ -4,7 +4,7 @@ flowchart TB
         PageOnDelete[Page <br> OnDeleteRecord]:::page
         PageExtOnDelete[PageExt <br> OnDeleteRecord]:::pageExt
         SubsOnDeleteEvent[Subscriber-Page <br> OnDeleteRecordEvent]:::subs
-        SubsOnBeforeDelete[Subscriber-Table <br> OnBeforeDelete]:::subs
+        SubsOnBeforeDelete[Subscriber-Table <br> OnBeforeDeleteEvent]:::subs
         TableExtOnBeforeDelete[TableExt <br> OnBeforeDelete]:::tableExt
         TableOnDelete[Table <br> OnDelete]:::table
         TableExtOnDelete[TableExt <br> OnDelete]:::tableExt
@@ -13,20 +13,20 @@ flowchart TB
         SubsOnDBDelete[Subscriber-Global <br> OnDatabaseDelete]:::subs
         DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterDelete[TableExt <br> OnAfterDelete]:::tableExt
-        SubsOnAfterDelete[Subscriber-Table <br> OnAfterDelete]:::subs
+        SubsOnAfterDelete[Subscriber-Table <br> OnAfterDeleteEvent]:::subs
     end
     
     subgraph Extension
         PageExtOnDeleteExt[PageExt <br> OnDeleteRecord]:::pageExt
         SubsOnDeleteEventExt[Subscriber-Page <br> OnDeleteRecordEvent]:::subs
-        SubsOnBeforeDeleteExt[Subscriber-Table <br> OnBeforeDelete]:::subs
+        SubsOnBeforeDeleteExt[Subscriber-Table <br> OnBeforeDeleteEvent]:::subs
         TableExtOnBeforeDeleteExt[TableExt <br> OnBeforeDelete]:::tableExt
         TableExtOnDeleteExt[TableExt <br> OnDelete]:::tableExt
         SubsOnBeforeDBDeleteExt[Subscriber-Global <br> OnBeforeDatabaseDelete]:::subs
         SubsOnAfterDBDeleteExt[Subscriber-Global <br> OnAfterDatabaseDelete]:::subs
         SubsOnDBDeleteExt[Subscriber-Global <br> OnDatabaseDelete]:::subs
         TableExtOnAfterDeleteExt[TableExt <br> OnAfterDelete]:::tableExt
-        SubsOnAfterDeleteExt[Subscriber-Table <br> OnAfterDelete]:::subs
+        SubsOnAfterDeleteExt[Subscriber-Table <br> OnAfterDeleteEvent]:::subs
     end
     
     %% Arrows to show flow

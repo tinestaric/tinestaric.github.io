@@ -4,7 +4,7 @@ flowchart TB
         PageOnModify[Page <br> OnModifyRecord]:::page
         PageExtOnModify[PageExt <br> OnModifyRecord]:::pageExt
         SubsOnModifyEvent[Subscriber-Page <br> OnModifyRecordEvent]:::subs
-        SubsOnBeforeModify[Subscriber-Table <br> OnBeforeModify]:::subs
+        SubsOnBeforeModify[Subscriber-Table <br> OnBeforeModifyEvent]:::subs
         TableExtOnBeforeModify[TableExt <br> OnBeforeModify]:::tableExt
         TableOnModify[Table <br> OnModify]:::table
         TableExtOnModify[TableExt <br> OnModify]:::tableExt
@@ -13,20 +13,20 @@ flowchart TB
         SubsOnDBModify[Subscriber-Global <br> OnDatabaseModify]:::subs
         DBOperation[Database <br> Operation]:::dboperation
         TableExtOnAfterModify[TableExt <br> OnAfterModify]:::tableExt
-        SubsOnAfterModify[Subscriber-Table <br> OnAfterModify]:::subs
+        SubsOnAfterModify[Subscriber-Table <br> OnAfterModifyEvent]:::subs
     end
     
     subgraph Extension
         PageExtOnModifyExt[PageExt <br> OnModifyRecord]:::pageExt
         SubsOnModifyEventExt[Subscriber-Page <br> OnModifyRecordEvent]:::subs
-        SubsOnBeforeModifyExt[Subscriber-Table <br> OnBeforeModify]:::subs
+        SubsOnBeforeModifyExt[Subscriber-Table <br> OnBeforeModifyEvent]:::subs
         TableExtOnBeforeModifyExt[TableExt <br> OnBeforeModify]:::tableExt
         TableExtOnModifyExt[TableExt <br> OnModify]:::tableExt
         SubsOnBeforeDBModifyExt[Subscriber-Global <br> OnBeforeDatabaseModify]:::subs
         SubsOnAfterDBModifyExt[Subscriber-Global <br> OnAfterDatabaseModify]:::subs
         SubsOnDBModifyExt[Subscriber-Global <br> OnDatabaseModify]:::subs
         TableExtOnAfterModifyExt[TableExt <br> OnAfterModify]:::tableExt
-        SubsOnAfterModifyExt[Subscriber-Table <br> OnAfterModify]:::subs
+        SubsOnAfterModifyExt[Subscriber-Table <br> OnAfterModifyEvent]:::subs
     end
     
     %% Arrows to show flow
