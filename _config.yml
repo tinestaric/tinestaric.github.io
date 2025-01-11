@@ -21,8 +21,8 @@ sass:
   style: compressed # expanded
 
 # SEO settings
-title: "Tech Adventures in Business Central"
-description: "A Blog by Tine Starič"
+title: "Tech Adventures in Business Central | AL Development & AI Solutions"
+description: "Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses."
 keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL"
 url: "https://tine.staric.net"
 baseurl: ""

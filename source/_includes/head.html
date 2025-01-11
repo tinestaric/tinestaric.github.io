@@ -10,15 +10,47 @@
 <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
 <meta property="og:description"
     content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
-<meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
+<meta property="og:url"
+    content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
 <meta property="og:site_name" content="{{ site.title }}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="{% if page.image %}{{ page.image | prepend: site.baseurl | prepend: site.url }}{% else %}https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png{% endif %}" />
-<meta property="twitter:image" content="{% if page.image %}{{ page.image | prepend: site.baseurl | prepend: site.url }}{% else %}https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png{% endif %}" />
+<meta property="og:image"
+    content="{% if page.image %}{{ page.image | prepend: site.baseurl | prepend: site.url }}{% else %}https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png{% endif %}" />
+<meta property="twitter:image"
+    content="{% if page.image %}{{ page.image | prepend: site.baseurl | prepend: site.url }}{% else %}https://github.com/tinestaric/tinestaric.github.io/raw/master/source/images/logo.png{% endif %}" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {% if page.layout == "post" %}"BlogPosting"{% else %}"Blog"{% endif %},
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "description": "{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines }}{% else %}{{ site.description }}{% endif %}",
+  "keywords": "{{ site.keywords }}",
+  "inLanguage": "en"{% if page.layout == "post" %},
+  "headline": "{{ page.title }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else %}{{ page.date | date_to_xmlschema }}{% endif %}"{% endif %},
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "jobTitle": "{{ site.author.job }}",
+    "url": "{{ site.author.url }}",
+    "image": "{{ site.url }}{{ site.author.thumb }}",
+    "description": "{{ site.author.bio | strip_html }}",
+    "sameAs": [
+      "{{ site.author.github }}",
+      "{{ site.author.twitter }}",
+      "{{ site.author.linkedin }}"
+    ]
+  }
+}
+</script>
 
 <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
     href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+<link rel="alternate" href="{{ site.url }}{{ page.url }}" hreflang="en" />
 
 {% include google_analytics.html %}
