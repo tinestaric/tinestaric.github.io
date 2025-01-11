@@ -13,9 +13,6 @@ pagination:
 
 comments: false
 
-webmentions:
-  username: tinestaric.github.io
-
 future: false
 source: source
 destination: _site
@@ -26,9 +23,13 @@ sass:
 # SEO settings
 title: "Tech Adventures in Business Central"
 description: "A Blog by Tine Starič"
-keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc"
+keywords: "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL"
 url: "https://tine.staric.net"
 baseurl: ""
+
+url: "https://tine.staric.net" # the base hostname & protocol for your site
+plugins:
+  - jekyll-sitemap
 
 # google_analytics: UA-XXXXXXXX-X
 

@@ -28,7 +28,8 @@ group :jekyll_plugins do
   gem 'jekyll-paginate-v2', github: 'sverrirs/jekyll-paginate-v2'
   gem "pygments.rb"
   gem "jekyll-sass-converter", "~> 2.0"
+  gem 'jekyll-sitemap'
 #  gem "jekyll-compose"
   gem "kramdown"
-  gem "jekyll-webmention_io", git: "git@github.com:aarongustafson/jekyll-webmention_io", branch: "main"
+  # gem "jekyll-webmention_io", git: "git@github.com:aarongustafson/jekyll-webmention_io", branch: "main"
 end
