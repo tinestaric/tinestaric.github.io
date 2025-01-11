@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech Adventures in Business Central</title>
-    <description>A Blog by Tine Starič</description>
+    <title>Tech Adventures in Business Central | AL Development &amp; AI Solutions</title>
+    <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Jan 2025 14:25:31 +0200</pubDate>
-    <lastBuildDate>Sat, 11 Jan 2025 14:25:31 +0200</lastBuildDate>
+    <pubDate>Sat, 11 Jan 2025 15:46:26 +0200</pubDate>
+    <lastBuildDate>Sat, 11 Jan 2025 15:46:26 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>

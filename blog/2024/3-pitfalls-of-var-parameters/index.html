@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,16 +13,48 @@
 <meta property="og:title" content="3 Pitfalls of Var Parameters" />
 <meta property="og:description"
     content="I believe I don’t have to introduce the purpose of var in procedure parameters too much. If the parameter has a var modifier, it’s passed by reference, and a..." />
-<meta property="og:url" content="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/" />
-<meta property="og:site_name" content="Tech Adventures in Business Central" />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
-<meta property="twitter:image" content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/varparameters/confused-dev.jpeg" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/",
+  "description": "I believe I don’t have to introduce the purpose of var in procedure parameters too much. If the parameter has a var modifier, it’s passed by reference, and any changes within the procedure will affect the variable that was passed into the procedure. If it doesn’t, it’s passed by value, meaning that any changes will stay local to that procedure. However, that’s not always the case. There are a couple of edge cases when it comes to var parameters, and as I was about to write the explanation for our internal learning purposes anyway, I decided to use this as an opportunity to make a debut in the world of blogging.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "3 Pitfalls of Var Parameters",
+  "datePublished": "2024-01-10T10:00:00+02:00",
+  "dateModified": "2024-01-10T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
 
 <link rel="stylesheet" href="/css/main.css">
 <link rel="canonical" href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/">
-<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central"
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
     href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/" hreflang="en" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
