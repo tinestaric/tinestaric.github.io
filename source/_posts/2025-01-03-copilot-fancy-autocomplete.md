@@ -4,7 +4,7 @@ title: "Copilot is just a fancy autocomplete..."
 date: 2025-01-03 08:00:00
 comments: false
 categories: al
-image: /images/preprocessing/main.jpeg
+image: /images/copilotintro/copilot-main.png
 ---
 December was a very **Copilot** month for me. After seeing some glimpses of new capabilities at *Directions* and more later at *Ignite*, I decided to spend some time trying out the *“new”* features of *GitHub Copilot* in *Visual Studio Code*. They’re not really new; they’ve been around for a while. I just never used them, as I thought they were **not useful for AL development.** 
 
