@@ -93,15 +93,15 @@ You add files you’d like the model to consider to the working set. Either by *
 
 A bit of a backstory.
 
-We were recently working with a partner that has a backend service for **AI inventory predictions**. They wanted to make life easier for ISVs and VARs in the world of BC who would want to integrate a BC solution with their backend system.
+We were recently working with ***[Wair][wairhome]***, a partner that has a backend service for **AI inventory predictions**. They wanted to make life easier for ISVs and VARs in the world of BC who would want to integrate a BC solution with their backend system.
 
 Usually, each partner would have to develop logic that *authenticates* against the backend, *builds* the HTTP request, and then *sends* the request in the correct format. To make life easier we built a library app that introduces a set of temporary tables that match the **HTTP request payload**, and a set of codeunits that turn these tables into *JSON payloads* and send the request to the correct *endpoint*. That way, the BC partner needs to insert a record in the table and call a procedure with that table. **That’s it.**
 
 You can imagine that when the backend introduces a new endpoint, we want to add new tables and codeunits to support it.
 
-So, I tried if I could add a table with Edits that would follow all the conventions we have in other tables.
+So, I tried if I could add a table with *Edits* that would follow all the conventions we have in other tables.
 
-In this case, **Brand is the new endpoint** I want to support. I create a new Brand.Table.al file (I've noticed Copilot sometimes struggles with creating files, so I prefer to create them on my own and let Copilot fill them in), and pull it in the working set. I added one of the **existing tables**, so Copilot knows how I want to have it **structured**, and here comes the prompt:
+In this case, **Brand is the new endpoint** I want to support. I create a new Brand.Table.al file (I've noticed *Copilot* sometimes struggles with creating files, so I prefer to create them on my own and let Copilot fill them in), and pull it in the working set. I added one of the **existing tables**, so Copilot knows how I want to have it **structured**, and here comes the prompt:
 
 *Create a Brand table with brand ID, code, and description. It should follow the structure of the Category table.*
 
@@ -113,7 +113,7 @@ Everything on the left side was just generated. **Of course, it struggles with O
 
 But you can see that in seconds I have a table with the *namespace*, *properties* that we use, and even a *check for non-empty code*. 
 
-You could say ***“Yeah, but that’s a simple example”***. Fair, but I’d argue the ***easy and boring parts and the best ones to automate.*** Yes, you could *copy-paste* the other table and change a few things until it fits your new use case, but **a)** you’re bound to miss something, **b)** you’ll still be slower, and **c)** wouldn’t you rather spend your time on something else?  Who wants to work on boring stuff anyway?
+You could say ***“Yeah, but that’s a simple example”***. Fair, but I’d argue the ***easy and boring parts are the best ones to automate.*** Yes, you could *copy-paste* the other table and change a few things until it fits your new use case, but **a)** you’re bound to miss something, **b)** you’ll still be slower, and **c)** wouldn’t you rather spend your time on something else?  Who wants to work on boring stuff anyway?
 
 ---
 
@@ -291,11 +291,15 @@ Here are a few more tiny notes that can help you make the most out of **GitHub C
 
 Generate commit messages for staged changes.
 
+---
+
 #### Rename
 
 ![Suggest names](/images/copilotintro/rename.png) 
 
 Renaming suggestions for just about everything that can be renamed
+
+---
 
 #### Different models
 
@@ -306,6 +310,8 @@ If you’re only working with AL, **stick to Claude.** If you’re working with 
 -	***o1-mini:*** Somewhere between o1 and GPT 4o, It’s faster than o1, and better at reviewing code than GPT 4o. I usually use it when I hit the rate limit of o1.
 -	***Gemini 1.5:*** No idea yet, I’m still waiting for it to be released
 
+---
+
 #### Free vs Pro Tier
 
 The *free tier* right now gives you
@@ -313,9 +319,11 @@ The *free tier* right now gives you
 -	*2000* Code completions per month
 -	*50* chats per month (edits and chat count towards the same limit)
 
-In my opinion, that’s enough for you to test these features out if they work for you. But as I mentioned at the beginning, in my opinion, even the **autocomplete brings enough value to AL** developers that it’s worth the 20$ for a Pro license.
+In my opinion, that’s enough for you to test these features out if they work for you. But as I mentioned at the beginning, even the **autocomplete brings enough value to AL developers** that it’s worth the 20$ for a Pro license.
 
 Pro has *unlimited completions* and chats (except the o1 rate limit)
+
+---
 
 #### Quick Recap
 
@@ -342,3 +350,4 @@ Anyway, I’m playing with the idea of **going deeper into this topic** at some 
 [bctechdays]: https://www.bctechdays.com/event
 [copilotnext]: https://githubnext.com/projects/copilot-next-edit-suggestions/
 [ghcopilotsettings]: https://github.com/settings/copilot
+[wairhome]: https://wair.ai/
