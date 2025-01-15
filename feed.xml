@@ -5,9 +5,369 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Jan 2025 15:46:26 +0200</pubDate>
-    <lastBuildDate>Sat, 11 Jan 2025 15:46:26 +0200</lastBuildDate>
+    <pubDate>Wed, 15 Jan 2025 10:45:51 +0200</pubDate>
+    <lastBuildDate>Wed, 15 Jan 2025 10:45:51 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Copilot is just a fancy autocomplete...</title>
+        <description>&lt;p&gt;December was a very &lt;strong&gt;Copilot&lt;/strong&gt; month for me. After seeing some glimpses of new capabilities at &lt;em&gt;Directions&lt;/em&gt; and more later at &lt;em&gt;Ignite&lt;/em&gt;, I decided to spend some time trying out the &lt;em&gt;“new”&lt;/em&gt; features of &lt;em&gt;GitHub Copilot&lt;/em&gt; in &lt;em&gt;Visual Studio Code&lt;/em&gt;. They’re not really new; they’ve been around for a while. I just never used them, as I thought they were &lt;strong&gt;not useful for AL development.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Boy was I wrong…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Copilot is no longer just a fancy autocomplete…&lt;/em&gt; &lt;strong&gt;&lt;em&gt;it has become much more!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I didn’t want to get my hopes up too much with &lt;em&gt;AL&lt;/em&gt;, so I started testing everything out with more &lt;em&gt;mature&lt;/em&gt; languages like &lt;em&gt;C#&lt;/em&gt; and &lt;em&gt;TypeScript&lt;/em&gt;, but the more I tried the new features with &lt;em&gt;AL&lt;/em&gt;, the more I was convinced that I needed to start sharing that &lt;strong&gt;autocomplete is no longer the only useful part of Copilot!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;They’ve now also introduced a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/about-github-copilot-free&quot;&gt;free tier for GitHub Copilot&lt;/a&gt;.&lt;/em&gt;&lt;/strong&gt; This means everyone can now &lt;em&gt;“just try it”&lt;/em&gt;, without any commitments!&lt;/p&gt;
+
+&lt;p&gt;For everyone who’s going to try Copilot out, or has been using it for a while, I wanted to share a few &lt;strong&gt;very concrete examples&lt;/strong&gt; of how I’ve been using features like &lt;strong&gt;Inline Chat&lt;/strong&gt;, &lt;strong&gt;Copilot Edits&lt;/strong&gt;, and &lt;strong&gt;Copilot Chat for AL&lt;/strong&gt; (and a few for other languages), that will hopefully move you to explore more than just the &lt;em&gt;“tab, tab, tab”&lt;/em&gt; behavior of AI.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;auto-complete&quot;&gt;Auto-complete&lt;/h2&gt;
+
+&lt;p&gt;I really won’t spend much time here, this is the first use-case you’ve noticed, and it feels most natural. &lt;em&gt;Do you see a grey suggested code you like?&lt;/em&gt; A tab and it’s yours 😉&lt;/p&gt;
+
+&lt;p&gt;I use this all the time, from &lt;em&gt;procedure declaration&lt;/em&gt;, and &lt;em&gt;adding fields&lt;/em&gt;, to &lt;em&gt;commenting code&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-procedure.png&quot; alt=&quot;Auto-complete procedure declaration&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-field.png&quot; alt=&quot;Auto-complete field declaration&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you didn’t write quality ToolTips so far, then don’t expect quality ToolTips from Copilot&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-comment.png&quot; alt=&quot;Auto-complete comment&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Yeah, yeah,&lt;/em&gt; it’s not a meaningful comment, but you get the idea.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;One very important note to keep in mind is &lt;strong&gt;how Copilot knows what to suggest&lt;/strong&gt;. It looks at your open files and takes &lt;strong&gt;up to 4 files as context&lt;/strong&gt;. If you’ve got more than 4 opened, it &lt;strong&gt;&lt;em&gt;tries&lt;/em&gt;&lt;/strong&gt; to do its best to take something, which is not always the most appropriate file. So, if you want to have &lt;strong&gt;better Copilot suggestions&lt;/strong&gt;, close the unrelated tabs and &lt;strong&gt;only keep the relevant ones open.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I was used to having &lt;em&gt;tens of files opened&lt;/em&gt;, so I needed to get used to &lt;em&gt;right-clicking&lt;/em&gt; the tabs a lot and closing anything that was no longer relevant.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/close-tab.png&quot; alt=&quot;Close tabs&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The autocomplete is something you’ll discover immediately, and even this feature alone saves enough time to fully justify the &lt;em&gt;20$&lt;/em&gt; price tag of the &lt;em&gt;Pro&lt;/em&gt; version.&lt;/p&gt;
+
+&lt;p&gt;The most interesting thing about autocomplete though? It’s &lt;strong&gt;&lt;a href=&quot;https://githubnext.com/projects/copilot-next-edit-suggestions/&quot;&gt;what’s coming to it next!&lt;/a&gt;&lt;/strong&gt; Awesome feature, can’t wait for it to be released.&lt;/p&gt;
+
+&lt;p&gt;Anyway, let’s move on.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;copilot-edits&quot;&gt;Copilot edits&lt;/h2&gt;
+
+&lt;p&gt;In my opinion, &lt;strong&gt;this is the game changer!&lt;/strong&gt; This is the feature that &lt;strong&gt;turns coding into a conversation.&lt;/strong&gt; A very brief description of it is a chatbot, that won’t only suggest you a code snippet that you should paste somewhere but goes in and &lt;em&gt;modifies&lt;/em&gt; your files.&lt;/p&gt;
+
+&lt;p&gt;I first used it with a &lt;em&gt;C#&lt;/em&gt; project, and &lt;strong&gt;I was blown away!&lt;/strong&gt; I was working on some old code I wrote a year ago, and I asked Copilot to apply &lt;em&gt;best practices&lt;/em&gt;. Within a few seconds my code was much more readable, had safe &lt;em&gt;typecasting&lt;/em&gt;, used &lt;em&gt;HashSets&lt;/em&gt; instead of &lt;em&gt;Lists&lt;/em&gt;, and was just generally better code than I would ever write on my own. Devs that work with C# daily would still run circles around me as I &lt;em&gt;“craft”&lt;/em&gt; my prompts, but &lt;strong&gt;I made much better progress than I could without it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/csharp.png&quot; alt=&quot;Apply best practices to C# code&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Later I started playing with some &lt;em&gt;TypeScript&lt;/em&gt;. I have very little knowledge of TypeScript, and it would probably take me days to learn the basics of &lt;em&gt;React&lt;/em&gt; on top. But &lt;strong&gt;within a few hours&lt;/strong&gt;, I was able to make an Azure DevOps extension in TypeScript that allows me to visualize Page Scripting yaml files directly in DevOps. It was such a fun journey. More on that in a separate post one day! :P&lt;/p&gt;
+
+&lt;div style=&quot;display: flex; justify-content: space-between; gap: 10px;&quot;&gt;
+    &lt;img src=&quot;/images/copilotintro/pagescript-raw.png&quot; alt=&quot;Page Scripting YAML in raw view&quot; style=&quot;width: 48%;&quot; /&gt;
+    &lt;img src=&quot;/images/copilotintro/pagescript-pretty.png&quot; alt=&quot;Page Scripting YAML in pretty view&quot; style=&quot;width: 48%;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;Okay, okay, Tine, &lt;strong&gt;everything works great with C# and TypeScript&lt;/strong&gt;, we’re here for AL, &lt;strong&gt;does it work with AL?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;It does! And wonderfully so!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Of course, not to the extent that it works with &lt;em&gt;C#&lt;/em&gt;. You won’t get any meaningful best practices applied in &lt;em&gt;AL&lt;/em&gt;. We still have the same issue of &lt;strong&gt;&lt;em&gt;“There’s not enough AL data to train these models”&lt;/em&gt;&lt;/strong&gt;. But here are two very important parts that make &lt;strong&gt;Copilot Edits work so well for AL.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First, you can &lt;strong&gt;&lt;em&gt;select a different LLM model&lt;/em&gt;&lt;/strong&gt; to power the code generation. &lt;em&gt;Autocomplete&lt;/em&gt; is powered by &lt;strong&gt;&lt;em&gt;GPT-4o&lt;/em&gt;&lt;/strong&gt;, which is &lt;em&gt;“meh”&lt;/em&gt; for &lt;em&gt;AL&lt;/em&gt;, but in &lt;em&gt;Copilot Edits&lt;/em&gt;, you can switch between models.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/models.png&quot; alt=&quot;Different models in Copilot Edits&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Claude 3.5 Sonnet is so much better when it comes to AL.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Why? I have no clue.&lt;/em&gt; But it just is. So, if you’re going to play with Edits (or Chat and Inline) for &lt;em&gt;AL&lt;/em&gt;, &lt;strong&gt;&lt;em&gt;switch to Claude immediately!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you don’t see Claude, you have to enable it in your &lt;a href=&quot;https://github.com/settings/copilot&quot;&gt;GitHub settings&lt;/a&gt; (or if you’re getting your license through an organization, the organization admin has to enable it for you).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A better model is just part of the story though. The second part is &lt;strong&gt;&lt;em&gt;“limited scope”&lt;/em&gt;&lt;/strong&gt;. I mentioned in the auto-complete part that it will look at &lt;em&gt;up to 4 open files&lt;/em&gt; and try to give you a good suggestion. Well, with Edits &lt;strong&gt;&lt;em&gt;you are in complete control of the context&lt;/em&gt;&lt;/strong&gt; that the model receives.&lt;/p&gt;
+
+&lt;p&gt;You add files you’d like the model to consider to the working set. Either by &lt;em&gt;dragging and dropping&lt;/em&gt; them or by clicking &lt;em&gt;“add files”&lt;/em&gt;. Once you have files in the working set, those are the &lt;em&gt;only files that the model will focus on.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;Okay, enough theory,&lt;/em&gt; let me show you &lt;strong&gt;how I’ve used Edits for some AL workloads.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A bit of a backstory.&lt;/p&gt;
+
+&lt;p&gt;We were recently working with &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://wair.ai/&quot;&gt;Wair&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, a partner that has a backend service for &lt;strong&gt;AI inventory predictions&lt;/strong&gt;. They wanted to make life easier for ISVs and VARs in the world of BC who would want to integrate a BC solution with their backend system.&lt;/p&gt;
+
+&lt;p&gt;Usually, each partner would have to develop logic that &lt;em&gt;authenticates&lt;/em&gt; against the backend, &lt;em&gt;builds&lt;/em&gt; the HTTP request, and then &lt;em&gt;sends&lt;/em&gt; the request in the correct format. To make life easier we built a library app that introduces a set of temporary tables that match the &lt;strong&gt;HTTP request payload&lt;/strong&gt;, and a set of codeunits that turn these tables into &lt;em&gt;JSON payloads&lt;/em&gt; and send the request to the correct &lt;em&gt;endpoint&lt;/em&gt;. That way, the BC partner needs to insert a record in the table and call a procedure with that table. &lt;strong&gt;That’s it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can imagine that when the backend introduces a new endpoint, we want to add new tables and codeunits to support it.&lt;/p&gt;
+
+&lt;p&gt;So, I tried if I could add a table with &lt;em&gt;Edits&lt;/em&gt; that would follow all the conventions we have in other tables.&lt;/p&gt;
+
+&lt;p&gt;In this case, &lt;strong&gt;Brand is the new endpoint&lt;/strong&gt; I want to support. I create a new Brand.Table.al file (I’ve noticed &lt;em&gt;Copilot&lt;/em&gt; sometimes struggles with creating files, so I prefer to create them on my own and let Copilot fill them in), and pull it in the working set. I added one of the &lt;strong&gt;existing tables&lt;/strong&gt;, so Copilot knows how I want to have it &lt;strong&gt;structured&lt;/strong&gt;, and here comes the prompt:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Create a Brand table with brand ID, code, and description. It should follow the structure of the Category table.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Seconds later&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-table.png&quot; alt=&quot;Copilot Edits with Table&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Everything on the left side was just generated. &lt;strong&gt;Of course, it struggles with Object IDs.&lt;/strong&gt; No one likes object IDs. Not even Copilot! :D&lt;/p&gt;
+
+&lt;p&gt;But you can see that in seconds I have a table with the &lt;em&gt;namespace&lt;/em&gt;, &lt;em&gt;properties&lt;/em&gt; that we use, and even a &lt;em&gt;check for non-empty code&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;You could say &lt;strong&gt;&lt;em&gt;“Yeah, but that’s a simple example”&lt;/em&gt;&lt;/strong&gt;. Fair, but I’d argue the &lt;strong&gt;&lt;em&gt;easy and boring parts are the best ones to automate.&lt;/em&gt;&lt;/strong&gt; Yes, you could &lt;em&gt;copy-paste&lt;/em&gt; the other table and change a few things until it fits your new use case, but &lt;strong&gt;a)&lt;/strong&gt; you’re bound to miss something, &lt;strong&gt;b)&lt;/strong&gt; you’ll still be slower, and &lt;strong&gt;c)&lt;/strong&gt; wouldn’t you rather spend your time on something else?  Who wants to work on boring stuff anyway?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I suggest you always &lt;strong&gt;&lt;em&gt;finish the Edits session&lt;/em&gt;&lt;/strong&gt; when you’re done with those files and open a new one. &lt;strong&gt;&lt;em&gt;LLM models operate on a limited context window&lt;/em&gt;&lt;/strong&gt;, and even though we hear about context windows in the millions of tokens, anything &lt;strong&gt;&lt;em&gt;above ~8k tokens&lt;/em&gt;&lt;/strong&gt; starts to give &lt;strong&gt;&lt;em&gt;diminishing results&lt;/em&gt;&lt;/strong&gt;, so it’s best to start a new session every time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-close.png&quot; alt=&quot;Copilot Edits - Close session&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Anyway, let me continue with the example of what else I &lt;em&gt;“made in seconds”&lt;/em&gt;. We now have the table for our new endpoint. We need a codeunit that will &lt;em&gt;transform&lt;/em&gt; the content of this &lt;strong&gt;table into a JSON payload&lt;/strong&gt; and call the appropriate &lt;em&gt;endpoint&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ll again create an empty file where I want my codeunit for handling the &lt;em&gt;Brand API&lt;/em&gt; to be created:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/codeunit-empty.png&quot; alt=&quot;Empty Codeunit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This time, I’m pulling in my &lt;em&gt;empty file&lt;/em&gt;, my &lt;em&gt;existing codeunit&lt;/em&gt;, and the &lt;em&gt;table we just created&lt;/em&gt;, so Copilot knows what properties are available for brands. The prompt is straightforward&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/codeunit-prompt.png&quot; alt=&quot;Copilot Edits prompt for Codeunit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And a second later, boom, a &lt;strong&gt;codeunit that builds the payload and sends the request&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-codeunit.png&quot; alt=&quot;Copilot Edits with Codeunit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The important part here is that &lt;strong&gt;&lt;em&gt;I passed a similar implementation as part of the context.&lt;/em&gt;&lt;/strong&gt; Out of curiosity, I tried a similar prompt &lt;strong&gt;without&lt;/strong&gt; including the Category API Handler. I was still &lt;strong&gt;pleasantly surprised&lt;/strong&gt; by the result:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-codeunit-raw.png&quot; alt=&quot;Copilot Edits with Raw Codeunit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It doesn’t follow the structure I need for this project, but &lt;strong&gt;it knows how HTTP requests are built and sent in AL.&lt;/strong&gt; This would still be a cool start if I needed to build my first handler that I could later spread across other tables.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, &lt;strong&gt;tables?&lt;/strong&gt; &lt;em&gt;Check.&lt;/em&gt; &lt;strong&gt;Codeunits?&lt;/strong&gt; &lt;em&gt;Check.&lt;/em&gt; &lt;strong&gt;Pages?&lt;/strong&gt; &lt;em&gt;Eh, trust me, it works, I don’t want to make more screenshots.&lt;/em&gt; &lt;strong&gt;What about tests?&lt;/strong&gt; &lt;em&gt;Same principle.&lt;/em&gt; Do you have similar tests? Then yes. Look:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-tests.png&quot; alt=&quot;Copilot Edits with Tests&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;These tests worked because &lt;strong&gt;the overall structure was very similar between the existing objects&lt;/strong&gt; and the new ones. But testing can really become a breeze. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/vjeko&quot;&gt;Vjeko&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; had an awesome session on it at &lt;strong&gt;Directions&lt;/strong&gt;, and hopefully, he’ll do an extended version at &lt;strong&gt;&lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC Tech Days&lt;/a&gt;&lt;/strong&gt;. He’s been preaching &lt;strong&gt;Interfaces as a way of truly testing your code in isolation&lt;/strong&gt; for a few years now, and with Copilot, most of those &lt;strong&gt;tests can now be generated.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;But here’s the catch.&lt;/em&gt;&lt;/strong&gt; You have to use &lt;strong&gt;interfaces&lt;/strong&gt; in your code. Your procedures have to have a &lt;strong&gt;single responsibility&lt;/strong&gt;. Your files have to be &lt;strong&gt;small&lt;/strong&gt;. To get the most out of &lt;em&gt;AI&lt;/em&gt;, your code should be &lt;strong&gt;SOLID&lt;/strong&gt;. But you should be following &lt;em&gt;SOLID&lt;/em&gt; principles for your own sake anyway, so take this as another nudge towards spending more time on writing &lt;em&gt;SOLID&lt;/em&gt; code if you haven’t started already.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I know not everything is a &lt;strong&gt;greenfield project&lt;/strong&gt; and you sometimes have to deal with big codeunits. Here are two prompts that I’ve used on legacy code with Edits&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Move global procedures to local&lt;/em&gt;&lt;br /&gt;
+It analyses all the global variables and moves them to procedures if they’re not used anywhere else.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Extract procedure X to codeunit Y&lt;/em&gt;&lt;br /&gt;
+Unlike a simple extraction, it will also add a codeunit variable in the local scope and replace the call with the codeunit’s procedure call.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Both will still start to &lt;strong&gt;take too long&lt;/strong&gt; if your files go &lt;strong&gt;beyond 500 LoC&lt;/strong&gt;, so please, for the sake of AI, keep your files small :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Even in perfect conditions, Copilot may sometimes take long or even get stuck. It happens, it’s best to &lt;strong&gt;accept it&lt;/strong&gt;, stop the execution, discard the changes, and try again:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-stop.png&quot; alt=&quot;Copilot Edits Stop&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;This section is getting long&lt;/em&gt;; we have to move on. But I really am excited about this feature, it brings so much joy to me when I get to &lt;em&gt;blitz through code&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Coding is the boring part, it’s the problem-solving that’s the fun part.&lt;/em&gt;&lt;/strong&gt; That’s also why I don’t believe &lt;strong&gt;AI is replacing devs&lt;/strong&gt;, it’s just helping with the boring parts…&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at more incremental edits next.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;inline-chat&quot;&gt;Inline Chat&lt;/h2&gt;
+
+&lt;p&gt;This one was available for a while, but I never really found a use case for it that I’d like. Well, now I have a couple, so let me give you some ideas.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;add-comments&quot;&gt;Add comments&lt;/h4&gt;
+
+&lt;p&gt;I’m right now working on a &lt;strong&gt;legacy project&lt;/strong&gt;. &lt;em&gt;Large files&lt;/em&gt;, not much new is created, it’s about &lt;em&gt;maintaining the existing code&lt;/em&gt;. In the days of &lt;em&gt;NAV&lt;/em&gt;, we didn’t have the &lt;em&gt;internal&lt;/em&gt; access modifier, so everything was either &lt;em&gt;public&lt;/em&gt; or &lt;em&gt;global&lt;/em&gt;. The &lt;strong&gt;problem with global&lt;/strong&gt; is that you can’t change a thing, as it’s a &lt;strong&gt;breaking change&lt;/strong&gt;, so on this project, we decided to make all procedures internal. If a procedure needs to be public, it should have &lt;strong&gt;XML documentation&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, you start with &lt;em&gt;three slashes&lt;/em&gt; to get the docs snippet&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-snippet.png&quot; alt=&quot;Inline Chat - Comments Snippet&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You accept it, but then you see this: 😮&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-docs-empty.png&quot; alt=&quot;Inline Chat - Empty XML Document&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Well, that’s going to be boring…&lt;/em&gt; The names are self-explanatory, but we agreed on what we agreed, and I have to fill in all the parameters. &lt;em&gt;If I try to autocomplete this, I’ll tab for a while…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ctrl + i to the rescue!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-docs-full.png&quot; alt=&quot;Inline Chat - Full XML Documentation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You could also select the whole procedure and prompt with &lt;strong&gt;&lt;em&gt;“/doc”&lt;/em&gt;&lt;/strong&gt;, but I found this way to give me better results.&lt;/p&gt;
+
+&lt;p&gt;Am I super proud of this comment? No, but hey, &lt;strong&gt;legacy has better fires we can fight.&lt;/strong&gt; :D&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;subscribe-to-events&quot;&gt;Subscribe to events&lt;/h4&gt;
+
+&lt;p&gt;Subscribing to events is something &lt;strong&gt;very common&lt;/strong&gt; for an AL developer. Here’s how I’d go about &lt;strong&gt;&lt;em&gt;before Copilot.&lt;/em&gt;&lt;/strong&gt; Let’s say I’m extending &lt;em&gt;Sales-Post&lt;/em&gt;. I’d first find the event I like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/sales-post-event.png&quot; alt=&quot;Event in Sales - Post codeunit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, in my subscriber codeunit, I’d use the &lt;strong&gt;&lt;em&gt;eventsub&lt;/em&gt;&lt;/strong&gt; snippet:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/event-subscriber-snippet.png&quot; alt=&quot;Event Subscriber snippet&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Start filling out all the parameters…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-1.png&quot; alt=&quot;Fill the codeunit in the subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Go back to the &lt;em&gt;Sales-Post&lt;/em&gt; codeunit and copy the event name…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-2.png&quot; alt=&quot;Fill the event name in the subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Remove element name, think for a second about skipping the event on missing permissions or license, but then just put &lt;strong&gt;false&lt;/strong&gt;, because hey, I always put false…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-3.png&quot; alt=&quot;Fill remaining parameters in the subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Go back to Sales-Post and copy the signature of the event publisher…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-4.png&quot; alt=&quot;Add Event signature to subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And now finally, I can &lt;em&gt;add my logic&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;I mean, it’s &lt;strong&gt;not the slowest process&lt;/strong&gt; in the world, but here’s my &lt;strong&gt;new alternative.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I still find the event publisher, but I immediately copy the event signature, go to my codeunit, press &lt;strong&gt;Ctrl + i&lt;/strong&gt; and ask for a subscriber&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-subscribe.png&quot; alt=&quot;Prompt Copilot for a subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Seconds later…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-subscribe-generated.png&quot; alt=&quot;Copilot generated subscriber&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is now my preferred way!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;add-fields&quot;&gt;Add fields&lt;/h4&gt;
+
+&lt;p&gt;I mentioned earlier that Edits start to &lt;strong&gt;break down on large files.&lt;/strong&gt; I try to keep them &lt;strong&gt;sub-300 LoC.&lt;/strong&gt; But that’s not always an option, so Inline Chat helps in those cases. I use it for adding multiple fields:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-fields.png&quot; alt=&quot;Inline Chat - Add Fields&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Perfect? No. Faster? Yup.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A few more prompts that I occasionally use&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Forward slash&lt;/em&gt;&lt;br /&gt;
+a very lazy way to switch all the pasted paths from backslashes to forward slashes as I’d otherwise have to escape them in JSON files 😅&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Add label for regex that matches 123-1414-2124-223&lt;/em&gt;&lt;br /&gt;
+Quickly get regex patterns that match the validations I’m looking for&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;chat&quot;&gt;Chat&lt;/h2&gt;
+
+&lt;p&gt;This one I admit I don’t use as much for AL, but it’s quite useful for other languages. You can probably tell that &lt;strong&gt;I love Copilot Edits.&lt;/strong&gt; But Edits want to implement something &lt;strong&gt;too quickly.&lt;/strong&gt; Like that junior developer that wants to code before I’m &lt;em&gt;halfway through my sentence…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s when I turn to chat as a starting point. I discuss what I want to do, and &lt;strong&gt;when I’m happy with the suggested code, I pass that suggestion to Edits&lt;/strong&gt; so it gets added.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/chat-edits.png&quot; alt=&quot;Pass Chat Context to Edits&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Edits will take the conversation as context and will apply the changes in the necessary files. Chat is a nice &lt;em&gt;“safeguard”&lt;/em&gt; when I’m not completely sure how I want to solve the problem.&lt;/p&gt;
+
+&lt;p&gt;It’s also useful when the file is &lt;strong&gt;too big for Edits&lt;/strong&gt; (&amp;gt; 500 Loc), as I can always copy-paste the suggested snippet into the correct place.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;a-few-final-nuggets&quot;&gt;A few final nuggets&lt;/h2&gt;
+
+&lt;p&gt;Here are a few more tiny notes that can help you make the most out of &lt;strong&gt;GitHub Copilot:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;commit-message&quot;&gt;Commit message&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/commit-message.png&quot; alt=&quot;Suggest commit message&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Generate commit messages for staged changes.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;rename&quot;&gt;Rename&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotintro/rename.png&quot; alt=&quot;Suggest names&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Renaming suggestions for just about everything that can be renamed&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;different-models&quot;&gt;Different models&lt;/h4&gt;
+
+&lt;p&gt;If you’re only working with AL, &lt;strong&gt;stick to Claude.&lt;/strong&gt; If you’re working with other languages, here’s how I see and choose models&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Claude:&lt;/em&gt;&lt;/strong&gt; Great for generating new code, but gets “drunk” quickly if there’s too much context and starts suggesting weird things&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;o1:&lt;/em&gt;&lt;/strong&gt; Great for reviewing existing code. It takes longer and there’s a rate limit after which you have to wait for some time before using o1 again&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;GPT 4o:&lt;/em&gt;&lt;/strong&gt; fastest responses but seems to shoot from the hip a lot. Less accurate results with complex requests.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;o1-mini:&lt;/em&gt;&lt;/strong&gt; Somewhere between o1 and GPT 4o, It’s faster than o1, and better at reviewing code than GPT 4o. I usually use it when I hit the rate limit of o1.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Gemini 1.5:&lt;/em&gt;&lt;/strong&gt; No idea yet, I’m still waiting for it to be released&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;free-vs-pro-tier&quot;&gt;Free vs Pro Tier&lt;/h4&gt;
+
+&lt;p&gt;The &lt;em&gt;free tier&lt;/em&gt; right now gives you&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Access to &lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt; models&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;2000&lt;/em&gt; Code completions per month&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;50&lt;/em&gt; chats per month (edits and chat count towards the same limit)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In my opinion, that’s enough for you to test these features out if they work for you. But as I mentioned at the beginning, even the &lt;strong&gt;autocomplete brings enough value to AL developers&lt;/strong&gt; that it’s worth the 20$ for a Pro license.&lt;/p&gt;
+
+&lt;p&gt;Pro has &lt;em&gt;unlimited completions&lt;/em&gt; and chats (except the o1 rate limit)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;quick-recap&quot;&gt;Quick Recap&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Copilot Edits&lt;/em&gt;&lt;/strong&gt; – Best for large-scale code changes, refactoring, and generating new files.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Inline Chat&lt;/em&gt;&lt;/strong&gt; – Great for small additions, comments, and repetitive edits.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Copilot Chat&lt;/em&gt;&lt;/strong&gt; – A fallback when edits feel too aggressive or when brainstorming solutions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Autocomplete&lt;/em&gt;&lt;/strong&gt; – The most familiar feature – saves time with quick code suggestions (worth the Pro tier alone).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Model Tip&lt;/em&gt;&lt;/strong&gt; – Use Claude 3.5 Sonnet for AL work; it handles AL better than GPT-4o.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Scope Control&lt;/em&gt;&lt;/strong&gt; – Keep files small and focus Copilot on relevant files for better suggestions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;final-remarks&quot;&gt;Final remarks&lt;/h2&gt;
+
+&lt;p&gt;This was a very long post. But that’s because there’s so much to say about this &lt;strong&gt;awesome tool&lt;/strong&gt; that we have. I honestly believe it’s the &lt;strong&gt;next big thing.&lt;/strong&gt; Then again, I’ve been an enthusiast for a while :P&lt;/p&gt;
+
+&lt;p&gt;Anyway, I’m playing with the idea of &lt;strong&gt;going deeper into this topic&lt;/strong&gt; at some conferences this year. &lt;em&gt;Share more examples, show more pitfalls, and explain more of the under-the-hood parts.&lt;/em&gt; What do you think? I’d love to know your opinion. You can let me know on &lt;a href=&quot;https://www.linkedin.com/in/tinestaric/&quot;&gt;LinkedIn&lt;/a&gt;, &lt;a href=&quot;https://bsky.app/profile/tinestaric.bsky.social&quot;&gt;BlueSky&lt;/a&gt;, or &lt;a href=&quot;https://twitter.com/TineStaric&quot;&gt;X&lt;/a&gt;!&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 03 Jan 2025 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Trigger Sequence in AL</title>
@@ -1215,120 +1575,6 @@ Let’s take the same List example as last time. We know that &lt;strong&gt;both
         <pubDate>Mon, 26 Feb 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>My MB-820 Experience and why you shouldn&apos;t worry (that much)</title>
-        <description>&lt;p&gt;Last Friday I took the &lt;strong&gt;MB-820&lt;/strong&gt;. I wanted to do it as soon as possible. I guess I wanted to prove to myself that the years spent working as a developer were enough preparation to pass this certification.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Did I pass? I don’t know.&lt;/em&gt; More on that later.&lt;/p&gt;
-
-&lt;p&gt;But as I was sharing my experience with my colleagues who are planning to take it as well, I realized a lot of worries come from &lt;strong&gt;not knowing how the exam process works&lt;/strong&gt;. The point of this post is not to leak questions, I don’t think there’s a point in memorizing questions. It’s more about explaining the process, how you take the exam, what can you expect, and what style of questions can you expect.&lt;/p&gt;
-
-&lt;p&gt;If you’ve taken any other MS exam, you’ll already know most of these things. But I believe for a lot of BC Developers, this will be the first certification they’ll attempt.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;remember&quot;&gt;Remember!&lt;/h3&gt;
-&lt;p&gt;I’ll repeat this at the end, but my takeaway is, that an experienced developer, that worked on a wider set of projects &lt;strong&gt;should be able to pass this exam with a few days of preparation&lt;/strong&gt;. So go over some areas you’re uncertain about, and most importantly, &lt;strong&gt;trust yourself&lt;/strong&gt;. You’ve done most of the things they’re asking you about, now you just have to &lt;strong&gt;show it to them&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;exam-environment&quot;&gt;Exam Environment&lt;/h3&gt;
-
-&lt;p&gt;You’ll take the exam through Pearson VUE. You can either take it &lt;strong&gt;in-person&lt;/strong&gt; or &lt;strong&gt;online&lt;/strong&gt;. I tried both. I took the MB-800 in person, and MB-820 online. The experience is more or less the same. The in-person option did make me less worried about anything going wrong during the exam, but Online allows much more flexibility around when you can take the exam.&lt;/p&gt;
-
-&lt;p&gt;To take the exam online, you’ll download an app from their site and you’ll have to ensure that the room you’re in has no distracting factors (monitors and TVs need to be off, no books, anything that could be considered “cheating”). You’ll have to take pictures of the front, back, and sides of your exam area. Don’t worry, &lt;strong&gt;the app guides you through everything&lt;/strong&gt;. Additionally, your PC shouldn’t be running any additional apps. You can read more about it &lt;a href=&quot;https://learn.microsoft.com/en-us/credentials/certifications/online-exams&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;exam-style&quot;&gt;Exam Style&lt;/h3&gt;
-&lt;p&gt;When you start the exam, you’ll have all the exam rules written out, take your time to read them, this doesn’t take away from your exam time yet. Once the actual exam starts, you’ll have &lt;strong&gt;2 hours to finish it&lt;/strong&gt;. My take was, that 2 hours is &lt;strong&gt;enough time&lt;/strong&gt;, to comfortably go through all questions and return to the ones I found iffy.&lt;/p&gt;
-
-&lt;p&gt;The exam has &lt;strong&gt;3 sections of questions&lt;/strong&gt;. Within each section, you can always move back and forth between questions. So if you’re unsure about some, you can move forward to the next one, and return to it later. However, &lt;strong&gt;once you leave a section, you will not be able to return to it anymore&lt;/strong&gt;. The app lets you know of that, so don’t worry about accidentally leaving a section.&lt;/p&gt;
-
-&lt;p&gt;In my case, the sections were split into 8/6/42 questions, but this might change, the exam is in Beta after all. The first two sections were more scenario-based. &lt;em&gt;“The customer calls in with this and that problem, what do you do?”&lt;/em&gt;. The last section was more “to the point”, you have a snippet of code, what you have to change, or what property you use for this and that purpose.&lt;/p&gt;
-
-&lt;p&gt;Now you might think &lt;em&gt;“Ugh, are we really going to get questions that we could easily google?!”&lt;/em&gt;. Yes, yes we will.&lt;/p&gt;
-
-&lt;p&gt;However, a hugely important detail that you have to keep in mind is, that since August last year, &lt;strong&gt;you can use MS Learn during all “role-based” exams!&lt;/strong&gt; You can read about it &lt;a href=&quot;https://techcommunity.microsoft.com/t5/microsoft-learn-blog/introducing-a-new-resource-for-all-role-based-microsoft/ba-p/3500870&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;you-can-use-ms-learn-during-the-exam&quot;&gt;You can use MS Learn during the exam!&lt;/h3&gt;
-&lt;p&gt;How that works during the exam is, that you have a button at the bottom of the screen that says MS Learn. You click it, and it &lt;strong&gt;opens a web page side-by-side to your exam&lt;/strong&gt; and you can freely search through it while answering your questions. Keep in mind, that you won’t be able to leave the MS Learn website. So if documentation points to GitHub, that link won’t work.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/mb820/microsoft-learn-1.png&quot; alt=&quot;MS Learn Button&quot; /&gt;
-&lt;img src=&quot;/images/mb820/microsoft-learn-2.png&quot; alt=&quot;MS Learn side-by-side&quot; /&gt;
-&lt;br /&gt;
-&lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;So no need to memorize all available properties and triggers! &lt;em&gt;Yaaay!&lt;/em&gt; Thank you MS, now I’m more forgiving of »Googleable questions«. But if you’re like me, and you’ve always searched through MS Docs using Google, then take a minute to figure out how to search effectively using the Search option in Docs. That’s the only search option you’ll have. &lt;a href=&quot;https://twitter.com/KarolakNatalie&quot;&gt;Natalie&lt;/a&gt; has a good &lt;a href=&quot;https://nataliekarolak.wordpress.com/2023/09/05/bc-docs-search-vs-filter-by-title/&quot;&gt;post&lt;/a&gt; about searching docs effectively.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Be careful though&lt;/strong&gt;. MS Learn is a great help, but it’s not a substitute for exam prep. If you try to find the answer to every question in MS Learn, you can easily &lt;strong&gt;run out of the 2 hours&lt;/strong&gt; allotted for the exam.&lt;/p&gt;
-
-&lt;p&gt;I’ll add here, that when I tried to close the MS Learn window, my whole exam crashed. But you can always message your proctor, and they simply restarted my exam from the last question I attempted. I didn’t lose any time due to the crash. This is not to scare you into not using MS Learn, but to emphasize, that even if something goes wrong, &lt;strong&gt;don’t worry, proctors are there to help you.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;question-topics-and-types&quot;&gt;Question Topics and Types&lt;/h3&gt;
-
-&lt;p&gt;The questions do cover a wide area of topics, &lt;strong&gt;from telemetry, KQL, AppSource submissions, and ContainerHelper, to actual AL objects, data types, and permission sets&lt;/strong&gt;. &lt;a href=&quot;https://www.linkedin.com/in/alberto-soben-a91090162/&quot;&gt;Alberto&lt;/a&gt;  did a brilliant job &lt;strong&gt;attaching various links for each topic&lt;/strong&gt; that MS specified can be included in the exam. You can find the full list &lt;strong&gt;&lt;a href=&quot;https://businesscentralgeek.com/business-central-developer-certification-ultimate-guide&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;When I was preparing, I went through exam areas and marked all where I didn’t feel comfortable. I then followed the MS Learning Paths covering those areas. Every learning path ends with a &lt;strong&gt;»Check your knowledge«&lt;/strong&gt; which gives you a feeling of what kind of questions to expect from that area.&lt;/p&gt;
-
-&lt;p&gt;The questions come in 5 types:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Multiple choice with a single correct answer&lt;/li&gt;
-  &lt;li&gt;Multiple choice with multiple correct answers&lt;/li&gt;
-  &lt;li&gt;Snippet where you fill in the blanks from a selection&lt;/li&gt;
-  &lt;li&gt;A selection of answers in the left column, and you have to select the correct answers and put them in order in the right column&lt;/li&gt;
-  &lt;li&gt;A Yes/No question&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The exam always specifies how many answers are required. It will prevent you from selecting more answers than expected and it will notify you if you try to leave the question by selecting less than the required amount of answers. You can read more about different question types &lt;a href=&quot;https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;review-later&quot;&gt;Review later&lt;/h3&gt;
-
-&lt;p&gt;When you’re answering a question, you can mark it as »Review Later« and »Leave a Comment«. I suggest you use the Review Later one for any questions where you’re unsure about your answer. Once you get to the end of a section, you’ll get an overview of all answered, unanswered, marked as review, and marked as comment questions, and you can navigate quickly to the ones you’d like to take another look at.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/mb820/mb820-review-qst.png&quot; alt=&quot;Mark Questions&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/mb820/mb820-review-screen.png&quot; alt=&quot;Review Screen&quot; /&gt;
-&lt;br /&gt;
-&lt;em&gt;Screenshots are taken from MS Learn, not the actual exam&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Especially for people taking the Beta exam, mark the questions you are confused about and &lt;strong&gt;leave a comment for Microsoft.&lt;/strong&gt; Sure, it won’t do much for you, but at least people who are coming after you might have a better exam-taking experience.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;the-results&quot;&gt;The results&lt;/h3&gt;
-
-&lt;p&gt;For anyone reading this &lt;strong&gt;after the exam is live&lt;/strong&gt; (no longer in Beta), you will get your results &lt;strong&gt;immediately&lt;/strong&gt;, and you’ll see how well you did in each area (Describe Business Central; Install, develop, and deploy for BC; …). For anyone taking the &lt;strong&gt;Beta exam&lt;/strong&gt;, we’ll get our results &lt;strong&gt;within 10 days from the day the Certification goes live&lt;/strong&gt; (goes out of beta). We don’t have a date yet when that’s supposed to be, but since the Beta discounts are valid until the 21st of February, I expect the exam to be live &lt;strong&gt;somewhere in March&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;my-take-away&quot;&gt;My take away&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;MS Learn&lt;/strong&gt; really does help so we’re not tripping over questions that are a &lt;strong&gt;quick search away&lt;/strong&gt;. There were questions about data types I haven’t used in years, like &lt;strong&gt;XMLPorts&lt;/strong&gt;, but I could find what I needed in the documentation. Does it mean there are no “stupid” questions left? No, I was quite annoyed with some, especially the &lt;strong&gt;KQL-related&lt;/strong&gt; ones. But I left my comments, hopefully, they’ll be improved in the future. Overall, the exam was quite enjoyable for me, and I think it does try to capture development knowledge for the most part. At least it’s a &lt;strong&gt;starting point&lt;/strong&gt; that will improve and we now have a &lt;strong&gt;developer certification available&lt;/strong&gt;!&lt;/p&gt;
-
-&lt;p&gt;And again, if you’ve been in the AL world for a while now, and you’ve worked on various projects, &lt;strong&gt;you got this&lt;/strong&gt;! 
-Some preparation for areas you’re not too comfortable with, and you’re ready to go! &lt;strong&gt;Trust yourself&lt;/strong&gt;, you’ve done most of this before!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;em&gt;For anyone reading this after taking the exam, have I missed anything? Is there something else, you wish you knew before taking it? Let me know, and I’ll add it. Help the next person get certified!&lt;/em&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 01 Feb 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/my-mb-820-experience/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/my-mb-820-experience/</guid>
         
         
         <category>al</category>
