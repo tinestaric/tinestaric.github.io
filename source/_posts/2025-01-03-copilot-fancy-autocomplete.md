@@ -44,9 +44,11 @@ I was used to having *tens of files opened*, so I needed to get used to *right-c
 
 ![Close tabs](/images/copilotintro/close-tab.png) 
 
-Anyway, the autocomplete is something you’ll discover immediately, and even this feature alone saves enough time to fully justify the *20$* price tag of the *Pro* version. 
+The autocomplete is something you’ll discover immediately, and even this feature alone saves enough time to fully justify the *20$* price tag of the *Pro* version.
 
-Let’s move on.
+The most interesting thing about autocomplete though? It's **[what's coming to it next!][copilotnext]** Awesome feature, can't wait for it to be released.
+
+Anyway, let’s move on.
 
 ---
 
@@ -78,6 +80,8 @@ First, you can ***select a different LLM model*** to power the code generation. 
 ![Different models in Copilot Edits](/images/copilotintro/models.png) 
 
 ***Claude 3.5 Sonnet is so much better when it comes to AL.*** *Why? I have no clue.* But it just is. So, if you’re going to play with Edits (or Chat and Inline) for *AL*, ***switch to Claude immediately!***
+
+> **Note:** If you don't see Claude, you have to enable it in your [GitHub settings][ghcopilotsettings] (or if you're getting your license through an organization, the organization admin has to enable it for you).
 
 A better model is just part of the story though. The second part is ***“limited scope”***. I mentioned in the auto-complete part that it will look at *up to 4 open files* and try to give you a good suggestion. Well, with Edits ***you are in complete control of the context*** that the model receives.
 
@@ -181,7 +185,7 @@ This one was available for a while, but I never really found a use case for it t
 
 #### Add comments
 
-I’m right now working on a **legacy project**, *large files*, not much new is created, it’s about *maintaining the existing code*. In the days of *NAV*, we didn’t have the *internal* access modifier, so everything was either *public* or *global*. The **problem with global** is that you can’t change a thing, as it’s a **breaking change**, so on this project, we decided to make all procedures internal. If a procedure needs to be public, it should have **XML documentation**. 
+I’m right now working on a **legacy project**. *Large files*, not much new is created, it’s about *maintaining the existing code*. In the days of *NAV*, we didn’t have the *internal* access modifier, so everything was either *public* or *global*. The **problem with global** is that you can’t change a thing, as it’s a **breaking change**, so on this project, we decided to make all procedures internal. If a procedure needs to be public, it should have **XML documentation**. 
 
 So, you start with *three slashes* to get the docs snippet
 
@@ -197,7 +201,51 @@ You accept it, but then you see this: 😮
 
 ![Inline Chat - Full XML Documentation](/images/copilotintro/inline-docs-full.png) 
 
+You could also select the whole procedure and prompt with ***"/doc"***, but I found this way to give me better results.
+
 Am I super proud of this comment? No, but hey, **legacy has better fires we can fight.** :D
+
+---
+
+#### Subscribe to events
+
+Subscribing to events is something **very common** for an AL developer. Here's how I'd go about ***before Copilot.*** Let's say I'm extending *Sales-Post*. I'd first find the event I like:
+
+![Event in Sales - Post codeunit](/images/copilotintro/sales-post-event.png) 
+
+Next, in my subscriber codeunit, I'd use the ***eventsub*** snippet:
+
+![Event Subscriber snippet](/images/copilotintro/event-subscriber-snippet.png) 
+
+Start filling out all the parameters...
+
+![Fill the codeunit in the subscriber](/images/copilotintro/snippet-1.png) 
+
+Go back to the *Sales-Post* codeunit and copy the event name...
+
+![Fill the event name in the subscriber](/images/copilotintro/snippet-2.png) 
+
+Remove element name, think for a second about skipping the event on missing permissions or license, but then just put **false**, because hey, I always put false...
+
+![Fill remaining parameters in the subscriber](/images/copilotintro/snippet-3.png)
+
+Go back to Sales-Post and copy the signature of the event publisher...
+
+![Add Event signature to subscriber](/images/copilotintro/snippet-4.png)
+
+And now finally, I can *add my logic*.
+
+I mean, it's **not the slowest process** in the world, but here's my **new alternative.**
+
+I still find the event publisher, but I immediately copy the event signature, go to my codeunit, press **Ctrl + i** and ask for a subscriber
+
+![Prompt Copilot for a subscriber](/images/copilotintro/copilot-subscribe.png)
+
+Seconds later...
+
+![Copilot generated subscriber](/images/copilotintro/copilot-subscribe-generated.png)
+
+This is now my preferred way!
 
 ---
 
@@ -253,7 +301,7 @@ Renaming suggestions for just about everything that can be renamed
 
 If you’re only working with AL, **stick to Claude.** If you’re working with other languages, here’s how I see and choose models
 -	***Claude:*** Great for generating new code, but gets “drunk” quickly if there’s too much context and starts suggesting weird things
--	***o1:*** Great for reviewing existing code. It takes longer and there’s a rate limit after which you have to wait 12 hours
+-	***o1:*** Great for reviewing existing code. It takes longer and there’s a rate limit after which you have to wait for some time before using o1 again
 -	***GPT 4o:*** fastest responses but seems to shoot from the hip a lot. Less accurate results with complex requests.
 -	***o1-mini:*** Somewhere between o1 and GPT 4o, It’s faster than o1, and better at reviewing code than GPT 4o. I usually use it when I hit the rate limit of o1.
 -	***Gemini 1.5:*** No idea yet, I’m still waiting for it to be released
@@ -292,3 +340,5 @@ Anyway, I’m playing with the idea of **going deeper into this topic** at some 
 [linkedin]: https://www.linkedin.com/in/tinestaric/
 [vjeko]: https://www.linkedin.com/in/vjeko
 [bctechdays]: https://www.bctechdays.com/event
+[copilotnext]: https://githubnext.com/projects/copilot-next-edit-suggestions/
+[ghcopilotsettings]: https://github.com/settings/copilot
