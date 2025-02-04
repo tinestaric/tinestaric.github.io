@@ -5,9 +5,117 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 15 Jan 2025 10:45:51 +0200</pubDate>
-    <lastBuildDate>Wed, 15 Jan 2025 10:45:51 +0200</lastBuildDate>
+    <pubDate>Sun, 02 Feb 2025 23:35:46 +0200</pubDate>
+    <lastBuildDate>Sun, 02 Feb 2025 23:35:46 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>100 Areopa Webinars Visualized</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://areopa.academy/&quot;&gt;Areopa Webinars&lt;/a&gt;&lt;/strong&gt; just hit number &lt;strong&gt;&lt;em&gt;100&lt;/em&gt;&lt;/strong&gt;! And I used this milestone as another &lt;strong&gt;visualization side-project.&lt;/strong&gt; :P&lt;/p&gt;
+
+&lt;p&gt;If you don’t know &lt;strong&gt;Areopa&lt;/strong&gt;, the short description of it is a &lt;em&gt;YouTube channel&lt;/em&gt; of BC-related webinars that have been going strong most Mondays since &lt;strong&gt;&lt;em&gt;2019!&lt;/em&gt;&lt;/strong&gt; &lt;a href=&quot;https://www.linkedin.com/in/lvanvugt/&quot;&gt;Luc van Vugt&lt;/a&gt; leads it, but the &lt;strong&gt;&lt;em&gt;whole community&lt;/em&gt;&lt;/strong&gt; contributed to the content! Luc, if you’re reading this, you really do deserve a shoutout… You didn’t only create this huge (and still growing) collection of BC knowledge, but you’ve also setup a platform where &lt;strong&gt;&lt;em&gt;anyone&lt;/em&gt;&lt;/strong&gt; can come and share what they know with &lt;strong&gt;&lt;em&gt;everyone&lt;/em&gt;&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;Here’s why I care so much about Areopa. I’ve been very lucky to be in a position, where I get to travel to multiple conferences every year, and I listen to so many amazing sessions. It’s easy to &lt;strong&gt;stay &lt;em&gt;“up to date”&lt;/em&gt;&lt;/strong&gt; when I hear about best practices all the time, directly from the industry’s best. But &lt;strong&gt;&lt;em&gt;not everyone gets that chance&lt;/em&gt;&lt;/strong&gt;. And here’s where Areopa really excels, it brings that same level of high-quality sessions to &lt;strong&gt;&lt;em&gt;everyone! For free! Forever!&lt;/em&gt;&lt;/strong&gt; Conference sessions are great, but we &lt;strong&gt;forget&lt;/strong&gt; most of what we hear the very &lt;strong&gt;next day.&lt;/strong&gt; Areopa makes it available forever. You can always get back to a certain topic once it’s relevant to you again.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I didn’t want to just give praise to Areopa though. As I mentioned at the beginning, I used this opportunity as another &lt;strong&gt;visualization side project.&lt;/strong&gt; Back in November, after &lt;strong&gt;Ignite&lt;/strong&gt;, I came across &lt;a href=&quot;https://markmap.js.org/full#?d=gist:38520ad7809001358250f62e88695a80:2024-Ignite-Book-of-News.md&quot;&gt;this visualization&lt;/a&gt; by &lt;a href=&quot;https://www.linkedin.com/in/nityan/&quot;&gt;Nitya Narasimhan&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/areopavisualized/ignite.png&quot; alt=&quot;Ignite sessions visualized&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;She grouped all Ignite sessions into groups and visualized them. I was so amazed with the concept that I knew I needed to find some time to play around with &lt;strong&gt;Markmap&lt;/strong&gt;. My initial idea was (and still is) to make a similar visualization for all sessions at &lt;strong&gt;Directions EMEA&lt;/strong&gt;, so I can have an easier time deciding what I’d like to listen to. I mean, it’s super hard to keep track of &lt;strong&gt;~200 sessions&lt;/strong&gt; otherwise…&lt;/p&gt;
+
+&lt;p&gt;I’ve started being &lt;strong&gt;more involved with Areopa&lt;/strong&gt; within the past few months. &lt;em&gt;Finding speakers, moderating webinars, and presenting my own topics,&lt;/em&gt; and as we were approaching this &lt;strong&gt;triple-digit number&lt;/strong&gt;, I realized I have no clue about half the videos available on the channel. I was thinking about how could we make this huge collection of videos &lt;strong&gt;more discoverable.&lt;/strong&gt; You can already see how this turned into a perfect opportunity to play with &lt;strong&gt;Markmap&lt;/strong&gt;. Below you’ll find the result. I invite you to explore the graph, and if any video sparks your interest, go ahead and watch it! :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;But just before I let you go, I wanted to share a few &lt;strong&gt;“fun facts”&lt;/strong&gt; that I found as I was handling the data of the videos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First video’s publish date: Jul 7, 2019&lt;/li&gt;
+  &lt;li&gt;Total number of unique speakers: 64&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;top-5-most-frequent-presenters&quot;&gt;Top 5 most frequent presenters:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/lvanvugt/&quot;&gt;Luc van Vugt&lt;/a&gt; – 13 webinars&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/tobiasfenster&quot;&gt;Tobias Fenster&lt;/a&gt; – 8 webinars&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;Arend-Jan Kauffmann&lt;/a&gt; – 6 webinars&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/ericwauters&quot;&gt;waldo&lt;/a&gt; – 6 webinars&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/dmitrykatson&quot;&gt;Dmitry Katson&lt;/a&gt; – 5 webinars&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;top-5-most-watched-webinars&quot;&gt;Top 5 most watched webinars:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtube.com/watch?v=mNgx1d7TAXQ&quot;&gt;Replicating Business Central data to Microsoft Dataverse (former CDS)&lt;/a&gt; (by &lt;a href=&quot;https://www.linkedin.com/in/andrey-baludin-9a7014191&quot;&gt;Andrey Baludin&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtube.com/watch?v=4X-tSjL0XaA&quot;&gt;Working with files in Dynamics 365 Business Central SaaS&lt;/a&gt; (by &lt;a href=&quot;https://www.linkedin.com/in/stefano-demiliani&quot;&gt;Stefano Demiliani&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtube.com/watch?v=Fjz9LgviV2Q&quot;&gt;Sync your Business Central data with Azure Data Lake&lt;/a&gt; (by &lt;a href=&quot;https://www.linkedin.com/in/bertverbeek&quot;&gt;Bert Verbeek&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtube.com/watch?v=3w018zjbUwQ&quot;&gt;Working with XML in AL&lt;/a&gt; (by &lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;Arend-Jan Kauffmann&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtube.com/watch?v=yeKRuw9MtSQ&quot;&gt;OAuth authentication with Business Central APIs&lt;/a&gt; (by &lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;Arend-Jan Kauffmann&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;most-common-topics&quot;&gt;Most common topics:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Test Automation: 16 videos&lt;/li&gt;
+  &lt;li&gt;AL: 12 videos&lt;/li&gt;
+  &lt;li&gt;DevOps: 12 videos&lt;/li&gt;
+  &lt;li&gt;Functional: 12 videos&lt;/li&gt;
+  &lt;li&gt;Power Platform: 7 videos&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Interested in what’s under these topics? Well then I won’t keep you waiting any longer, here’s the visualization. &lt;strong&gt;&lt;em&gt;Click around, explore!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;!-- Load required libraries --&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/markmap-view&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/markmap-lib&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Mindmap container --&gt;
+&lt;div id=&quot;mindmap&quot;&gt;
+  &lt;svg style=&quot;width: 100%; height: 800px&quot;&gt;&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;!-- Initialize and render mindmap --&gt;
+&lt;script&gt;
+document.addEventListener(&apos;DOMContentLoaded&apos;, async () =&gt; {
+  const { Markmap } = window.markmap;
+  
+  // Fetch markdown content
+  const response = await fetch(&apos;https://raw.githubusercontent.com/tinestaric/AreopaAnalyzer/main/data/videos_markmap.md&apos;);
+  const markdown = await response.text();
+
+  // Transform markdown to mindmap data
+  const { Transformer } = window.markmap;
+  const transformer = new Transformer();
+  const { root } = transformer.transform(markdown);
+
+  // Configure visualization options
+  const { deriveOptions } = window.markmap;
+  const jsonOptions = {
+    initialExpandLevel: 2,
+    colorFreezeLevel: 3,
+    duration: 1000,
+    spacingVertical: 10
+  };
+  const options = deriveOptions(jsonOptions);
+
+  // Create and render visualization
+  const svg = d3.select(&quot;#mindmap svg&quot;);
+  const mm = Markmap.create(svg.node(), options, root);
+});
+&lt;/script&gt;
+
+</description>
+        <pubDate>Sun, 02 Feb 2025 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2025/areopa-visualized/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2025/areopa-visualized/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Copilot is just a fancy autocomplete...</title>
@@ -1469,112 +1577,6 @@ So if we refactor the above example&lt;/p&gt;
         <pubDate>Fri, 08 Mar 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/insert-lock-timeouts/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/insert-lock-timeouts/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>Reference Parameters - var does matter</title>
-        <description>&lt;p&gt;I previously posted about &lt;a href=&quot;https://tine.staric.net/blog/2024/3-pitfalls-of-var-parameters/&quot;&gt;Pitfalls of var parameters&lt;/a&gt; and how things can go sideways if we’re not careful when using them.&lt;/p&gt;
-
-&lt;p&gt;What I wrote there in regards to marking &lt;em&gt;reference&lt;/em&gt; parameters with var was:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;Var modifiers don’t make a difference, but you should still use them to signal the intentionality of your procedure. If the procedure intends to modify the parameter, add a var in front of it, if it’s only reading data, skip it.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Now, what I wrote there still holds, regardless of using var with a reference data type parameter we’re able to make changes to it and those changes are reflected outside our local procedure. But thanks to &lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;Arend-Jan Kauffmann&lt;/a&gt; for pointing out, that that &lt;strong&gt;wasn’t the full truth&lt;/strong&gt;. Marking a reference parameter with a var or not &lt;strong&gt;actually does play a role&lt;/strong&gt;, and this post is about clarifying how and why it’s important we think about it in our &lt;strong&gt;event-driven world of extensions&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;tldr&quot;&gt;tl/dr&lt;/h3&gt;
-&lt;p&gt;When we’re passing a reference type parameter to a procedure &lt;strong&gt;without var&lt;/strong&gt;, we’re passing the &lt;strong&gt;reference&lt;/strong&gt; by value. The procedure can make all the changes to the instance it points to, however, it &lt;strong&gt;cannot change the reference so it would point to a different instance&lt;/strong&gt;. When passing the parameter &lt;strong&gt;with var&lt;/strong&gt;, we can &lt;strong&gt;also change the reference&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Okay, now that that’s out of the way, let’s go through this again, but with an example or two, to make this a bit easier to understand.
-Let’s take the same List example as last time. We know that &lt;strong&gt;both of these result in the same outcome&lt;/strong&gt;. In both cases, &lt;strong&gt;var or no var&lt;/strong&gt;, we end up with a list with &lt;strong&gt;2 items&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-add-no-var.png&quot; alt=&quot;Add to List - No var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-add-var.png&quot; alt=&quot;Add to List - var&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Let’s make these examples weirder, so we can see where &lt;strong&gt;var&lt;/strong&gt; starts making a difference.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-no-var.png&quot; alt=&quot;Change List Reference - No var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;What do you think the count is going to be here? &lt;em&gt;1? 2? 3?&lt;/em&gt; Well, let’s see…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-no-var-count.png&quot; alt=&quot;Change List Reference - Count - No var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;It’s one.&lt;/strong&gt; Before we explain again what’s happening, let’s take a look at the same example if the list parameter is marked with var:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-var.png&quot; alt=&quot;Change List Reference - var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/refparameters/ref-param-list-change-reference-var-count.png&quot; alt=&quot;Change List Reference - Count - var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This time the result is more along the lines of what we’d expect. &lt;em&gt;So why this difference in behavior?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When passing a reference type, something like a list, we’re &lt;strong&gt;not passing an actual list&lt;/strong&gt;, but only a &lt;strong&gt;reference to that list&lt;/strong&gt;. &lt;em&gt;A pointer, a location.&lt;/em&gt; Similar to having a piece of paper where the address of a house is written on. When passing it to a procedure, you’re not passing the whole house, just this &lt;em&gt;piece of paper&lt;/em&gt; with the address. So when we’re talking about passing it by reference (with var) or by value (without var), we’re talking about passing the &lt;strong&gt;reference&lt;/strong&gt; by value or by reference. In our case, this piece of paper with the address. In both cases, someone can go to the house and &lt;strong&gt;put something in&lt;/strong&gt; the house, or &lt;strong&gt;take something out&lt;/strong&gt; of it. However, if we give them the address by value (without var), we’re saying, &lt;em&gt;you can find the house here, do what you want in the house, but you &lt;strong&gt;can’t change the address&lt;/strong&gt; on this paper.&lt;/em&gt; When we pass it by reference (with var), they can also &lt;strong&gt;change the address&lt;/strong&gt; so it points to a &lt;strong&gt;different house altogether&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;And that’s what’s happening in our list example above. We got the &lt;em&gt;address&lt;/em&gt; to our List (MyList), but then we created a &lt;strong&gt;completely new list&lt;/strong&gt; (MyList2) and tried saying, &lt;em&gt;“Hey, MyList address should now point to this new list”&lt;/em&gt;. When the parameter is passed without var, we &lt;strong&gt;cannot do that&lt;/strong&gt;, hence, when the procedure finishes, MyList still &lt;strong&gt;points to the original List&lt;/strong&gt; with only 1 item (“Hello”).&lt;/p&gt;
-
-&lt;p&gt;In the second example, because MyList is &lt;strong&gt;passed with var&lt;/strong&gt;, we can change it, so that it &lt;strong&gt;points to the new List&lt;/strong&gt;, MyList2.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;em&gt;“Okay Tine, fine, I get it, but so what? I mean, who in their right mind goes and creates a new list, if they get one passed in as a parameter…”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Yeah, fair point. But keep in mind, that any procedure that &lt;strong&gt;returns a list&lt;/strong&gt; actually &lt;strong&gt;creates a new instance&lt;/strong&gt;. So it’s not that uncommon.&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-change-reference-no-var.png&quot; alt=&quot;Assign Invoices - No var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The above example &lt;strong&gt;won’t work&lt;/strong&gt;, but it will if the parameter is marked with var:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-change-reference-var.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;so will this:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-invoice-add.png&quot; alt=&quot;Assign Invoices - var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;“Fine, be mindful of how you assign to lists. Why don’t I just &lt;strong&gt;always mark reference parameters with var&lt;/strong&gt;? One less thing to worry about…”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Bad idea.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Especially when you work with events. Let me give you an example with a reference type that will make it more obvious:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-main.png&quot; alt=&quot;Interface - Main&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We have a simple procedure that sets a value, exposes the interface through an event, and then gets the value. Let’s take a look at the interface implementation:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-normal.png&quot; alt=&quot;Interface Implementation - Normal&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Simple, right?&lt;/em&gt; One procedure sets the value, and the other reads it. So let’s turn our attention to the event over there. If we expose the interface &lt;strong&gt;by value&lt;/strong&gt;, subscribers can &lt;strong&gt;only access the procedures of that interface&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-event-no-var.png&quot; alt=&quot;Interface Event - No var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On the other hand, if you expose it &lt;strong&gt;by reference&lt;/strong&gt;, a subscriber can also &lt;strong&gt;change the implementation&lt;/strong&gt; that the interface is referencing:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-event-var.png&quot; alt=&quot;Interface Event - var&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And that can lead to &lt;strong&gt;unpredictable behavior&lt;/strong&gt; for your app, especially if the new implementation does something stupid like:&lt;/p&gt;
-
-&lt;p&gt; &lt;img src=&quot;/images/refparameters/ref-param-interface-wild.png&quot; alt=&quot;Interface Implementation - Wild&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But hey, maybe that’s exactly &lt;strong&gt;what you wanted&lt;/strong&gt;. The option for subscribers to &lt;strong&gt;change the implementation&lt;/strong&gt; interface points to. So there’s no &lt;em&gt;always right&lt;/em&gt; or &lt;em&gt;always wrong&lt;/em&gt; answer here.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Now, in summary, &lt;em&gt;should you use var with reference parameters? or should you not?&lt;/em&gt; It comes down to the usual &lt;strong&gt;“It depends”&lt;/strong&gt;. What I’m hoping to achieve with this blog is for us to &lt;strong&gt;be mindful that there is a difference&lt;/strong&gt; and you should think about &lt;em&gt;“Do I want the procedure to only modify the instance of a variable, or should I let it change the reference to a completely different instance?”&lt;/em&gt; and that we don’t just &lt;strong&gt;blindly mark or not mark parameters with var&lt;/strong&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 26 Feb 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/reference-parameters-var-does-matter/</guid>
         
         
         <category>al</category>
