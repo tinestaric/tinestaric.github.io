@@ -5,13 +5,13 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 02 Feb 2025 23:35:46 +0200</pubDate>
-    <lastBuildDate>Sun, 02 Feb 2025 23:35:46 +0200</lastBuildDate>
+    <pubDate>Wed, 05 Feb 2025 10:37:30 +0200</pubDate>
+    <lastBuildDate>Wed, 05 Feb 2025 10:37:30 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>100 Areopa Webinars Visualized</title>
-        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://areopa.academy/&quot;&gt;Areopa Webinars&lt;/a&gt;&lt;/strong&gt; just hit number &lt;strong&gt;&lt;em&gt;100&lt;/em&gt;&lt;/strong&gt;! And I used this milestone as another &lt;strong&gt;visualization side-project.&lt;/strong&gt; :P&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://areopa.academy/&quot;&gt;Areopa Webinars&lt;/a&gt;&lt;/strong&gt; just hit number &lt;strong&gt;&lt;em&gt;100!&lt;/em&gt;&lt;/strong&gt; And I used this milestone as another &lt;strong&gt;visualization side-project.&lt;/strong&gt; :P&lt;/p&gt;
 
 &lt;p&gt;If you don’t know &lt;strong&gt;Areopa&lt;/strong&gt;, the short description of it is a &lt;em&gt;YouTube channel&lt;/em&gt; of BC-related webinars that have been going strong most Mondays since &lt;strong&gt;&lt;em&gt;2019!&lt;/em&gt;&lt;/strong&gt; &lt;a href=&quot;https://www.linkedin.com/in/lvanvugt/&quot;&gt;Luc van Vugt&lt;/a&gt; leads it, but the &lt;strong&gt;&lt;em&gt;whole community&lt;/em&gt;&lt;/strong&gt; contributed to the content! Luc, if you’re reading this, you really do deserve a shoutout… You didn’t only create this huge (and still growing) collection of BC knowledge, but you’ve also setup a platform where &lt;strong&gt;&lt;em&gt;anyone&lt;/em&gt;&lt;/strong&gt; can come and share what they know with &lt;strong&gt;&lt;em&gt;everyone&lt;/em&gt;&lt;/strong&gt;!&lt;/p&gt;
 
@@ -63,7 +63,7 @@
   &lt;li&gt;Power Platform: 7 videos&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Interested in what’s under these topics? Well then I won’t keep you waiting any longer, here’s the visualization. &lt;strong&gt;&lt;em&gt;Click around, explore!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Interested in what’s under these topics? Well then I won’t keep you waiting any longer, here’s the visualization. You can zoom in and out, move the graph around, and click on the nodes to expand or collapse them. &lt;strong&gt;&lt;em&gt;Click around, explore!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;!-- Load required libraries --&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7&quot;&gt;&lt;/script&gt;
