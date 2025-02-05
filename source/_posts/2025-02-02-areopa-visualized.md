@@ -7,7 +7,7 @@ categories: al
 image: /images/areopavisualized/main.webp
 ---
 
-**[Areopa Webinars][areopa]** just hit number ***100***! And I used this milestone as another **visualization side-project.** :P
+**[Areopa Webinars][areopa]** just hit number ***100!*** And I used this milestone as another **visualization side-project.** :P
 
 If you don't know **Areopa**, the short description of it is a *YouTube channel* of BC-related webinars that have been going strong most Mondays since ***2019!*** [Luc van Vugt][lucvanvugtli] leads it, but the ***whole community*** contributed to the content! Luc, if you're reading this, you really do deserve a shoutout... You didn't only create this huge (and still growing) collection of BC knowledge, but you've also setup a platform where ***anyone*** can come and share what they know with ***everyone***!
 
@@ -51,7 +51,7 @@ But just before I let you go, I wanted to share a few **"fun facts"** that I fou
   - Functional: 12 videos
   - Power Platform: 7 videos
 
-Interested in what's under these topics? Well then I won't keep you waiting any longer, here's the visualization. ***Click around, explore!***
+Interested in what's under these topics? Well then I won't keep you waiting any longer, here's the visualization. You can zoom in and out, move the graph around, and click on the nodes to expand or collapse them. ***Click around, explore!***
 
 <!-- Load required libraries -->
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
