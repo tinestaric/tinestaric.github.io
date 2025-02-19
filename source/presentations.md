@@ -6,8 +6,13 @@ permalink: /presentations/
 
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
+## 2025
+- 2025-02
+    - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islunxready]
+    - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
+
 ## 2024
-- 2024-11 **How to be a Prompt Engineer** as a sessiong at [Directions EMEA][emea24]: [presentation][emea24promptpress]
+- 2024-11 **How to be a Prompt Engineer** as a session at [Directions EMEA][emea24]: [presentation][emea24promptpress]
 - 2024-10 **Companial SofTalk: Exploring Copilot in Dynamics 365 Business Central** as a short podcast for [Companial][companialhome]: [recording][softalkairecording]
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
 - 2024-05 
@@ -114,3 +119,7 @@ Here's a list of the presentations I did through the years with attached slides,
 [softalkairecording]: https://www.youtube.com/watch?v=TwqKJhQ3qLY
 [dynamicscornerhome]: https://dynamicscorner.com/
 [dynamicscorner321recording]: https://www.dynamicscorner.com/episode-321-in-the-dynamics-corner-chair-nurture-and-empower-the-future-of-bc-and-ai-innovation/
+[islunxready]: https://www.youtube.com/watch?v=QcZM5fV44Ek
+[bccodingstream]: https://www.youtube.com/@StefanMaron
+[areopapromptengineer]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/Webinars/HowToBeAPromptEngineer-Companial.pdf
+[areopapromptengineeryt]: https://www.youtube.com/watch?v=q8xpDwjyNLY
