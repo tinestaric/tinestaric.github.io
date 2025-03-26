@@ -7,8 +7,32 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2025
-- 2025-02
-    - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islunxready]
+- 2025-06
+    - 2025-06
+        - Multiple sessions at [BC Tech Days][bctechdays]:
+            - **Copilot is just a fancy autocomplete...**
+            - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
+            - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
+    - 2025-05 
+        - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
+            - **How to be a Prompt Engineer**
+            - **Copilot is just a fancy autocomplete...**
+            - **Power Platform from the perspective of BC development**
+        - Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
+            - **How to be a Prompt Engineer**
+            - **Testing is boring... Until now!**
+    - 2025-04
+        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]
+        - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]
+    - 2025-03
+        - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
+        - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]
+        - Multiple sessions at [Days of Knowledge UK][dokuk25]:
+            - **How to be a Prompt Engineer**
+            - **Copilot is just a fancy autocomplete...**
+            - **Power Platform from the perspective of BC development** with [waldo][waldoli]
+    - 2025-02
+    - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
     - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
 
 ## 2024
@@ -119,7 +143,12 @@ Here's a list of the presentations I did through the years with attached slides,
 [softalkairecording]: https://www.youtube.com/watch?v=TwqKJhQ3qLY
 [dynamicscornerhome]: https://dynamicscorner.com/
 [dynamicscorner321recording]: https://www.dynamicscorner.com/episode-321-in-the-dynamics-corner-chair-nurture-and-empower-the-future-of-bc-and-ai-innovation/
-[islunxready]: https://www.youtube.com/watch?v=QcZM5fV44Ek
+[islinuxready]: https://www.youtube.com/watch?v=QcZM5fV44Ek
 [bccodingstream]: https://www.youtube.com/@StefanMaron
 [areopapromptengineer]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/Webinars/HowToBeAPromptEngineer-Companial.pdf
 [areopapromptengineeryt]: https://www.youtube.com/watch?v=q8xpDwjyNLY
+[colorcloud]: https://www.colorcloud.rocks/
+[doknordic25]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2025
+[dokuk25]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2025
+[waldoli]: https://www.linkedin.com/in/ericwauters
+[lucvanvugtli]: https://www.linkedin.com/in/lvanvugt/
