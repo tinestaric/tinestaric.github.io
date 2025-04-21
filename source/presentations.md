@@ -15,8 +15,8 @@ Here's a list of the presentations I did through the years with attached slides,
             - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
     - 2025-05 
         - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
-            - **How to be a Prompt Engineer**
-            - **Copilot is just a fancy autocomplete...**
+            - **How to be a Prompt Engineer**: [presentation][doknordic25promptpress]
+            - **Copilot is just a fancy autocomplete...**: [presentation][doknordic25copilotpress]
             - **Power Platform from the perspective of BC development**
         - Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
             - **How to be a Prompt Engineer**
@@ -28,9 +28,9 @@ Here's a list of the presentations I did through the years with attached slides,
         - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
         - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]
         - Multiple sessions at [Days of Knowledge UK][dokuk25]:
-            - **How to be a Prompt Engineer**
-            - **Copilot is just a fancy autocomplete...**
-            - **Power Platform from the perspective of BC development** with [waldo][waldoli]
+            - **How to be a Prompt Engineer**: [presentation][dokuk25promptpress]
+            - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
+            - **Power Platform from the perspective of BC development** with [waldo][waldoli]: [presentation][dokuk25powerpresss]
     - 2025-02
     - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
     - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
@@ -152,3 +152,8 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokuk25]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2025
 [waldoli]: https://www.linkedin.com/in/ericwauters
 [lucvanvugtli]: https://www.linkedin.com/in/lvanvugt/
+[dokuk25promptpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/HowToBeAPromptEngineer-DOKUK.pdf
+[dokuk25copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-DOKUK.pdf
+[dokuk25powerpresss]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/PowerPlatformFromThePerspectiveOfABCDeveloper-DOKUK.pdf
+[doknordic25promptpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/HowToBeAPromptEngineer-DOKUK.pdf
+[doknordic25copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-DOKUK.pdf
