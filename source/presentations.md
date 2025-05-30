@@ -14,16 +14,19 @@ Here's a list of the presentations I did through the years with attached slides,
             - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
             - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
     - 2025-05 
+        - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
+        - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
         - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
             - **How to be a Prompt Engineer**: [presentation][doknordic25promptpress]
             - **Copilot is just a fancy autocomplete...**: [presentation][doknordic25copilotpress]
-            - **Power Platform from the perspective of BC development**
+            - **Power Platform from the perspective of BC development**: [presentation][doknordic25powerpress]
         - Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
-            - **How to be a Prompt Engineer**
-            - **Testing is boring... Until now!**
+            - **How to be a Prompt Engineer**: [presentation][dm25promptpress]
+            - **Testing is boring... Until now!**: [presentation][dm25testingpress]
+            - Panel moderator: **What do F&O and BC have in common? The same mistakes made by consultants!**
     - 2025-04
-        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]
-        - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]
+        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]: [presentation][colorcloudpowerpress]
+        - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]: [presentation][directionsnacopilotpress]
     - 2025-03
         - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
         - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]
@@ -156,4 +159,12 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokuk25copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-DOKUK.pdf
 [dokuk25powerpresss]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/PowerPlatformFromThePerspectiveOfABCDeveloper-DOKUK.pdf
 [doknordic25promptpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/HowToBeAPromptEngineer-DOKUK.pdf
-[doknordic25copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-DOKUK.pdf
+[doknordic25copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-DOKNordic.pdf
+[doknordic25powerpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DOK/PowerPlatformFromThePerspectiveOfABCDeveloper-DOKNordic.pdf
+[dugkenya]: https://www.linkedin.com/posts/activity-7326698806446583808-sjNL?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACLigK8B1d5zenhN3aNEAnW6bNGFZZNzj_E
+[dugkenyacopilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/Webinars/Copilot%20is%20just%20a%20fancy%20Autocomplete-Kenya.pdf
+[dm25promptpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DynamicsMinds/HowToBeAPromptEngineer-DynamicsMinds.pdf
+[dm25testingpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DynamicsMinds/TestingIsBoring-DynamicsMinds.pdf
+[colorcloudpowerpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/ColorCloud/PowerPlatformFromThePerspectiveOfABCDeveloper.ColorCloud.pdf
+[directionsnacopilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DirectionsNA/Copilot%20is%20just%20a%20fancy%20Autocomplete-DirectionsNA.pdf
+[companialsoftalkcopilot]: https://www.youtube.com/watch?v=Spjpjjc-u8o
