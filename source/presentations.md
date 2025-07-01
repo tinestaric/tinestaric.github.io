@@ -13,6 +13,7 @@ Here's a list of the presentations I did through the years with attached slides,
             - **Copilot is just a fancy autocomplete...**
             - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
             - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
+        - **BC Tech Days 2025** as a podcast for [Window on Technology][windowontechnology]: [recording][bctechdays2025podcast]
     - 2025-05 
         - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
         - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
@@ -168,3 +169,5 @@ Here's a list of the presentations I did through the years with attached slides,
 [colorcloudpowerpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/ColorCloud/PowerPlatformFromThePerspectiveOfABCDeveloper.ColorCloud.pdf
 [directionsnacopilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2025/DirectionsNA/Copilot%20is%20just%20a%20fancy%20Autocomplete-DirectionsNA.pdf
 [companialsoftalkcopilot]: https://www.youtube.com/watch?v=Spjpjjc-u8o
+[windowontechnology]: https://podcast.tobiasfenster.io/
+[bctechdays2025podcast]: https://podcast.tobiasfenster.io/2032825/episodes/17334827-jeremy-vyska-and-tine-staric-bc-techdays-2025
