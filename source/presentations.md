@@ -30,7 +30,7 @@ Here's a list of the presentations I did through the years with attached slides,
         - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]: [presentation][directionsnacopilotpress]
     - 2025-03
         - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
-        - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]
+        - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]: [recording][companialupgradesrecording]
         - Multiple sessions at [Days of Knowledge UK][dokuk25]:
             - **How to be a Prompt Engineer**: [presentation][dokuk25promptpress]
             - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
@@ -171,3 +171,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [companialsoftalkcopilot]: https://www.youtube.com/watch?v=Spjpjjc-u8o
 [windowontechnology]: https://podcast.tobiasfenster.io/
 [bctechdays2025podcast]: https://podcast.tobiasfenster.io/2032825/episodes/17334827-jeremy-vyska-and-tine-staric-bc-techdays-2025
+[companialupgradesrecording]: https://companial.com/webinars/simplifying-your-dynamics-nav-bc-upgrades-in-2025/
