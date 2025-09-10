@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 01 Jul 2025 11:47:46 +0300</pubDate>
-    <lastBuildDate>Tue, 01 Jul 2025 11:47:46 +0300</lastBuildDate>
+    <pubDate>Wed, 10 Sep 2025 06:42:05 +0300</pubDate>
+    <lastBuildDate>Wed, 10 Sep 2025 06:42:05 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -83,7 +83,7 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, async () =&gt; {
   const { Markmap } = window.markmap;
   
   // Fetch markdown content
-  const response = await fetch(&apos;https://raw.githubusercontent.com/tinestaric/AreopaAnalyzer/main/data/videos_markmap.md&apos;);
+  const response = await fetch(&apos;https://github.com/tinestaric/AreopaAnalyzer/releases/download/latest/videos_markmap.md&apos;);
   const markdown = await response.text();
 
   // Transform markdown to mindmap data
