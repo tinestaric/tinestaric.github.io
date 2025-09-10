@@ -68,28 +68,53 @@ Interested in what's under these topics? Well then I won't keep you waiting any 
 document.addEventListener('DOMContentLoaded', async () => {
   const { Markmap } = window.markmap;
   
-  // Fetch markdown content
-  const response = await fetch('https://github.com/tinestaric/AreopaAnalyzer/releases/download/latest/videos_markmap.md');
-  const markdown = await response.text();
+  // Fetch markdown content from latest release
+  try {
+    // First, get the latest release info
+    const releaseResponse = await fetch('https://api.github.com/repos/tinestaric/AreopaAnalyzer/releases/latest');
+    const release = await releaseResponse.json();
+    
+    // Find the videos_markmap.md asset
+    const asset = release.assets.find(a => a.name === 'videos_markmap.md');
+    
+    if (!asset) {
+      throw new Error('videos_markmap.md not found in latest release');
+    }
+    
+    // Use CORS proxy to fetch the asset content
+    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(asset.browser_download_url);
+    const response = await fetch(proxyUrl);
+    const data = await response.json();
+    let markdown = data.contents;
 
-  // Transform markdown to mindmap data
-  const { Transformer } = window.markmap;
-  const transformer = new Transformer();
-  const { root } = transformer.transform(markdown);
+    // Check if the content is base64 encoded (data URL format)
+    if (markdown.startsWith('data:')) {
+      const base64Content = markdown.split(',')[1];
+      markdown = atob(base64Content);
+    }
 
-  // Configure visualization options
-  const { deriveOptions } = window.markmap;
-  const jsonOptions = {
-    initialExpandLevel: 2,
-    colorFreezeLevel: 3,
-    duration: 1000,
-    spacingVertical: 10
-  };
-  const options = deriveOptions(jsonOptions);
+    // Transform markdown to mindmap data
+    const { Transformer } = window.markmap;
+    const transformer = new Transformer();
+    const { root } = transformer.transform(markdown);
 
-  // Create and render visualization
-  const svg = d3.select("#mindmap svg");
-  const mm = Markmap.create(svg.node(), options, root);
+    // Configure visualization options
+    const { deriveOptions } = window.markmap;
+    const jsonOptions = {
+      initialExpandLevel: 2,
+      colorFreezeLevel: 3,
+      duration: 1000,
+      spacingVertical: 10
+    };
+    const options = deriveOptions(jsonOptions);
+
+    // Create and render visualization
+    const svg = d3.select("#mindmap svg");
+    const mm = Markmap.create(svg.node(), options, root);
+  } catch (error) {
+    console.error('Error fetching markmap data from release:', error);
+    document.getElementById('mindmap').innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">Unable to load visualization. Please try again later.</p>';
+  }
 });
 </script>
 
