@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 10 Sep 2025 21:28:30 +0300</pubDate>
-    <lastBuildDate>Wed, 10 Sep 2025 21:28:30 +0300</lastBuildDate>
+    <pubDate>Wed, 10 Sep 2025 21:44:50 +0300</pubDate>
+    <lastBuildDate>Wed, 10 Sep 2025 21:44:50 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -96,16 +96,9 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, async () =&gt; {
     }
     
     // Use CORS proxy to fetch the asset content
-    const proxyUrl = &apos;https://api.allorigins.win/get?url=&apos; + encodeURIComponent(asset.browser_download_url);
+    const proxyUrl = &apos;https://api.codetabs.com/v1/proxy?quest=&apos; + encodeURIComponent(asset.browser_download_url);
     const response = await fetch(proxyUrl);
-    const data = await response.json();
-    let markdown = data.contents;
-
-    // Check if the content is base64 encoded (data URL format)
-    if (markdown.startsWith(&apos;data:&apos;)) {
-      const base64Content = markdown.split(&apos;,&apos;)[1];
-      markdown = atob(base64Content);
-    }
+    const markdown = await response.text();
 
     // Transform markdown to mindmap data
     const { Transformer } = window.markmap;
