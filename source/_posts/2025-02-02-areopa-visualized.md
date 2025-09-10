@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const { Markmap } = window.markmap;
   
   // Fetch markdown content
-  const response = await fetch('https://raw.githubusercontent.com/tinestaric/AreopaAnalyzer/main/data/videos_markmap.md');
+  const response = await fetch('https://github.com/tinestaric/AreopaAnalyzer/releases/download/latest/videos_markmap.md');
   const markdown = await response.text();
 
   // Transform markdown to mindmap data

@@ -8,6 +8,11 @@ Here's a list of the presentations I did through the years with attached slides,
 
 ## 2025
 - 2025-06
+    - 2025-11
+        - **You need to implement Agents now! ...But what even is an Agent?** as a session at Directions EMEA 2025: [session link][emea25agents]
+        - **Is BC the Right Path for Me? (Under-30s Edition)** as a session at Directions EMEA 2025: [session link][emea25under30]
+    - 2025-09
+        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a webinar for [Areopa][areopa]: [recording][areopapowerplatformbcdevyt]
     - 2025-06
         - Multiple sessions at [BC Tech Days][bctechdays]:
             - **Copilot is just a fancy autocomplete...**
@@ -172,3 +177,6 @@ Here's a list of the presentations I did through the years with attached slides,
 [windowontechnology]: https://podcast.tobiasfenster.io/
 [bctechdays2025podcast]: https://podcast.tobiasfenster.io/2032825/episodes/17334827-jeremy-vyska-and-tine-staric-bc-techdays-2025
 [companialupgradesrecording]: https://companial.com/webinars/simplifying-your-dynamics-nav-bc-upgrades-in-2025/
+[areopapowerplatformbcdevyt]: https://www.youtube.com/watch?v=SPslb8X4WKY
+[emea25agents]: https://www.directionsforpartners.com/conferences-and-events/directions/emea2025/session-list?session=973239
+[emea25under30]: https://www.directionsforpartners.com/conferences-and-events/directions/emea2025/session-list?session=973338
