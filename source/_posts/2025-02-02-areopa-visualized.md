@@ -82,16 +82,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     // Use CORS proxy to fetch the asset content
-    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(asset.browser_download_url);
+    const proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(asset.browser_download_url);
     const response = await fetch(proxyUrl);
-    const data = await response.json();
-    let markdown = data.contents;
-
-    // Check if the content is base64 encoded (data URL format)
-    if (markdown.startsWith('data:')) {
-      const base64Content = markdown.split(',')[1];
-      markdown = atob(base64Content);
-    }
+    const markdown = await response.text();
 
     // Transform markdown to mindmap data
     const { Transformer } = window.markmap;
