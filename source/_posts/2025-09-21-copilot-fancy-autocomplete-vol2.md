@@ -159,7 +159,7 @@ A worthwhile ***non-MCP recommendation*** is something you might already have in
 
 But back to *MCPs*, the following ones will need a **bit more manual work**, but everything is explained in the readme files:
 -	***[Al-symbols-mcp][alsymbols]*** - Created by ***[Stefan Maron][stefanmaron]***, it allows the agent to **look into the dependencies** for additional context. Usually, when working on an app, the agent can only see the code from the workspace. This *MCP* adds tools that can give it access to **objects that are in the .alpackages folder**. It's **brilliant for PTE apps** where most of the context is in the dependencies—more information in the *ReadMe file* in the repo.
--	***[Bc-code-intelligence-mcp][bccodeintel]*** - This one is from ***[Jeremy Vyska][jeremyvyska]***, another **must-follow person** if you're into the *Copilot story*. It's hard to believe *Jeremy* was in the ***"autocomplete"*** camp 6 months ago, because he has already done **so much** to push the *Copilot story* further for *AL devs*! Anyway, this *MCP* brings ***A TON of AL dev guidelines*** to your agent so it writes code as it should be written. It's hard to explain everything this *MCP* does, so it's best if you check *Jeremy's recent blog post*.
+-	***[Bc-code-intelligence-mcp][bccodeintel]*** - This one is from ***[Jeremy Vyska][jeremyvyska]***, another **must-follow person** if you're into the *Copilot story*. It's hard to believe *Jeremy* was in the ***"autocomplete"*** camp 6 months ago, because he has already done **so much** to push the *Copilot story* further for *AL devs*! Anyway, this *MCP* brings ***A TON of AL dev guidelines*** to your agent so it writes code as it should be written. It's hard to explain everything this *MCP* does, so it's best if you check ***[Jeremy's recent blog post][jeremyblog]***.
 
 ---
 
@@ -199,6 +199,7 @@ Let me know your thoughts on any of the social media, and see you on the next po
 [stefanmaron]: https://www.linkedin.com/in/stefan-maron-709928206/
 [alsymbols]: https://github.com/StefanMaron/AL-Dependency-MCP-Server
 [jeremyvyska]: https://www.linkedin.com/in/jeremyvyska/
+[jeremyblog]: https://nubimancy.com/2025/09/22/bc-code-intelligence-launch-announcement/
 [bccodeintel]: https://www.npmjs.com/package/bc-code-intelligence-mcp
 [serena]: https://github.com/oraios/serena
 [torben]: https://www.linkedin.com/in/torben-l%C3%B8kke-leth/
