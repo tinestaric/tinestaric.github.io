@@ -171,6 +171,16 @@ He also just published the *MCP* for the ***AL Object ID Ninja*** made by ***[Vj
 
 ---
 
+> **Warning:** Don't go crazy installing ***all the MCPs*** you can find. Every added tool will **eat away at the context window** of an agent, and there will be ***less space for context*** about your project or the goal. ***[Stefano][stefano]*** described it perfectly in his recent ***[blog post][stefanoblog]***.
+
+*VS Code* will warn you if you're trying to fit **more than 128 tools** in your prompt, but even *128* is already a **huge number**.
+ 
+![Too Many Tools](/images/fancyautocompletevol2/too-many-tools.png)
+
+*Azure DevOps MCP* alone comes with **70 new tools**, and do you really need to have all the actions related to *pipelines* enabled when your usual workflow consists of ***reading and maybe updating work items?*** I think not.
+
+---
+
 Was this too long? Nah, I had to put all the current ideas into *vol.2*. I already know there's going to be a ***vol. 3*** soon. The next area worth mentioning is going to be the **background agents**, the ones we no longer oversee. I also think we'll see **many more MCPs** in the next few months, until they all consolidate into an ***[AL Extension Pack][alpack]*** equivalent of *MCP servers*. I think it's also time to **revisit the topic of code review**, this time through an *AI-assisted lens*.
 
 Let me know your thoughts on any of the social media, and see you on the next post!
@@ -197,3 +207,4 @@ Let me know your thoughts on any of the social media, and see you on the next po
 [vjeko]: https://www.linkedin.com/in/vjeko/
 [objidmcp]: https://github.com/SShadowS/al-objid-mcp-server
 [alpack]: https://marketplace.visualstudio.com/items?itemName=waldo.al-extension-pack
+[stefanoblog]: https://demiliani.com/2025/09/04/model-context-protocol-and-the-too-many-tools-problem/
