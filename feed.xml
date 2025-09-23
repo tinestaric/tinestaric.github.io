@@ -5,9 +5,209 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 10 Sep 2025 21:44:50 +0300</pubDate>
-    <lastBuildDate>Wed, 10 Sep 2025 21:44:50 +0300</lastBuildDate>
+    <pubDate>Mon, 22 Sep 2025 16:39:38 +0300</pubDate>
+    <lastBuildDate>Mon, 22 Sep 2025 16:39:38 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Copilot is just a fancy autocomplete (vol.2)</title>
+        <description>&lt;p&gt;A few weeks ago, I was asked if I’d have time to deliver the &lt;strong&gt;&lt;em&gt;“Copilot is just a fancy autocomplete…“&lt;/em&gt;&lt;/strong&gt; session from this year’s &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC TechDays&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; again for one of our partners at their internal event. As I was preparing, I realized that even in the span of &lt;strong&gt;3 months since the session&lt;/strong&gt;, my workflow with &lt;em&gt;AI&lt;/em&gt; has again changed so much that maybe it’s time for a &lt;strong&gt;part 2 of the blog post&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;&lt;em&gt;“fancy autocomplete”&lt;/em&gt;&lt;/strong&gt; story started at the beginning of the year with the &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;/blog/2025/copilot-fancy-autocomplete/&quot;&gt;part 1 blog post&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;. All the points from the blog post then matured into a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zTejuQzYAb8&quot;&gt;session at BC TechDays 2025&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, which is also now available online.&lt;/p&gt;
+
+&lt;iframe width=&quot;800&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The session covered some &lt;strong&gt;best practices&lt;/strong&gt; to get the best results out of the &lt;em&gt;fancy autocomplete&lt;/em&gt;, but then quickly turned towards &lt;strong&gt;other capabilities&lt;/strong&gt;. &lt;em&gt;Copilot Edits&lt;/em&gt; take the center stage, as the next step, and we later progress into &lt;strong&gt;&lt;em&gt;agent mode&lt;/em&gt;&lt;/strong&gt;, and compare &lt;em&gt;VS Code&lt;/em&gt; to &lt;em&gt;Cursor&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you haven’t seen the session yet, or if you’re at the start of your &lt;em&gt;Copilot journey&lt;/em&gt;, I’d suggest you first take the &lt;strong&gt;90 minutes&lt;/strong&gt; to watch the session. &lt;strong&gt;This blog post picks up where the session ended.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The most significant change is that, during the session, I take a stance that &lt;strong&gt;&lt;em&gt;Agent mode is nice, but Edits is where our focus should be.&lt;/em&gt;&lt;/strong&gt; Realistically, during the last 3 months, I’ve &lt;strong&gt;exclusively used only Agent mode&lt;/strong&gt; for both &lt;em&gt;vibe-coded projects&lt;/em&gt; and &lt;em&gt;AL tasks&lt;/em&gt;, and I don’t even look at &lt;em&gt;Edits&lt;/em&gt; anymore.&lt;/p&gt;
+
+&lt;p&gt;I do believe &lt;em&gt;Edits&lt;/em&gt; will eventually be removed. &lt;em&gt;Cursor&lt;/em&gt; has already removed its &lt;strong&gt;&lt;em&gt;“manual”&lt;/em&gt;&lt;/strong&gt; mode, which was the &lt;em&gt;Edit equivalent&lt;/em&gt;. But for the time being, I think they can still have a purpose. If you’re &lt;strong&gt;entirely new to the Copilot journey&lt;/strong&gt;, especially if you’re a &lt;em&gt;skeptic&lt;/em&gt;, it can be a nice, &lt;strong&gt;slower introduction&lt;/strong&gt; to how &lt;em&gt;AI&lt;/em&gt; can help read and modify multiple files at scale, compared to the &lt;em&gt;Agent mode&lt;/em&gt;, which will have more &lt;strong&gt;&lt;em&gt;“a mind of its own”&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I already introduced &lt;em&gt;Agents&lt;/em&gt; during the session, but here it comes again. &lt;strong&gt;&lt;em&gt;Agent mode is similar to Edit mode&lt;/em&gt;&lt;/strong&gt;, except that it tries to &lt;strong&gt;find its own context&lt;/strong&gt; for the changes it needs to make, and it has access to &lt;strong&gt;&lt;em&gt;“tools”&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/context.png&quot; alt=&quot;Agent Context&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I made a &lt;strong&gt;big deal&lt;/strong&gt; in the session about &lt;strong&gt;&lt;em&gt;taking control of your context&lt;/em&gt;&lt;/strong&gt;. But it feels like that’s &lt;strong&gt;less important now&lt;/strong&gt;. If you have specific files that you want the agent to look at, by all means, pull them in. But also rest assured that it will do a &lt;strong&gt;pretty good job&lt;/strong&gt; at finding the files on its own:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/context-2.png&quot; alt=&quot;Agent Context 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s able to do that because it has &lt;strong&gt;access to tools&lt;/strong&gt;. It’s no longer just &lt;em&gt;reading content&lt;/em&gt; and &lt;em&gt;generating new tokens&lt;/em&gt;. It can &lt;strong&gt;take action within your IDE&lt;/strong&gt;, like &lt;em&gt;search for files&lt;/em&gt;, &lt;em&gt;run commands&lt;/em&gt;, &lt;em&gt;do web search&lt;/em&gt;, &lt;em&gt;check errors and warnings&lt;/em&gt;, …&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/tools.png&quot; alt=&quot;Agent Tools&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ll return to &lt;strong&gt;tools&lt;/strong&gt; when we discuss &lt;em&gt;MCP Servers&lt;/em&gt;, but for now, know that this is the &lt;strong&gt;&lt;em&gt;“secret sauce”&lt;/em&gt;&lt;/strong&gt; behind the power of &lt;em&gt;Agent mode&lt;/em&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;agent-settings-for-best-results&quot;&gt;Agent Settings for Best Results&lt;/h2&gt;
+
+&lt;p&gt;To have the &lt;strong&gt;best results with Agents&lt;/strong&gt;, here are two settings you should enable:&lt;/p&gt;
+
+&lt;h3 id=&quot;todo-list-tool&quot;&gt;Todo List Tool&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/todo-setting.png&quot; alt=&quot;Todo Setting&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This tool will allow the agent to &lt;strong&gt;create its own to-do list&lt;/strong&gt; as it works through a more extensive task. It helps the agent &lt;strong&gt;&lt;em&gt;“remember”&lt;/em&gt;&lt;/strong&gt; what it has to implement throughout the length of a more extended conversation. Here’s how it looks:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/todo-agent.png&quot; alt=&quot;Todo Agent&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/todo-example.png&quot; alt=&quot;Todo Example&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As it goes through the individual &lt;em&gt;Todo items&lt;/em&gt;, it &lt;strong&gt;marks them as completed&lt;/strong&gt;, helping it maintain focus on the current task.&lt;/p&gt;
+
+&lt;h3 id=&quot;max-requests-setting&quot;&gt;Max Requests Setting&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/max-requests.png&quot; alt=&quot;Max Requests&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By default, the value is set to &lt;strong&gt;15&lt;/strong&gt; (or at least it was, when I changed it for myself). After &lt;em&gt;15 steps&lt;/em&gt;, the agent stops and asks the user, &lt;strong&gt;&lt;em&gt;“Do you want to continue or stop the process?”&lt;/em&gt;&lt;/strong&gt;. Fifteen steps is &lt;strong&gt;not a lot of steps&lt;/strong&gt;. I quickly grew annoyed at having to keep pressing &lt;em&gt;‘Continue’&lt;/em&gt; on larger tasks, so I changed mine to &lt;strong&gt;100&lt;/strong&gt;. I haven’t seen an interruption since, and I’m free to &lt;strong&gt;browse LinkedIn&lt;/strong&gt; as the agent implements larger items of my work. :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;copilot-instructions&quot;&gt;Copilot Instructions&lt;/h2&gt;
+
+&lt;p&gt;If you want to get the &lt;strong&gt;best results with the agent mode&lt;/strong&gt;, you should couple it with &lt;strong&gt;&lt;em&gt;copilot-instructions.md&lt;/em&gt;&lt;/strong&gt;. The instructions file will be &lt;strong&gt;appended to each request&lt;/strong&gt; you make to the agent. During the session, I explained how you can use this file as a &lt;strong&gt;&lt;em&gt;“memory” file&lt;/em&gt;&lt;/strong&gt;, to make sure the agent codes the way you would. Do you omit spaces in &lt;em&gt;object and field names&lt;/em&gt;, but agents use them? &lt;strong&gt;Put it in the file.&lt;/strong&gt; Do you want to have explicit parameters with &lt;em&gt;internal functions&lt;/em&gt; (Insert, Modify, Delete), but the agent skips them? &lt;strong&gt;Put it in the file.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When creating these files, you don’t have to &lt;strong&gt;start from scratch&lt;/strong&gt;. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/dmitrykatson&quot;&gt;Dmitry Katson&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; shared his &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://alguidelines.dev/docs/vibe-coding/&quot;&gt;instruction files&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; with the community. I keep mine &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/tinestaric/BCExamples/blob/Master/.github/copilot-instructions.md&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, but they’re far less extensive, as I’ve generally had &lt;strong&gt;good experience&lt;/strong&gt; with the proposed code, with only minor adjustments needed that I keep in the instructions file.&lt;/p&gt;
+
+&lt;p&gt;However, something that I haven’t mentioned in the session, nor captured in the above instructions file, that I think should be part of &lt;strong&gt;every single repository&lt;/strong&gt; is a &lt;strong&gt;&lt;em&gt;project overview&lt;/em&gt;&lt;/strong&gt;. Every project should have an explanation of what it’s about, what the architecture looks like, and the main patterns used. And even there, you don’t have to &lt;strong&gt;start from scratch&lt;/strong&gt;. A few releases ago, the &lt;em&gt;VSC team&lt;/em&gt; added the action to &lt;strong&gt;generate the project overview instructions&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/generate-instructions.png&quot; alt=&quot;Generate Instructions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When executed, it will prompt the agent with a &lt;strong&gt;preset prompt&lt;/strong&gt; to scan the workspace and create (or update) the instructions file with the project overview:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/instructions-prompt.png&quot; alt=&quot;Instructions Prompt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here are some of the results&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/instructions-example.png&quot; alt=&quot;Instructions Example&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Considering how &lt;strong&gt;easy it is&lt;/strong&gt; to include an overview, I don’t see a reason why you wouldn’t go and include it in your repos &lt;strong&gt;&lt;em&gt;right now&lt;/em&gt;&lt;/strong&gt;. :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;models&quot;&gt;Models&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/models.jpg&quot; alt=&quot;Models&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, I want to touch on the topic of &lt;strong&gt;models&lt;/strong&gt; again. My stance remains the same; &lt;strong&gt;&lt;em&gt;Claude models appear to be the best for AL&lt;/em&gt;&lt;/strong&gt;. However, we’ve recently received &lt;strong&gt;two others&lt;/strong&gt; that I sometimes like to switch to, especially when &lt;em&gt;Claude&lt;/em&gt; appears to &lt;strong&gt;&lt;em&gt;get drunk&lt;/em&gt;&lt;/strong&gt; and proposes &lt;em&gt;stupid solutions&lt;/em&gt; (this one was suggested to &lt;em&gt;hand-crafted coder&lt;/em&gt; &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;AJ Kauffmann&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/dumb-agent.jpg&quot; alt=&quot;Dumb Agent&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;models I like for AL&lt;/strong&gt; are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Claude Sonnet 4&lt;/em&gt;&lt;/strong&gt; – My default, &lt;strong&gt;best results&lt;/strong&gt;, most consistent, overall the &lt;strong&gt;best experience&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;GPT-5&lt;/em&gt;&lt;/strong&gt; – After poor &lt;em&gt;AL results&lt;/em&gt; with &lt;em&gt;4o&lt;/em&gt;, &lt;em&gt;4.1&lt;/em&gt;, &lt;em&gt;o3&lt;/em&gt;, &lt;em&gt;4.5&lt;/em&gt;, this is the &lt;strong&gt;first GPT model&lt;/strong&gt; that I can easily trust to get things right. I like to use it as an alternative to &lt;em&gt;Sonnet&lt;/em&gt; when I have tasks that require &lt;strong&gt;more of an analysis&lt;/strong&gt; of a codebase. Apparently, &lt;em&gt;Copilot&lt;/em&gt; was also tweaked to work better with this model, as evidenced by these &lt;strong&gt;two settings&lt;/strong&gt; I found (but I haven’t noticed too much of a difference)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/gpt-5-settings.png&quot; alt=&quot;GPT-5 Settings&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Grok Code Fast 1&lt;/em&gt;&lt;/strong&gt; – This is the only &lt;strong&gt;&lt;em&gt;“included”&lt;/em&gt;&lt;/strong&gt; model (meaning &lt;em&gt;free&lt;/em&gt;) that I like to use with &lt;em&gt;AL&lt;/em&gt;. It’s &lt;strong&gt;faster&lt;/strong&gt; than the other two, and it does the work without all the meaningless tokens for &lt;strong&gt;&lt;em&gt;“You’re absolutely right!”&lt;/em&gt;&lt;/strong&gt;. It, however, &lt;strong&gt;doesn’t handle picture input&lt;/strong&gt;. Less relevant for &lt;em&gt;AL&lt;/em&gt;, but worth keeping in mind.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Still remember that if you don’t have any of these models available in your model selector, you (or your organization admin) have to enable them in &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/settings/copilot/features&quot;&gt;GitHub Settings&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;And if you’re of the &lt;strong&gt;exploratory type&lt;/strong&gt; when it comes to models, you absolutely have to give &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/stefano-demiliani&quot;&gt;Stefano Demiliani&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; a follow. He &lt;strong&gt;tests each new model with AL&lt;/strong&gt; and reports his impression on all social media. I only touch models that &lt;strong&gt;he approves&lt;/strong&gt;. :P&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;mcp-servers&quot;&gt;MCP Servers&lt;/h2&gt;
+
+&lt;p&gt;Lastly, let’s talk about the &lt;strong&gt;&lt;em&gt;MCP servers&lt;/em&gt;&lt;/strong&gt;. They’ve been &lt;strong&gt;all around the news&lt;/strong&gt; for a few months now, but I think we’re right at the brink of getting a &lt;strong&gt;&lt;em&gt;“perfect bouquet of MCPs”&lt;/em&gt;&lt;/strong&gt; to use for &lt;em&gt;AL development&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before I jump into my current recommendations, I want to provide a &lt;strong&gt;short explanation&lt;/strong&gt; of what an &lt;em&gt;MCP server&lt;/em&gt; is. I’ll use the same analogy I used in the recent session for our partner.&lt;/p&gt;
+
+&lt;p&gt;Everyone understands the concept of &lt;strong&gt;&lt;em&gt;VSC extensions&lt;/em&gt;&lt;/strong&gt;. We have this &lt;em&gt;vanilla development environment&lt;/em&gt; that allows us to write code. Still, if we want to add any &lt;strong&gt;additional functionalities&lt;/strong&gt; to it (like support for &lt;em&gt;AL&lt;/em&gt;), we need to install extensions for it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/vsc-extension.png&quot; alt=&quot;VSC Extension&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But an extension that’s built for &lt;em&gt;VSC&lt;/em&gt; will &lt;strong&gt;not work&lt;/strong&gt; for &lt;em&gt;Visual Studio&lt;/em&gt; or &lt;em&gt;JetBrains&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/vsc-extension-error.png&quot; alt=&quot;VSC Extension Error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The same story applies to &lt;em&gt;Copilot&lt;/em&gt; and other &lt;strong&gt;&lt;em&gt;AI-assisted development tools&lt;/em&gt;&lt;/strong&gt;. Remember that the &lt;strong&gt;true power&lt;/strong&gt; of the &lt;em&gt;GitHub Copilot Agent mode&lt;/em&gt; comes from its tools:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/tools.png&quot; alt=&quot;Tools&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But if we create a tool for &lt;em&gt;GitHub Copilot&lt;/em&gt;, it won’t work with tools like &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt;, &lt;em&gt;Codex&lt;/em&gt;, &lt;em&gt;Aider&lt;/em&gt;, and others.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/copilot-extension.png&quot; alt=&quot;Copilot Extension&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And that’s what &lt;strong&gt;&lt;em&gt;MCP (Model Context Protocol)&lt;/em&gt;&lt;/strong&gt; is here to solve. If we build our &lt;em&gt;Copilot extension&lt;/em&gt; in a way that it’s &lt;strong&gt;&lt;em&gt;MCP-compliant&lt;/em&gt;&lt;/strong&gt;, then &lt;strong&gt;any tool that supports MCP&lt;/strong&gt; can make use of our additional tools.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/mcp-extension.png&quot; alt=&quot;MCP Extension&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Regardless of whether the tools are added through an &lt;em&gt;extension&lt;/em&gt; or through an &lt;em&gt;MCP server&lt;/em&gt;, their &lt;strong&gt;behaviour remains the same&lt;/strong&gt;. It’s just a protocol of how the tools &lt;strong&gt;&lt;em&gt;“plug in”&lt;/em&gt;&lt;/strong&gt; to the client.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/mcp-examples.png&quot; alt=&quot;MCP Examples&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A lot of people have used the &lt;strong&gt;&lt;em&gt;“USB-C”&lt;/em&gt;&lt;/strong&gt; analogy in the past, and it does fit. Let’s say you have a printer that plugs into your PC via &lt;em&gt;USB-C&lt;/em&gt;. The &lt;strong&gt;&lt;em&gt;“logic”&lt;/em&gt;&lt;/strong&gt; is in the printer, not in the &lt;em&gt;USB-C connector&lt;/em&gt;. The connector is just a connector. But it allows us to &lt;strong&gt;plug the printer into anything&lt;/strong&gt; that has a &lt;em&gt;USB-C hole&lt;/em&gt;. The same applies to &lt;em&gt;MCPs&lt;/em&gt;. The &lt;strong&gt;logic is in the “extension”&lt;/strong&gt;; &lt;em&gt;MCP&lt;/em&gt; ensures that we can plug our logic into &lt;strong&gt;anything that has an MCP hole&lt;/strong&gt;. :D&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Okay, so what &lt;strong&gt;&lt;em&gt;MCPs should you try out&lt;/em&gt;&lt;/strong&gt; for &lt;em&gt;AL development&lt;/em&gt;?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;GitHub / Azure DevOps&lt;/em&gt;&lt;/strong&gt; – depending on what you use for issue tracking, these are an &lt;strong&gt;obvious choice&lt;/strong&gt;. It enables the agent to &lt;em&gt;read and update tasks&lt;/em&gt;, as well as handle &lt;em&gt;pipelines&lt;/em&gt;. &lt;strong&gt;Very useful&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Microsoft Docs&lt;/em&gt;&lt;/strong&gt; – I’ve had several tasks where the agent surprised me with &lt;strong&gt;&lt;em&gt;“let me search the documentation”&lt;/em&gt;&lt;/strong&gt;, found the &lt;em&gt;BC related articles&lt;/em&gt;, and continued with &lt;strong&gt;much better context&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are the &lt;strong&gt;easy-to-install MCPs&lt;/strong&gt; that you can find by opening the &lt;strong&gt;&lt;em&gt;MCP library&lt;/em&gt;&lt;/strong&gt; from &lt;em&gt;VSC&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/browser-mcp.png&quot; alt=&quot;Browser MCP&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A worthwhile &lt;strong&gt;&lt;em&gt;non-MCP recommendation&lt;/em&gt;&lt;/strong&gt; is something you might already have in your toolbox: &lt;strong&gt;&lt;em&gt;NAB AL Tools&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/johanneswikman/&quot;&gt;Johannes&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; added &lt;em&gt;Copilot tools&lt;/em&gt; to his already existing extension, and if you’re working with &lt;strong&gt;translations&lt;/strong&gt;, the following blog is a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/pulse/language-model-tools-ai-translations-johannes-wikman-qiebf/?trackingId=BI%2BPcryjdFcmxbaQ3u5O5Q%3D%3D&quot;&gt;MUST READ&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;But back to &lt;em&gt;MCPs&lt;/em&gt;, the following ones will need a &lt;strong&gt;bit more manual work&lt;/strong&gt;, but everything is explained in the readme files:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/StefanMaron/AL-Dependency-MCP-Server&quot;&gt;Al-symbols-mcp&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; - Created by &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/stefan-maron-709928206/&quot;&gt;Stefan Maron&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, it allows the agent to &lt;strong&gt;look into the dependencies&lt;/strong&gt; for additional context. Usually, when working on an app, the agent can only see the code from the workspace. This &lt;em&gt;MCP&lt;/em&gt; adds tools that can give it access to &lt;strong&gt;objects that are in the .alpackages folder&lt;/strong&gt;. It’s &lt;strong&gt;brilliant for PTE apps&lt;/strong&gt; where most of the context is in the dependencies—more information in the &lt;em&gt;ReadMe file&lt;/em&gt; in the repo.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.npmjs.com/package/bc-code-intelligence-mcp&quot;&gt;Bc-code-intelligence-mcp&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; - This one is from &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/jeremyvyska/&quot;&gt;Jeremy Vyska&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, another &lt;strong&gt;must-follow person&lt;/strong&gt; if you’re into the &lt;em&gt;Copilot story&lt;/em&gt;. It’s hard to believe &lt;em&gt;Jeremy&lt;/em&gt; was in the &lt;strong&gt;&lt;em&gt;“autocomplete”&lt;/em&gt;&lt;/strong&gt; camp 6 months ago, because he has already done &lt;strong&gt;so much&lt;/strong&gt; to push the &lt;em&gt;Copilot story&lt;/em&gt; further for &lt;em&gt;AL devs&lt;/em&gt;! Anyway, this &lt;em&gt;MCP&lt;/em&gt; brings &lt;strong&gt;&lt;em&gt;A TON of AL dev guidelines&lt;/em&gt;&lt;/strong&gt; to your agent so it writes code as it should be written. It’s hard to explain everything this &lt;em&gt;MCP&lt;/em&gt; does, so it’s best if you check &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://nubimancy.com/2025/09/22/bc-code-intelligence-launch-announcement/&quot;&gt;Jeremy’s recent blog post&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The last &lt;em&gt;MCP&lt;/em&gt; recommendations are a bit more &lt;strong&gt;experimental&lt;/strong&gt;. I have not spent enough time with them, but I have a &lt;strong&gt;strong feeling&lt;/strong&gt; they’re going to be very instrumental in the future:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/oraios/serena&quot;&gt;Serena&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; - By default, the agent navigates through your codebase using &lt;em&gt;text search&lt;/em&gt;. &lt;em&gt;Serena&lt;/em&gt; enables it to do &lt;strong&gt;semantic retrieval&lt;/strong&gt;, navigate through the codebase on the &lt;em&gt;symbol level&lt;/em&gt;, and exploit &lt;strong&gt;relational structure&lt;/strong&gt;. Usually, these advanced tools would be reserved for &lt;strong&gt;&lt;em&gt;“mature”&lt;/em&gt;&lt;/strong&gt; languages like &lt;em&gt;Python&lt;/em&gt;, &lt;em&gt;C#&lt;/em&gt;, or &lt;em&gt;JavaScript&lt;/em&gt;, but thanks to the &lt;strong&gt;&lt;em&gt;“madman”&lt;/em&gt;&lt;/strong&gt; named &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/torben-l%C3%B8kke-leth/&quot;&gt;Torben Leth&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, they have just received a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/oraios/serena/pull/593&quot;&gt;PR&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; with &lt;em&gt;AL support&lt;/em&gt;. I use &lt;em&gt;madman&lt;/em&gt; in a &lt;strong&gt;very complimentary tone&lt;/strong&gt;. :D &lt;em&gt;Torben&lt;/em&gt; is one of those people who gets involved in projects that I’d consider &lt;strong&gt;impossible&lt;/strong&gt; (like &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/posts/torben-l%C3%B8kke-leth_emea2025-msdyn365bc-activity-7367584117506465795-4_Uy?utm_source=social_share_send&amp;amp;utm_medium=member_desktop_web&amp;amp;rcm=ACoAACLigK8B1d5zenhN3aNEAnW6bNGFZZNzj_E&quot;&gt;bringing BC to Linux&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;).&lt;/p&gt;
+
+&lt;p&gt;He also just published the &lt;em&gt;MCP&lt;/em&gt; for the &lt;strong&gt;&lt;em&gt;AL Object ID Ninja&lt;/em&gt;&lt;/strong&gt; made by &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/vjeko/&quot;&gt;Vjeko&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;. Finally, agents will &lt;strong&gt;know which ID to propose&lt;/strong&gt;, but I have yet to test this one out: &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/SShadowS/al-objid-mcp-server&quot;&gt;al-objid-mcp-server&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Don’t go crazy installing &lt;strong&gt;&lt;em&gt;all the MCPs&lt;/em&gt;&lt;/strong&gt; you can find. Every added tool will &lt;strong&gt;eat away at the context window&lt;/strong&gt; of an agent, and there will be &lt;strong&gt;&lt;em&gt;less space for context&lt;/em&gt;&lt;/strong&gt; about your project or the goal. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/stefano-demiliani&quot;&gt;Stefano&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; described it perfectly in his recent &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://demiliani.com/2025/09/04/model-context-protocol-and-the-too-many-tools-problem/&quot;&gt;blog post&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;VS Code&lt;/em&gt; will warn you if you’re trying to fit &lt;strong&gt;more than 128 tools&lt;/strong&gt; in your prompt, but even &lt;em&gt;128&lt;/em&gt; is already a &lt;strong&gt;huge number&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/too-many-tools.png&quot; alt=&quot;Too Many Tools&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Azure DevOps MCP&lt;/em&gt; alone comes with &lt;strong&gt;70 new tools&lt;/strong&gt;, and do you really need to have all the actions related to &lt;em&gt;pipelines&lt;/em&gt; enabled when your usual workflow consists of &lt;strong&gt;&lt;em&gt;reading and maybe updating work items?&lt;/em&gt;&lt;/strong&gt; I think not.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Was this too long? Nah, I had to put all the current ideas into &lt;em&gt;vol.2&lt;/em&gt;. I already know there’s going to be a &lt;strong&gt;&lt;em&gt;vol. 3&lt;/em&gt;&lt;/strong&gt; soon. The next area worth mentioning is going to be the &lt;strong&gt;background agents&lt;/strong&gt;, the ones we no longer oversee. I also think we’ll see &lt;strong&gt;many more MCPs&lt;/strong&gt; in the next few months, until they all consolidate into an &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=waldo.al-extension-pack&quot;&gt;AL Extension Pack&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; equivalent of &lt;em&gt;MCP servers&lt;/em&gt;. I think it’s also time to &lt;strong&gt;revisit the topic of code review&lt;/strong&gt;, this time through an &lt;em&gt;AI-assisted lens&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let me know your thoughts on any of the social media, and see you on the next post!&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 21 Sep 2025 11:00:00 +0300</pubDate>
+        <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>100 Areopa Webinars Visualized</title>
@@ -1470,131 +1670,6 @@ So if we refactor the above example&lt;/p&gt;
         <pubDate>Mon, 08 Apr 2024 11:00:00 +0300</pubDate>
         <link>https://tine.staric.net/blog/2024/transactability-entitlements/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/transactability-entitlements/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>Curious case of Insert Lock Timeouts</title>
-        <description>&lt;p&gt;I’ve been a BC dev for a while now. It’s been a learning experience through and through. But there was always an area that I kept pushing away. &lt;strong&gt;SQL&lt;/strong&gt;. I don’t really know why, I never had issues with it, so I guess in my mind I just pushed it away as unimportant. It sat in some distant pile with &lt;em&gt;permissions, tooltips, and translations&lt;/em&gt; — &lt;strong&gt;&lt;em&gt;my afterthought pile.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This meant I never really understood &lt;strong&gt;indexes, database locks, or SIFTs&lt;/strong&gt;. And I didn’t need to. There are &lt;strong&gt;no locking issues&lt;/strong&gt; when you’re testing with &lt;strong&gt;just one user&lt;/strong&gt;. Well fast forward a few years, and that all had to change.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;For the better part of last year, I was working on a project where we were trying to analyze the &lt;strong&gt;performance of a huge monolithic app&lt;/strong&gt; (3k+ objects). There were many sides we tried attacking the problem from, AL Profiler, Telemetry, BCPT,… Ultimately, we decided that our first focus should be on &lt;strong&gt;removing locks&lt;/strong&gt; as the app is planned to be used by &lt;strong&gt;100+ concurrent users&lt;/strong&gt; and a ton of background services.&lt;/p&gt;
-
-&lt;p&gt;We set up &lt;strong&gt;BCPT tests&lt;/strong&gt;, start running them, and find our first batch of &lt;strong&gt;deadlocks&lt;/strong&gt; and &lt;strong&gt;lock timeouts&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Time to figure out how locks work.&lt;/em&gt; I knew we got &lt;strong&gt;ReadIsolation&lt;/strong&gt; a while ago that supposedly helps with locks. I came across a couple of brilliant blog posts by &lt;a href=&quot;https://www.linkedin.com/in/alexander-drogin-0635422b/&quot;&gt;Alexander Drogin&lt;/a&gt;. They helped me understand what locks are and how read isolation changes them. That’s &lt;strong&gt;not what I’m going to focus on here&lt;/strong&gt;, but if you’re interested in that, here are the links: &lt;a href=&quot;https://www.keytogoodcode.com/post/transaction-isolation-in-business-central&quot;&gt;Transaction Isolation in Business Central&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/readcommitted-isolation-in-azure-sql&quot;&gt;ReadCommitted Isolation in Azure SQL&lt;/a&gt;, &lt;a href=&quot;https://www.keytogoodcode.com/post/read-committed-snapshot-isolation-and-the-write-skew-anomaly&quot;&gt;ReadCommittedSnapshotIsolation and the Write Skew Anomaly&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Some changes to &lt;em&gt;read isolation&lt;/em&gt;, some &lt;em&gt;missing filters added&lt;/em&gt; and some &lt;em&gt;write transactions started later in the process&lt;/em&gt;, and we made our first progress. No locks on 100 concurrent users! Okay, add another scenario, rinse, and repeat.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Everything seemed fine for a while until we added 5 or 6 scenarios to run concurrently. Then something extremely weird started happening. We got &lt;strong&gt;lock timeouts&lt;/strong&gt;, but not on reads but &lt;strong&gt;on writes&lt;/strong&gt;. That broke my mind. &lt;strong&gt;How am I blocked from inserting a record?&lt;/strong&gt; I’d get modify, but insert? How can a different transaction meddle with inserts?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/error-list.png&quot; alt=&quot;List of lock timeout errors&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;“We can’t save your changes right now, because a record in table ‘Simple Entry’ is being updated in a transaction done by another session. You’ll have to wait until the other transaction has completed, which may take a while. Please try again later.”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This is where the call stack breaks:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/callstack-break.png&quot; alt=&quot;Call Stack Break Point&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you’re probably thinking &lt;em&gt;“Ha! You must have some weird logic on OnInsert trigger or a subscriber!”&lt;/em&gt;. Yeah, I thought that too. I removed &lt;strong&gt;all trigger, all subscribers, all global database subscribers&lt;/strong&gt;, and nothing, still the same issue…&lt;/p&gt;
-
-&lt;p&gt;The answer was staring me &lt;em&gt;right in the face&lt;/em&gt;. Here’s how the &lt;strong&gt;locks look after an insert&lt;/strong&gt; to my SimpleEntry table.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/active-locks.png&quot; alt=&quot;Active Locks After Insert&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Due to my lack of knowledge of &lt;strong&gt;what is SIFT&lt;/strong&gt; and how it works, my mind dismissed it as &lt;em&gt;“huh, that’s odd, anyway, moving on.”&lt;/em&gt;. But seeing the locks enough times, I decided maybe it finally is time to properly learn about SIFT.&lt;/p&gt;
-
-&lt;p&gt;If you’re comfortable with understanding SIFT, feel free to skip to the section about SIFT Locks where we continue the lock story. For everyone else, let’s take a detour, and understand &lt;strong&gt;what SIFTs are&lt;/strong&gt; first.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;sift-in-a-nutshell&quot;&gt;SIFT in a nutshell&lt;/h3&gt;
-
-&lt;p&gt;SIFT stands for &lt;strong&gt;SumIndexField Technology&lt;/strong&gt;. The &lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-sift-technology&quot;&gt;documentation&lt;/a&gt; could honestly do a better job of explaining the concept. Here’s how it works:&lt;/p&gt;
-
-&lt;p&gt;Imagine we have a simple table, like our &lt;strong&gt;SimpleEntry&lt;/strong&gt; table. Nothing special, a primary key, a couple of fields, that’s it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/simple-entry-table.png&quot; alt=&quot;Simple Entry Table&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And say we have some data in there:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/simple-entry-data.png&quot; alt=&quot;Simple Entry Data&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now let’s say we want to figure out the total amount of sales entries. We’d do something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/sum-sales-org.png&quot; alt=&quot;Sum Sales Procedure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Or also common, something like this&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/flowfield.png&quot; alt=&quot;Sales Amount FlowField&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In both cases, the SQL server goes through all lines of type sales and starts calculating &lt;em&gt;125 + 642 + … = &lt;strong&gt;1491!&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;But if you define &lt;strong&gt;SumIndexFields&lt;/strong&gt; on a particular key like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/sift-on-key.png&quot; alt=&quot;SIFT on Key&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The SQL server will start maintaining something called an &lt;strong&gt;Indexed View&lt;/strong&gt;. You can think of it as another table, where sums for this key are stored. For our example, it would look like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/indexed-view.png&quot; alt=&quot;Indexed View Data&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Every time an &lt;strong&gt;entry is added or modified in the SimpleEntry table, the sum in this &lt;em&gt;“table”&lt;/em&gt; is updated as well&lt;/strong&gt;. This means that the next time you ask for a &lt;strong&gt;total amount of Sale type&lt;/strong&gt; entries, the SQL server can just go &lt;strong&gt;&lt;em&gt;“1491!”&lt;/em&gt;&lt;/strong&gt; without looping through each record.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;turns-out-sift-is-the-culprit&quot;&gt;Turns out SIFT is the culprit!&lt;/h3&gt;
-&lt;p&gt;We mentioned that if &lt;strong&gt;SQL maintains an indexed view&lt;/strong&gt;, it has to &lt;strong&gt;update that view for each change in the underlying table&lt;/strong&gt;. That means, that if I &lt;strong&gt;insert a new record&lt;/strong&gt; into my SimpleEntry table, &lt;strong&gt;two rows become locked&lt;/strong&gt;; the newly created entry record, and the row in the indexed view.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/indexed-view-lock.png&quot; alt=&quot;Indexed View Locks&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And the lock is held for the &lt;strong&gt;duration of the transaction&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;If a &lt;strong&gt;separate transaction&lt;/strong&gt; tries to &lt;strong&gt;add a record of type Sale&lt;/strong&gt; to the entry table, that in itself shouldn’t be a problem for the SimpleEntry table. However, as that insert needs to also update the Indexed View, it will have to &lt;strong&gt;wait until the first transaction releases the lock on it&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;A record of type &lt;strong&gt;Purchase&lt;/strong&gt; however will have &lt;strong&gt;no issues&lt;/strong&gt;, as it doesn’t need the Sale row in the indexed view.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/indexed-view-purchase.png&quot; alt=&quot;Indexed View Purchase&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;When these transactions pile up, as they do when you have &lt;strong&gt;100 concurrent users&lt;/strong&gt;, you quickly reach the &lt;strong&gt;10-second limit&lt;/strong&gt; at which point the waiting transaction &lt;strong&gt;times out&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;And that’s not the only side that can cause issues. Remember, anytime we &lt;strong&gt;lock the related row&lt;/strong&gt; in the indexed view, we &lt;strong&gt;can’t insert a record&lt;/strong&gt; in the entry table with a matching index value. The two examples above that make use of indexed views, the &lt;em&gt;SumSales&lt;/em&gt; procedure and the &lt;em&gt;SalesAmount&lt;/em&gt; flow field, are both &lt;strong&gt;reading the indexed view&lt;/strong&gt;. So if they read it with &lt;strong&gt;UpdLock&lt;/strong&gt;, which is the default locking type, after you start a write transaction, you’re going to &lt;strong&gt;have a problem&lt;/strong&gt;. That is until &lt;strong&gt;tri-state locking&lt;/strong&gt; becomes the default. You can read what &lt;a href=&quot;https://www.linkedin.com/in/duilio-tacconi-4042999a&quot;&gt;Duilio Tacconi&lt;/a&gt; wrote &lt;a href=&quot;https://duiliotacconi.com/2023/11/23/461/&quot;&gt;about it&lt;/a&gt; if you’d like to know more.&lt;/p&gt;
-
-&lt;p&gt;But until we have tri-state locking, both of these examples will effectively &lt;strong&gt;lock the row in our indexed view&lt;/strong&gt;, and while the locks are held, &lt;strong&gt;inserts will have to wait&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/update-and-lock-sum-sales.png&quot; alt=&quot;Update and Lock - Sum Sales&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/insertlocks/update-and-lock-flowfield.png&quot; alt=&quot;Update and Lock - FlowField&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Yes, &lt;strong&gt;flow fields also lock rows&lt;/strong&gt;. They lock them with the &lt;strong&gt;same lock type as the parent table&lt;/strong&gt;. So in the above example, if I’d set the IsolationLevel on the Customer to ReadUncommited, then the flow field would apply this hint as well.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;so-what-should-we-do-about-it&quot;&gt;So what should we do about it?&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;Should we stop using SIFT?&lt;/em&gt; &lt;strong&gt;No!&lt;/strong&gt; Well, maybe. Sometimes. It depends. There are a couple of different approaches we took to resolve our insert lockouts.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Lower read isolation&lt;/strong&gt; on reads that were reading the indexed view with &lt;strong&gt;UpdLock&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;Keep the table as is, change the logic of the process so it &lt;strong&gt;inserts in the TempTable&lt;/strong&gt; first, and only inserts in the actual table at the very end, &lt;strong&gt;holding locks for a minimal time&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;Run the processes &lt;strong&gt;asynchronously&lt;/strong&gt; through a job queue entry&lt;/li&gt;
-  &lt;li&gt;Switch user inserts to a staging table that’s &lt;strong&gt;optimized for inserting&lt;/strong&gt; and have a job transfer data to &lt;strong&gt;read optimized tables&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Remove SumIndexFields&lt;/strong&gt; and accept the read performance penalty&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There’s another one, that we haven’t tried. Just the other day, I was watching &lt;a href=&quot;https://www.linkedin.com/in/ericwauters&quot;&gt;Waldo’s&lt;/a&gt; &lt;a href=&quot;https://youtu.be/E3ADZsisFbE?si=mPtH-c2A8hO0sYhA&amp;amp;t=1003&quot;&gt;Coding 4 Performance&lt;/a&gt; session from &lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC Tech Days&lt;/a&gt; where he mentions &lt;strong&gt;IncludedFields&lt;/strong&gt; as an alternative to SIFT. That’s another option to look into.&lt;/p&gt;
-
-&lt;p&gt;As you see, it’s not a simple answer, there are different options, all coming with their own &lt;strong&gt;set of tradeoffs&lt;/strong&gt;, but at least I hope the next time you experience issues with &lt;strong&gt;locks on inserts&lt;/strong&gt;, you’ll know where to look.&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 08 Mar 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/insert-lock-timeouts/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/insert-lock-timeouts/</guid>
         
         
         <category>al</category>

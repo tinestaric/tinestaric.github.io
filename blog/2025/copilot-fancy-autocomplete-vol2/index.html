@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Copilot is just a fancy autocomplete (vol.2)</title>
+<meta name="description"
+    content="A few weeks ago, I was asked if I’d have time to deliver the “Copilot is just a fancy autocomplete…“ session from this year’s BC TechDays again for one of ou...">
+
+<meta property="og:title" content="Copilot is just a fancy autocomplete (vol.2)" />
+<meta property="og:description"
+    content="A few weeks ago, I was asked if I’d have time to deliver the “Copilot is just a fancy autocomplete…“ session from this year’s BC TechDays again for one of ou..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/fancyautocompletevol2/copilot-main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/fancyautocompletevol2/copilot-main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/",
+  "description": "A few weeks ago, I was asked if I’d have time to deliver the “Copilot is just a fancy autocomplete…“ session from this year’s BC TechDays again for one of our partners at their internal event. As I was preparing, I realized that even in the span of 3 months since the session, my workflow with AI has again changed so much that maybe it’s time for a part 2 of the blog post.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Copilot is just a fancy autocomplete (vol.2)",
+  "datePublished": "2025-09-21T11:00:00+03:00",
+  "dateModified": "2025-09-21T11:00:00+03:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Copilot is just a fancy autocomplete (vol.2)</h1>
+      <em class="post-meta">
+        <time>Sep 21, 2025</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>A few weeks ago, I was asked if I’d have time to deliver the <strong><em>“Copilot is just a fancy autocomplete…“</em></strong> session from this year’s <strong><em><a href="https://www.bctechdays.com/event">BC TechDays</a></em></strong> again for one of our partners at their internal event. As I was preparing, I realized that even in the span of <strong>3 months since the session</strong>, my workflow with <em>AI</em> has again changed so much that maybe it’s time for a <strong>part 2 of the blog post</strong>.</p>
+
+<p>The <strong><em>“fancy autocomplete”</em></strong> story started at the beginning of the year with the <strong><em><a href="/blog/2025/copilot-fancy-autocomplete/">part 1 blog post</a></em></strong>. All the points from the blog post then matured into a <strong><em><a href="https://www.youtube.com/watch?v=zTejuQzYAb8">session at BC TechDays 2025</a></em></strong>, which is also now available online.</p>
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+<p><br /></p>
+
+<p>The session covered some <strong>best practices</strong> to get the best results out of the <em>fancy autocomplete</em>, but then quickly turned towards <strong>other capabilities</strong>. <em>Copilot Edits</em> take the center stage, as the next step, and we later progress into <strong><em>agent mode</em></strong>, and compare <em>VS Code</em> to <em>Cursor</em>.</p>
+
+<p>If you haven’t seen the session yet, or if you’re at the start of your <em>Copilot journey</em>, I’d suggest you first take the <strong>90 minutes</strong> to watch the session. <strong>This blog post picks up where the session ended.</strong></p>
+
+<hr />
+
+<p>The most significant change is that, during the session, I take a stance that <strong><em>Agent mode is nice, but Edits is where our focus should be.</em></strong> Realistically, during the last 3 months, I’ve <strong>exclusively used only Agent mode</strong> for both <em>vibe-coded projects</em> and <em>AL tasks</em>, and I don’t even look at <em>Edits</em> anymore.</p>
+
+<p>I do believe <em>Edits</em> will eventually be removed. <em>Cursor</em> has already removed its <strong><em>“manual”</em></strong> mode, which was the <em>Edit equivalent</em>. But for the time being, I think they can still have a purpose. If you’re <strong>entirely new to the Copilot journey</strong>, especially if you’re a <em>skeptic</em>, it can be a nice, <strong>slower introduction</strong> to how <em>AI</em> can help read and modify multiple files at scale, compared to the <em>Agent mode</em>, which will have more <strong><em>“a mind of its own”</em></strong>.</p>
+
+<p>I already introduced <em>Agents</em> during the session, but here it comes again. <strong><em>Agent mode is similar to Edit mode</em></strong>, except that it tries to <strong>find its own context</strong> for the changes it needs to make, and it has access to <strong><em>“tools”</em></strong>.</p>
+
+<p><img src="/images/fancyautocompletevol2/context.png" alt="Agent Context" /></p>
+
+<p>I made a <strong>big deal</strong> in the session about <strong><em>taking control of your context</em></strong>. But it feels like that’s <strong>less important now</strong>. If you have specific files that you want the agent to look at, by all means, pull them in. But also rest assured that it will do a <strong>pretty good job</strong> at finding the files on its own:</p>
+
+<p><img src="/images/fancyautocompletevol2/context-2.png" alt="Agent Context 2" /></p>
+
+<p>It’s able to do that because it has <strong>access to tools</strong>. It’s no longer just <em>reading content</em> and <em>generating new tokens</em>. It can <strong>take action within your IDE</strong>, like <em>search for files</em>, <em>run commands</em>, <em>do web search</em>, <em>check errors and warnings</em>, …</p>
+
+<p><img src="/images/fancyautocompletevol2/tools.png" alt="Agent Tools" /></p>
+
+<p>We’ll return to <strong>tools</strong> when we discuss <em>MCP Servers</em>, but for now, know that this is the <strong><em>“secret sauce”</em></strong> behind the power of <em>Agent mode</em>.</p>
+
+<hr />
+
+<h2 id="agent-settings-for-best-results">Agent Settings for Best Results</h2>
+
+<p>To have the <strong>best results with Agents</strong>, here are two settings you should enable:</p>
+
+<h3 id="todo-list-tool">Todo List Tool</h3>
+
+<p><img src="/images/fancyautocompletevol2/todo-setting.png" alt="Todo Setting" /></p>
+
+<p>This tool will allow the agent to <strong>create its own to-do list</strong> as it works through a more extensive task. It helps the agent <strong><em>“remember”</em></strong> what it has to implement throughout the length of a more extended conversation. Here’s how it looks:</p>
+
+<p><img src="/images/fancyautocompletevol2/todo-agent.png" alt="Todo Agent" /></p>
+
+<p><img src="/images/fancyautocompletevol2/todo-example.png" alt="Todo Example" /></p>
+
+<p>As it goes through the individual <em>Todo items</em>, it <strong>marks them as completed</strong>, helping it maintain focus on the current task.</p>
+
+<h3 id="max-requests-setting">Max Requests Setting</h3>
+
+<p><img src="/images/fancyautocompletevol2/max-requests.png" alt="Max Requests" /></p>
+
+<p>By default, the value is set to <strong>15</strong> (or at least it was, when I changed it for myself). After <em>15 steps</em>, the agent stops and asks the user, <strong><em>“Do you want to continue or stop the process?”</em></strong>. Fifteen steps is <strong>not a lot of steps</strong>. I quickly grew annoyed at having to keep pressing <em>‘Continue’</em> on larger tasks, so I changed mine to <strong>100</strong>. I haven’t seen an interruption since, and I’m free to <strong>browse LinkedIn</strong> as the agent implements larger items of my work. :P</p>
+
+<hr />
+
+<h2 id="copilot-instructions">Copilot Instructions</h2>
+
+<p>If you want to get the <strong>best results with the agent mode</strong>, you should couple it with <strong><em>copilot-instructions.md</em></strong>. The instructions file will be <strong>appended to each request</strong> you make to the agent. During the session, I explained how you can use this file as a <strong><em>“memory” file</em></strong>, to make sure the agent codes the way you would. Do you omit spaces in <em>object and field names</em>, but agents use them? <strong>Put it in the file.</strong> Do you want to have explicit parameters with <em>internal functions</em> (Insert, Modify, Delete), but the agent skips them? <strong>Put it in the file.</strong></p>
+
+<p>When creating these files, you don’t have to <strong>start from scratch</strong>. <strong><em><a href="https://www.linkedin.com/in/dmitrykatson">Dmitry Katson</a></em></strong> shared his <strong><em><a href="https://alguidelines.dev/docs/vibe-coding/">instruction files</a></em></strong> with the community. I keep mine <strong><em><a href="https://github.com/tinestaric/BCExamples/blob/Master/.github/copilot-instructions.md">here</a></em></strong>, but they’re far less extensive, as I’ve generally had <strong>good experience</strong> with the proposed code, with only minor adjustments needed that I keep in the instructions file.</p>
+
+<p>However, something that I haven’t mentioned in the session, nor captured in the above instructions file, that I think should be part of <strong>every single repository</strong> is a <strong><em>project overview</em></strong>. Every project should have an explanation of what it’s about, what the architecture looks like, and the main patterns used. And even there, you don’t have to <strong>start from scratch</strong>. A few releases ago, the <em>VSC team</em> added the action to <strong>generate the project overview instructions</strong>:</p>
+
+<p><img src="/images/fancyautocompletevol2/generate-instructions.png" alt="Generate Instructions" /></p>
+
+<p>When executed, it will prompt the agent with a <strong>preset prompt</strong> to scan the workspace and create (or update) the instructions file with the project overview:</p>
+
+<p><img src="/images/fancyautocompletevol2/instructions-prompt.png" alt="Instructions Prompt" /></p>
+
+<p>And here are some of the results</p>
+
+<p><img src="/images/fancyautocompletevol2/instructions-example.png" alt="Instructions Example" /></p>
+
+<p>Considering how <strong>easy it is</strong> to include an overview, I don’t see a reason why you wouldn’t go and include it in your repos <strong><em>right now</em></strong>. :P</p>
+
+<hr />
+
+<h2 id="models">Models</h2>
+
+<p><img src="/images/fancyautocompletevol2/models.jpg" alt="Models" /></p>
+
+<p>Next, I want to touch on the topic of <strong>models</strong> again. My stance remains the same; <strong><em>Claude models appear to be the best for AL</em></strong>. However, we’ve recently received <strong>two others</strong> that I sometimes like to switch to, especially when <em>Claude</em> appears to <strong><em>get drunk</em></strong> and proposes <em>stupid solutions</em> (this one was suggested to <em>hand-crafted coder</em> <strong><em><a href="https://www.linkedin.com/in/ajkauffmann">AJ Kauffmann</a></em></strong>):</p>
+
+<p><img src="/images/fancyautocompletevol2/dumb-agent.jpg" alt="Dumb Agent" /></p>
+
+<p>The <strong>models I like for AL</strong> are:</p>
+<ul>
+  <li><strong><em>Claude Sonnet 4</em></strong> – My default, <strong>best results</strong>, most consistent, overall the <strong>best experience</strong>.</li>
+  <li><strong><em>GPT-5</em></strong> – After poor <em>AL results</em> with <em>4o</em>, <em>4.1</em>, <em>o3</em>, <em>4.5</em>, this is the <strong>first GPT model</strong> that I can easily trust to get things right. I like to use it as an alternative to <em>Sonnet</em> when I have tasks that require <strong>more of an analysis</strong> of a codebase. Apparently, <em>Copilot</em> was also tweaked to work better with this model, as evidenced by these <strong>two settings</strong> I found (but I haven’t noticed too much of a difference)</li>
+</ul>
+
+<p><img src="/images/fancyautocompletevol2/gpt-5-settings.png" alt="GPT-5 Settings" /></p>
+
+<ul>
+  <li><strong><em>Grok Code Fast 1</em></strong> – This is the only <strong><em>“included”</em></strong> model (meaning <em>free</em>) that I like to use with <em>AL</em>. It’s <strong>faster</strong> than the other two, and it does the work without all the meaningless tokens for <strong><em>“You’re absolutely right!”</em></strong>. It, however, <strong>doesn’t handle picture input</strong>. Less relevant for <em>AL</em>, but worth keeping in mind.</li>
+</ul>
+
+<p>Still remember that if you don’t have any of these models available in your model selector, you (or your organization admin) have to enable them in <strong><em><a href="https://github.com/settings/copilot/features">GitHub Settings</a></em></strong>.</p>
+
+<p>And if you’re of the <strong>exploratory type</strong> when it comes to models, you absolutely have to give <strong><em><a href="https://www.linkedin.com/in/stefano-demiliani">Stefano Demiliani</a></em></strong> a follow. He <strong>tests each new model with AL</strong> and reports his impression on all social media. I only touch models that <strong>he approves</strong>. :P</p>
+
+<hr />
+
+<h2 id="mcp-servers">MCP Servers</h2>
+
+<p>Lastly, let’s talk about the <strong><em>MCP servers</em></strong>. They’ve been <strong>all around the news</strong> for a few months now, but I think we’re right at the brink of getting a <strong><em>“perfect bouquet of MCPs”</em></strong> to use for <em>AL development</em>.</p>
+
+<p>Before I jump into my current recommendations, I want to provide a <strong>short explanation</strong> of what an <em>MCP server</em> is. I’ll use the same analogy I used in the recent session for our partner.</p>
+
+<p>Everyone understands the concept of <strong><em>VSC extensions</em></strong>. We have this <em>vanilla development environment</em> that allows us to write code. Still, if we want to add any <strong>additional functionalities</strong> to it (like support for <em>AL</em>), we need to install extensions for it.</p>
+
+<p><img src="/images/fancyautocompletevol2/vsc-extension.png" alt="VSC Extension" /></p>
+
+<p>But an extension that’s built for <em>VSC</em> will <strong>not work</strong> for <em>Visual Studio</em> or <em>JetBrains</em>.</p>
+
+<p><img src="/images/fancyautocompletevol2/vsc-extension-error.png" alt="VSC Extension Error" /></p>
+
+<p>The same story applies to <em>Copilot</em> and other <strong><em>AI-assisted development tools</em></strong>. Remember that the <strong>true power</strong> of the <em>GitHub Copilot Agent mode</em> comes from its tools:</p>
+
+<p><img src="/images/fancyautocompletevol2/tools.png" alt="Tools" /></p>
+
+<p>But if we create a tool for <em>GitHub Copilot</em>, it won’t work with tools like <strong><em>Claude Code</em></strong>, <em>Codex</em>, <em>Aider</em>, and others.</p>
+
+<p><img src="/images/fancyautocompletevol2/copilot-extension.png" alt="Copilot Extension" /></p>
+
+<p>And that’s what <strong><em>MCP (Model Context Protocol)</em></strong> is here to solve. If we build our <em>Copilot extension</em> in a way that it’s <strong><em>MCP-compliant</em></strong>, then <strong>any tool that supports MCP</strong> can make use of our additional tools.</p>
+
+<p><img src="/images/fancyautocompletevol2/mcp-extension.png" alt="MCP Extension" /></p>
+
+<p>Regardless of whether the tools are added through an <em>extension</em> or through an <em>MCP server</em>, their <strong>behaviour remains the same</strong>. It’s just a protocol of how the tools <strong><em>“plug in”</em></strong> to the client.</p>
+
+<p><img src="/images/fancyautocompletevol2/mcp-examples.png" alt="MCP Examples" /></p>
+
+<p>A lot of people have used the <strong><em>“USB-C”</em></strong> analogy in the past, and it does fit. Let’s say you have a printer that plugs into your PC via <em>USB-C</em>. The <strong><em>“logic”</em></strong> is in the printer, not in the <em>USB-C connector</em>. The connector is just a connector. But it allows us to <strong>plug the printer into anything</strong> that has a <em>USB-C hole</em>. The same applies to <em>MCPs</em>. The <strong>logic is in the “extension”</strong>; <em>MCP</em> ensures that we can plug our logic into <strong>anything that has an MCP hole</strong>. :D</p>
+
+<hr />
+
+<p>Okay, so what <strong><em>MCPs should you try out</em></strong> for <em>AL development</em>?</p>
+
+<ul>
+  <li><strong><em>GitHub / Azure DevOps</em></strong> – depending on what you use for issue tracking, these are an <strong>obvious choice</strong>. It enables the agent to <em>read and update tasks</em>, as well as handle <em>pipelines</em>. <strong>Very useful</strong>.</li>
+  <li><strong><em>Microsoft Docs</em></strong> – I’ve had several tasks where the agent surprised me with <strong><em>“let me search the documentation”</em></strong>, found the <em>BC related articles</em>, and continued with <strong>much better context</strong>.</li>
+</ul>
+
+<p>These are the <strong>easy-to-install MCPs</strong> that you can find by opening the <strong><em>MCP library</em></strong> from <em>VSC</em>.</p>
+
+<p><img src="/images/fancyautocompletevol2/browser-mcp.png" alt="Browser MCP" /></p>
+
+<hr />
+
+<p>A worthwhile <strong><em>non-MCP recommendation</em></strong> is something you might already have in your toolbox: <strong><em>NAB AL Tools</em></strong>. <strong><em><a href="https://www.linkedin.com/in/johanneswikman/">Johannes</a></em></strong> added <em>Copilot tools</em> to his already existing extension, and if you’re working with <strong>translations</strong>, the following blog is a <strong><em><a href="https://www.linkedin.com/pulse/language-model-tools-ai-translations-johannes-wikman-qiebf/?trackingId=BI%2BPcryjdFcmxbaQ3u5O5Q%3D%3D">MUST READ</a></em></strong>.</p>
+
+<hr />
+
+<p>But back to <em>MCPs</em>, the following ones will need a <strong>bit more manual work</strong>, but everything is explained in the readme files:</p>
+<ul>
+  <li><strong><em><a href="https://github.com/StefanMaron/AL-Dependency-MCP-Server">Al-symbols-mcp</a></em></strong> - Created by <strong><em><a href="https://www.linkedin.com/in/stefan-maron-709928206/">Stefan Maron</a></em></strong>, it allows the agent to <strong>look into the dependencies</strong> for additional context. Usually, when working on an app, the agent can only see the code from the workspace. This <em>MCP</em> adds tools that can give it access to <strong>objects that are in the .alpackages folder</strong>. It’s <strong>brilliant for PTE apps</strong> where most of the context is in the dependencies—more information in the <em>ReadMe file</em> in the repo.</li>
+  <li><strong><em><a href="https://www.npmjs.com/package/bc-code-intelligence-mcp">Bc-code-intelligence-mcp</a></em></strong> - This one is from <strong><em><a href="https://www.linkedin.com/in/jeremyvyska/">Jeremy Vyska</a></em></strong>, another <strong>must-follow person</strong> if you’re into the <em>Copilot story</em>. It’s hard to believe <em>Jeremy</em> was in the <strong><em>“autocomplete”</em></strong> camp 6 months ago, because he has already done <strong>so much</strong> to push the <em>Copilot story</em> further for <em>AL devs</em>! Anyway, this <em>MCP</em> brings <strong><em>A TON of AL dev guidelines</em></strong> to your agent so it writes code as it should be written. It’s hard to explain everything this <em>MCP</em> does, so it’s best if you check <strong><em><a href="https://nubimancy.com/2025/09/22/bc-code-intelligence-launch-announcement/">Jeremy’s recent blog post</a></em></strong>.</li>
+</ul>
+
+<hr />
+
+<p>The last <em>MCP</em> recommendations are a bit more <strong>experimental</strong>. I have not spent enough time with them, but I have a <strong>strong feeling</strong> they’re going to be very instrumental in the future:</p>
+
+<p><strong><em><a href="https://github.com/oraios/serena">Serena</a></em></strong> - By default, the agent navigates through your codebase using <em>text search</em>. <em>Serena</em> enables it to do <strong>semantic retrieval</strong>, navigate through the codebase on the <em>symbol level</em>, and exploit <strong>relational structure</strong>. Usually, these advanced tools would be reserved for <strong><em>“mature”</em></strong> languages like <em>Python</em>, <em>C#</em>, or <em>JavaScript</em>, but thanks to the <strong><em>“madman”</em></strong> named <strong><em><a href="https://www.linkedin.com/in/torben-l%C3%B8kke-leth/">Torben Leth</a></em></strong>, they have just received a <strong><em><a href="https://github.com/oraios/serena/pull/593">PR</a></em></strong> with <em>AL support</em>. I use <em>madman</em> in a <strong>very complimentary tone</strong>. :D <em>Torben</em> is one of those people who gets involved in projects that I’d consider <strong>impossible</strong> (like <strong><em><a href="https://www.linkedin.com/posts/torben-l%C3%B8kke-leth_emea2025-msdyn365bc-activity-7367584117506465795-4_Uy?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAACLigK8B1d5zenhN3aNEAnW6bNGFZZNzj_E">bringing BC to Linux</a></em></strong>).</p>
+
+<p>He also just published the <em>MCP</em> for the <strong><em>AL Object ID Ninja</em></strong> made by <strong><em><a href="https://www.linkedin.com/in/vjeko/">Vjeko</a></em></strong>. Finally, agents will <strong>know which ID to propose</strong>, but I have yet to test this one out: <strong><em><a href="https://github.com/SShadowS/al-objid-mcp-server">al-objid-mcp-server</a></em></strong>.</p>
+
+<hr />
+
+<blockquote>
+  <p><strong>Warning:</strong> Don’t go crazy installing <strong><em>all the MCPs</em></strong> you can find. Every added tool will <strong>eat away at the context window</strong> of an agent, and there will be <strong><em>less space for context</em></strong> about your project or the goal. <strong><em><a href="https://www.linkedin.com/in/stefano-demiliani">Stefano</a></em></strong> described it perfectly in his recent <strong><em><a href="https://demiliani.com/2025/09/04/model-context-protocol-and-the-too-many-tools-problem/">blog post</a></em></strong>.</p>
+</blockquote>
+
+<p><em>VS Code</em> will warn you if you’re trying to fit <strong>more than 128 tools</strong> in your prompt, but even <em>128</em> is already a <strong>huge number</strong>.</p>
+
+<p><img src="/images/fancyautocompletevol2/too-many-tools.png" alt="Too Many Tools" /></p>
+
+<p><em>Azure DevOps MCP</em> alone comes with <strong>70 new tools</strong>, and do you really need to have all the actions related to <em>pipelines</em> enabled when your usual workflow consists of <strong><em>reading and maybe updating work items?</em></strong> I think not.</p>
+
+<hr />
+
+<p>Was this too long? Nah, I had to put all the current ideas into <em>vol.2</em>. I already know there’s going to be a <strong><em>vol. 3</em></strong> soon. The next area worth mentioning is going to be the <strong>background agents</strong>, the ones we no longer oversee. I also think we’ll see <strong>many more MCPs</strong> in the next few months, until they all consolidate into an <strong><em><a href="https://marketplace.visualstudio.com/items?itemName=waldo.al-extension-pack">AL Extension Pack</a></em></strong> equivalent of <em>MCP servers</em>. I think it’s also time to <strong>revisit the topic of code review</strong>, this time through an <em>AI-assisted lens</em>.</p>
+
+<p>Let me know your thoughts on any of the social media, and see you on the next post!</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2025 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
