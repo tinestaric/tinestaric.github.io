@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Sep 2025 16:39:38 +0300</pubDate>
-    <lastBuildDate>Mon, 22 Sep 2025 16:39:38 +0300</lastBuildDate>
+    <pubDate>Tue, 23 Sep 2025 10:07:47 +0300</pubDate>
+    <lastBuildDate>Tue, 23 Sep 2025 10:07:47 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -94,7 +94,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/models.jpg&quot; alt=&quot;Models&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Next, I want to touch on the topic of &lt;strong&gt;models&lt;/strong&gt; again. My stance remains the same; &lt;strong&gt;&lt;em&gt;Claude models appear to be the best for AL&lt;/em&gt;&lt;/strong&gt;. However, we’ve recently received &lt;strong&gt;two others&lt;/strong&gt; that I sometimes like to switch to, especially when &lt;em&gt;Claude&lt;/em&gt; appears to &lt;strong&gt;&lt;em&gt;get drunk&lt;/em&gt;&lt;/strong&gt; and proposes &lt;em&gt;stupid solutions&lt;/em&gt; (this one was suggested to &lt;em&gt;hand-crafted coder&lt;/em&gt; &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;AJ Kauffmann&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;):&lt;/p&gt;
+&lt;p&gt;Next, I want to touch on the topic of &lt;strong&gt;models&lt;/strong&gt; again. My stance remains the same; &lt;strong&gt;&lt;em&gt;Claude models appear to be the best for AL&lt;/em&gt;&lt;/strong&gt;. However, we’ve recently received &lt;strong&gt;two others&lt;/strong&gt; that I sometimes like to switch to, especially when &lt;em&gt;Claude&lt;/em&gt; appears to &lt;strong&gt;&lt;em&gt;get drunk&lt;/em&gt;&lt;/strong&gt; and proposes &lt;em&gt;stupid solutions&lt;/em&gt; (this one was suggested to &lt;em&gt;code hand-crafter&lt;/em&gt; &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;AJ Kauffmann&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;):&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/dumb-agent.jpg&quot; alt=&quot;Dumb Agent&quot; /&gt;&lt;/p&gt;
 
@@ -107,7 +107,7 @@
 &lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/gpt-5-settings.png&quot; alt=&quot;GPT-5 Settings&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Grok Code Fast 1&lt;/em&gt;&lt;/strong&gt; – This is the only &lt;strong&gt;&lt;em&gt;“included”&lt;/em&gt;&lt;/strong&gt; model (meaning &lt;em&gt;free&lt;/em&gt;) that I like to use with &lt;em&gt;AL&lt;/em&gt;. It’s &lt;strong&gt;faster&lt;/strong&gt; than the other two, and it does the work without all the meaningless tokens for &lt;strong&gt;&lt;em&gt;“You’re absolutely right!”&lt;/em&gt;&lt;/strong&gt;. It, however, &lt;strong&gt;doesn’t handle picture input&lt;/strong&gt;. Less relevant for &lt;em&gt;AL&lt;/em&gt;, but worth keeping in mind.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Grok Code Fast 1&lt;/em&gt;&lt;/strong&gt; – This is the only &lt;strong&gt;&lt;em&gt;“included”&lt;/em&gt;&lt;/strong&gt; model (meaning &lt;em&gt;“free”&lt;/em&gt;) that I like to use with &lt;em&gt;AL&lt;/em&gt;. It’s &lt;strong&gt;faster&lt;/strong&gt; than the other two, and it does the work without all the meaningless tokens for &lt;strong&gt;&lt;em&gt;“You’re absolutely right!”&lt;/em&gt;&lt;/strong&gt;. It, however, &lt;strong&gt;doesn’t handle picture input&lt;/strong&gt;. Less relevant for &lt;em&gt;AL&lt;/em&gt;, but worth keeping in mind.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Still remember that if you don’t have any of these models available in your model selector, you (or your organization admin) have to enable them in &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/settings/copilot/features&quot;&gt;GitHub Settings&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
@@ -134,7 +134,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/tools.png&quot; alt=&quot;Tools&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;But if we create a tool for &lt;em&gt;GitHub Copilot&lt;/em&gt;, it won’t work with tools like &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt;, &lt;em&gt;Codex&lt;/em&gt;, &lt;em&gt;Aider&lt;/em&gt;, and others.&lt;/p&gt;
+&lt;p&gt;But if we create an additional tool for &lt;em&gt;GitHub Copilot&lt;/em&gt;, it won’t work with tools like &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt;, &lt;em&gt;Codex&lt;/em&gt;, &lt;em&gt;Aider&lt;/em&gt;, and others.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol2/copilot-extension.png&quot; alt=&quot;Copilot Extension&quot; /&gt;&lt;/p&gt;
 
