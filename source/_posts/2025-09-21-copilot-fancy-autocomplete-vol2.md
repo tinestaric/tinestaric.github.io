@@ -90,7 +90,7 @@ Considering how **easy it is** to include an overview, I don't see a reason why 
 
 ![Models](/images/fancyautocompletevol2/models.jpg)
 
-Next, I want to touch on the topic of **models** again. My stance remains the same; ***Claude models appear to be the best for AL***. However, we've recently received **two others** that I sometimes like to switch to, especially when *Claude* appears to ***get drunk*** and proposes *stupid solutions* (this one was suggested to *hand-crafted coder* ***[AJ Kauffmann][ajkauffmann]***):
+Next, I want to touch on the topic of **models** again. My stance remains the same; ***Claude models appear to be the best for AL***. However, we've recently received **two others** that I sometimes like to switch to, especially when *Claude* appears to ***get drunk*** and proposes *stupid solutions* (this one was suggested to *code hand-crafter* ***[AJ Kauffmann][ajkauffmann]***):
 
 ![Dumb Agent](/images/fancyautocompletevol2/dumb-agent.jpg)
 
@@ -100,7 +100,7 @@ The **models I like for AL** are:
 
 ![GPT-5 Settings](/images/fancyautocompletevol2/gpt-5-settings.png)
 
--	***Grok Code Fast 1*** – This is the only ***"included"*** model (meaning *free*) that I like to use with *AL*. It's **faster** than the other two, and it does the work without all the meaningless tokens for ***"You're absolutely right!"***. It, however, **doesn't handle picture input**. Less relevant for *AL*, but worth keeping in mind.
+-	***Grok Code Fast 1*** – This is the only ***"included"*** model (meaning *"free"*) that I like to use with *AL*. It's **faster** than the other two, and it does the work without all the meaningless tokens for ***"You're absolutely right!"***. It, however, **doesn't handle picture input**. Less relevant for *AL*, but worth keeping in mind.
 
 Still remember that if you don't have any of these models available in your model selector, you (or your organization admin) have to enable them in ***[GitHub Settings][ghsettings]***.
 
@@ -126,7 +126,7 @@ The same story applies to *Copilot* and other ***AI-assisted development tools**
 
 ![Tools](/images/fancyautocompletevol2/tools.png)
 
-But if we create a tool for *GitHub Copilot*, it won't work with tools like ***Claude Code***, *Codex*, *Aider*, and others.
+But if we create an additional tool for *GitHub Copilot*, it won't work with tools like ***Claude Code***, *Codex*, *Aider*, and others.
 
 ![Copilot Extension](/images/fancyautocompletevol2/copilot-extension.png)
 
