@@ -11,7 +11,9 @@ A few weeks ago, I was asked if I'd have time to deliver the ***"Copilot is just
 
 The ***"fancy autocomplete"*** story started at the beginning of the year with the ***[part 1 blog post][copilotpost]***. All the points from the blog post then matured into a ***[session at BC TechDays 2025][bcTechDaysVideoLink]***, which is also now available online.
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="responsive-iframe">
+<iframe src="https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 <br>
 
 The session covered some **best practices** to get the best results out of the *fancy autocomplete*, but then quickly turned towards **other capabilities**. *Copilot Edits* take the center stage, as the next step, and we later progress into ***agent mode***, and compare *VS Code* to *Cursor*.
