@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 23 Sep 2025 10:07:47 +0300</pubDate>
-    <lastBuildDate>Tue, 23 Sep 2025 10:07:47 +0300</lastBuildDate>
+    <pubDate>Tue, 23 Sep 2025 11:33:08 +0300</pubDate>
+    <lastBuildDate>Tue, 23 Sep 2025 11:33:08 +0300</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -15,7 +15,9 @@
 
 &lt;p&gt;The &lt;strong&gt;&lt;em&gt;“fancy autocomplete”&lt;/em&gt;&lt;/strong&gt; story started at the beginning of the year with the &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;/blog/2025/copilot-fancy-autocomplete/&quot;&gt;part 1 blog post&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;. All the points from the blog post then matured into a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zTejuQzYAb8&quot;&gt;session at BC TechDays 2025&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, which is also now available online.&lt;/p&gt;
 
-&lt;iframe width=&quot;800&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;div class=&quot;responsive-iframe&quot;&gt;
+&lt;iframe src=&quot;https://www.youtube.com/embed/zTejuQzYAb8?si=NjXpEsyXi2BPUAqW&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;The session covered some &lt;strong&gt;best practices&lt;/strong&gt; to get the best results out of the &lt;em&gt;fancy autocomplete&lt;/em&gt;, but then quickly turned towards &lt;strong&gt;other capabilities&lt;/strong&gt;. &lt;em&gt;Copilot Edits&lt;/em&gt; take the center stage, as the next step, and we later progress into &lt;strong&gt;&lt;em&gt;agent mode&lt;/em&gt;&lt;/strong&gt;, and compare &lt;em&gt;VS Code&lt;/em&gt; to &lt;em&gt;Cursor&lt;/em&gt;.&lt;/p&gt;
