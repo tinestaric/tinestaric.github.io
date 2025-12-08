@@ -15,26 +15,34 @@ Here's a list of the presentations I did through the years with attached slides,
     - Multiple sessions at Directions EMEA 2025:
         - **You need to implement Agents now! ...But what even is an Agent?**: [session link][emea25agents]
         - **Is BC the Right Path for Me? (Under-30s Edition)**: [session link][emea25under30]
+    - **How to talk about Agents so Partners Get it** as a webinar for Microsoft
 - 2025-10
     - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect France][companialconnectfrance]
     - **You need to implement Agents now! ...But what even is an Agent?** as a webinar at [NavetTrip][navettrip]
     - **You need to implement Agents now! ...But what even is an Agent?** as a webinar at [Styr Customer Day][styrcustomerday]
     - **Be Future Ready** as a webinar for [Companial][companialhome]
+    - **Copilot is just a fancy autocomplete** as a webinar for [Plataan][plataanhome]
+    - **How to be a Prompt Engineer** as a webinar for [Plataan][plataanhome]
 - 2025-09
     - Multiple sessions at [Acadon Inspire][acadoninspire]:
         - **Copilot is just a fancy autocomplete...**
         - **You need to implement Agents now! ...But what even is an Agent?**
     - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a webinar for [Areopa][areopa]: [recording][areopapowerplatformbcdevyt]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
+    - **Power Platform from the Perspective of BC Development** as a webinar for [Plataan][plataanhome]
 - 2025-06
     - Multiple sessions at [BC Tech Days][bctechdays]:
         - **Copilot is just a fancy autocomplete...**
         - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
         - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
     - **BC Tech Days 2025** as a podcast for [Window on Technology][windowontechnology]: [recording][bctechdays2025podcast]
+- 2025-07
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
 - 2025-05 
     - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect Nordic][companialconnectnordic]
     - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
     - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
     - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
         - **How to be a Prompt Engineer**: [presentation][doknordic25promptpress]
         - **Copilot is just a fancy autocomplete...**: [presentation][doknordic25copilotpress]
@@ -46,9 +54,11 @@ Here's a list of the presentations I did through the years with attached slides,
 - 2025-04
     - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]: [presentation][colorcloudpowerpress]
     - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]: [presentation][directionsnacopilotpress]
+    - **Copilot is just a fancy autocomplete** as a webinar for [Tigunia][tiguniahome]
 - 2025-03
     - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
     - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]: [recording][companialupgradesrecording]
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
     - Multiple sessions at [Days of Knowledge UK][dokuk25]:
         - **How to be a Prompt Engineer**: [presentation][dokuk25promptpress]
         - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
@@ -58,15 +68,27 @@ Here's a list of the presentations I did through the years with attached slides,
 - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
 
 ## 2024
+- 2024-12
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
 - 2024-11 
     - **How to be a Prompt Engineer** as a session at [Directions EMEA][emea24]: [presentation][emea24promptpress]
     - **EMEA Recap** as a session at [Companial Connect Italy][companialconnectitaly]
-- 2024-10 **Companial SofTalk: Exploring Copilot in Dynamics 365 Business Central** as a short podcast for [Companial][companialhome]: [recording][softalkairecording]
-- 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
+    - **How to be a Prompt Engineer** as a webinar for [4PS][4pshome]
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
+- 2024-10 
+    - **Companial SofTalk: Exploring Copilot in Dynamics 365 Business Central** as a short podcast for [Companial][companialhome]: [recording][softalkairecording]
+    - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Plataan][plataanhome]
+- 2024-09
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
+- 2024-07
+    - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Plataan][plataanhome]
+- 2024-06 
+    - **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
 - 2024-05 
     - **I’m willing to fight for test-automation! And I think you should too…** as a session at [DynamicsMinds][2023dynamicsminds]: [presentation][dm24paerrorpress]
-    - **You need to implement AI now! ...But what even is AI?** as an Expert Session for [Plataan][plataanhome]
-    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as an Expert Session for [Plataan][plataanhome]
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
+    - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
     - **Episode 321: In the Dynamics Corner Chair: Nurture and Empower the Future of BC and AI Innovation** as a podcast for [Dynamics Corner][dynamicscornerhome]: [recording][dynamicscorner321recording]
 - 2024-04 Multiple sessions at [Directions North America][directionsnahome]
     - **Reviewing the Code Review**: [presentation][directionsnacodereviewpres]
@@ -77,7 +99,7 @@ Here's a list of the presentations I did through the years with attached slides,
     - **Error-Proof Automation: Proactive Error Handling in Power Automate**: session link [UK][dokuk24paerror], [Nordic][doknordic24paerror], [Central][dokcentral24paerror] and [presentation][dok24ukpaerrorpres]
 - 2024-03 
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Areopa][areopa]: [presentation][2023doknordiccodequality] and [recording][codeanalysisareoparecording]
-    - **Azure Blobs Made Simple: For Non-Developers** as an Expert Session for [Plataan][plataanhome]: [presentation][companialblobpress] and [recording][plataanblobrecording] (password protected)
+    - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Plataan][plataanhome]: [presentation][companialblobpress] and [recording][plataanblobrecording] (password protected)
 - 2024-01 
     - **Companial Talkie: What you need to know about AI and Copilot now** as a short talkie for [Companial][companialhome]: [recording][companialtalkieai]
     - **Azure Blobs Made Simple: For Non-Developers** as a webinar for [Companial][companialhome]: [presentation][companialblobpress] and [recording][companialblobrecording]
@@ -202,3 +224,5 @@ Here's a list of the presentations I did through the years with attached slides,
 [acadoninspire]: https://acadon.de/
 [navettrip]: https://www.navet.se/
 [styrcustomerday]: https://www.styr.se/
+[4pshome]: https://www.4ps.com/
+[tiguniahome]: https://tigunia.com/
