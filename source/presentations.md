@@ -7,45 +7,60 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2025
+- 2025-12
+    - **You don't have to make Test Plans anymore...** as a webinar for [Areopa][areopa]
+- 2025-11
+    - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect Spain][companialconnectspain]
+    - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect Italy][companialconnectitaly]
+    - Multiple sessions at Directions EMEA 2025:
+        - **You need to implement Agents now! ...But what even is an Agent?**: [session link][emea25agents]
+        - **Is BC the Right Path for Me? (Under-30s Edition)**: [session link][emea25under30]
+- 2025-10
+    - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect France][companialconnectfrance]
+    - **You need to implement Agents now! ...But what even is an Agent?** as a webinar at [NavetTrip][navettrip]
+    - **You need to implement Agents now! ...But what even is an Agent?** as a webinar at [Styr Customer Day][styrcustomerday]
+    - **Be Future Ready** as a webinar for [Companial][companialhome]
+- 2025-09
+    - Multiple sessions at [Acadon Inspire][acadoninspire]:
+        - **Copilot is just a fancy autocomplete...**
+        - **You need to implement Agents now! ...But what even is an Agent?**
+    - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a webinar for [Areopa][areopa]: [recording][areopapowerplatformbcdevyt]
 - 2025-06
-    - 2025-11
-        - **You need to implement Agents now! ...But what even is an Agent?** as a session at Directions EMEA 2025: [session link][emea25agents]
-        - **Is BC the Right Path for Me? (Under-30s Edition)** as a session at Directions EMEA 2025: [session link][emea25under30]
-    - 2025-09
-        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a webinar for [Areopa][areopa]: [recording][areopapowerplatformbcdevyt]
-    - 2025-06
-        - Multiple sessions at [BC Tech Days][bctechdays]:
-            - **Copilot is just a fancy autocomplete...**
-            - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
-            - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
-        - **BC Tech Days 2025** as a podcast for [Window on Technology][windowontechnology]: [recording][bctechdays2025podcast]
-    - 2025-05 
-        - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
-        - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
-        - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
-            - **How to be a Prompt Engineer**: [presentation][doknordic25promptpress]
-            - **Copilot is just a fancy autocomplete...**: [presentation][doknordic25copilotpress]
-            - **Power Platform from the perspective of BC development**: [presentation][doknordic25powerpress]
-        - Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
-            - **How to be a Prompt Engineer**: [presentation][dm25promptpress]
-            - **Testing is boring... Until now!**: [presentation][dm25testingpress]
-            - Panel moderator: **What do F&O and BC have in common? The same mistakes made by consultants!**
-    - 2025-04
-        - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]: [presentation][colorcloudpowerpress]
-        - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]: [presentation][directionsnacopilotpress]
-    - 2025-03
-        - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
-        - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]: [recording][companialupgradesrecording]
-        - Multiple sessions at [Days of Knowledge UK][dokuk25]:
-            - **How to be a Prompt Engineer**: [presentation][dokuk25promptpress]
-            - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
-            - **Power Platform from the perspective of BC development** with [waldo][waldoli]: [presentation][dokuk25powerpresss]
-    - 2025-02
-    - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
-    - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
+    - Multiple sessions at [BC Tech Days][bctechdays]:
+        - **Copilot is just a fancy autocomplete...**
+        - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
+        - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
+    - **BC Tech Days 2025** as a podcast for [Window on Technology][windowontechnology]: [recording][bctechdays2025podcast]
+- 2025-05 
+    - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect Nordic][companialconnectnordic]
+    - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
+    - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
+    - Multiple sessions at [Days of Knowledge Nordic][doknordic25]:
+        - **How to be a Prompt Engineer**: [presentation][doknordic25promptpress]
+        - **Copilot is just a fancy autocomplete...**: [presentation][doknordic25copilotpress]
+        - **Power Platform from the perspective of BC development**: [presentation][doknordic25powerpress]
+    - Multiple sessions at [DynamicsMinds][2023dynamicsminds]:
+        - **How to be a Prompt Engineer**: [presentation][dm25promptpress]
+        - **Testing is boring... Until now!**: [presentation][dm25testingpress]
+        - Panel moderator: **What do F&O and BC have in common? The same mistakes made by consultants!**
+- 2025-04
+    - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a session at [ColorCloud][colorcloud]: [presentation][colorcloudpowerpress]
+    - **Copilot is just a fancy autocomplete...** as a session at [Directions North America][directionsnahome]: [presentation][directionsnacopilotpress]
+- 2025-03
+    - **AI Assisted Development meets Business Central** as a podcast for [Dynamics Corner][dynamicscornerhome]
+    - **Simplyfy your Dynamics NAV/BC Upgrades in 2025** as a webinar for [Companial][companialhome]: [recording][companialupgradesrecording]
+    - Multiple sessions at [Days of Knowledge UK][dokuk25]:
+        - **How to be a Prompt Engineer**: [presentation][dokuk25promptpress]
+        - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
+        - **Power Platform from the perspective of BC development** with [waldo][waldoli]: [presentation][dokuk25powerpresss]
+- 2025-02
+- **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
+- **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
 
 ## 2024
-- 2024-11 **How to be a Prompt Engineer** as a session at [Directions EMEA][emea24]: [presentation][emea24promptpress]
+- 2024-11 
+    - **How to be a Prompt Engineer** as a session at [Directions EMEA][emea24]: [presentation][emea24promptpress]
+    - **EMEA Recap** as a session at [Companial Connect Italy][companialconnectitaly]
 - 2024-10 **Companial SofTalk: Exploring Copilot in Dynamics 365 Business Central** as a short podcast for [Companial][companialhome]: [recording][softalkairecording]
 - 2024-06 **Reviewing the Code Review** as a session at [BC Tech Days][bctechdays]: [presentation][bctechdays24codereviewpress]
 - 2024-05 
@@ -180,3 +195,10 @@ Here's a list of the presentations I did through the years with attached slides,
 [areopapowerplatformbcdevyt]: https://www.youtube.com/watch?v=SPslb8X4WKY
 [emea25agents]: https://www.directionsforpartners.com/conferences-and-events/directions/emea2025/session-list?session=973239
 [emea25under30]: https://www.directionsforpartners.com/conferences-and-events/directions/emea2025/session-list?session=973338
+[companialconnectnordic]: https://companial.com/
+[companialconnectfrance]: https://companial.com/
+[companialconnectspain]: https://companial.com/
+[companialconnectitaly]: https://companial.com/
+[acadoninspire]: https://acadon.de/
+[navettrip]: https://www.navet.se/
+[styrcustomerday]: https://www.styr.se/
