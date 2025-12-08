@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Oct 2025 21:48:45 +0300</pubDate>
-    <lastBuildDate>Tue, 07 Oct 2025 21:48:45 +0300</lastBuildDate>
+    <pubDate>Mon, 08 Dec 2025 14:29:16 +0100</pubDate>
+    <lastBuildDate>Mon, 08 Dec 2025 14:29:16 +0100</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -260,7 +260,7 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, function() {
 &lt;/div&gt;
 
 </description>
-        <pubDate>Tue, 07 Oct 2025 11:00:00 +0300</pubDate>
+        <pubDate>Tue, 07 Oct 2025 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2025/format-cheatsheet/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/format-cheatsheet/</guid>
         
@@ -462,7 +462,7 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, function() {
 &lt;p&gt;Let me know your thoughts on any of the social media, and see you on the next post!&lt;/p&gt;
 
 </description>
-        <pubDate>Sun, 21 Sep 2025 11:00:00 +0300</pubDate>
+        <pubDate>Sun, 21 Sep 2025 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete-vol2/</guid>
         
@@ -588,7 +588,7 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, async () =&gt; {
 &lt;/script&gt;
 
 </description>
-        <pubDate>Sun, 02 Feb 2025 10:00:00 +0200</pubDate>
+        <pubDate>Sun, 02 Feb 2025 09:00:00 +0100</pubDate>
         <link>https://tine.staric.net/blog/2025/areopa-visualized/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/areopa-visualized/</guid>
         
@@ -948,7 +948,7 @@ Quickly get regex patterns that match the validations I’m looking for&lt;/li&g
 &lt;p&gt;Anyway, I’m playing with the idea of &lt;strong&gt;going deeper into this topic&lt;/strong&gt; at some conferences this year. &lt;em&gt;Share more examples, show more pitfalls, and explain more of the under-the-hood parts.&lt;/em&gt; What do you think? I’d love to know your opinion. You can let me know on &lt;a href=&quot;https://www.linkedin.com/in/tinestaric/&quot;&gt;LinkedIn&lt;/a&gt;, &lt;a href=&quot;https://bsky.app/profile/tinestaric.bsky.social&quot;&gt;BlueSky&lt;/a&gt;, or &lt;a href=&quot;https://twitter.com/TineStaric&quot;&gt;X&lt;/a&gt;!&lt;/p&gt;
 
 </description>
-        <pubDate>Fri, 03 Jan 2025 10:00:00 +0200</pubDate>
+        <pubDate>Fri, 03 Jan 2025 09:00:00 +0100</pubDate>
         <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</guid>
         
@@ -1040,7 +1040,7 @@ For instance, a procedure named &lt;em&gt;MySubscriber1&lt;/em&gt; will run befo
 &lt;/script&gt;
 
 </description>
-        <pubDate>Wed, 01 Jan 2025 10:00:00 +0200</pubDate>
+        <pubDate>Wed, 01 Jan 2025 09:00:00 +0100</pubDate>
         <link>https://tine.staric.net/blog/2025/trigger-sequence/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/trigger-sequence/</guid>
         
@@ -1219,7 +1219,7 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
 &lt;p&gt;&lt;em&gt;Do preprocessing symbols make the code less readable?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;Yes, yes, they do.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Do they make testing harder, as there are now more possible code paths?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;Another resounding yes.&lt;/em&gt;&lt;/strong&gt; All these coding decisions always come with &lt;strong&gt;trade-offs&lt;/strong&gt;. &lt;em&gt;Should you use them?&lt;/em&gt; &lt;strong&gt;&lt;em&gt;I don’t know.&lt;/em&gt;&lt;/strong&gt; I made this post, to make my reasoning about it easier. But it doesn’t mean that they will &lt;strong&gt;apply to your situation.&lt;/strong&gt; At least next time you have issues like these, you know that &lt;em&gt;preprocessing symbols&lt;/em&gt; can be a way to deal with them.&lt;/p&gt;
 
 </description>
-        <pubDate>Sun, 06 Oct 2024 11:00:00 +0300</pubDate>
+        <pubDate>Sun, 06 Oct 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/preprocessing-symbols/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/preprocessing-symbols/</guid>
         
@@ -1459,7 +1459,7 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Probably not.&lt;/em&gt;&lt;/strong&gt; I mean, yes, there are benefits to using namespaces, but if you have a huge project, it will take you &lt;strong&gt;a long time to properly segregate objects&lt;/strong&gt; into namespaces areas. Unless you have enough time to do it properly, I’d postpone it. Again, &lt;strong&gt;adding a single namespace across the whole project is not a good idea.&lt;/strong&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Sun, 01 Sep 2024 11:00:00 +0300</pubDate>
+        <pubDate>Sun, 01 Sep 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/namespaces/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/namespaces/</guid>
         
@@ -1591,7 +1591,7 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 &lt;p&gt;Okay, enough. Now you know what cool events are out there and you should definitely look out for them next year! Now, it’s time for me to pack and &lt;strong&gt;take some time off.&lt;/strong&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 10 Jul 2024 11:00:00 +0300</pubDate>
+        <pubDate>Wed, 10 Jul 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/spring-conf-recap/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/spring-conf-recap/</guid>
         
@@ -1715,7 +1715,7 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 &lt;p&gt;One final thing to keep in mind. At some point, &lt;em&gt;Microsoft&lt;/em&gt; will introduce &lt;strong&gt;global limits or “quotas”&lt;/strong&gt;, so this &lt;em&gt;“free performance”&lt;/em&gt; won’t scale &lt;em&gt;forever&lt;/em&gt;, but at this point, they haven’t yet decided on the quotas. Once they’re in place, the &lt;strong&gt;docs will be updated&lt;/strong&gt; accordingly. But overall, It’s great seeing improvements on the infrastructure side of BC. I hope we’ll move away from having to abuse multiple sessions, but anyway, looking forward to what’s coming next.&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 24 Apr 2024 11:00:00 +0300</pubDate>
+        <pubDate>Wed, 24 Apr 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/new-operational-limits/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/new-operational-limits/</guid>
         
@@ -1787,7 +1787,7 @@ Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
 &lt;p&gt;I know &lt;em&gt;“losing”&lt;/em&gt; 6 people for a day might be a big ask for some partners, but I believe it’s totally worth it. The tasks regarding &lt;em&gt;tenant administration&lt;/em&gt;, or &lt;em&gt;virtual tables&lt;/em&gt; will feel far &lt;strong&gt;less daunting&lt;/strong&gt;, as we now have people who can support us on these &lt;strong&gt;non-traditional work items&lt;/strong&gt;. Also, I can’t speak for the rest of the team, but I found diving into topics &lt;em&gt;“beyond”&lt;/em&gt; BC quite exciting!&lt;/p&gt;
 
 </description>
-        <pubDate>Mon, 15 Apr 2024 11:00:00 +0300</pubDate>
+        <pubDate>Mon, 15 Apr 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/release-wave-blueprint/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/release-wave-blueprint/</guid>
         
