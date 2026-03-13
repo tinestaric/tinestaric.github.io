@@ -6,6 +6,36 @@ permalink: /presentations/
 
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
+## 2026
+- 2026-06
+    - Workshop: **Using GitHub Copilot for anything but writing code** at [BC Tech Days][bctechdays]
+- 2026-05
+    - Multiple sessions at [Directions Asia][directionsasia26]:
+        - **Copilot is just a fancy autocomplete... (vol. 2)**
+        - **Agents aren't magic: How they really work in practice**
+    - Multiple sessions at [DOK Central][dokcentral26]:
+        - **Copilot is just a fancy autocomplete... (vol. 2)**
+        - **Agents aren't magic: How they really work in practice**
+    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [DynamicsMinds][2023dynamicsminds]
+    - **What even is an Agent?** as a session at [Companial Connect DACH][companialhome]
+- 2026-04
+    - Multiple sessions at [DOK Nordic][doknordic26]:
+        - **Copilot is just a fancy autocomplete... (vol. 2)**
+        - **Agents aren't magic: How they really work in practice**
+    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [Directions North America][directionsnahome]
+    - **Role of a Developer in the Age of AI** as a session at [Companial Connect ISV][companialhome]
+    - **Role of a Developer in the Age of AI** as a session at [Companial Connect CEE][companialhome]
+- 2026-03
+    - Multiple sessions at [DOK UK][dokuk26]:
+        - **Copilot is just a fancy autocomplete... (vol. 2)**
+        - **Agents aren't magic: How they really work in practice**
+- 2026-02
+    - **Mountains to MVP, AI Development, Community, and the Road Ahead** as a podcast for Just Peter - Your Dynamics Podcast: [recording][justpetermountainsmvp]
+- 2026-01
+    - **Is this BC Path Right for Me?** as a webinar for [Directions 4 Partners][d4pisbcright]
+    - Interview about career path with [Work in Lithuania][workinlithuania]
+    - Featured in ASEF 2025 Yearbook (pages 18-23): [English version][asefyearbookeng] and [Slovenian version][asefyearbookslo]
+
 ## 2025
 - 2025-12
     - **You don't have to make Test Plans anymore...** as a webinar for [Areopa][areopa]
@@ -226,3 +256,12 @@ Here's a list of the presentations I did through the years with attached slides,
 [styrcustomerday]: https://www.styr.se/
 [4pshome]: https://www.4ps.com/
 [tiguniahome]: https://tigunia.com/
+[justpetermountainsmvp]: https://www.youtube.com/watch?v=XAxmA48oObc&feature=youtu.be
+[d4pisbcright]: https://www.directionsforpartners.com/community/webinars/directions-webinar-retaining-talent-is-bc-the-right-path-for-me
+[workinlithuania]: https://workinlithuania.com/stories/tine-staric/
+[asefyearbookeng]: https://asef.net/wp-content/uploads/2025/12/ASEF-letopis-publikacija-ang-pdf.pdf
+[asefyearbookslo]: https://asef.net/wp-content/uploads/2025/12/ASEF-letopis-publikacija-1.pdf
+[directionsasia26]: https://directionsforpartners.com/
+[dokcentral26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2026
+[doknordic26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2026
+[dokuk26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2026
