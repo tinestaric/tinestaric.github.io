@@ -8,7 +8,9 @@ Here's a list of the presentations I did through the years with attached slides,
 
 ## 2026
 - 2026-06
-    - Workshop: **Using GitHub Copilot for anything but writing code** at [BC Tech Days][bctechdays]
+    - Multiple sessions at [BC Tech Days][bctechdays]:
+        - Workshop: **Using GitHub Copilot for anything but writing code**
+        - **Where Do I Still Fit? What "BC Developer" Means in the Agentic Era**
 - 2026-05
     - Multiple sessions at [Directions Asia][directionsasia26]:
         - **Copilot is just a fancy autocomplete... (vol. 2)**
@@ -24,7 +26,6 @@ Here's a list of the presentations I did through the years with attached slides,
         - **Agents aren't magic: How they really work in practice**
     - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [Directions North America][directionsnahome]
     - **Role of a Developer in the Age of AI** as a session at [Companial Connect ISV][companialhome]
-    - **Role of a Developer in the Age of AI** as a session at [Companial Connect CEE][companialhome]
 - 2026-03
     - Multiple sessions at [DOK UK][dokuk26]:
         - **Copilot is just a fancy autocomplete... (vol. 2)**
