@@ -58,7 +58,7 @@ Ask again, and now it goes and actually fetches the ticket:
 
 That's the whole point of MCPs in one before-and-after.
 
-Now, the community kept building since vol.2, and the full, up to date list is on the [AL Guidelines agentic tools page][alguidelinestools]. One I'd specifically call out: **TelemetryBuddy** turns *"what are the top 10 customers with errors in job queue entries"* into a KQL query against Application Insights, runs it, and hands you back a readable answer. No KQL knowledge required anymore.
+Now, the community kept building since vol.2, and the full, up to date list is on the [AL Guidelines agentic tools page][alguidelinestools]. One I'd specifically call out: **TelemetryBuddy**, by [waldo][waldo], turns *"what are the top 10 customers with errors in job queue entries"* into a KQL query against Application Insights, runs it, and hands you back a readable answer. No KQL knowledge required anymore.
 
 Now, let's pick up exactly where vol.2 left off. I told you not to install everything. Let's actually see why.
 
@@ -92,7 +92,13 @@ An agent without any tools is going to perform basically the same way ChatGPT wo
 
 If last year's crown jewel was Edit mode, this year's is custom agents. Custom agents are the first step you take closer to agentic development, because building one forces you to think about your workflow. What are you actually doing, day to day? What does your process look like? You break it down into individual parts, and you create an agent for each part.
 
-Planning, writing code, writing tests, reviewing a backlog item, writing docs: each of those can be its own agent, its own persona, its own scoped-down set of tools. No telemetry MCP on your test-plan-helper. No admin MCP on your backlog reviewer. They don't need it.
+- Planning
+- Writing code
+- Writing tests
+- Reviewing a backlog item
+- Writing docs
+
+Each of those can be its own agent, its own persona, its own scoped-down set of tools. No telemetry MCP on your test-plan-helper. No admin MCP on your backlog reviewer. They don't need it.
 
 Used to be you'd start from a blank template and fill in the prompt and tool list by hand. There's a better way now. GitHub Copilot has a `/create-agent` skill: describe the job in plain language and let an agent build the agent for you.
 
@@ -132,13 +138,19 @@ One distinction worth keeping straight. Your agent's instructions (or your gener
 
 This is, in my opinion, the most important habit in this whole post.
 
-Fix the agent. Don't fix the code.
+**Fix the agent. Don't fix the code.**
 
 ![Don't fix yourself. Fix the agent.](/images/fancyautocompletevol3/fix-the-agent.png)
 
 Old failure mode: agent mode makes a mistake, you sigh, take over, fix it manually. You get a little better at spotting that mistake. The agent stays exactly as dumb as before, and it'll make the same mistake next week.
 
-Here's the loop instead. Over one longer session, the agent kept making small mistakes: auto-increment on a temporary table, a tooltip that belonged on the table ending up on the page instead, a property that should've lived on the header sitting on a field. Each time, I didn't touch the code myself, I told the agent what was wrong and had it fix it. But only at the very end of the conversation did I fire off the actual reflection loop prompt:
+Here's the loop instead. Over one longer session, the agent kept making small mistakes:
+
+- Auto-increment on a temporary table
+- A tooltip that belonged on the table ending up on the page instead
+- A property that should've lived on the header sitting on a field
+
+Each time, I didn't touch the code myself, I told the agent what was wrong and had it fix it. But only at the very end of the conversation did I fire off the actual reflection loop prompt:
 
 > Based on our conversation and the fixes I made you make, what would you fix in your instructions and skills so the next time you don't make the same mistake?
 
@@ -152,7 +164,7 @@ Do that consistently, and in a few months you've got agents that write code the 
 
 Stumbled into this one about a week after building my first backlog reviewer. A consultant gave it a real task: build a transfer order approval workflow, similar to the existing sales order one.
 
-Sounded simple. I told the agent to load the base app code for sales order approval via the AL Symbols MCP, pull the official documentation, and bring in a specialist from [BC Code Intelligence][bccodeintel] before we even started on the design. Except it never got that far. The moment all three loaded, the context window filled up and it summarized the chat history before I could say a word about the actual design.
+Sounded simple. I told the agent to load the base app code for sales order approval via the [AL Symbols MCP][alsymbolsmcp], pull the official documentation, and bring in a specialist from [BC Code Intelligence][bccodeintel] before we even started on the design. Except it never got that far. The moment all three loaded, the context window filled up and it summarized the chat history before I could say a word about the actual design.
 
 That's when sub-agents clicked. The main agent can spin up new agents with a completely empty context window of their own. One digs through the base app. One goes through the docs. One consults the specialist. Each starts fresh with the full window available, and when it's done, it doesn't hand back everything it read, it hands back a condensed research report. Which files matter, which procedures matter, how they work.
 
@@ -216,7 +228,7 @@ Took a while, didn't care, I wasn't watching it. When it finished, same diff vie
 
 ![96 files changed in an isolated worktree, source control in the actual workspace untouched](/images/fancyautocompletevol3/background-tooltips.png)
 
-I want to be clear about what this actually was for me though. Running Copilot CLI from inside VS Code isn't the end goal, it was the stepping stone that got me comfortable running agents directly in the terminal instead of watching a chat pane. Compared to just opening a bunch of GitHub Copilot sessions in VS Code, which you can already do, the real benefit of CLI is that worktree isolation. Multiple VS Code sessions still fight over the same files. CLI in worktree mode doesn't.
+I want to be clear about what this actually was for me though. Running Copilot CLI from inside VS Code isn't the end goal, it was the stepping stone that got me comfortable running agents directly in the terminal instead of watching a chat pane. Compared to just opening a bunch of GitHub Copilot sessions in VS Code, which you can already do, the real benefit of CLI is **worktree isolation**. Multiple VS Code sessions still fight over the same files. CLI in worktree mode doesn't.
 
 And once you're comfortable with that, it's worth just opening Copilot CLI on its own, no VS Code around it at all:
 
@@ -245,3 +257,5 @@ Until then, go build yourself one agent. Just one. It doesn't need to be the who
 [vjeko]: https://www.linkedin.com/in/vjeko/
 [alguidelinestools]: https://alguidelines.dev/docs/agentic-coding/communityresources/tools/
 [bccodeintel]: https://github.com/JeremyVyska/bc-code-intelligence-mcp
+[alsymbolsmcp]: https://github.com/StefanMaron/AL-Dependency-MCP-Server
+[waldo]: https://www.linkedin.com/in/ericwauters
