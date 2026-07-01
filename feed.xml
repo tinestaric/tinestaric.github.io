@@ -5,272 +5,273 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 15 Jun 2026 10:21:10 +0200</pubDate>
-    <lastBuildDate>Mon, 15 Jun 2026 10:21:10 +0200</lastBuildDate>
+    <pubDate>Wed, 01 Jul 2026 19:23:20 +0200</pubDate>
+    <lastBuildDate>Wed, 01 Jul 2026 19:23:20 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
-        <title>Directions EMEA 2025 Sessions Visualized</title>
-        <description>&lt;p&gt;Over the past weekend, I worked on uplifting the &lt;strong&gt;&lt;a href=&quot;https://areopa.academy/&quot;&gt;Areopa Website&lt;/a&gt;&lt;/strong&gt; to a new, more modern, slick view. I used the opportunity to give the &lt;strong&gt;&lt;a href=&quot;/blog/2025/areopa-visualized/&quot;&gt;mindmap visualization of all Areopa webinars&lt;/a&gt;&lt;/strong&gt; a new home on the main website. Check the site out, let me know what you think about the new design!&lt;/p&gt;
+        <title>Copilot is just a fancy autocomplete (vol.3) - Steps towards agentic development</title>
+        <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;/blog/2025/copilot-fancy-autocomplete/&quot;&gt;Part 1&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; was about autocomplete, Edits, and Inline Chat. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;/blog/2025/copilot-fancy-autocomplete-vol2/&quot;&gt;Part 2&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; moved on to Agent mode and MCP servers, and closed with two promises: I’d talk about &lt;strong&gt;background agents&lt;/strong&gt; next, and a warning not to go overboard installing every MCP you can find, because it eats your context window.&lt;/p&gt;
 
-&lt;div style=&quot;display: flex; gap: 10px; margin: 20px 0;&quot;&gt;
-  &lt;div style=&quot;flex: 1;&quot;&gt;
-    &lt;img src=&quot;/images/directionsvisualized/areopa-old.png&quot; alt=&quot;Areopa Website - Old Design&quot; style=&quot;width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);&quot; /&gt;
-    &lt;p style=&quot;text-align: center; font-style: italic; margin-top: 8px; color: #666;&quot;&gt;Before: Original Areopa design&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div style=&quot;flex: 1;&quot;&gt;
-    &lt;img src=&quot;/images/directionsvisualized/areopa-new.png&quot; alt=&quot;Areopa Website - New Design&quot; style=&quot;width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);&quot; /&gt;
-    &lt;p style=&quot;text-align: center; font-style: italic; margin-top: 8px; color: #666;&quot;&gt;After: New modern design&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;This post is really an extension of both, but the direct spark for it was this year’s &lt;strong&gt;&lt;em&gt;“Copilot is just a fancy autocomplete vol.2”&lt;/em&gt;&lt;/strong&gt; session, the one I’ve been touring conferences with. Somewhere between the first stop and the last, most of what I was presenting stopped being true, and that’s basically the whole premise of what follows.&lt;/p&gt;
 
-&lt;p&gt;As I was going through with it, I was thinking if I could now visualize something else, so I can keep a different mindmap on the blog. And with &lt;strong&gt;&lt;a href=&quot;https://www.directionsforpartners.com/emea2025&quot;&gt;Directions EMEA&lt;/a&gt;&lt;/strong&gt; just around the corner, with the &lt;strong&gt;&lt;em&gt;record number of sessions&lt;/em&gt;&lt;/strong&gt;, I found my perfect candidate!&lt;/p&gt;
+&lt;p&gt;Both of those threads from vol.2, background agents and the MCP warning, are what this post is about. But first, a small detour.&lt;/p&gt;
 
-&lt;p&gt;It’s &lt;strong&gt;&lt;em&gt;never easy&lt;/em&gt;&lt;/strong&gt; to find the sessions you really want to attend, and with over &lt;strong&gt;&lt;em&gt;240 available ones&lt;/em&gt;&lt;/strong&gt;, it’s even harder this year. Are you an &lt;strong&gt;AI fan?&lt;/strong&gt; Or a &lt;strong&gt;sceptic?&lt;/strong&gt; Well, this view will help you find exactly the sessions you are interested in. When the &lt;strong&gt;&lt;a href=&quot;https://www.directionsforpartners.com/conferences-and-events/directions/emea2025/session-list&quot;&gt;agenda&lt;/a&gt;&lt;/strong&gt; is public, I’ll adjust the entries with the dates and times of sessions.&lt;/p&gt;
+&lt;p&gt;You’ve probably seen the LinkedIn posts by now. Someone shares an idea in the morning, and by lunch they’ve got tests, code, and documentation ready to review. &lt;a href=&quot;https://www.linkedin.com/in/vjeko/&quot;&gt;Vjeko&lt;/a&gt;, one of the sharpest people in the agentic development space right now, has a workflow where he goes from a feature idea to a fully tested, documented implementation in about &lt;strong&gt;24 minutes&lt;/strong&gt;. Not 24 minutes of watching a progress bar either: tests written first, code written to pass them, mutation testing to make sure the tests actually test something, docs generated at the end.&lt;/p&gt;
 
-&lt;p&gt;But before you go off exploring the content, here are a few &lt;strong&gt;“fun facts”&lt;/strong&gt; from the session list:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Total sessions: &lt;strong&gt;&lt;em&gt;242&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Total speakers: &lt;strong&gt;&lt;em&gt;244&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Busiest speaker: &lt;strong&gt;&lt;a href=&quot;https://www.linkedin.com/in/aleksandartotovic/&quot;&gt;Aleksandar Totovic&lt;/a&gt;&lt;/strong&gt; with &lt;strong&gt;&lt;em&gt;8 sessions!&lt;/em&gt;&lt;/strong&gt; (I’m not surprised, though; he always has so much content to share…)&lt;/li&gt;
-  &lt;li&gt;A non-Microsoft speaker with the busiest schedule is &lt;strong&gt;&lt;a href=&quot;https://www.linkedin.com/in/ajkauffmann&quot;&gt;AJ Kauffman&lt;/a&gt;&lt;/strong&gt;, with &lt;strong&gt;&lt;em&gt;4&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;Multi-speaker sessions: &lt;strong&gt;&lt;em&gt;93&lt;/em&gt;&lt;/strong&gt; (38.4%)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;That’s real. But it also feels a bit too mythical, and so we stay exactly where we are, one prompt at a time in the chat box on the right.&lt;/p&gt;
 
-&lt;h3 id=&quot;session-types&quot;&gt;Session types:&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Session&lt;/strong&gt; (45 min): &lt;strong&gt;&lt;em&gt;156&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sponsor&lt;/strong&gt; (45 min): &lt;strong&gt;&lt;em&gt;50&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Workshop&lt;/strong&gt; (105 min): &lt;strong&gt;&lt;em&gt;11&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;ISV Theatre&lt;/strong&gt; (15 min): &lt;strong&gt;&lt;em&gt;10&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Roundtable&lt;/strong&gt; (45 min): &lt;strong&gt;&lt;em&gt;7&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Deep dive session&lt;/strong&gt; (105 min): &lt;strong&gt;&lt;em&gt;5&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Keynote&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;3&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;session-levels&quot;&gt;Session levels:&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;100 Beginner&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;87&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;200 Intermediate&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;124&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;300 Advanced&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;25&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;400 Expert&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;3&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;target-roles&quot;&gt;Target roles:&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Consultant&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;138&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Developer&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;121&lt;/em&gt;&lt;/strong&gt; sessions (and people still say &lt;strong&gt;Directions&lt;/strong&gt; aren’t for devs… 🙄)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Leadership&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;83&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sales &amp;amp; Marketing&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;76&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Project Manager&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;66&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;All&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;37&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;HR&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;15&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;products&quot;&gt;Products:&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Business Central&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;105&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Other&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;75&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;All&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;40&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Power Platform&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;16&lt;/em&gt;&lt;/strong&gt; sessions (This was a bit of a surprise; in the past, there was a much &lt;strong&gt;&lt;em&gt;stronger Power Platform presence&lt;/em&gt;&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;technical-areas&quot;&gt;Technical areas:&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Copilot&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;54&lt;/em&gt;&lt;/strong&gt; sessions (the &lt;strong&gt;&lt;em&gt;AI push&lt;/em&gt;&lt;/strong&gt; is obvious)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Finance&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;46&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;AL&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;40&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Admin&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;31&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;API/Interface&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;30&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Supply Chain&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;30&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;AI/Agents&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;22&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sponsor&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;22&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Warehousing&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;18&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;DevOps&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;17&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Automate&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;9&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Dataverse&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;8&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Integration&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;6&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Power Apps&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;6&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Service&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;6&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;PowerBI&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;4&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sales&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;4&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Sustainability&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;2&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Power Pages&lt;/strong&gt;: &lt;strong&gt;&lt;em&gt;2&lt;/em&gt;&lt;/strong&gt; sessions&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;I’m not trying to get you to that 24-minute workflow by tomorrow. I just want to show you the steps that get you closer, one at a time, from wherever you’re standing right now.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;Interested in what’s under these topics? Well then I won’t keep you waiting any longer, here’s the visualization. You can zoom in and out, move the graph around, and click on the nodes to expand or collapse them. Use the controls below to filter the sessions by your preferences. &lt;strong&gt;&lt;em&gt;Click around, explore!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;everything-from-vol2-is-already-obsolete&quot;&gt;Everything from vol.2 is already obsolete&lt;/h3&gt;
 
-&lt;h2 id=&quot;visualization-controls&quot;&gt;Visualization Controls&lt;/h2&gt;
+&lt;p&gt;If I show you Visual Studio Code right now, it’s this:&lt;/p&gt;
 
-&lt;!-- Control Panel --&gt;
-&lt;div style=&quot;background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid #dee2e6;&quot;&gt;
-  
-  &lt;div style=&quot;display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center;&quot;&gt;
-    &lt;button id=&quot;btn-product&quot; onclick=&quot;switchView(&apos;product&apos;)&quot; style=&quot;padding: 12px 20px; background: #007acc; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,122,204,0.3);&quot;&gt;
-      Product View
-    &lt;/button&gt;
-    &lt;button id=&quot;btn-role&quot; onclick=&quot;switchView(&apos;role&apos;)&quot; style=&quot;padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(108,117,125,0.3);&quot;&gt;
-      Role View
-    &lt;/button&gt;
-    
-    &lt;div style=&quot;width: 2px; height: 30px; background: #dee2e6; margin: 0 8px;&quot;&gt;&lt;/div&gt;
-    
-    &lt;button id=&quot;btn-sponsor&quot; onclick=&quot;toggleSponsor()&quot; style=&quot;padding: 12px 20px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(108,117,125,0.3);&quot;&gt;
-      Show Sponsor Sessions Only
-    &lt;/button&gt;
-    
-    &lt;label style=&quot;display: flex; align-items: center; cursor: pointer; padding: 8px 12px; background: white; border-radius: 6px; border: 1px solid #dee2e6; transition: all 0.2s ease;&quot;&gt;
-      &lt;input type=&quot;checkbox&quot; id=&quot;toggle-levels&quot; onchange=&quot;toggleLevel()&quot; style=&quot;margin-right: 8px; transform: scale(1.2);&quot; /&gt;
-      &lt;span style=&quot;font-weight: 500;&quot;&gt;Show Session Levels&lt;/span&gt;
-    &lt;/label&gt;
-  &lt;/div&gt;
-  
-&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/agent-plan-modes.png&quot; alt=&quot;Agent and Plan modes, no Edit mode&quot; /&gt;&lt;/p&gt;
 
-&lt;!-- Load required libraries --&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7&quot;&gt;&lt;/script&gt;
+&lt;p&gt;No Edit mode anymore. Just gone. The feature I called the &lt;em&gt;crown jewel&lt;/em&gt; twelve months ago, the chat box where you type requirements and it generates code, quietly removed. If that doesn’t tell you how fast this moves, I don’t know what will.&lt;/p&gt;
 
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/markmap-view&quot;&gt;&lt;/script&gt;
+&lt;p&gt;Two things did survive the last twelve months though:&lt;/p&gt;
 
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/markmap-lib&quot;&gt;&lt;/script&gt;
+&lt;ul&gt;
+  &lt;li&gt;Claude models are still the best. Claude Sonnet and Opus, they’re the best for AL. Though, I’ve seen Gemini 3.1 Pro come very close.&lt;/li&gt;
+  &lt;li&gt;Taking control of your context still matters. Agents are decent at finding their own files now, but pointing them at exactly the right file still gets you better results than letting them guess.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;!-- Mindmap container --&gt;
-&lt;div id=&quot;mindmap&quot;&gt;
-  &lt;svg style=&quot;width: 100%; height: 800px&quot;&gt;&lt;/svg&gt;
-&lt;/div&gt;
+&lt;p&gt;Everything else from vol.2, I’d rewrite.&lt;/p&gt;
 
-&lt;!-- Initialize and render mindmap --&gt;
-&lt;script&gt;
-// Global state
-let currentView = &apos;product&apos;;
-let showSponsorOnly = false;
-let showSessionLevels = false;
-let markmap = null;
+&lt;hr /&gt;
 
-// Button styling
-function updateButtonStyles() {
-  const productBtn = document.getElementById(&apos;btn-product&apos;);
-  const roleBtn = document.getElementById(&apos;btn-role&apos;);
-  const sponsorBtn = document.getElementById(&apos;btn-sponsor&apos;);
-  
-  // Update view type buttons
-  if (currentView === &apos;product&apos;) {
-    productBtn.style.background = &apos;#007acc&apos;;
-    productBtn.style.boxShadow = &apos;0 2px 4px rgba(0,122,204,0.3)&apos;;
-    roleBtn.style.background = &apos;#6c757d&apos;;
-    roleBtn.style.boxShadow = &apos;0 2px 4px rgba(108,117,125,0.3)&apos;;
-  } else {
-    productBtn.style.background = &apos;#6c757d&apos;;
-    productBtn.style.boxShadow = &apos;0 2px 4px rgba(108,117,125,0.3)&apos;;
-    roleBtn.style.background = &apos;#007acc&apos;;
-    roleBtn.style.boxShadow = &apos;0 2px 4px rgba(0,122,204,0.3)&apos;;
-  }
-  
-  // Update sponsor button
-  if (showSponsorOnly) {
-    sponsorBtn.style.background = &apos;#007acc&apos;;
-    sponsorBtn.style.boxShadow = &apos;0 2px 4px rgba(0,122,204,0.3)&apos;;
-  } else {
-    sponsorBtn.style.background = &apos;#6c757d&apos;;
-    sponsorBtn.style.boxShadow = &apos;0 2px 4px rgba(108,117,125,0.3)&apos;;
-  }
-}
+&lt;h3 id=&quot;the-mcp-overload-problem-revisited&quot;&gt;The MCP overload problem, revisited&lt;/h3&gt;
 
-// Switch between Product and Role views
-function switchView(view) {
-  currentView = view;
-  updateButtonStyles();
-  loadVisualization();
-}
+&lt;p&gt;In vol.2 I explained MCP servers with the USB-C analogy: tool boxes you hand your agent so it can reach past your workspace, into your ticket tracker, your docs, your telemetry. Go read that post first if you haven’t, it’s still the best explanation I’ve got.&lt;/p&gt;
 
-// Toggle sponsor sessions (show only sponsors vs all sessions)
-function toggleSponsor() {
-  showSponsorOnly = !showSponsorOnly;
-  updateButtonStyles();
-  loadVisualization();
-}
+&lt;p&gt;Quick reminder of why they matter at all, though. Ask an agent with no tools attached about a work item:&lt;/p&gt;
 
-// Toggle session levels
-function toggleLevel() {
-  showSessionLevels = document.getElementById(&apos;toggle-levels&apos;).checked;
-  loadVisualization();
-}
+&lt;blockquote&gt;
+  &lt;p&gt;What is task 107308 about?&lt;/p&gt;
+&lt;/blockquote&gt;
 
-// Get appropriate markmap file based on current settings
-function getMarkmapFile() {
-  let filename = &apos;&apos;;
-  
-  if (showSponsorOnly) {
-    // Vendor files when showing sponsor sessions only
-    filename = currentView === &apos;product&apos; ? &apos;vendor_product_markmap.md&apos; : &apos;vendor_role_markmap.md&apos;;
-  } else {
-    // Regular files when showing all sessions
-    if (currentView === &apos;product&apos;) {
-      filename = showSessionLevels ? &apos;product_combinatorial_markmap.md&apos; : &apos;product_simple_markmap.md&apos;;
-    } else { // role view
-      filename = showSessionLevels ? &apos;role_combinatorial_markmap.md&apos; : &apos;role_simple_markmap.md&apos;;
-    }
-  }
-  
-  return `https://raw.githubusercontent.com/tinestaric/AreopaAnalyzer/directions/data/markmaps/${filename}`;
-}
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/no-mcp-no-clue.png&quot; alt=&quot;An agent with no MCP has no idea what task 107308 is&quot; /&gt;&lt;/p&gt;
 
-// Load and render visualization
-async function loadVisualization() {
-  try {
-    const url = getMarkmapFile();
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch markmap data: ${response.status}`);
-    }
-    
-    const markdown = await response.text();
+&lt;p&gt;No idea. It doesn’t even know where to look. Give it the Azure DevOps MCP:&lt;/p&gt;
 
-    // Transform markdown to mindmap data
-    const { Transformer } = window.markmap;
-    const transformer = new Transformer();
-    const { root } = transformer.transform(markdown);
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/enable-devops-mcp.png&quot; alt=&quot;Enabling the Azure DevOps MCP for the agent&quot; /&gt;&lt;/p&gt;
 
-    // Configure visualization options
-    const { deriveOptions } = window.markmap;
-    const jsonOptions = {
-      initialExpandLevel: 2,
-      colorFreezeLevel: 3,
-      duration: 1000,
-      spacingVertical: 10
-    };
-    const options = deriveOptions(jsonOptions);
+&lt;p&gt;Ask again, and now it goes and actually fetches the ticket:&lt;/p&gt;
 
-    // Create and render visualization
-    const svg = d3.select(&quot;#mindmap svg&quot;);
-    
-    // Clear previous visualization
-    svg.selectAll(&quot;*&quot;).remove();
-    
-    // Create new markmap
-    const { Markmap } = window.markmap;
-    markmap = Markmap.create(svg.node(), options, root);
-    
-  } catch (error) {
-    console.error(&apos;Error loading visualization:&apos;, error);
-    document.getElementById(&apos;mindmap&apos;).innerHTML = &apos;&lt;p style=&quot;text-align: center; color: #666; padding: 40px;&quot;&gt;Unable to load visualization. Please try again later.&lt;/p&gt;&apos;;
-  }
-}
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/devops-mcp-result.png&quot; alt=&quot;The same agent now finds and summarizes task 107308 via the Azure DevOps MCP&quot; /&gt;&lt;/p&gt;
 
-// Initialize on page load
-document.addEventListener(&apos;DOMContentLoaded&apos;, () =&gt; {
-  updateButtonStyles();
-  loadVisualization();
-});
-&lt;/script&gt;
+&lt;p&gt;That’s the whole point of MCPs in one before-and-after.&lt;/p&gt;
+
+&lt;p&gt;Now, the community kept building since vol.2, and the full, up to date list is on the &lt;a href=&quot;https://alguidelines.dev/docs/agentic-coding/communityresources/tools/&quot;&gt;AL Guidelines agentic tools page&lt;/a&gt;. One I’d specifically call out: &lt;strong&gt;TelemetryBuddy&lt;/strong&gt;, by &lt;a href=&quot;https://www.linkedin.com/in/ericwauters&quot;&gt;waldo&lt;/a&gt;, turns &lt;em&gt;“what are the top 10 customers with errors in job queue entries”&lt;/em&gt; into a KQL query against Application Insights, runs it, and hands you back a readable answer. No KQL knowledge required anymore.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s pick up exactly where vol.2 left off. I told you not to install everything. Let’s actually see why.&lt;/p&gt;
+
+&lt;p&gt;I gave my agent every MCP I had, including one for Python even though I was sitting in an AL workspace.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/all-tools-enabled.png&quot; alt=&quot;Every single tool enabled at once&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I typed the most demanding prompt I could think of:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/hello-prompt.png&quot; alt=&quot;Hello prompt to an overloaded agent&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Go on, guess how many tokens that cost.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/hello-tokens.png&quot; alt=&quot;24,000 tokens spent on saying hello&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;24,000 tokens.&lt;/strong&gt; For “hello.” Sent straight to the model with no tools attached, it would’ve cost about 10.&lt;/p&gt;
+
+&lt;p&gt;Now, Sonnet’s default context window recently jumped to 1M tokens, so 24K doesn’t threaten to fill it up the way it would’ve a few months ago. But that doesn’t mean it’s free. First, it’s still 24,000 tokens of tool definitions you’re paying for and waiting on, for every single message, whether or not the agent ever touches half those tools. Second, models don’t actually reason better with more junk sitting in front of them. Stuff a context window with tool definitions it doesn’t need, and the model has to work around that noise, even if it technically still fits. A window that isn’t full isn’t the same thing as a window that’s clean.&lt;/p&gt;
+
+&lt;p&gt;And the old danger hasn’t disappeared, it’s just further away now. Fill that window up regardless, and once you hit the last ~10% left, the agent has to start &lt;em&gt;summarizing chat history&lt;/em&gt; to make room. Summarizing means throwing information out. An agent that knew exactly how you like your code written suddenly feels lobotomized. Wrong file names, wrong properties, mistakes it wasn’t making five minutes earlier.&lt;/p&gt;
+
+&lt;p&gt;An agent without any tools is going to perform basically the same way ChatGPT would if we just jammed it in Visual Studio Code, not really useful. And now you’ve seen an agent with every tool also fail, just in the other direction. So what’s the answer?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Custom agents.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;step-1-custom-agents&quot;&gt;Step 1: Custom agents&lt;/h3&gt;
+
+&lt;p&gt;If last year’s crown jewel was Edit mode, this year’s is custom agents. Custom agents are the first step you take closer to agentic development, because building one forces you to think about your workflow. What are you actually doing, day to day? What does your process look like? You break it down into individual parts, and you create an agent for each part.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Planning&lt;/li&gt;
+  &lt;li&gt;Writing code&lt;/li&gt;
+  &lt;li&gt;Writing tests&lt;/li&gt;
+  &lt;li&gt;Reviewing a backlog item&lt;/li&gt;
+  &lt;li&gt;Writing docs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each of those can be its own agent, its own persona, its own scoped-down set of tools. No telemetry MCP on your test-plan-helper. No admin MCP on your backlog reviewer. They don’t need it.&lt;/p&gt;
+
+&lt;p&gt;Used to be you’d start from a blank template and fill in the prompt and tool list by hand. There’s a better way now. GitHub Copilot has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/create-agent&lt;/code&gt; skill: describe the job in plain language and let an agent build the agent for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/create-agent-prompt.png&quot; alt=&quot;Creating a custom agent with a plain-language description&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A minute later, a working backlog reviewer: checking requirement quality, acceptance criteria, flagging risks and dependencies.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/backlog-reviewer-agent.png&quot; alt=&quot;Generated backlog reviewer agent definition&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Won’t be perfect on the first try. It’ll be the perfect first step. From here you iterate, add a tool, tighten the persona, and eventually my prompt for reviewing a backlog item is three words.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/three-word-review.png&quot; alt=&quot;Three-word prompt reviewing a task in full&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Everything about what the agent should do and how it should use its tools already lives in the agent definition, I’m not re-explaining it every time. Also solves onboarding, by the way. Hand a colleague a super-agent that does five things poorly, they won’t come back to it. Hand them one agent that does backlog review well, and they’ll use it every time they need backlog review, then reach for a different one for the next job.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;step-2-skills&quot;&gt;Step 2: Skills&lt;/h3&gt;
+
+&lt;p&gt;An agent knows how to do some things. Not everything, and it shouldn’t have to carry all of it around at once.&lt;/p&gt;
+
+&lt;p&gt;Take compiling and publishing an app, running tests, reporting back results. An agent today is smart enough to figure out that whole sequence itself, find the BC Container Helper, write the right PowerShell, run it. But it’ll burn a lot of tokens rediscovering that path every single time.&lt;/p&gt;
+
+&lt;p&gt;That’s what skills solve, through something called &lt;em&gt;progressive disclosure&lt;/em&gt;. By default your agent only ever sees a skill’s name and a one-line description, barely any context cost at all. Only when a prompt actually needs it does it load the full instructions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/skill-example.png&quot; alt=&quot;Example skill file for compiling, publishing, and running tests&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Rule of thumb: if a task takes your agent a handful of turns and a few minutes to figure out, ask it at the end to package that into a skill. Same idea as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/create-agent&lt;/code&gt;, there’s a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/create-skill&lt;/code&gt; command for this too, so you don’t have to hand-write the skill file yourself. Next time it won’t spend thousands of tokens rediscovering how to publish a workload, it’ll just know.&lt;/p&gt;
+
+&lt;p&gt;This also kills something I mentioned in vol.2, sort of implicitly. Those old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.prompt.md&lt;/code&gt; stored-prompt files? I don’t use them anymore. Anything that used to be a pre-written prompt is now a skill, same &lt;em&gt;“run this as a slash command”&lt;/em&gt; behavior, except an agent can also discover and load it on its own when it’s relevant. A stored prompt never could do that.&lt;/p&gt;
+
+&lt;p&gt;One distinction worth keeping straight. Your agent’s instructions (or your general &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copilot-instructions.md&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CLAUDE.md&lt;/code&gt;) hold what’s relevant &lt;em&gt;every single time&lt;/em&gt;: architecture, where things live, how you like code written. Skills hold what’s relevant &lt;em&gt;sometimes&lt;/em&gt;, a how-to that only matters when the task calls for it. Don’t copy-paste your architecture notes into every agent’s skill file. That belongs in instructions, once.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;step-3-the-reflection-loop&quot;&gt;Step 3: The reflection loop&lt;/h3&gt;
+
+&lt;p&gt;This is, in my opinion, the most important habit in this whole post.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fix the agent. Don’t fix the code.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/fix-the-agent.png&quot; alt=&quot;Don&apos;t fix yourself. Fix the agent.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Old failure mode: agent mode makes a mistake, you sigh, take over, fix it manually. You get a little better at spotting that mistake. The agent stays exactly as dumb as before, and it’ll make the same mistake next week.&lt;/p&gt;
+
+&lt;p&gt;Here’s the loop instead. Over one longer session, the agent kept making small mistakes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Auto-increment on a temporary table&lt;/li&gt;
+  &lt;li&gt;A tooltip that belonged on the table ending up on the page instead&lt;/li&gt;
+  &lt;li&gt;A property that should’ve lived on the header sitting on a field&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each time, I didn’t touch the code myself, I told the agent what was wrong and had it fix it. But only at the very end of the conversation did I fire off the actual reflection loop prompt:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Based on our conversation and the fixes I made you make, what would you fix in your instructions and skills so the next time you don’t make the same mistake?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It goes back through the conversation, identifies what could’ve gone better, and proposes fixes. &lt;em&gt;Auto-increment should never be used on temporary tables, put that in instructions.&lt;/em&gt; &lt;em&gt;Tooltips belong on the field, not the page, double check that going forward.&lt;/em&gt; &lt;em&gt;Same for properties that belong on the header, not the field.&lt;/em&gt; Doesn’t really matter what specifically comes out of it. What matters is the habit: instruct the agent how to fix the mistake, let it fix the skill or instructions itself, then move on.&lt;/p&gt;
+
+&lt;p&gt;Do that consistently, and in a few months you’ve got agents that write code the way you would.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;step-4-sub-agents&quot;&gt;Step 4: Sub-agents&lt;/h3&gt;
+
+&lt;p&gt;Stumbled into this one about a week after building my first backlog reviewer. A consultant gave it a real task: build a transfer order approval workflow, similar to the existing sales order one.&lt;/p&gt;
+
+&lt;p&gt;Sounded simple. I told the agent to load the base app code for sales order approval via the &lt;a href=&quot;https://github.com/StefanMaron/AL-Dependency-MCP-Server&quot;&gt;AL Symbols MCP&lt;/a&gt;, pull the official documentation, and bring in a specialist from &lt;a href=&quot;https://github.com/JeremyVyska/bc-code-intelligence-mcp&quot;&gt;BC Code Intelligence&lt;/a&gt; before we even started on the design. Except it never got that far. The moment all three loaded, the context window filled up and it summarized the chat history before I could say a word about the actual design.&lt;/p&gt;
+
+&lt;p&gt;That’s when sub-agents clicked. The main agent can spin up new agents with a completely empty context window of their own. One digs through the base app. One goes through the docs. One consults the specialist. Each starts fresh with the full window available, and when it’s done, it doesn’t hand back everything it read, it hands back a condensed research report. Which files matter, which procedures matter, how they work.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/sub-agents-parallel.png&quot; alt=&quot;Sub-agents analyzing base app, docs, and a specialist in parallel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s what that actually looked like. First, the agent itself needs the tools for this, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agent&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;runSubagent&lt;/code&gt;, switched on. Nothing spins up in parallel without them:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/subagent-tools-enabled.png&quot; alt=&quot;Enabling the agent and runSubagent tools on a custom agent&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With those enabled, same prompt as before, load the docs, check the base app via the AL Symbols MCP, ask a specialist, except this time each of those runs as its own sub-agent instead of stacking up in my main conversation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/sub-agents-prompt.png&quot; alt=&quot;Prompt spinning up three sub-agents in parallel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Zoom into just one of them, the one digging through the base app, and you can see it doing exactly what I’d have done myself: pulling packages, searching objects, reading through the workflow code, one tool call after another.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/sub-agent-tool-calls.png&quot; alt=&quot;One sub-agent&apos;s tool calls while researching the base app&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;None of that noise comes back to my main agent though. What comes back is this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/sub-agent-research-report.png&quot; alt=&quot;The condensed research report handed back to the main agent&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A research report, not a transcript. Object IDs, source files, key procedures, exactly the shape of information I actually needed to start talking about the transfer order workflow.&lt;/p&gt;
+
+&lt;p&gt;Parallelism is a nice bonus, three things happening at once instead of one after another. But that’s not the actual win. The win is my main agent’s context window barely moved. All it got was a tight summary, and there was still plenty of room left to actually talk through how to implement the workflow.&lt;/p&gt;
+
+&lt;p&gt;Once you’re here, the next realization comes on its own: your custom agents don’t just call sub-agents for research, they can &lt;em&gt;be&lt;/em&gt; sub-agents themselves. Planner calls code writer, code writer calls test writer, test writer calls documentation writer. Congratulations, you’ve built an orchestrator, and this is more or less what gets you to a Vjeko-style, idea-to-production workflow.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;step-5-background-agents&quot;&gt;Step 5: Background agents&lt;/h3&gt;
+
+&lt;p&gt;Two things to untangle before this one makes sense.&lt;/p&gt;
+
+&lt;p&gt;Claude Sonnet is a model, not an agent. GitHub Copilot in VS Code is an &lt;em&gt;agent framework&lt;/em&gt; (agent harness, officially, but framework fits my head better) that builds agents on top of that model. Cursor is a different framework, Claude Code is another, and each behaves differently even pointed at the exact same model, because the framework shapes the behavior. Copilot CLI is yet another one of these, it just lives in your terminal instead of your editor, and because it lives there, you can spin up as many as you want.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/agent-frameworks.png&quot; alt=&quot;Task, model, and tools, the same shape across VS Code, GitHub, CLI, and other agent frameworks&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Second thing, once you have multiple agents running, you hit the same problem developers had before branching existed. Two agents on the same files start stepping on each other’s toes, fast. The fix is the same one Git gave us, repurposed: &lt;strong&gt;git worktrees&lt;/strong&gt;. Think of a worktree as a branch that’s also a folder. When an agent branches out, it copies the files into its own folder and works there undisturbed, and only brings the results back when done. The agent equivalent of a pull request.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/git-worktrees.png&quot; alt=&quot;Worktrees as folders sitting alongside branches in the same repo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With both in place, here’s what a background task looks like. I had 600 files with tooltips like &lt;em&gt;“specifies the value of field X.”&lt;/em&gt; Nobody’s ever going to pay you to write better tooltips, but it’s the perfect task for an agent. Do I really want to watch an agent go through 600 files and adjust all of them though? I don’t.&lt;/p&gt;
+
+&lt;p&gt;Right next to where you type your prompt, there’s a target selector, &lt;em&gt;Local&lt;/em&gt; by default:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/target-local.png&quot; alt=&quot;Target selector set to Local by default&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Switch it to &lt;em&gt;Copilot CLI&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/target-dropdown.png&quot; alt=&quot;Switching the target to Copilot CLI&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And once you’re on CLI, a second selector shows up for isolation mode. Switch that to &lt;em&gt;Worktree&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/worktree-isolation-mode.png&quot; alt=&quot;Switching isolation mode to Worktree&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So I used Copilot CLI, gave it the prompt, set the isolation mode to &lt;em&gt;worktree&lt;/em&gt;, let it go:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/tooltip-prompt.png&quot; alt=&quot;Sending the tooltip prompt to Copilot CLI, isolated worktree created immediately&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Took a while, didn’t care, I wasn’t watching it. When it finished, same diff view you’d expect, 96 files, +218/-218. Look at the left side though: my actual workspace, Source Control panel, empty. Nothing to sync, nothing to commit. Every one of those file paths on the right points into a separate worktree folder, not my project. It’s not in my workspace until I click Apply.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/background-tooltips.png&quot; alt=&quot;96 files changed in an isolated worktree, source control in the actual workspace untouched&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I want to be clear about what this actually was for me though. Running Copilot CLI from inside VS Code isn’t the end goal, it was the stepping stone that got me comfortable running agents directly in the terminal instead of watching a chat pane. Compared to just opening a bunch of GitHub Copilot sessions in VS Code, which you can already do, the real benefit of CLI is &lt;strong&gt;worktree isolation&lt;/strong&gt;. Multiple VS Code sessions still fight over the same files. CLI in worktree mode doesn’t.&lt;/p&gt;
+
+&lt;p&gt;And once you’re comfortable with that, it’s worth just opening Copilot CLI on its own, no VS Code around it at all:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/copilot-cli-terminal.png&quot; alt=&quot;GitHub Copilot CLI running directly in the terminal&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is genuinely how I work day to day now. A handful of terminal windows open, each running an agent on a completely unrelated task. Why would I sit and watch my orchestrator orchestrate, when the only thing I care about is reviewing the final output?&lt;/p&gt;
+
+&lt;p&gt;And it doesn’t have to stop at your own terminal. Because it’s a command, and a command is something you can put in a script. And a script can live in a pipeline. Here’s what that looks like, a step in a larger script that shells out to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copilot&lt;/code&gt; for a code review pass:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/fancyautocompletevol3/copilot-cli-pipeline-script.png&quot; alt=&quot;A PowerShell pipeline step invoking Copilot CLI for a code review&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s how you get from “I run agents in a terminal” to actually automating pieces of your workflow, generating documentation, drafting release notes, maybe even a first pass at code review, without anyone sitting there watching it happen at all.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;where-this-leaves-you&quot;&gt;Where this leaves you&lt;/h3&gt;
+
+&lt;p&gt;Custom agents, skills, the reflection loop, sub-agents, background agents. Five steps, and you don’t have to sprint through all of them this month, or even this quarter. What matters is you don’t stop wherever you happen to land. Take the next step, then the one after that, and eventually you’re a lot closer to that 24-minute workflow than you think.&lt;/p&gt;
+
+&lt;p&gt;I know I’m leaving some things dangling, and I’m not going to pretend I’ve covered everything here either. There’s going to be a &lt;strong&gt;vol.4&lt;/strong&gt;. There’s basically always going to be a next volume, at the pace this moves. Honestly, by the time you’re reading this, some of what’s above has probably already aged like milk.&lt;/p&gt;
+
+&lt;p&gt;Until then, go build yourself one agent. Just one. It doesn’t need to be the whole suite.&lt;/p&gt;
 
 </description>
-        <pubDate>Fri, 10 Oct 2025 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2025/directions-visualized/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2025/directions-visualized/</guid>
+        <pubDate>Wed, 01 Jul 2026 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/</guid>
         
         
         <category>al</category>

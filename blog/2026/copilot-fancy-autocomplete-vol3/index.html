@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Copilot is just a fancy autocomplete (vol.3) - Steps towards agentic development</title>
+<meta name="description"
+    content="Part 1 was about autocomplete, Edits, and Inline Chat. Part 2 moved on to Agent mode and MCP servers, and closed with two promises: I’d talk about background...">
+
+<meta property="og:title" content="Copilot is just a fancy autocomplete (vol.3) - Steps towards agentic development" />
+<meta property="og:description"
+    content="Part 1 was about autocomplete, Edits, and Inline Chat. Part 2 moved on to Agent mode and MCP servers, and closed with two promises: I’d talk about background..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/fancyautocompletevol3/copilot-main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/fancyautocompletevol3/copilot-main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/",
+  "description": "Part 1 was about autocomplete, Edits, and Inline Chat. Part 2 moved on to Agent mode and MCP servers, and closed with two promises: I’d talk about background agents next, and a warning not to go overboard installing every MCP you can find, because it eats your context window.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Copilot is just a fancy autocomplete (vol.3) - Steps towards agentic development",
+  "datePublished": "2026-07-01T10:00:00+02:00",
+  "dateModified": "2026-07-01T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/copilot-fancy-autocomplete-vol3/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Copilot is just a fancy autocomplete (vol.3) - Steps towards agentic development</h1>
+      <em class="post-meta">
+        <time>Jul 1, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p><strong><em><a href="/blog/2025/copilot-fancy-autocomplete/">Part 1</a></em></strong> was about autocomplete, Edits, and Inline Chat. <strong><em><a href="/blog/2025/copilot-fancy-autocomplete-vol2/">Part 2</a></em></strong> moved on to Agent mode and MCP servers, and closed with two promises: I’d talk about <strong>background agents</strong> next, and a warning not to go overboard installing every MCP you can find, because it eats your context window.</p>
+
+<p>This post is really an extension of both, but the direct spark for it was this year’s <strong><em>“Copilot is just a fancy autocomplete vol.2”</em></strong> session, the one I’ve been touring conferences with. Somewhere between the first stop and the last, most of what I was presenting stopped being true, and that’s basically the whole premise of what follows.</p>
+
+<p>Both of those threads from vol.2, background agents and the MCP warning, are what this post is about. But first, a small detour.</p>
+
+<p>You’ve probably seen the LinkedIn posts by now. Someone shares an idea in the morning, and by lunch they’ve got tests, code, and documentation ready to review. <a href="https://www.linkedin.com/in/vjeko/">Vjeko</a>, one of the sharpest people in the agentic development space right now, has a workflow where he goes from a feature idea to a fully tested, documented implementation in about <strong>24 minutes</strong>. Not 24 minutes of watching a progress bar either: tests written first, code written to pass them, mutation testing to make sure the tests actually test something, docs generated at the end.</p>
+
+<p>That’s real. But it also feels a bit too mythical, and so we stay exactly where we are, one prompt at a time in the chat box on the right.</p>
+
+<p>I’m not trying to get you to that 24-minute workflow by tomorrow. I just want to show you the steps that get you closer, one at a time, from wherever you’re standing right now.</p>
+
+<hr />
+
+<h3 id="everything-from-vol2-is-already-obsolete">Everything from vol.2 is already obsolete</h3>
+
+<p>If I show you Visual Studio Code right now, it’s this:</p>
+
+<p><img src="/images/fancyautocompletevol3/agent-plan-modes.png" alt="Agent and Plan modes, no Edit mode" /></p>
+
+<p>No Edit mode anymore. Just gone. The feature I called the <em>crown jewel</em> twelve months ago, the chat box where you type requirements and it generates code, quietly removed. If that doesn’t tell you how fast this moves, I don’t know what will.</p>
+
+<p>Two things did survive the last twelve months though:</p>
+
+<ul>
+  <li>Claude models are still the best. Claude Sonnet and Opus, they’re the best for AL. Though, I’ve seen Gemini 3.1 Pro come very close.</li>
+  <li>Taking control of your context still matters. Agents are decent at finding their own files now, but pointing them at exactly the right file still gets you better results than letting them guess.</li>
+</ul>
+
+<p>Everything else from vol.2, I’d rewrite.</p>
+
+<hr />
+
+<h3 id="the-mcp-overload-problem-revisited">The MCP overload problem, revisited</h3>
+
+<p>In vol.2 I explained MCP servers with the USB-C analogy: tool boxes you hand your agent so it can reach past your workspace, into your ticket tracker, your docs, your telemetry. Go read that post first if you haven’t, it’s still the best explanation I’ve got.</p>
+
+<p>Quick reminder of why they matter at all, though. Ask an agent with no tools attached about a work item:</p>
+
+<blockquote>
+  <p>What is task 107308 about?</p>
+</blockquote>
+
+<p><img src="/images/fancyautocompletevol3/no-mcp-no-clue.png" alt="An agent with no MCP has no idea what task 107308 is" /></p>
+
+<p>No idea. It doesn’t even know where to look. Give it the Azure DevOps MCP:</p>
+
+<p><img src="/images/fancyautocompletevol3/enable-devops-mcp.png" alt="Enabling the Azure DevOps MCP for the agent" /></p>
+
+<p>Ask again, and now it goes and actually fetches the ticket:</p>
+
+<p><img src="/images/fancyautocompletevol3/devops-mcp-result.png" alt="The same agent now finds and summarizes task 107308 via the Azure DevOps MCP" /></p>
+
+<p>That’s the whole point of MCPs in one before-and-after.</p>
+
+<p>Now, the community kept building since vol.2, and the full, up to date list is on the <a href="https://alguidelines.dev/docs/agentic-coding/communityresources/tools/">AL Guidelines agentic tools page</a>. One I’d specifically call out: <strong>TelemetryBuddy</strong>, by <a href="https://www.linkedin.com/in/ericwauters">waldo</a>, turns <em>“what are the top 10 customers with errors in job queue entries”</em> into a KQL query against Application Insights, runs it, and hands you back a readable answer. No KQL knowledge required anymore.</p>
+
+<p>Now, let’s pick up exactly where vol.2 left off. I told you not to install everything. Let’s actually see why.</p>
+
+<p>I gave my agent every MCP I had, including one for Python even though I was sitting in an AL workspace.</p>
+
+<p><img src="/images/fancyautocompletevol3/all-tools-enabled.png" alt="Every single tool enabled at once" /></p>
+
+<p>Then I typed the most demanding prompt I could think of:</p>
+
+<blockquote>
+  <p>Hello</p>
+</blockquote>
+
+<p><img src="/images/fancyautocompletevol3/hello-prompt.png" alt="Hello prompt to an overloaded agent" /></p>
+
+<p>Go on, guess how many tokens that cost.</p>
+
+<p><img src="/images/fancyautocompletevol3/hello-tokens.png" alt="24,000 tokens spent on saying hello" /></p>
+
+<p><strong>24,000 tokens.</strong> For “hello.” Sent straight to the model with no tools attached, it would’ve cost about 10.</p>
+
+<p>Now, Sonnet’s default context window recently jumped to 1M tokens, so 24K doesn’t threaten to fill it up the way it would’ve a few months ago. But that doesn’t mean it’s free. First, it’s still 24,000 tokens of tool definitions you’re paying for and waiting on, for every single message, whether or not the agent ever touches half those tools. Second, models don’t actually reason better with more junk sitting in front of them. Stuff a context window with tool definitions it doesn’t need, and the model has to work around that noise, even if it technically still fits. A window that isn’t full isn’t the same thing as a window that’s clean.</p>
+
+<p>And the old danger hasn’t disappeared, it’s just further away now. Fill that window up regardless, and once you hit the last ~10% left, the agent has to start <em>summarizing chat history</em> to make room. Summarizing means throwing information out. An agent that knew exactly how you like your code written suddenly feels lobotomized. Wrong file names, wrong properties, mistakes it wasn’t making five minutes earlier.</p>
+
+<p>An agent without any tools is going to perform basically the same way ChatGPT would if we just jammed it in Visual Studio Code, not really useful. And now you’ve seen an agent with every tool also fail, just in the other direction. So what’s the answer?</p>
+
+<p><strong>Custom agents.</strong></p>
+
+<hr />
+
+<h3 id="step-1-custom-agents">Step 1: Custom agents</h3>
+
+<p>If last year’s crown jewel was Edit mode, this year’s is custom agents. Custom agents are the first step you take closer to agentic development, because building one forces you to think about your workflow. What are you actually doing, day to day? What does your process look like? You break it down into individual parts, and you create an agent for each part.</p>
+
+<ul>
+  <li>Planning</li>
+  <li>Writing code</li>
+  <li>Writing tests</li>
+  <li>Reviewing a backlog item</li>
+  <li>Writing docs</li>
+</ul>
+
+<p>Each of those can be its own agent, its own persona, its own scoped-down set of tools. No telemetry MCP on your test-plan-helper. No admin MCP on your backlog reviewer. They don’t need it.</p>
+
+<p>Used to be you’d start from a blank template and fill in the prompt and tool list by hand. There’s a better way now. GitHub Copilot has a <code class="language-plaintext highlighter-rouge">/create-agent</code> skill: describe the job in plain language and let an agent build the agent for you.</p>
+
+<p><img src="/images/fancyautocompletevol3/create-agent-prompt.png" alt="Creating a custom agent with a plain-language description" /></p>
+
+<p>A minute later, a working backlog reviewer: checking requirement quality, acceptance criteria, flagging risks and dependencies.</p>
+
+<p><img src="/images/fancyautocompletevol3/backlog-reviewer-agent.png" alt="Generated backlog reviewer agent definition" /></p>
+
+<p>Won’t be perfect on the first try. It’ll be the perfect first step. From here you iterate, add a tool, tighten the persona, and eventually my prompt for reviewing a backlog item is three words.</p>
+
+<p><img src="/images/fancyautocompletevol3/three-word-review.png" alt="Three-word prompt reviewing a task in full" /></p>
+
+<p>Everything about what the agent should do and how it should use its tools already lives in the agent definition, I’m not re-explaining it every time. Also solves onboarding, by the way. Hand a colleague a super-agent that does five things poorly, they won’t come back to it. Hand them one agent that does backlog review well, and they’ll use it every time they need backlog review, then reach for a different one for the next job.</p>
+
+<hr />
+
+<h3 id="step-2-skills">Step 2: Skills</h3>
+
+<p>An agent knows how to do some things. Not everything, and it shouldn’t have to carry all of it around at once.</p>
+
+<p>Take compiling and publishing an app, running tests, reporting back results. An agent today is smart enough to figure out that whole sequence itself, find the BC Container Helper, write the right PowerShell, run it. But it’ll burn a lot of tokens rediscovering that path every single time.</p>
+
+<p>That’s what skills solve, through something called <em>progressive disclosure</em>. By default your agent only ever sees a skill’s name and a one-line description, barely any context cost at all. Only when a prompt actually needs it does it load the full instructions.</p>
+
+<p><img src="/images/fancyautocompletevol3/skill-example.png" alt="Example skill file for compiling, publishing, and running tests" /></p>
+
+<p>Rule of thumb: if a task takes your agent a handful of turns and a few minutes to figure out, ask it at the end to package that into a skill. Same idea as <code class="language-plaintext highlighter-rouge">/create-agent</code>, there’s a <code class="language-plaintext highlighter-rouge">/create-skill</code> command for this too, so you don’t have to hand-write the skill file yourself. Next time it won’t spend thousands of tokens rediscovering how to publish a workload, it’ll just know.</p>
+
+<p>This also kills something I mentioned in vol.2, sort of implicitly. Those old <code class="language-plaintext highlighter-rouge">.prompt.md</code> stored-prompt files? I don’t use them anymore. Anything that used to be a pre-written prompt is now a skill, same <em>“run this as a slash command”</em> behavior, except an agent can also discover and load it on its own when it’s relevant. A stored prompt never could do that.</p>
+
+<p>One distinction worth keeping straight. Your agent’s instructions (or your general <code class="language-plaintext highlighter-rouge">copilot-instructions.md</code> or <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>) hold what’s relevant <em>every single time</em>: architecture, where things live, how you like code written. Skills hold what’s relevant <em>sometimes</em>, a how-to that only matters when the task calls for it. Don’t copy-paste your architecture notes into every agent’s skill file. That belongs in instructions, once.</p>
+
+<hr />
+
+<h3 id="step-3-the-reflection-loop">Step 3: The reflection loop</h3>
+
+<p>This is, in my opinion, the most important habit in this whole post.</p>
+
+<p><strong>Fix the agent. Don’t fix the code.</strong></p>
+
+<p><img src="/images/fancyautocompletevol3/fix-the-agent.png" alt="Don't fix yourself. Fix the agent." /></p>
+
+<p>Old failure mode: agent mode makes a mistake, you sigh, take over, fix it manually. You get a little better at spotting that mistake. The agent stays exactly as dumb as before, and it’ll make the same mistake next week.</p>
+
+<p>Here’s the loop instead. Over one longer session, the agent kept making small mistakes:</p>
+
+<ul>
+  <li>Auto-increment on a temporary table</li>
+  <li>A tooltip that belonged on the table ending up on the page instead</li>
+  <li>A property that should’ve lived on the header sitting on a field</li>
+</ul>
+
+<p>Each time, I didn’t touch the code myself, I told the agent what was wrong and had it fix it. But only at the very end of the conversation did I fire off the actual reflection loop prompt:</p>
+
+<blockquote>
+  <p>Based on our conversation and the fixes I made you make, what would you fix in your instructions and skills so the next time you don’t make the same mistake?</p>
+</blockquote>
+
+<p>It goes back through the conversation, identifies what could’ve gone better, and proposes fixes. <em>Auto-increment should never be used on temporary tables, put that in instructions.</em> <em>Tooltips belong on the field, not the page, double check that going forward.</em> <em>Same for properties that belong on the header, not the field.</em> Doesn’t really matter what specifically comes out of it. What matters is the habit: instruct the agent how to fix the mistake, let it fix the skill or instructions itself, then move on.</p>
+
+<p>Do that consistently, and in a few months you’ve got agents that write code the way you would.</p>
+
+<hr />
+
+<h3 id="step-4-sub-agents">Step 4: Sub-agents</h3>
+
+<p>Stumbled into this one about a week after building my first backlog reviewer. A consultant gave it a real task: build a transfer order approval workflow, similar to the existing sales order one.</p>
+
+<p>Sounded simple. I told the agent to load the base app code for sales order approval via the <a href="https://github.com/StefanMaron/AL-Dependency-MCP-Server">AL Symbols MCP</a>, pull the official documentation, and bring in a specialist from <a href="https://github.com/JeremyVyska/bc-code-intelligence-mcp">BC Code Intelligence</a> before we even started on the design. Except it never got that far. The moment all three loaded, the context window filled up and it summarized the chat history before I could say a word about the actual design.</p>
+
+<p>That’s when sub-agents clicked. The main agent can spin up new agents with a completely empty context window of their own. One digs through the base app. One goes through the docs. One consults the specialist. Each starts fresh with the full window available, and when it’s done, it doesn’t hand back everything it read, it hands back a condensed research report. Which files matter, which procedures matter, how they work.</p>
+
+<p><img src="/images/fancyautocompletevol3/sub-agents-parallel.png" alt="Sub-agents analyzing base app, docs, and a specialist in parallel" /></p>
+
+<p>Here’s what that actually looked like. First, the agent itself needs the tools for this, <code class="language-plaintext highlighter-rouge">agent</code> and <code class="language-plaintext highlighter-rouge">runSubagent</code>, switched on. Nothing spins up in parallel without them:</p>
+
+<p><img src="/images/fancyautocompletevol3/subagent-tools-enabled.png" alt="Enabling the agent and runSubagent tools on a custom agent" /></p>
+
+<p>With those enabled, same prompt as before, load the docs, check the base app via the AL Symbols MCP, ask a specialist, except this time each of those runs as its own sub-agent instead of stacking up in my main conversation:</p>
+
+<p><img src="/images/fancyautocompletevol3/sub-agents-prompt.png" alt="Prompt spinning up three sub-agents in parallel" /></p>
+
+<p>Zoom into just one of them, the one digging through the base app, and you can see it doing exactly what I’d have done myself: pulling packages, searching objects, reading through the workflow code, one tool call after another.</p>
+
+<p><img src="/images/fancyautocompletevol3/sub-agent-tool-calls.png" alt="One sub-agent's tool calls while researching the base app" /></p>
+
+<p>None of that noise comes back to my main agent though. What comes back is this:</p>
+
+<p><img src="/images/fancyautocompletevol3/sub-agent-research-report.png" alt="The condensed research report handed back to the main agent" /></p>
+
+<p>A research report, not a transcript. Object IDs, source files, key procedures, exactly the shape of information I actually needed to start talking about the transfer order workflow.</p>
+
+<p>Parallelism is a nice bonus, three things happening at once instead of one after another. But that’s not the actual win. The win is my main agent’s context window barely moved. All it got was a tight summary, and there was still plenty of room left to actually talk through how to implement the workflow.</p>
+
+<p>Once you’re here, the next realization comes on its own: your custom agents don’t just call sub-agents for research, they can <em>be</em> sub-agents themselves. Planner calls code writer, code writer calls test writer, test writer calls documentation writer. Congratulations, you’ve built an orchestrator, and this is more or less what gets you to a Vjeko-style, idea-to-production workflow.</p>
+
+<hr />
+
+<h3 id="step-5-background-agents">Step 5: Background agents</h3>
+
+<p>Two things to untangle before this one makes sense.</p>
+
+<p>Claude Sonnet is a model, not an agent. GitHub Copilot in VS Code is an <em>agent framework</em> (agent harness, officially, but framework fits my head better) that builds agents on top of that model. Cursor is a different framework, Claude Code is another, and each behaves differently even pointed at the exact same model, because the framework shapes the behavior. Copilot CLI is yet another one of these, it just lives in your terminal instead of your editor, and because it lives there, you can spin up as many as you want.</p>
+
+<p><img src="/images/fancyautocompletevol3/agent-frameworks.png" alt="Task, model, and tools, the same shape across VS Code, GitHub, CLI, and other agent frameworks" /></p>
+
+<p>Second thing, once you have multiple agents running, you hit the same problem developers had before branching existed. Two agents on the same files start stepping on each other’s toes, fast. The fix is the same one Git gave us, repurposed: <strong>git worktrees</strong>. Think of a worktree as a branch that’s also a folder. When an agent branches out, it copies the files into its own folder and works there undisturbed, and only brings the results back when done. The agent equivalent of a pull request.</p>
+
+<p><img src="/images/fancyautocompletevol3/git-worktrees.png" alt="Worktrees as folders sitting alongside branches in the same repo" /></p>
+
+<p>With both in place, here’s what a background task looks like. I had 600 files with tooltips like <em>“specifies the value of field X.”</em> Nobody’s ever going to pay you to write better tooltips, but it’s the perfect task for an agent. Do I really want to watch an agent go through 600 files and adjust all of them though? I don’t.</p>
+
+<p>Right next to where you type your prompt, there’s a target selector, <em>Local</em> by default:</p>
+
+<p><img src="/images/fancyautocompletevol3/target-local.png" alt="Target selector set to Local by default" /></p>
+
+<p>Switch it to <em>Copilot CLI</em>:</p>
+
+<p><img src="/images/fancyautocompletevol3/target-dropdown.png" alt="Switching the target to Copilot CLI" /></p>
+
+<p>And once you’re on CLI, a second selector shows up for isolation mode. Switch that to <em>Worktree</em>:</p>
+
+<p><img src="/images/fancyautocompletevol3/worktree-isolation-mode.png" alt="Switching isolation mode to Worktree" /></p>
+
+<p>So I used Copilot CLI, gave it the prompt, set the isolation mode to <em>worktree</em>, let it go:</p>
+
+<p><img src="/images/fancyautocompletevol3/tooltip-prompt.png" alt="Sending the tooltip prompt to Copilot CLI, isolated worktree created immediately" /></p>
+
+<p>Took a while, didn’t care, I wasn’t watching it. When it finished, same diff view you’d expect, 96 files, +218/-218. Look at the left side though: my actual workspace, Source Control panel, empty. Nothing to sync, nothing to commit. Every one of those file paths on the right points into a separate worktree folder, not my project. It’s not in my workspace until I click Apply.</p>
+
+<p><img src="/images/fancyautocompletevol3/background-tooltips.png" alt="96 files changed in an isolated worktree, source control in the actual workspace untouched" /></p>
+
+<p>I want to be clear about what this actually was for me though. Running Copilot CLI from inside VS Code isn’t the end goal, it was the stepping stone that got me comfortable running agents directly in the terminal instead of watching a chat pane. Compared to just opening a bunch of GitHub Copilot sessions in VS Code, which you can already do, the real benefit of CLI is <strong>worktree isolation</strong>. Multiple VS Code sessions still fight over the same files. CLI in worktree mode doesn’t.</p>
+
+<p>And once you’re comfortable with that, it’s worth just opening Copilot CLI on its own, no VS Code around it at all:</p>
+
+<p><img src="/images/fancyautocompletevol3/copilot-cli-terminal.png" alt="GitHub Copilot CLI running directly in the terminal" /></p>
+
+<p>This is genuinely how I work day to day now. A handful of terminal windows open, each running an agent on a completely unrelated task. Why would I sit and watch my orchestrator orchestrate, when the only thing I care about is reviewing the final output?</p>
+
+<p>And it doesn’t have to stop at your own terminal. Because it’s a command, and a command is something you can put in a script. And a script can live in a pipeline. Here’s what that looks like, a step in a larger script that shells out to <code class="language-plaintext highlighter-rouge">copilot</code> for a code review pass:</p>
+
+<p><img src="/images/fancyautocompletevol3/copilot-cli-pipeline-script.png" alt="A PowerShell pipeline step invoking Copilot CLI for a code review" /></p>
+
+<p>That’s how you get from “I run agents in a terminal” to actually automating pieces of your workflow, generating documentation, drafting release notes, maybe even a first pass at code review, without anyone sitting there watching it happen at all.</p>
+
+<hr />
+
+<h3 id="where-this-leaves-you">Where this leaves you</h3>
+
+<p>Custom agents, skills, the reflection loop, sub-agents, background agents. Five steps, and you don’t have to sprint through all of them this month, or even this quarter. What matters is you don’t stop wherever you happen to land. Take the next step, then the one after that, and eventually you’re a lot closer to that 24-minute workflow than you think.</p>
+
+<p>I know I’m leaving some things dangling, and I’m not going to pretend I’ve covered everything here either. There’s going to be a <strong>vol.4</strong>. There’s basically always going to be a next volume, at the pace this moves. Honestly, by the time you’re reading this, some of what’s above has probably already aged like milk.</p>
+
+<p>Until then, go build yourself one agent. Just one. It doesn’t need to be the whole suite.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
