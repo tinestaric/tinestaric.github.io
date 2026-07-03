@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Distributing Agents with Plugins</title>
+<meta name="description"
+    content="The post Copilot is just a fancy autocomplete vol.3 ended with “go build yourself one agent, just one, it doesn’t need to be the whole suite.” Turns out that...">
+
+<meta property="og:title" content="Distributing Agents with Plugins" />
+<meta property="og:description"
+    content="The post Copilot is just a fancy autocomplete vol.3 ended with “go build yourself one agent, just one, it doesn’t need to be the whole suite.” Turns out that..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/agent-plugins/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/agentplugins/plugins-browse-marketplace.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/agentplugins/plugins-browse-marketplace.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/agent-plugins/",
+  "description": "The post Copilot is just a fancy autocomplete vol.3 ended with “go build yourself one agent, just one, it doesn’t need to be the whole suite.” Turns out that’s the easy part. The question I actually get, almost every time I run a session on building custom agents, is the one that post doesn’t answer at all: okay, I built one, now how does the rest of my team get it?",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Distributing Agents with Plugins",
+  "datePublished": "2026-07-03T10:00:00+02:00",
+  "dateModified": "2026-07-03T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/agent-plugins/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/agent-plugins/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Distributing Agents with Plugins</h1>
+      <em class="post-meta">
+        <time>Jul 3, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>The post <strong><em><a href="/blog/2026/copilot-fancy-autocomplete-vol3/">Copilot is just a fancy autocomplete vol.3</a></em></strong> ended with “go build yourself one agent, just one, it doesn’t need to be the whole suite.” Turns out that’s the easy part. The question I actually get, almost every time I run a session on building custom agents, is the one that post doesn’t answer at all: <strong>okay, I built one, now how does the rest of my team get it?</strong></p>
+
+<p>I’ve been sitting on this question since <strong><em>EMEA 2025</em></strong>, where <strong><em><a href="https://www.linkedin.com/in/ericwauters">waldo</a></em></strong> told me, mid-conversation, that he’d just vibe-coded a <em>VS Code extension</em> that drops his team’s agents straight into everyone’s editor. I thought it was a great idea. I also didn’t move an inch on it, because I was still convinced everyone should be building their own agents first. Handing someone a finished suite felt like the wrong lesson to teach this early.</p>
+
+<p>The push to actually revisit it came a few days ago, when waldo published <strong><em><a href="https://waldo.be/2026/06/29/the-waldo-way/">The Waldo Way</a></em></strong>, the writeup of that same extension, now called the <strong><em>iFacto Playbook</em></strong>, and the doubt that came with shipping it: did removing all the setup friction also remove the learning that used to happen inside that friction? I don’t have that answer either. But reading it put the original question back in front of me, and this time I actually sat with it instead of shelving it again.</p>
+
+<p>A <strong>default set of agents</strong> doesn’t have to cost you the other option. It can spark exploration for the people who’ll eventually go build their own. And it stops blocking the people who don’t have the time this sprint, whose deadline doesn’t care whether they’ve found the time to play around with agents yet.</p>
+
+<p>So: we need a default set. The only real question left is how you get it in front of people without it turning into “well, it works, but is this actually what I’d recommend to every partner?”</p>
+
+<hr />
+
+<h3 id="nearly-missing-the-point-of-packaging">Nearly missing the point of packaging</h3>
+
+<p>My first instinct was to do what waldo did: build the extension, ship it to the team. But “is this really the recommendation I’m going to give to every single partner?” kept nagging at me. Somebody always has to maintain it, and it’s not a lot of maintenance, but it also becomes a blocker the moment there isn’t a plug-and-play way for the next partner to get the same thing.</p>
+
+<p>So my mind went to a community extension instead: something generic you point at a repository, and it pulls everything down for everyone in your org. Which, funnily enough, is almost exactly what already exists. I just didn’t recognize it, because I’d already dismissed the concept once this year.</p>
+
+<p><strong>Plugins.</strong></p>
+
+<p>They were the one piece I never fully got when I was relearning this whole space at the start of the year. Agents, skills, MCPs, hooks, those all clicked fast, they’re just files you can already share, point someone at a repo and tell them to copy them in. So I couldn’t see what a “plugin” added on top. Packaging felt like a solution to a problem I didn’t have.</p>
+
+<p>Turns out I just hadn’t asked the right question yet. The moment I framed it as <em>distribution</em>, how do these files reach everyone’s editor without every developer manually copying files into the right folder, it was an instant, face-palm-obvious “oh, that’s what packaging is for.” A plugin isn’t a new way to write an agent or a skill. It’s a folder that bundles the ones you already have, hosted in a repo, that anyone can install with one click and update the same way.</p>
+
+<p>And the part that actually got me to build one: the exact same plugin repo works for both <strong>GitHub Copilot</strong> and <strong>Claude Code</strong>. One repo, two ecosystems.</p>
+
+<p>Here’s the install experience, from the other side, the side your teammates actually see.</p>
+
+<p>First, someone adds your repo as a marketplace, once, in their <code class="language-plaintext highlighter-rouge">settings.json</code>:</p>
+
+<p><img src="/images/agentplugins/settings-marketplace.png" alt="Registering a plugin marketplace in settings.json" /></p>
+
+<p>Then they open the <em>Agent Customizations</em> panel from the command palette:</p>
+
+<p><img src="/images/agentplugins/open-customizations-command.png" alt="Opening Chat: Open Customizations from the command palette" /></p>
+
+<p>Go to <em>Plugins</em>, hit <em>Browse Marketplace</em>, and there’s the plugin, ready to install:</p>
+
+<p><img src="/images/agentplugins/plugins-browse-marketplace.png" alt="Browsing the marketplace and finding the plugin" /></p>
+
+<p><img src="/images/agentplugins/plugin-install.png" alt="Installing a plugin from the marketplace" /></p>
+
+<p>One click, and every agent in that plugin shows up in the agent picker, no config, no copy-pasting <code class="language-plaintext highlighter-rouge">.md</code> files into the right folder by hand:</p>
+
+<p><img src="/images/agentplugins/agent-list-dropdown.png" alt="All the agents from the plugin now available in the agent picker" /></p>
+
+<p>When I push changes to the repo, they don’t need to reinstall anything. One command syncs everything the plugin brings in, agents, skills, MCP config, all of it:</p>
+
+<p><img src="/images/agentplugins/update-plugins-command.png" alt="Running Chat: Update Plugins to pull the latest changes" /></p>
+
+<p>That’s it. That’s plug-and-play, and nobody had to build a custom extension to get there.</p>
+
+<p>If you’re on <em>Claude Code</em> instead of VS Code, same idea, just a terminal UI instead of a panel. <code class="language-plaintext highlighter-rouge">/plugin</code> gets you the same tabs: <em>Marketplaces</em> to register the repo, <em>Discover</em> to find and install a plugin, <em>Installed</em> to see what you’ve got and check for updates:</p>
+
+<p><img src="/images/agentplugins/cc-plugin-marketplaces-tab.png" alt="Adding a marketplace from the Claude Code /plugin UI" /></p>
+
+<p><img src="/images/agentplugins/cc-plugin-discover-tab.png" alt="Discovering hello-plugin in the marketplace" /></p>
+
+<p><img src="/images/agentplugins/cc-plugin-installed-tab.png" alt="hello-plugin installed, with its agents, skills, and MCP servers all listed" /></p>
+
+<hr />
+
+<h3 id="whats-actually-in-the-repository">What’s actually in the repository</h3>
+
+<p>I put together a stripped-down version of what I now use as a template, <strong><em><a href="https://github.com/tinestaric/plugin-marketplace-sample">plugin-marketplace-sample</a></em></strong>, so you can see the whole thing at once instead of just screenshots. Two kinds of file make this work: <strong>marketplace manifests</strong> and <strong>plugin manifests</strong>.</p>
+
+<p>At the repo root, you need a marketplace manifest per ecosystem, since each one looks in a different spot:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.github/plugin/marketplace.json      (GitHub Copilot)
+.claude-plugin/marketplace.json      (Claude Code)
+</code></pre></div></div>
+
+<p>Both files say the same thing, just to a different audience. A name for the marketplace, an owner, and a list of the plugins it serves, each one pointing at the folder it lives in:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample-marketplace"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="p">,</span><span class="w"> </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/your-org"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello-plugin"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./plugins/hello-plugin"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Minimal example plugin demonstrating a skill and an agent shared between Claude Code and GitHub Copilot"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>That’s the whole catalog. This is the file that turns a plain repo into something you can register as a marketplace in <code class="language-plaintext highlighter-rouge">settings.json</code>.</p>
+
+<p>The actual plugin lives in the folder that <code class="language-plaintext highlighter-rouge">source</code> points to, and it carries its own manifest, again one per ecosystem:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins/hello-plugin/
+  plugin.json                  (Copilot plugin manifest)
+  .claude-plugin/
+    plugin.json                (Claude Code plugin manifest)
+  agents/                      (Claude Code agents)
+  agents-copilot/              (GitHub Copilot agents)
+  skills/
+    hello-skill/
+      SKILL.md
+</code></pre></div></div>
+
+<p>Copilot’s <code class="language-plaintext highlighter-rouge">plugin.json</code> is where you’re explicit about where to look, since its agents live in a non-default folder:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello-plugin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example plugin: one skill, one agent, shared between Copilot and Claude Code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"skills"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skills/"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"agents"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agents-copilot/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Claude Code’s copy is almost identical, just without the path overrides, since <code class="language-plaintext highlighter-rouge">agents/</code> and <code class="language-plaintext highlighter-rouge">skills/</code> are already its defaults:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello-plugin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example plugin: one skill, one agent, shared between Copilot and Claude Code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>That’s genuinely all there is to the packaging itself, name, description, version, author, and where to find things if they’re not in the default spot. From there it’s exactly what you’d expect: agent <code class="language-plaintext highlighter-rouge">.md</code> files with their usual frontmatter, skill folders with their <code class="language-plaintext highlighter-rouge">SKILL.md</code>, an <code class="language-plaintext highlighter-rouge">.mcp.json</code> if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you’re just putting them somewhere that can be distributed.</p>
+
+<p>This works over a plain <em>GitHub</em> repo or an <em>Azure DevOps</em> repo, whichever your org already uses for source control. No new infrastructure.</p>
+
+<hr />
+
+<h3 id="the-one-place-the-two-ecosystems-diverge">The one place the two ecosystems diverge</h3>
+
+<p>Skills, MCPs, hooks, all of it is genuinely shared between the two. Write it once, both platforms read the same files.</p>
+
+<p>Agents are the exception, and the reason is almost petty: <em>GitHub Copilot</em> and <em>Claude Code</em> name their built-in tools differently. Copilot’s <code class="language-plaintext highlighter-rouge">edit</code>, for instance, is split into Claude’s <code class="language-plaintext highlighter-rouge">Edit</code> and <code class="language-plaintext highlighter-rouge">Write</code>. Small differences, but enough of them that an agent definition written for one doesn’t just work for the other, hence <code class="language-plaintext highlighter-rouge">agents/</code> for Claude Code and <code class="language-plaintext highlighter-rouge">agents-copilot/</code> for Copilot, sitting side by side with near-identical content.</p>
+
+<p>That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn’t, because on the actual repo I built for one of our teams, I added a <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I’ve never had to think about it since.</p>
+
+<p>One more constraint worth knowing before you set this up yourself: <strong>no subfolders</strong>, not in <code class="language-plaintext highlighter-rouge">agents/</code>, not in <code class="language-plaintext highlighter-rouge">skills/</code>. Both have to stay flat. Ask me how I found that out.</p>
+
+<hr />
+
+<h3 id="where-this-leaves-things">Where this leaves things</h3>
+
+<p>Plugins don’t tell you what should be inside the box, that’s still on you and your team to figure out. But they remove the excuse for not shipping a default set at all. You’re no longer choosing between “build everyone their own extension” and “make people fend for themselves.” A plugin repo costs you a couple of manifest files and some discipline about where things live, and from there it’s one install command for anyone on your team, in whichever editor they already use.</p>
+
+<p>Go build that one agent from vol.3. Then put it somewhere the rest of your team can actually reach. Clone <strong><em><a href="https://github.com/tinestaric/plugin-marketplace-sample">the sample repo</a></em></strong> if you want a starting point.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
