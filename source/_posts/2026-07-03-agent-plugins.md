@@ -4,7 +4,7 @@ title: "Distributing Agents with Plugins"
 date: 2026-07-03 08:00:00
 comments: false
 categories: al
-image: /images/agentplugins/plugins-browse-marketplace.png
+image: /images/agentplugins/main.png
 ---
 
 The post ***[Copilot is just a fancy autocomplete vol.3][copilotpostvol3]*** ended with "go build yourself one agent, just one, it doesn't need to be the whole suite." Turns out that's the easy part. The question I actually get, almost every time I run a session on building custom agents, is the one that post doesn't answer at all: **okay, I built one, now how does the rest of my team get it?**
