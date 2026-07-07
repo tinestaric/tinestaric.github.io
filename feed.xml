@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Jul 2026 20:23:34 +0200</pubDate>
-    <lastBuildDate>Sun, 05 Jul 2026 20:23:34 +0200</lastBuildDate>
+    <pubDate>Tue, 07 Jul 2026 14:39:13 +0200</pubDate>
+    <lastBuildDate>Tue, 07 Jul 2026 14:39:13 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -111,6 +111,7 @@
   skills/
     hello-skill/
       SKILL.md
+  .mcp.json                    (MCP servers, shared)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; is where you’re explicit about where to look, since its agents live in a non-default folder:&lt;/p&gt;
@@ -149,7 +150,7 @@
 
 &lt;p&gt;That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn’t, because on the actual repo I built for one of our teams, I added a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CLAUDE.md&lt;/code&gt; at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I’ve never had to think about it since.&lt;/p&gt;
 
-&lt;p&gt;One more constraint worth knowing before you set this up yourself: &lt;strong&gt;no subfolders&lt;/strong&gt;, not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt;, not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt;. Both have to stay flat. Ask me how I found that out.&lt;/p&gt;
+&lt;p&gt;One more constraint worth knowing before you set this up yourself: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; has to stay flat, no subfolders. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; needs a subfolder per skill (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/SKILL.md&lt;/code&gt;, not a loose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello-skill.md&lt;/code&gt;), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/&lt;/code&gt; works, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/category/hello-skill/&lt;/code&gt; doesn’t. Ask me how I found that out.&lt;/p&gt;
 
 &lt;hr /&gt;
 

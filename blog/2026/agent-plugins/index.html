@@ -206,6 +206,7 @@
   skills/
     hello-skill/
       SKILL.md
+  .mcp.json                    (MCP servers, shared)
 </code></pre></div></div>
 
 <p>Copilot’s <code class="language-plaintext highlighter-rouge">plugin.json</code> is where you’re explicit about where to look, since its agents live in a non-default folder:</p>
@@ -244,7 +245,7 @@
 
 <p>That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn’t, because on the actual repo I built for one of our teams, I added a <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I’ve never had to think about it since.</p>
 
-<p>One more constraint worth knowing before you set this up yourself: <strong>no subfolders</strong>, not in <code class="language-plaintext highlighter-rouge">agents/</code>, not in <code class="language-plaintext highlighter-rouge">skills/</code>. Both have to stay flat. Ask me how I found that out.</p>
+<p>One more constraint worth knowing before you set this up yourself: <code class="language-plaintext highlighter-rouge">agents/</code> has to stay flat, no subfolders. <code class="language-plaintext highlighter-rouge">skills/</code> needs a subfolder per skill (<code class="language-plaintext highlighter-rouge">skills/hello-skill/SKILL.md</code>, not a loose <code class="language-plaintext highlighter-rouge">hello-skill.md</code>), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, <code class="language-plaintext highlighter-rouge">skills/hello-skill/</code> works, <code class="language-plaintext highlighter-rouge">skills/category/hello-skill/</code> doesn’t. Ask me how I found that out.</p>
 
 <hr />
 
