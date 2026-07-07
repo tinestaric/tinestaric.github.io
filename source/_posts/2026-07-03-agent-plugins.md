@@ -110,6 +110,7 @@ plugins/hello-plugin/
   skills/
     hello-skill/
       SKILL.md
+  .mcp.json                    (MCP servers, shared)
 ```
 
 Copilot's `plugin.json` is where you're explicit about where to look, since its agents live in a non-default folder:
@@ -150,7 +151,7 @@ Agents are the exception, and the reason is almost petty: *GitHub Copilot* and *
 
 That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn't, because on the actual repo I built for one of our teams, I added a `CLAUDE.md` at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I've never had to think about it since.
 
-One more constraint worth knowing before you set this up yourself: **no subfolders**, not in `agents/`, not in `skills/`. Both have to stay flat. Ask me how I found that out.
+One more constraint worth knowing before you set this up yourself: `agents/` has to stay flat, no subfolders. `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
 
 ---
 
