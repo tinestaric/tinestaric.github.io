@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Jul 2026 14:39:13 +0200</pubDate>
-    <lastBuildDate>Tue, 07 Jul 2026 14:39:13 +0200</lastBuildDate>
+    <pubDate>Wed, 08 Jul 2026 07:10:25 +0200</pubDate>
+    <lastBuildDate>Wed, 08 Jul 2026 07:10:25 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -106,27 +106,15 @@
   plugin.json                  (Copilot plugin manifest)
   .claude-plugin/
     plugin.json                (Claude Code plugin manifest)
-  agents/                      (Claude Code agents)
-  agents-copilot/              (GitHub Copilot agents)
+  agents/                      (GitHub Copilot agents, Copilot&apos;s default folder)
+  agents-claude/               (Claude Code agents)
   skills/
     hello-skill/
       SKILL.md
   .mcp.json                    (MCP servers, shared)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; is where you’re explicit about where to look, since its agents live in a non-default folder:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello-plugin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Example plugin: one skill, one agent, shared between Copilot and Claude Code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Your Org&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;skills&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;skills/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;agents&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;agents-copilot/&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Claude Code’s copy is almost identical, just without the path overrides, since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; are already its defaults:&lt;/p&gt;
+&lt;p&gt;Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; stays minimal, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; are already its default folder names, so there’s nothing to point at:&lt;/p&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello-plugin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -136,7 +124,20 @@
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;That’s genuinely all there is to the packaging itself, name, description, version, author, and where to find things if they’re not in the default spot. From there it’s exactly what you’d expect: agent &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files with their usual frontmatter, skill folders with their &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SKILL.md&lt;/code&gt;, an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you’re just putting them somewhere that can be distributed.&lt;/p&gt;
+&lt;p&gt;Claude Code is where I initially got this wrong. I assumed pointing it at a differently-named folder would work the same way Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents&lt;/code&gt; override does, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;agents&quot;: &quot;agents-claude/&quot;&lt;/code&gt;. It doesn’t. Claude Code’s plugin.json wants an explicit list of the individual agent files, not a folder:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello-plugin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Example plugin: one skill, one agent, shared between Copilot and Claude Code&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Your Org&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;agents&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./agents-claude/hello-agent.agent.md&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Fine for one agent, but it means every new agent you add for Claude Code needs its own entry in that array, unlike Copilot, which just picks up whatever’s sitting in its folder. Small asymmetry, worth knowing about before you add your fifth agent and wonder why it’s not showing up.&lt;/p&gt;
+
+&lt;p&gt;That’s genuinely all there is to the packaging itself, name, description, version, author, and where to find things if they’re not in the default spot (or, for Claude Code’s agents, an explicit list of them). From there it’s exactly what you’d expect: agent &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; files with their usual frontmatter, skill folders with their &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SKILL.md&lt;/code&gt;, an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you’re just putting them somewhere that can be distributed.&lt;/p&gt;
 
 &lt;p&gt;This works over a plain &lt;em&gt;GitHub&lt;/em&gt; repo or an &lt;em&gt;Azure DevOps&lt;/em&gt; repo, whichever your org already uses for source control. No new infrastructure.&lt;/p&gt;
 
@@ -146,11 +147,11 @@
 
 &lt;p&gt;Skills, MCPs, hooks, all of it is genuinely shared between the two. Write it once, both platforms read the same files.&lt;/p&gt;
 
-&lt;p&gt;Agents are the exception, and the reason is almost petty: &lt;em&gt;GitHub Copilot&lt;/em&gt; and &lt;em&gt;Claude Code&lt;/em&gt; name their built-in tools differently. Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt;, for instance, is split into Claude’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Edit&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Write&lt;/code&gt;. Small differences, but enough of them that an agent definition written for one doesn’t just work for the other, hence &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; for Claude Code and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents-copilot/&lt;/code&gt; for Copilot, sitting side by side with near-identical content.&lt;/p&gt;
+&lt;p&gt;Agents are the exception, and the reason is almost petty: &lt;em&gt;GitHub Copilot&lt;/em&gt; and &lt;em&gt;Claude Code&lt;/em&gt; name their built-in tools differently. Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;edit&lt;/code&gt;, for instance, is split into Claude’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Edit&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Write&lt;/code&gt;. Small differences, but enough of them that an agent definition written for one doesn’t just work for the other, hence &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; for Copilot and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents-claude/&lt;/code&gt; for Claude Code, sitting side by side with near-identical content.&lt;/p&gt;
 
 &lt;p&gt;That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn’t, because on the actual repo I built for one of our teams, I added a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CLAUDE.md&lt;/code&gt; at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I’ve never had to think about it since.&lt;/p&gt;
 
-&lt;p&gt;One more constraint worth knowing before you set this up yourself: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; has to stay flat, no subfolders. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; needs a subfolder per skill (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/SKILL.md&lt;/code&gt;, not a loose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello-skill.md&lt;/code&gt;), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/&lt;/code&gt; works, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/category/hello-skill/&lt;/code&gt; doesn’t. Ask me how I found that out.&lt;/p&gt;
+&lt;p&gt;One more constraint worth knowing before you set this up yourself: Copilot’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; has to stay flat, no subfolders. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; needs a subfolder per skill (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/SKILL.md&lt;/code&gt;, not a loose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello-skill.md&lt;/code&gt;), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/&lt;/code&gt; works, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/category/hello-skill/&lt;/code&gt; doesn’t. Ask me how I found that out.&lt;/p&gt;
 
 &lt;hr /&gt;
 
