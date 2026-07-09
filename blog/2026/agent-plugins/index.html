@@ -201,53 +201,39 @@
   plugin.json                  (Copilot plugin manifest)
   .claude-plugin/
     plugin.json                (Claude Code plugin manifest)
-  agents-copilot/              (GitHub Copilot agents)
-  agents-claude/               (Claude Code agents)
-  skills/
+  agents/                      (shared by both tools)
+    hello-agent.agent.md
+  skills/                      (shared by both tools)
     hello-skill/
       SKILL.md
   .mcp.json                    (MCP servers, shared)
 </code></pre></div></div>
 
-<p>This is the part I had to go back and fix once I actually tried it end to end. I assumed pointing either tool’s <code class="language-plaintext highlighter-rouge">plugin.json</code> at a differently-named agents folder, <code class="language-plaintext highlighter-rouge">"agents": "agents-copilot/"</code>, would just work the way it does for skills. It doesn’t, for either tool. Both want an explicit list of the individual agent files, not a folder:</p>
+<p>One <code class="language-plaintext highlighter-rouge">agents/</code> folder, one <code class="language-plaintext highlighter-rouge">skills/</code> folder, nothing per-tool. Both <code class="language-plaintext highlighter-rouge">plugin.json</code> files stay this minimal, no path overrides, because <code class="language-plaintext highlighter-rouge">agents/</code> and <code class="language-plaintext highlighter-rouge">skills/</code> are already the default folder names both tools look for:</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello-plugin"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example plugin: one skill, one agent, shared between Copilot and Claude Code"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"agents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"./agents-copilot/hello-agent.agent.md"</span><span class="p">]</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Claude Code’s copy looks the same, just pointed at its own folder:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello-plugin"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example plugin: one skill, one agent, shared between Copilot and Claude Code"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Org"</span><span class="w"> </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"agents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"./agents-claude/hello-agent.agent.md"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>Fine for one agent. It just means every new agent you add gets its own entry in both arrays, on top of the file itself existing twice. <code class="language-plaintext highlighter-rouge">skills/</code> stays the nice case, drop a folder in and both tools pick it up on their own.</p>
-
-<p>That’s genuinely all there is to the packaging itself, name, description, version, author, an explicit list of agent files, and a path override for anything else that isn’t in the default spot. From there it’s exactly what you’d expect: agent <code class="language-plaintext highlighter-rouge">.md</code> files with their usual frontmatter, skill folders with their <code class="language-plaintext highlighter-rouge">SKILL.md</code>, an <code class="language-plaintext highlighter-rouge">.mcp.json</code> if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you’re just putting them somewhere that can be distributed.</p>
+<p>That’s genuinely all there is to the packaging itself: name, description, version, author. From there it’s exactly what you’d expect: agent <code class="language-plaintext highlighter-rouge">.md</code> files with their usual frontmatter, skill folders with their <code class="language-plaintext highlighter-rouge">SKILL.md</code>, an <code class="language-plaintext highlighter-rouge">.mcp.json</code> if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you’re just putting them somewhere that can be distributed.</p>
 
 <p>This works over a plain <em>GitHub</em> repo or an <em>Azure DevOps</em> repo, whichever your org already uses for source control. No new infrastructure.</p>
 
 <hr />
 
-<h3 id="the-one-place-the-two-ecosystems-diverge">The one place the two ecosystems diverge</h3>
+<h3 id="why-theres-only-one-agents-folder">Why there’s only one <code class="language-plaintext highlighter-rouge">agents/</code> folder</h3>
 
-<p>Skills, MCPs, hooks, all of it is genuinely shared between the two. Write it once, both platforms read the same files.</p>
+<p><em>GitHub Copilot</em> and <em>Claude Code</em> name their built-in tools differently, Copilot’s <code class="language-plaintext highlighter-rouge">edit</code> is Claude’s <code class="language-plaintext highlighter-rouge">Edit</code> plus <code class="language-plaintext highlighter-rouge">Write</code>. My first instinct was to work around that the obvious way: one agent folder per tool, <code class="language-plaintext highlighter-rouge">agents-copilot/</code> and <code class="language-plaintext highlighter-rouge">agents-claude/</code>, each with its own tool names in the frontmatter, each listed in its own <code class="language-plaintext highlighter-rouge">plugin.json</code>.</p>
 
-<p>Agents are the exception, and the reason is almost petty: <em>GitHub Copilot</em> and <em>Claude Code</em> name their built-in tools differently. Copilot’s <code class="language-plaintext highlighter-rouge">edit</code>, for instance, is split into Claude’s <code class="language-plaintext highlighter-rouge">Edit</code> and <code class="language-plaintext highlighter-rouge">Write</code>. Small differences, but enough of them that an agent definition written for one doesn’t just work for the other, hence <code class="language-plaintext highlighter-rouge">agents-copilot/</code> and <code class="language-plaintext highlighter-rouge">agents-claude/</code>, sitting side by side with near-identical content, and each listed by hand in its own <code class="language-plaintext highlighter-rouge">plugin.json</code>.</p>
+<p>That broke the moment I actually tested it in VS Code. Copilot’s CLI only reads the <em>first</em> <code class="language-plaintext highlighter-rouge">plugin.json</code> it finds for a plugin, so the split worked fine there. But the Copilot extension inside VS Code reads <em>every</em> <code class="language-plaintext highlighter-rouge">plugin.json</code> it finds and merges them, so it picked up both folders at once and installed every agent twice.</p>
 
-<p>That split sounds like it should be annoying to maintain, two folders and two manifest arrays to keep in sync every time an agent changes. In practice it isn’t, because on the actual repo I built for one of our teams, I added a <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> at the root from the start, telling whichever agent is making the change that both folders (and both <code class="language-plaintext highlighter-rouge">plugin.json</code> arrays) need the same edit. One remark up front, and I’ve never had to think about it since.</p>
+<p>The fix is simpler than the workaround: don’t restrict the agent’s tools in the frontmatter at all. With no tool list to translate between platforms, there’s nothing that needs a separate copy. One <code class="language-plaintext highlighter-rouge">agents/</code> folder, one file per agent, read as-is by both <code class="language-plaintext highlighter-rouge">plugin.json</code> manifests through their shared default.</p>
 
-<p>One more constraint worth knowing before you set this up yourself: <code class="language-plaintext highlighter-rouge">skills/</code> needs a subfolder per skill (<code class="language-plaintext highlighter-rouge">skills/hello-skill/SKILL.md</code>, not a loose <code class="language-plaintext highlighter-rouge">hello-skill.md</code>), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, <code class="language-plaintext highlighter-rouge">skills/hello-skill/</code> works, <code class="language-plaintext highlighter-rouge">skills/category/hello-skill/</code> doesn’t. Ask me how I found that out.</p>
+<p>One constraint worth knowing before you set this up yourself: <code class="language-plaintext highlighter-rouge">skills/</code> needs a subfolder per skill (<code class="language-plaintext highlighter-rouge">skills/hello-skill/SKILL.md</code>, not a loose <code class="language-plaintext highlighter-rouge">hello-skill.md</code>), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, <code class="language-plaintext highlighter-rouge">skills/hello-skill/</code> works, <code class="language-plaintext highlighter-rouge">skills/category/hello-skill/</code> doesn’t. Ask me how I found that out.</p>
 
 <hr />
 
