@@ -105,7 +105,7 @@ plugins/hello-plugin/
   plugin.json                  (Copilot plugin manifest)
   .claude-plugin/
     plugin.json                (Claude Code plugin manifest)
-  agents/                      (GitHub Copilot agents, Copilot's default folder)
+  agents-copilot/              (GitHub Copilot agents)
   agents-claude/               (Claude Code agents)
   skills/
     hello-skill/
@@ -113,18 +113,19 @@ plugins/hello-plugin/
   .mcp.json                    (MCP servers, shared)
 ```
 
-Copilot's `plugin.json` stays minimal, `agents/` and `skills/` are already its default folder names, so there's nothing to point at:
+This is the part I had to go back and fix once I actually tried it end to end. I assumed pointing either tool's `plugin.json` at a differently-named agents folder, `"agents": "agents-copilot/"`, would just work the way it does for skills. It doesn't, for either tool. Both want an explicit list of the individual agent files, not a folder:
 
 ```json
 {
   "name": "hello-plugin",
   "description": "Example plugin: one skill, one agent, shared between Copilot and Claude Code",
   "version": "0.1.0",
-  "author": { "name": "Your Org" }
+  "author": { "name": "Your Org" },
+  "agents": ["./agents-copilot/hello-agent.agent.md"]
 }
 ```
 
-Claude Code is where I initially got this wrong. I assumed pointing it at a differently-named folder would work the same way Copilot's `agents` override does, `"agents": "agents-claude/"`. It doesn't. Claude Code's plugin.json wants an explicit list of the individual agent files, not a folder:
+Claude Code's copy looks the same, just pointed at its own folder:
 
 ```json
 {
@@ -136,9 +137,9 @@ Claude Code is where I initially got this wrong. I assumed pointing it at a diff
 }
 ```
 
-Fine for one agent, but it means every new agent you add for Claude Code needs its own entry in that array, unlike Copilot, which just picks up whatever's sitting in its folder. Small asymmetry, worth knowing about before you add your fifth agent and wonder why it's not showing up.
+Fine for one agent. It just means every new agent you add gets its own entry in both arrays, on top of the file itself existing twice. `skills/` stays the nice case, drop a folder in and both tools pick it up on their own.
 
-That's genuinely all there is to the packaging itself, name, description, version, author, and where to find things if they're not in the default spot (or, for Claude Code's agents, an explicit list of them). From there it's exactly what you'd expect: agent `.md` files with their usual frontmatter, skill folders with their `SKILL.md`, an `.mcp.json` if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you're just putting them somewhere that can be distributed.
+That's genuinely all there is to the packaging itself, name, description, version, author, an explicit list of agent files, and a path override for anything else that isn't in the default spot. From there it's exactly what you'd expect: agent `.md` files with their usual frontmatter, skill folders with their `SKILL.md`, an `.mcp.json` if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you're just putting them somewhere that can be distributed.
 
 This works over a plain *GitHub* repo or an *Azure DevOps* repo, whichever your org already uses for source control. No new infrastructure.
 
@@ -148,11 +149,11 @@ This works over a plain *GitHub* repo or an *Azure DevOps* repo, whichever your 
 
 Skills, MCPs, hooks, all of it is genuinely shared between the two. Write it once, both platforms read the same files.
 
-Agents are the exception, and the reason is almost petty: *GitHub Copilot* and *Claude Code* name their built-in tools differently. Copilot's `edit`, for instance, is split into Claude's `Edit` and `Write`. Small differences, but enough of them that an agent definition written for one doesn't just work for the other, hence `agents/` for Copilot and `agents-claude/` for Claude Code, sitting side by side with near-identical content.
+Agents are the exception, and the reason is almost petty: *GitHub Copilot* and *Claude Code* name their built-in tools differently. Copilot's `edit`, for instance, is split into Claude's `Edit` and `Write`. Small differences, but enough of them that an agent definition written for one doesn't just work for the other, hence `agents-copilot/` and `agents-claude/`, sitting side by side with near-identical content, and each listed by hand in its own `plugin.json`.
 
-That split sounds like it should be annoying to maintain, two folders to keep in sync every time an agent changes. In practice it isn't, because on the actual repo I built for one of our teams, I added a `CLAUDE.md` at the root from the start, telling whichever agent is making the change that both folders need the same edit. One remark up front, and I've never had to think about it since.
+That split sounds like it should be annoying to maintain, two folders and two manifest arrays to keep in sync every time an agent changes. In practice it isn't, because on the actual repo I built for one of our teams, I added a `CLAUDE.md` at the root from the start, telling whichever agent is making the change that both folders (and both `plugin.json` arrays) need the same edit. One remark up front, and I've never had to think about it since.
 
-One more constraint worth knowing before you set this up yourself: Copilot's `agents/` has to stay flat, no subfolders. `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
+One more constraint worth knowing before you set this up yourself: `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
 
 ---
 
