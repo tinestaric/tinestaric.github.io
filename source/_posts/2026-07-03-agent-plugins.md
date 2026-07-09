@@ -136,7 +136,13 @@ This works over a plain *GitHub* repo or an *Azure DevOps* repo, whichever your 
 
 That broke the moment I actually tested it in VS Code. Copilot's CLI only reads the *first* `plugin.json` it finds for a plugin, so the split worked fine there. But the Copilot extension inside VS Code reads *every* `plugin.json` it finds and merges them, so it picked up both folders at once and installed every agent twice.
 
-The fix is simpler than the workaround: don't restrict the agent's tools in the frontmatter at all. With no tool list to translate between platforms, there's nothing that needs a separate copy. One `agents/` folder, one file per agent, read as-is by both `plugin.json` manifests through their shared default.
+The fix is simpler than the workaround, and you don't have to give up restricting tools to get it. List both platforms' tool names together in one `tools` array:
+
+```yaml
+tools: [read, search, Read, Glob]
+```
+
+Each platform only recognizes its own names and ignores the rest, so Copilot resolves `read`/`search` and Claude Code resolves `Read`/`Glob`, from the exact same file. One `agents/` folder, one file per agent, read as-is by both `plugin.json` manifests through their shared default.
 
 One constraint worth knowing before you set this up yourself: `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
 
