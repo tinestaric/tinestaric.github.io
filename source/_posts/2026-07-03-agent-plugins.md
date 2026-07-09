@@ -105,55 +105,40 @@ plugins/hello-plugin/
   plugin.json                  (Copilot plugin manifest)
   .claude-plugin/
     plugin.json                (Claude Code plugin manifest)
-  agents-copilot/              (GitHub Copilot agents)
-  agents-claude/               (Claude Code agents)
-  skills/
+  agents/                      (shared by both tools)
+    hello-agent.agent.md
+  skills/                      (shared by both tools)
     hello-skill/
       SKILL.md
   .mcp.json                    (MCP servers, shared)
 ```
 
-This is the part I had to go back and fix once I actually tried it end to end. I assumed pointing either tool's `plugin.json` at a differently-named agents folder, `"agents": "agents-copilot/"`, would just work the way it does for skills. It doesn't, for either tool. Both want an explicit list of the individual agent files, not a folder:
+One `agents/` folder, one `skills/` folder, nothing per-tool. Both `plugin.json` files stay this minimal, no path overrides, because `agents/` and `skills/` are already the default folder names both tools look for:
 
 ```json
 {
   "name": "hello-plugin",
   "description": "Example plugin: one skill, one agent, shared between Copilot and Claude Code",
   "version": "0.1.0",
-  "author": { "name": "Your Org" },
-  "agents": ["./agents-copilot/hello-agent.agent.md"]
+  "author": { "name": "Your Org" }
 }
 ```
 
-Claude Code's copy looks the same, just pointed at its own folder:
-
-```json
-{
-  "name": "hello-plugin",
-  "description": "Example plugin: one skill, one agent, shared between Copilot and Claude Code",
-  "version": "0.1.0",
-  "author": { "name": "Your Org" },
-  "agents": ["./agents-claude/hello-agent.agent.md"]
-}
-```
-
-Fine for one agent. It just means every new agent you add gets its own entry in both arrays, on top of the file itself existing twice. `skills/` stays the nice case, drop a folder in and both tools pick it up on their own.
-
-That's genuinely all there is to the packaging itself, name, description, version, author, an explicit list of agent files, and a path override for anything else that isn't in the default spot. From there it's exactly what you'd expect: agent `.md` files with their usual frontmatter, skill folders with their `SKILL.md`, an `.mcp.json` if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you're just putting them somewhere that can be distributed.
+That's genuinely all there is to the packaging itself: name, description, version, author. From there it's exactly what you'd expect: agent `.md` files with their usual frontmatter, skill folders with their `SKILL.md`, an `.mcp.json` if the plugin brings its own MCP servers. Nothing about authoring an individual agent or skill changes, you're just putting them somewhere that can be distributed.
 
 This works over a plain *GitHub* repo or an *Azure DevOps* repo, whichever your org already uses for source control. No new infrastructure.
 
 ---
 
-### The one place the two ecosystems diverge
+### Why there's only one `agents/` folder
 
-Skills, MCPs, hooks, all of it is genuinely shared between the two. Write it once, both platforms read the same files.
+*GitHub Copilot* and *Claude Code* name their built-in tools differently, Copilot's `edit` is Claude's `Edit` plus `Write`. My first instinct was to work around that the obvious way: one agent folder per tool, `agents-copilot/` and `agents-claude/`, each with its own tool names in the frontmatter, each listed in its own `plugin.json`.
 
-Agents are the exception, and the reason is almost petty: *GitHub Copilot* and *Claude Code* name their built-in tools differently. Copilot's `edit`, for instance, is split into Claude's `Edit` and `Write`. Small differences, but enough of them that an agent definition written for one doesn't just work for the other, hence `agents-copilot/` and `agents-claude/`, sitting side by side with near-identical content, and each listed by hand in its own `plugin.json`.
+That broke the moment I actually tested it in VS Code. Copilot's CLI only reads the *first* `plugin.json` it finds for a plugin, so the split worked fine there. But the Copilot extension inside VS Code reads *every* `plugin.json` it finds and merges them, so it picked up both folders at once and installed every agent twice.
 
-That split sounds like it should be annoying to maintain, two folders and two manifest arrays to keep in sync every time an agent changes. In practice it isn't, because on the actual repo I built for one of our teams, I added a `CLAUDE.md` at the root from the start, telling whichever agent is making the change that both folders (and both `plugin.json` arrays) need the same edit. One remark up front, and I've never had to think about it since.
+The fix is simpler than the workaround: don't restrict the agent's tools in the frontmatter at all. With no tool list to translate between platforms, there's nothing that needs a separate copy. One `agents/` folder, one file per agent, read as-is by both `plugin.json` manifests through their shared default.
 
-One more constraint worth knowing before you set this up yourself: `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
+One constraint worth knowing before you set this up yourself: `skills/` needs a subfolder per skill (`skills/hello-skill/SKILL.md`, not a loose `hello-skill.md`), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can't do is nest the skill folders themselves any deeper, `skills/hello-skill/` works, `skills/category/hello-skill/` doesn't. Ask me how I found that out.
 
 ---
 
