@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 09 Jul 2026 11:09:27 +0200</pubDate>
-    <lastBuildDate>Thu, 09 Jul 2026 11:09:27 +0200</lastBuildDate>
+    <pubDate>Thu, 09 Jul 2026 11:12:38 +0200</pubDate>
+    <lastBuildDate>Thu, 09 Jul 2026 11:12:38 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -136,7 +136,12 @@
 
 &lt;p&gt;That broke the moment I actually tested it in VS Code. Copilot’s CLI only reads the &lt;em&gt;first&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; it finds for a plugin, so the split worked fine there. But the Copilot extension inside VS Code reads &lt;em&gt;every&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; it finds and merges them, so it picked up both folders at once and installed every agent twice.&lt;/p&gt;
 
-&lt;p&gt;The fix is simpler than the workaround: don’t restrict the agent’s tools in the frontmatter at all. With no tool list to translate between platforms, there’s nothing that needs a separate copy. One &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; folder, one file per agent, read as-is by both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; manifests through their shared default.&lt;/p&gt;
+&lt;p&gt;The fix is simpler than the workaround, and you don’t have to give up restricting tools to get it. List both platforms’ tool names together in one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tools&lt;/code&gt; array:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;tools&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Read&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Glob&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each platform only recognizes its own names and ignores the rest, so Copilot resolves &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;search&lt;/code&gt; and Claude Code resolves &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Read&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Glob&lt;/code&gt;, from the exact same file. One &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agents/&lt;/code&gt; folder, one file per agent, read as-is by both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin.json&lt;/code&gt; manifests through their shared default.&lt;/p&gt;
 
 &lt;p&gt;One constraint worth knowing before you set this up yourself: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/&lt;/code&gt; needs a subfolder per skill (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/SKILL.md&lt;/code&gt;, not a loose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello-skill.md&lt;/code&gt;), and inside that folder you can nest whatever you want, scripts, references, more subfolders, no problem. What you can’t do is nest the skill folders themselves any deeper, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/hello-skill/&lt;/code&gt; works, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skills/category/hello-skill/&lt;/code&gt; doesn’t. Ask me how I found that out.&lt;/p&gt;
 
