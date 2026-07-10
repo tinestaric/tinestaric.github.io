@@ -7,6 +7,8 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2026
+- 2026-07
+    - **Companial Road to AI Agent Series ep 1: The Role of a Developer in the Age of AI** as a webinar for [Companial][companialhome]: [recording][companialroadtoaiagentep1]
 - 2026-06
     - Multiple sessions at [BC Tech Days][bctechdays]:
         - Workshop: **Using GitHub Copilot for anything but writing code**
@@ -266,3 +268,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [dokcentral26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/central-2026
 [doknordic26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2026
 [dokuk26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2026
+[companialroadtoaiagentep1]: https://youtu.be/sCAc2VEEfeI
