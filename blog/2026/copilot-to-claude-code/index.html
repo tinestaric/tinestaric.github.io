@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Copilot is agent-first, Claude Code is skill-first</title>
+<meta name="description"
+    content="I love GitHub Copilot. I always have. But I also started using Claude Code as my main driver a few months ago, and I figured the transition would be smooth. ...">
+
+<meta property="og:title" content="Copilot is agent-first, Claude Code is skill-first" />
+<meta property="og:description"
+    content="I love GitHub Copilot. I always have. But I also started using Claude Code as my main driver a few months ago, and I figured the transition would be smooth. ..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/copilot-to-claude-code/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/copilottoclaudecode/main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/copilottoclaudecode/main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/copilot-to-claude-code/",
+  "description": "I love GitHub Copilot. I always have. But I also started using Claude Code as my main driver a few months ago, and I figured the transition would be smooth. It mostly was, for me. Then we started trying Claude Code out for part of our organization, and I found out fast that it’s not really a one-to-one switch. Not when you’ve already built agents and skills specifically for Copilot.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Copilot is agent-first, Claude Code is skill-first",
+  "datePublished": "2026-08-21T10:00:00+02:00",
+  "dateModified": "2026-08-21T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/copilot-to-claude-code/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/copilot-to-claude-code/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Copilot is agent-first, Claude Code is skill-first</h1>
+      <em class="post-meta">
+        <time>Aug 21, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>I love <strong><em>GitHub Copilot</em></strong>. I always have. But I also started using <strong><em>Claude Code</em></strong> as my main driver a few months ago, and I figured the transition would be smooth. It mostly was, for me. Then we started trying <em>Claude Code</em> out for part of our organization, and I found out fast that it’s not really a one-to-one switch. Not when you’ve already built agents and skills specifically for Copilot.</p>
+
+<p>The most common question I get from people making that switch is <em>“how do I switch to my custom agents now?”</em> And the answer is: <strong>you don’t</strong>.</p>
+
+<p><img src="/images/copilottoclaudecode/copilot-agent-dropdown.png" alt="Copilot's agent dropdown, a list of custom agents to step into" /></p>
+
+<p>That answer isn’t useful on its own though. So here’s what I’ve learned about carrying an agentic workflow from <em>Copilot</em> over to <em>Claude Code</em>, and why it made me realize that Copilot is “agent-first” and Claude Code is “skill-first”.</p>
+
+<p>The first instinct, mine included, is that <em>agent</em> becomes <em>agent</em>. Same word, same idea of a markdown file with frontmatter describing a persona and a set of tools, surely it just carries over. It doesn’t, not fully.</p>
+
+<p>Every custom agent in <em>Claude Code</em> is <strong>a subagent</strong>. There’s no other kind. Whatever you define, it forks off a clean, empty context window, does its work in there, and hands your main session back a condensed report. Nothing it read or tried comes back with it, only the summary.</p>
+
+<p><em>Copilot</em> has two different kinds of custom agents. The ones you spin up through <code class="language-plaintext highlighter-rouge">runSubagent</code>, the ones behind <strong><em><a href="/blog/2026/copilot-fancy-autocomplete-vol3/">vol.3’s</a></em></strong> parallel research example, already fork and report back exactly like a <em>Claude Code</em> subagent does. Those transfer directly.</p>
+
+<p>The ones you step into from the dropdown are the other kind, and they don’t behave the same way at all. Stepping into one prepends its whole body, persona and instructions and all, to the conversation you’re already having. It’s still your conversation, just handed a new voice, nothing forks, nothing comes back as a summary because nothing ever left. That’s the half of your scaffold that doesn’t have an agent waiting for it on the Claude Code side.</p>
+
+<p>This one actually maps closer to a <strong>skill</strong> than a subagent.</p>
+
+<hr />
+
+<h3 id="why-claude-code-feels-skill-shaped">Why Claude Code feels skill-shaped</h3>
+
+<p><em>Copilot</em> is agent-first: you pick who you’re talking to before you say anything. <em>Claude Code</em> is skill-first, because there’s only ever one <em>you’re talking to</em>, the same agent from the moment you open the terminal to the moment you close it. You don’t instantiate a persona. You tell the one you already have what it needs to know for this particular task.</p>
+
+<p><img src="/images/copilottoclaudecode/claude-code-nothing-to-select.png" alt="Claude Code's startup screen, nothing to select" /></p>
+
+<p>In <em>Copilot</em>, selecting an agent from the dropdown was the act of giving your conversation context: this persona, these instructions, this scoped set of tools. In <em>Claude Code</em>, that same act is invoking a skill. What used to be <em>“step into Backlog Reviewer, type start with task 1123”</em> becomes <code class="language-plaintext highlighter-rouge">/start-feature 1123</code>.</p>
+
+<hr />
+
+<h3 id="dont-over-rotate">Don’t over-rotate</h3>
+
+<p>If you stop there and turn every single Copilot agent into a skill, you’ll have thrown away context isolation on the way.</p>
+
+<p>Here’s a test you can run against your own memory instead of a rule to memorize. Think about the last few times you stepped into a Copilot agent. When it finished, did you keep working in that same chat? Or did you take what it gave you, a plan, a summary, a list of files, and go start something else with it?</p>
+
+<p>If you routinely carried the output somewhere else, you were doing context isolation by hand, one copy-paste at a time. That agent wanted to be a subagent all along.</p>
+
+<hr />
+
+<h3 id="so-is-it-a-skill-or-a-subagent">So is it a skill or a subagent?</h3>
+
+<p>Here’s how I decide:</p>
+
+<p><strong>Do you need to type it?</strong> If you want a <code class="language-plaintext highlighter-rouge">/something</code> you can fire on demand, it’s a skill. You can ask Claude Code to use a particular subagent, but you can’t invoke one by name the way you’d pick an agent from a dropdown.</p>
+
+<p><strong>Where does the work belong?</strong> In the conversation you’re already having (skill), or in a clean window that reports back when it’s done? (subagent)</p>
+
+<p>The two do overlap a bit. If you want to type it and you want it isolated, a skill can be told to fork (<code class="language-plaintext highlighter-rouge">context: fork</code>), but that’s a post of its own and you don’t need it to do the sort.</p>
+
+<hr />
+
+<h3 id="the-tools-list-breaks">The tools list breaks</h3>
+
+<p>When you move agents to Claude Code, two things happen.</p>
+
+<p>The tools list breaks for a shallow reason first: the names are just different. A <code class="language-plaintext highlighter-rouge">tools:</code> array full of Copilot’s <code class="language-plaintext highlighter-rouge">edit</code> and <code class="language-plaintext highlighter-rouge">search</code> means nothing to <em>Claude Code</em>, which wants <code class="language-plaintext highlighter-rouge">Edit</code> and <code class="language-plaintext highlighter-rouge">Glob</code>. I ran into this shipping a plugin across both ecosystems, the fix was listing both platforms’ names side by side in one array, each tool only recognizing its own, covered in <strong><em><a href="/blog/2026/agent-plugins/">the plugins post</a></em></strong>.</p>
+
+<p><img src="/images/copilottoclaudecode/unknown-tool-warning.png" alt="VS Code flagging Read as an unknown tool, Copilot doesn't recognize Claude Code's name for it" /></p>
+
+<p>But there’s a second, bigger break underneath that one. In <em>Copilot</em>, restricting tools was a property of the agent you stepped into. Step into the read-only reviewer, and for as long as you’re in that chat, editing isn’t on the table. In <em>Claude Code</em>, a skill loaded inline can’t restrict anything, because it’s just text your main agent reads and can weigh against everything else in the conversation. Your main session holds every tool and every MCP server you’ve configured, and loading a skill only adds words on top, nothing gets taken away.</p>
+
+<p>In <em>Copilot</em> that guarantee lived in the agent you stepped into. In <em>Claude Code</em> it has to live in the thing you dispatch to. So if <em>“this must never touch a file”</em> is critical, <strong>don’t put it in a skill, put it in a subagent, where <code class="language-plaintext highlighter-rouge">Edit</code> isn’t an option</strong>.</p>
+
+<hr />
+
+<h3 id="can-you-really-have-one-plugin-for-both-ecosystems">Can you really have one plugin for both ecosystems?</h3>
+
+<p>Not as cleanly as I made it sound in <strong><em><a href="/blog/2026/agent-plugins/">the plugins post</a></em></strong>, one shared <code class="language-plaintext highlighter-rouge">agents/</code> folder, same file read by both ecosystems. That’s still true for where the file lives. It’s less true based on what’s inside, because a <em>Copilot</em> dropdown agent and a <em>Claude Code</em> subagent are playing two different roles. In practice I’ve ended up diverging most of mine per platform rather than sharing them, so it’s worth deciding upfront whether you actually want one shared set of agents, or you’re fine maintaining two. All skills I had on the Copilot side however are still the same skills on the Claude Code side.</p>
+
+<hr />
+
+<p>Don’t translate your Copilot agent folder file-for-file. Sort each agent by what it actually did, isolated fork or same-conversation persona, not by what kind of file it lives in, and let the skill/subagent split in <em>Claude Code</em> fall out of that sort. But don’t worry about your skills, they carry over just fine.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
