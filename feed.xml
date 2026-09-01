@@ -5,9 +5,129 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 24 Aug 2026 11:03:58 +0200</pubDate>
-    <lastBuildDate>Mon, 24 Aug 2026 11:03:58 +0200</lastBuildDate>
+    <pubDate>Tue, 01 Sep 2026 15:42:11 +0200</pubDate>
+    <lastBuildDate>Tue, 01 Sep 2026 15:42:11 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Context is a voting chamber</title>
+        <description>&lt;p&gt;Should you have a long agent session that has all the context you need, or should you aim for short and focused sessions? I think we all already have the gut feeling that short is better and yet we never want to abandon a long session. We usually like the first response from an agent, but the 10th iteration, where it’s running in loops and still making the same mistakes is where it starts to get annoying.&lt;/p&gt;
+
+&lt;p&gt;The reason people usually quote against long sessions is “it gets expensive”. Partially true. The models do bill for input and output tokens, and the more context you input, the more expensive the call is. However the main argument against long sessions isn’t economics, but something else. To understand why long sessions are both okay and not okay, we need to understand two mechanisms that are at play in the background: caching and attention.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;caching-the-reason-long-sessions-arent-as-expensive-as-you-think&quot;&gt;Caching: the reason long sessions aren’t as expensive as you think&lt;/h3&gt;
+
+&lt;p&gt;When you look at any diagram of “how LLMs work”, you’ll see these scary looking images: a token going in one side, climbing through eighty-some stacked layers, something coming out the other end.&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/images/outvoted/token-journey.svg&quot; alt=&quot;One token climbing through the layers of a model, meeting attention heads and neurons at every layer, emerging as an output vector&quot; style=&quot;max-width: 100%;&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;For today, forget all of that. The only thing you need to know is that every token you send gets turned into a set of numbers, and those numbers are what the model actually works with to figure out what comes next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/tokens-to-vectors.svg&quot; alt=&quot;A sentence split into four tokens, each turning into its own key/value vector of numbers, which get stored for reuse&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The model bills for every one of those tokens, in and out. But underneath, there are two more meters running that you usually never look at, cache write and cache read. Here’s what all of that costs on Opus 5, per million tokens:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Input:&lt;/strong&gt; $5.00, for every token the model has to actually work through for the first time&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Output:&lt;/strong&gt; $25.00, for every token it generates back (this includes thinking tokens)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cache write (5-minute):&lt;/strong&gt; $6.25, for storing the current prefix so it can be reused later&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cache write (1-hour):&lt;/strong&gt; $10.00, for storing it on the longer-lived tier instead&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cache read:&lt;/strong&gt; $0.50, for reusing something that’s already sitting in the cache&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That last number is the one that matters. If the start of your conversation hasn’t changed since your last message, the vectors behind it haven’t changed either, so nothing forces the model to recompute them. It just reads what’s already stored, at a tenth of the input price. That’s prompt caching. Most of a long conversation genuinely does bill at that cache-read rate, because most of it is being read, not reprocessed.&lt;/p&gt;
+
+&lt;p&gt;Except it isn’t only your prompts that get billed this way. An agent doesn’t wait for you to type before it acts. Every tool call it makes, every time it decides what to do next, is its own request to the model, and each one rebills the entire accumulated prefix at that same read rate, not just whatever’s new since the last call.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/reread-cards.svg&quot; alt=&quot;Calls 1, 2, 5, and 10 of an agent fixing a rounding bug in Sales-Post.Codeunit.al, each one rereading everything before it, ending at a 23,000-token conversation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ten steps into a session whose final context sits at 23k tokens, you’ve billed something like 119k cache-read tokens across those ten calls. The context grew linearly. The bill grew quadratically.&lt;/p&gt;
+
+&lt;p&gt;But let’s look at the number again. 119k tokens at a tenth of input price is roughly the same bill as 12k tokens at full rate. For ten steps of agent work, that’s nothing. Quadratic growth is real but also boringly affordable.&lt;/p&gt;
+
+&lt;p&gt;Do remember though that cache isn’t forever. Anthropic offers two lifetimes, five minutes or an hour, and which one you’re on depends on how you’re working. &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt; defaults its main conversation to the one-hour cache, though subagents still run on the five-minute one. Go through the API directly on usage-based billing, and you default to five minutes too. Either way it refreshes on every hit, so a session you keep working stays warm indefinitely for free. Walk away longer than that, for lunch or a meeting, and you’re paying for the whole prefix again.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Side note for the &lt;strong&gt;GitHub Copilot&lt;/strong&gt; crowd: if you’re on an OpenAI model, the default cache is on a similar clock, five to ten minutes of inactivity, up to an hour in some cases. For supported OpenAI models, VS Code now sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prompt_cache_retention: &quot;24h&quot;&lt;/code&gt; on your behalf, which trades a slower cache tier for surviving a lunch break intact.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;So: while the cache is warm, long sessions are genuinely manageable. Carry on.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;attention-the-reason-long-sessions-are-still-a-bad-idea&quot;&gt;Attention: the reason long sessions are still a bad idea&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Cost, then, isn’t the problem. Attention is&lt;/strong&gt;, but there’s no meter for this one.&lt;/p&gt;
+
+&lt;p&gt;Remember that diagram from earlier, the layers the token climbed through? The brown boxes in there are attention heads, dozens of them per layer, each one deciding for itself how much of the surrounding context matters right now. That’s the model’s actual mechanism for attention. Every one of those heads divides one unit of attention across everything in its context, every single time it produces the next token, and none of them can opt out of spending it. That’s what softmax does, for anyone who wants to look it up later.&lt;/p&gt;
+
+&lt;p&gt;What that means in practice: relevance is not a fixed property of a token, it’s a share, and shares get diluted. In a context of five tokens, one genuinely relevant token might command something like a third of the model’s attention. Surround that same token with a few hundred tokens of ordinary session chatter, tool output, file contents nobody needed, and its share drops sharply. Nothing about that token changed. It was outvoted by a room full of tokens that, individually, mean almost nothing.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/dilution-bars.svg&quot; alt=&quot;The same relevant token drawn as a wide bar in a 5-token context, then as a thin sliver in a ~200-token context&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Position makes this worse before it makes it better. Models attend well to the end of the context, because recent tokens are usually the most predictive of what comes next, and reasonably well to the very start. The middle just sits there. That’s measured on how well models actually retrieve things, not on the attention weights directly, but it shows up consistently. Whatever you told the agent at the top of a long session, your actual objective, is now buried in exactly the part of context that gets the least attention of anyone in the room.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/position-curve.svg&quot; alt=&quot;Attention drawn as a curve over the context window, high at both ends, dipping in the middle where your original objective sits&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-voting-chamber&quot;&gt;The voting chamber&lt;/h3&gt;
+
+&lt;p&gt;Here’s the way I’ve started thinking about it. Context isn’t a desk where old information sits quietly until you need it. &lt;strong&gt;It’s a voting chamber.&lt;/strong&gt; Everything inside votes on the next token, every time, weighted by relevance, always summing to one, with no option to abstain.&lt;/p&gt;
+
+&lt;p&gt;Three situations this explains better than “the agent forgot”:&lt;/p&gt;
+
+&lt;p&gt;You read a file, edit it, read it again, edit it again, read it a third time. Context now holds three versions of that file. Three voters, all confidently answering “what’s actually in this file”, all convinced they’re right, because at the time each was written, each was. The current version has no special standing. It’s one of three votes, slightly favoured by recency.&lt;/p&gt;
+
+&lt;p&gt;You ask the agent for an email, and it writes one. You don’t like the subject line, so you fix that. The close feels off, so you fix that too. A few rounds in, everything still leans back toward that first draft’s structure and tone no matter what you correct, because the first email is still sitting in context, complete and confident, the only voter with a full answer to “what does an email look like around here.” Every correction you send is one voice arguing against a voter that showed up with an entire draft behind it. It doesn’t stand a chance. Scrap the thread instead, and rewrite the original prompt with everything you’ve learned since folded in from the start.&lt;/p&gt;
+
+&lt;p&gt;An approach the agent tried, and you told it to abandon, is still sitting in context as a voter. The note saying “this failed” is four tokens. The description of the approach that failed is two hundred. Four tokens don’t outvote two hundred.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/chamber-3-abandoned-bars.svg&quot; alt=&quot;A four-token retraction next to the two-hundred-token approach description it&apos;s arguing against&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/chamber-2-vignettes.svg&quot; alt=&quot;Three chamber panels, one per scenario: three file versions, one email draft against its two corrections, one approach description against its retraction, all voting for the next token&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The obvious instinct is that the only way to clear the room is to end the session and start over. That’s not quite right. Your harness already retires some voters on its own, &lt;em&gt;Claude Code&lt;/em&gt; keeps one running todo list instead of ten stale copies, plan mode edits the plan itself instead of appending revision after revision, and old tool results age out or get replaced with placeholders as the session goes on, exactly the retirement mechanism the read-edit-read example above needs. You do have the tool, but it’s the harness that decides which voter goes and when, not you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You cannot mark something as irrelevant from inside the conversation.&lt;/strong&gt; Telling the agent “ignore that email format” doesn’t remove a voter. It adds one. Now there’s a fourth voice in the room, arguing against the third, and the third hasn’t gone anywhere. Whatever gets retired automatically retires on the harness’s schedule, not yours. Anything else still means summarizing what matters yourself, and starting over.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-to-do-instead&quot;&gt;What to do instead&lt;/h3&gt;
+
+&lt;p&gt;What the harness can’t automate is judgment: which of your abandoned approaches are worth a full paragraph and which aren’t, when a conversation has drifted so far from its actual goal that no more correcting will fix it. That’s still yours to do. Here’s what to do about it.&lt;/p&gt;
+
+&lt;p&gt;Write plans, and hand off between them, more often than feels necessary. Break the work into sections, give each section to a fresh session, have it write a handoff for the next one, and start that one clean. A handoff should preserve the eliminated options, not the narrative. “We tried X, it broke Y, so we went with Z instead” is the expensive, hard-won part. Drop it, and the next session just tries X again.&lt;/p&gt;
+
+&lt;p&gt;Use subagents for anything that involves reading a lot. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;/blog/2026/copilot-fancy-autocomplete-vol3/&quot;&gt;Vol.3&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; has the example: three subagents digging through the base app, the docs, and a specialist in parallel, each one burning its own context on the reading, and handing the main session back a condensed report instead of the transcript. Same benefit as a handoff, just paid before the pollution reaches the main conversation instead of cleaned up afterwards.&lt;/p&gt;
+
+&lt;p&gt;Resuming an old session runs into the same problem, and &lt;em&gt;Claude Code&lt;/em&gt; will actually warn you about it now:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/resume-from-summary.png&quot; alt=&quot;Claude Code prompting to resume a 6-day-old, 644.6k-token session from a summary instead of in full&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Even at the cache-read rate, 644.6k tokens is the equivalent of about 64k tokens at full input price, and that’s not a one-time cost, it’s what every single agent decision from that point on drags along with it. Don’t resume old sessions in full if you can help it. If you do resume one, resume from a summary.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-trade-youre-making&quot;&gt;The trade you’re making&lt;/h3&gt;
+
+&lt;p&gt;The two mechanisms in this post want opposite things. Caching rewards never touching what came before, append only, everything stays warm. Attention rewards removing what’s gone stale, which means rewriting the prefix, and that burns the cache.&lt;/p&gt;
+
+&lt;p&gt;So every handoff is a deliberate cache burn, and it’s worth it: you’re spending real money to buy back the one resource in this whole system that has no meter attached to it.&lt;/p&gt;
+
+&lt;p&gt;And it’s cheaper than “deliberate cache burn” makes it sound. A handoff costs one fresh cache write at 1.25 times the base rate, but on a small prefix, because the new session starts lean. That’s a rounding error next to what staying unfocused would have cost you instead.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 31 Aug 2026 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2026/outvoted/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2026/outvoted/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Copilot is agent-first, Claude Code is skill-first</title>
@@ -1731,246 +1851,6 @@ We never had &lt;em&gt;big long-lived branches&lt;/em&gt; that would cause merge
         <pubDate>Sun, 06 Oct 2024 10:00:00 +0200</pubDate>
         <link>https://tine.staric.net/blog/2024/preprocessing-symbols/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2024/preprocessing-symbols/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>Namespaces in AL - Is it time to start using them?</title>
-        <description>&lt;p&gt;&lt;em&gt;School’s back&lt;/em&gt;, so it’s time for the blogs to get back! This time I want to take a jab at &lt;strong&gt;namespaces&lt;/strong&gt;. Not really the technical &lt;strong&gt;&lt;em&gt;“how”&lt;/em&gt;&lt;/strong&gt; of namespaces. I believe that part is rather easy and has already been covered multiple times. Microsoft presented a &lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;brilliant session&lt;/a&gt; about namespaces at &lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BCTechDays&lt;/a&gt; this year.
-Instead I want to focus on &lt;strong&gt;&lt;em&gt;WHY&lt;/em&gt;&lt;/strong&gt;. That’s a question I recently received multiple times. &lt;em&gt;We never needed namespaces in the past, why do we need them now? Do they bring any benefits or are they just a hassle? Is it time to start using them?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Over the past few months, I got to work on apps that &lt;em&gt;were namespaced&lt;/em&gt;, apps that &lt;em&gt;weren’t&lt;/em&gt;, and completely &lt;em&gt;greenfield&lt;/em&gt; apps where I could decide if we wanted to adopt namespaces or not. So, this post is a view on namespaces from &lt;strong&gt;my perspective&lt;/strong&gt;, and feel free to disagree with me.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;why-namespaces&quot;&gt;Why Namespaces?&lt;/h3&gt;
-
-&lt;h4 id=&quot;structure&quot;&gt;Structure&lt;/h4&gt;
-
-&lt;p&gt;I often do &lt;strong&gt;&lt;em&gt;“audits”&lt;/em&gt; of large code bases&lt;/strong&gt; for partners, trying to determine the &lt;em&gt;extent of their tech debt&lt;/em&gt;, whether they will ever get to &lt;em&gt;multi-app architecture&lt;/em&gt;, or reach &lt;em&gt;AppSource compatibility&lt;/em&gt;. To be able to do that, I need to &lt;strong&gt;understand the app’s architecture&lt;/strong&gt;, &lt;em&gt;what am I even looking at&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;When I have to work with large apps where the src folder looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/folders-bad.png&quot; alt=&quot;Bad folder structure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;I take a deep breath&lt;/em&gt;, ask myself 7 times why am I doing this to myself, and then try to make sense of files that are supposedly important, and work my way through their &lt;strong&gt;references&lt;/strong&gt;. &lt;em&gt;It’s never a fun experience.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;On the other hand, if I open a project and the project is separated into areas like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/folders-good.png&quot; alt=&quot;Good folder structure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It makes a &lt;strong&gt;huge difference&lt;/strong&gt;. I can wrap my head around individual parts that &lt;strong&gt;logically fit together&lt;/strong&gt;. Structuring your code in &lt;strong&gt;functional areas&lt;/strong&gt; does wonders for &lt;strong&gt;discoverability&lt;/strong&gt;. &lt;em&gt;Shocker, right?&lt;/em&gt; Any new developer you try to onboard onto your codebase will have to go through the same process I have to go through, and &lt;strong&gt;high discoverability&lt;/strong&gt; makes this process &lt;strong&gt;much smoother&lt;/strong&gt;. &lt;em&gt;If I can’t convince you that the second folder structure is better than the first one, that I probably won’t ever get you to uptake namespaces…&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Fine Tine, &lt;strong&gt;organized code is better than not organized&lt;/strong&gt;, what do &lt;strong&gt;namespaces&lt;/strong&gt; have to do with that?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, structuring your code in &lt;strong&gt;folders per functional area&lt;/strong&gt; is in my opinion a &lt;strong&gt;prerequisite&lt;/strong&gt; for starting with namespaces. Discoverability is something &lt;strong&gt;legacy codebases lack the most&lt;/strong&gt;. Not surprising, considering we used to just work with a long list of objects sorted by type and ID.&lt;/p&gt;
-
-&lt;p&gt;Let’s say I open a file like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/enum-no-namespace.png&quot; alt=&quot;Enum without namespace&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Where does this Enum belong? Who knows…&lt;/em&gt; I have to go &lt;strong&gt;through the references&lt;/strong&gt; to figure that out.&lt;/p&gt;
-
-&lt;p&gt;But if it has a namespace defined:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/enum-yes-namespace.png&quot; alt=&quot;Enum with namespace&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then I can quickly see it’s &lt;strong&gt;part of the Stock APIs functionality&lt;/strong&gt;. And you’re right, if I only care about the &lt;strong&gt;code discoverability&lt;/strong&gt;, then I could just look at the folder structure where the &lt;em&gt;Document Type&lt;/em&gt; file is placed and get the same idea, &lt;strong&gt;I don’t &lt;em&gt;need&lt;/em&gt; namespaces for that.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;But structuring your codebase and making it discoverable is just &lt;strong&gt;one of the benefits of namespaces&lt;/strong&gt;, while it’s the &lt;strong&gt;only benefit&lt;/strong&gt; if you use &lt;strong&gt;folders as the only method&lt;/strong&gt;. That’s why we should do &lt;strong&gt;both&lt;/strong&gt;. Organize code in folders and use namespaces. It makes the project easily discoverable, but also unlocks other benefits of namespaces like &lt;strong&gt;dependency analysis&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;dependency-analysis&quot;&gt;Dependency Analysis&lt;/h4&gt;
-
-&lt;p&gt;Let’s talk about &lt;em&gt;dependency analysis&lt;/em&gt; next. This one has been huge for me lately. It allows us to ensure that &lt;strong&gt;cleanly architected apps remain clean&lt;/strong&gt;. It also helped with &lt;strong&gt;de-tangling&lt;/strong&gt; functionalities in &lt;strong&gt;monolithic apps&lt;/strong&gt; and breaking down those horrible &lt;em&gt;“Management” codeunits&lt;/em&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I’ll assume you already know that when we start adopting namespaces we move from a &lt;strong&gt;&lt;em&gt;global namespace&lt;/em&gt;&lt;/strong&gt;, where we could define any object as a variable, to a &lt;strong&gt;&lt;em&gt;specific namespace&lt;/em&gt;&lt;/strong&gt;, where we can only define objects &lt;em&gt;defined in the same namespace&lt;/em&gt;, &lt;em&gt;fully qualify object names&lt;/em&gt;, or &lt;strong&gt;&lt;em&gt;“import” objects&lt;/em&gt;&lt;/strong&gt; from other namespaces using a &lt;strong&gt;“using” statement&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In other words, we used to be able to do this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-old.png&quot; alt=&quot;Old way of declaring variables&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With namespaces, &lt;em&gt;we can’t&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-namespace-error.png&quot; alt=&quot;Old way breaks when declaring a namespace on the file&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Unless we do one of the two:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/var-declaration-new.png&quot; alt=&quot;New way of declaring variables&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Before we get back to dependency analysis, let’s talk about &lt;strong&gt;which of the two options we should go for&lt;/strong&gt;. &lt;em&gt;Fully qualified name, or the using statement.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;We decided to &lt;strong&gt;always go with using statements&lt;/strong&gt; in favor of fully qualified names. &lt;strong&gt;&lt;em&gt;Why?&lt;/em&gt;&lt;/strong&gt; Because it allows us to &lt;strong&gt;easily see dependencies&lt;/strong&gt; at the top of the file (this is the &lt;em&gt;dependency analysis&lt;/em&gt; that we’ll get to in a second). We haven’t found a real use case when we’d prefer to go for &lt;em&gt;fully qualifying names&lt;/em&gt;. In the &lt;em&gt;C# world&lt;/em&gt;, I’d go for fully qualified names if I’m using &lt;strong&gt;two objects that have the same name&lt;/strong&gt; but reside &lt;strong&gt;in different namespaces.&lt;/strong&gt; However, in &lt;strong&gt;AL&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;We’re quite used to making &lt;strong&gt;globally unique object names&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;As of now, &lt;strong&gt;can’t define an object with the same name&lt;/strong&gt; in the same app, regardless of namespaces&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Back to the &lt;strong&gt;&lt;em&gt;dependency analysis&lt;/em&gt;&lt;/strong&gt; now. We now know that anytime we want to define a variable for an object from a different namespace, we have to use a &lt;strong&gt;“using” statement&lt;/strong&gt;. This means that from a quick look, we can see &lt;strong&gt;what other modules our object is tied to.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Here’s how a &lt;strong&gt;&lt;em&gt;Sales Header&lt;/em&gt;&lt;/strong&gt; table looks once &lt;em&gt;Microsoft&lt;/em&gt; applied the namespace to it:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/sales-header-using.png&quot; alt=&quot;Using statements on Sales Header&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I couldn’t even capture all of them in one screenshot. There are &lt;strong&gt;&lt;em&gt;76&lt;/em&gt;&lt;/strong&gt; of them. &lt;strong&gt;&lt;em&gt;Crazy&lt;/em&gt;&lt;/strong&gt;. Also, a bit &lt;em&gt;ugly&lt;/em&gt;. But at the same time &lt;strong&gt;a good thing!&lt;/strong&gt; At least now &lt;em&gt;Microsoft&lt;/em&gt; has a &lt;strong&gt;high-level overview&lt;/strong&gt; of all the parts that are jammed in the &lt;em&gt;Sales Header&lt;/em&gt; table and can start working towards &lt;strong&gt;extracting irrelevant parts&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;By &lt;em&gt;irrelevant&lt;/em&gt; I don’t mean that the &lt;em&gt;functionality&lt;/em&gt; is &lt;em&gt;irrelevant&lt;/em&gt;. But does the &lt;em&gt;Sales Header&lt;/em&gt; have to be &lt;strong&gt;coupled to Dataverse?&lt;/strong&gt; Or &lt;em&gt;Outlook?&lt;/em&gt; Doesn’t it feel &lt;em&gt;a bit off?&lt;/em&gt; &lt;strong&gt;Removing Dataverse&lt;/strong&gt; functionality shouldn’t &lt;strong&gt;break sales documents&lt;/strong&gt;. I’m not trying to diss &lt;em&gt;Microsoft’s&lt;/em&gt; code. The base app is old, and there’s a lot of &lt;strong&gt;legacy code&lt;/strong&gt; in there. Here’s how the relationships in the Base App look like today:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/baseapp-web.png&quot; alt=&quot;Spider web of dependencies in the Base App&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To be honest, &lt;strong&gt;&lt;em&gt;we all wrote entangled code&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;like that in the past&lt;/em&gt;. But what I’m trying to say is that with namespaces we can now finally &lt;strong&gt;start spotting these spider webs&lt;/strong&gt;. Both in our &lt;strong&gt;old code&lt;/strong&gt; and when writing &lt;strong&gt;new code&lt;/strong&gt;. Does the latest pull request try to add two &lt;strong&gt;&lt;em&gt;new “using” statements to a management codeunit?&lt;/em&gt;&lt;/strong&gt; Are we creating another &lt;strong&gt;&lt;em&gt;Swiss army knife&lt;/em&gt;&lt;/strong&gt; codeunit? Maybe we should &lt;strong&gt;separate them&lt;/strong&gt; and stick to a &lt;strong&gt;single responsibility&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;naming&quot;&gt;Naming&lt;/h4&gt;
-
-&lt;p&gt;Naming is a &lt;em&gt;very common reason&lt;/em&gt; why we’d want to use namespaces in other languages. As we only ever had a &lt;strong&gt;&lt;em&gt;global namespace&lt;/em&gt;&lt;/strong&gt; in AL (and C/AL), all of our objects had to have &lt;strong&gt;globally unique names&lt;/strong&gt;. That’s why we had a &lt;em&gt;“Sales Header”&lt;/em&gt; and a &lt;em&gt;“Purchase Header”&lt;/em&gt;. If we were in the world of &lt;strong&gt;C#&lt;/strong&gt;, these would likely be &lt;em&gt;Microsoft.Sales.Document.Header&lt;/em&gt; and &lt;em&gt;Microsoft.Purchase.Document.Header&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Two &lt;em&gt;“Header”&lt;/em&gt; objects&lt;/strong&gt;, but since they reside in separate namespaces, it’s &lt;strong&gt;not a naming collision&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, we’re &lt;strong&gt;not there yet with AL&lt;/strong&gt;. Defining two objects with the same name in different namespaces in the same app &lt;strong&gt;produces an error&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/naming-collision.png&quot; alt=&quot;Two objects with the same name produce an error even with different namespaces&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Which is weird to me, since what I can do is &lt;strong&gt;define an object&lt;/strong&gt; with the &lt;strong&gt;same name&lt;/strong&gt; as an object in a &lt;strong&gt;different app&lt;/strong&gt;. Like creating my own &lt;em&gt;Customer&lt;/em&gt; table in my own namespace:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/another-customer.png&quot; alt=&quot;Defining a Customer object in my own app works fine&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So, &lt;strong&gt;namespaces prevent naming collisions&lt;/strong&gt;, but not in the same app?…
-&lt;em&gt;Hopefully, this will work in the future…&lt;/em&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The one naming benefit we however do have is that we don’t have to try and &lt;strong&gt;jam long names in only 30 characters&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s an example from one of the projects: &lt;strong&gt;&lt;em&gt;“MYPETaxFSTBlock”&lt;/em&gt;&lt;/strong&gt; &lt;br /&gt;
-&lt;em&gt;Any idea what this is? Yeah, me neither.&lt;/em&gt; &lt;em&gt;ETax&lt;/em&gt; and &lt;em&gt;Block&lt;/em&gt; I get, but what’s &lt;em&gt;FST?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, if we had &lt;strong&gt;namespaces&lt;/strong&gt; at the time, this file would likely be&lt;/p&gt;
-
-&lt;p&gt;Namespace MyPublisher.&lt;strong&gt;Banking.ETax.Declaration&lt;/strong&gt; &lt;br /&gt;
-Codeunit 50000 “MYPFormStructureTypeBlock”&lt;/p&gt;
-
-&lt;p&gt;By moving the &lt;strong&gt;area&lt;/strong&gt; that this objects belongs to &lt;strong&gt;out of the file name&lt;/strong&gt;, we free up the 30 characters for &lt;strong&gt;actual name of the file&lt;/strong&gt;. This again makes the codebase more &lt;strong&gt;onboarding friendly&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;the-how-of-namespaces&quot;&gt;The how of namespaces&lt;/h3&gt;
-
-&lt;p&gt;I said I won’t go into the &lt;strong&gt;“how”&lt;/strong&gt; of namespaces, but I want to mention a couple more technical &lt;strong&gt;good-to-knows&lt;/strong&gt; about namespaces&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;how-should-i-structure-namespaces&quot;&gt;How should I structure namespaces?&lt;/h4&gt;
-
-&lt;p&gt;Here’s what we’re using. Again, only a recommendation and a guideline, deviate from it as much as you’d like.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;lt;Publisher&amp;gt;.&amp;lt;AppArea&amp;gt;.FolderStructure&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;em&gt;Companial.Banking.Setup&lt;/em&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Important!&lt;/em&gt;&lt;/strong&gt; We don’t (and won’t) register namespaces with MS (like we register affixes), so make sure yours are &lt;strong&gt;unique&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;The first part&lt;/strong&gt; should be your &lt;strong&gt;&lt;em&gt;publisher’s name&lt;/em&gt;&lt;/strong&gt; to ensure the &lt;strong&gt;namespace is unique&lt;/strong&gt; from other partners.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The second part&lt;/strong&gt; is the &lt;strong&gt;&lt;em&gt;App area&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;Not the App name mind you&lt;/strong&gt;. We try to find a more &lt;em&gt;generic&lt;/em&gt; name. Mainly, so that if we’d ever move an object to a different extension, we don’t end up with an object that has a &lt;strong&gt;very app specific namespace&lt;/strong&gt; and would &lt;em&gt;“stick out”&lt;/em&gt;. This point is &lt;strong&gt;very applicable to monoliths&lt;/strong&gt; that we’ll want to break down into smaller apps.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;The third part&lt;/strong&gt; is then the &lt;strong&gt;folder structure&lt;/strong&gt;. The actual &lt;em&gt;path&lt;/em&gt; of the file. This ensures files are &lt;strong&gt;easily discoverable&lt;/strong&gt; by following the namespace.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For comparison, here’s &lt;em&gt;Microsoft’s&lt;/em&gt; recommendation:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/ms-namespace-structure.png&quot; alt=&quot;Microsoft&apos;s namespace naming suggestion&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Whatever you do, please &lt;strong&gt;don’t just add one namespace to every object in your project&lt;/strong&gt;. Unless your project has &lt;em&gt;less than 25 objects&lt;/em&gt;, I believe you have &lt;strong&gt;multiple areas&lt;/strong&gt; hiding in there.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;how-to-ensure-i-dont-forget-to-add-namespaces&quot;&gt;How to ensure I don’t forget to add namespaces?&lt;/h4&gt;
-
-&lt;p&gt;There’s a &lt;strong&gt;CodeCop warning (&lt;em&gt;AA0247&lt;/em&gt;)&lt;/strong&gt; we can use to help us spot missing namespaces. It’s &lt;strong&gt;disabled by default&lt;/strong&gt;, so we have to raise it’s severity in the &lt;strong&gt;&lt;em&gt;ruleset.json&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/namespace-warning.png&quot; alt=&quot;Warning for missing namespaces&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;when-should-i-not-adopt-namespaces&quot;&gt;When should I not adopt namespaces?&lt;/h4&gt;
-
-&lt;p&gt;If you’re app has a &lt;strong&gt;dependency on another app that has not yet adopted namespaces&lt;/strong&gt;. Do not add namespaces to your objects in these cases as &lt;strong&gt;your app will break&lt;/strong&gt; once the dependency adopts them. Let me quickly show you &lt;strong&gt;why&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;heres-the-happy-path&quot;&gt;Here’s the &lt;em&gt;happy path&lt;/em&gt;:&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;App A&lt;/em&gt; depends on &lt;em&gt;App B&lt;/em&gt;. &lt;strong&gt;No namespaces are used.&lt;/strong&gt; Everything works.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-both-global.png&quot; alt=&quot;Two objects, both in global namespace&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Dependency (&lt;em&gt;App B&lt;/em&gt;) introduces a namespace. &lt;strong&gt;No issues in &lt;em&gt;App A&lt;/em&gt;&lt;/strong&gt;, as we’re still using the &lt;strong&gt;global namespace&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-namespace-first.png&quot; alt=&quot;Dependency introduces namespaces&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;App A&lt;/em&gt; now introduces namespaces&lt;/strong&gt; and at the same time has to &lt;strong&gt;add a using statement&lt;/strong&gt; for the dependency codeunit and can compile against the new version of the &lt;em&gt;App B&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-main-namespace-second.png&quot; alt=&quot;Main app now introduces namespaces&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;now-the-unhappy-path&quot;&gt;Now the unhappy path:&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;App A&lt;/em&gt; is the first to define a namespace and everything works since the &lt;strong&gt;Dependency is still in the global namespace&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-main-namespace-first.png&quot; alt=&quot;Main app introduces namespaces first&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But now when &lt;em&gt;App B&lt;/em&gt; adds a namespace, &lt;strong&gt;&lt;em&gt;App A&lt;/em&gt; is broken&lt;/strong&gt; and cannot work with the new version of App B&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/dependency-namespace-second.png&quot; alt=&quot;Dependency introduces namespaces second&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The problem is, that &lt;strong&gt;you don’t know when your dependencies will adopt namespaces&lt;/strong&gt;, so I’d personally &lt;strong&gt;avoid them until all dependencies are namespaces&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;In all other cases, I’d say &lt;strong&gt;go for it!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;is-adding-a-namespace-a-breaking-change&quot;&gt;Is adding a namespace a breaking change?&lt;/h4&gt;
-
-&lt;p&gt;No. Yes, we’ve seen how it can break dependencies, but it’s not a breaking change in the sense of the &lt;strong&gt;AppSource validation&lt;/strong&gt;. You can add namespaces to your objects and still pass the validation.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;where-can-i-learn-more-about-namespaces&quot;&gt;Where can I learn more about namespaces?&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=F8NH69BGnKk&quot;&gt;The recording&lt;/a&gt;&lt;/strong&gt; of &lt;em&gt;Microsoft’s&lt;/em&gt; session is a &lt;strong&gt;must-watch&lt;/strong&gt; if you’d like to see how they approached the challenge of &lt;strong&gt;namespacing the whole base app&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s a few common questions they answered in the session:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/namespaces/rapid-fire-questions.png&quot; alt=&quot;Rapid Fire Questions&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And of course, the &lt;strong&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/devenv-namespaces-overview&quot;&gt;official documentation&lt;/a&gt;&lt;/strong&gt; is always a good place to start.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;so-is-it-time-to-use-namespaces-and-should-i-now-go-and-namespace-my-huge-monolithic-app&quot;&gt;So, is it time to use namespaces and should I now go and namespace my huge monolithic app?&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;Is it time to use namespaces?&lt;/em&gt; &lt;strong&gt;Absolutely.&lt;/strong&gt; Small apps, new apps, greenfield apps, all should start using namespaces. They bring a lot of benefits, and I believe they’re a &lt;strong&gt;step towards a cleaner codebase&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;But should you go and refactor your huge monolithic app to use namespaces?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Probably not.&lt;/em&gt;&lt;/strong&gt; I mean, yes, there are benefits to using namespaces, but if you have a huge project, it will take you &lt;strong&gt;a long time to properly segregate objects&lt;/strong&gt; into namespaces areas. Unless you have enough time to do it properly, I’d postpone it. Again, &lt;strong&gt;adding a single namespace across the whole project is not a good idea.&lt;/strong&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 01 Sep 2024 10:00:00 +0200</pubDate>
-        <link>https://tine.staric.net/blog/2024/namespaces/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2024/namespaces/</guid>
         
         
         <category>al</category>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 215" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <pattern id="manyTokensA" width="10" height="50" patternUnits="userSpaceOnUse">
+      <rect width="10" height="50" fill="#f6f6f6"/>
+      <line x1="0" y1="0" x2="0" y2="50" stroke="#d5d5d5" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Row 1: 5-token context -->
+  <text x="60" y="30" font-size="13" fill="#555">in a 5-token context</text>
+  <g>
+    <rect x="60" y="40" width="220" height="50" fill="#b23b3b" stroke="#8a1f1f"/>
+    <rect x="280" y="40" width="140" height="50" fill="#e4e4e4" stroke="#bbb"/>
+    <rect x="420" y="40" width="140" height="50" fill="#e4e4e4" stroke="#bbb"/>
+    <rect x="560" y="40" width="140" height="50" fill="#e4e4e4" stroke="#bbb"/>
+    <rect x="700" y="40" width="140" height="50" fill="#e4e4e4" stroke="#bbb"/>
+  </g>
+  <text x="170" y="70" text-anchor="middle" font-size="12" fill="#fff">relevant token</text>
+
+  <!-- Row 2: 200-token context -->
+  <text x="60" y="140" font-size="13" fill="#555">in a ~200-token context</text>
+  <rect x="60" y="150" width="780" height="50" fill="url(#manyTokensA)" stroke="#ccc"/>
+  <rect x="452" y="150" width="16" height="50" fill="#b23b3b" stroke="#8a1f1f"/>
+
+  <!-- callout -->
+  <path d="M460 135 L460 150" stroke="#8a1f1f" stroke-width="1.5" fill="none"/>
+  <text x="460" y="125" text-anchor="middle" font-size="12.5" fill="#8a1f1f">same token, still there</text>
+</svg>

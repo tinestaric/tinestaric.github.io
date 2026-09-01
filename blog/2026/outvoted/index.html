@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Context is a voting chamber</title>
+<meta name="description"
+    content="Should you have a long agent session that has all the context you need, or should you aim for short and focused sessions? I think we all already have the gut...">
+
+<meta property="og:title" content="Context is a voting chamber" />
+<meta property="og:description"
+    content="Should you have a long agent session that has all the context you need, or should you aim for short and focused sessions? I think we all already have the gut..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/outvoted/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/outvoted/main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/outvoted/main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/outvoted/",
+  "description": "Should you have a long agent session that has all the context you need, or should you aim for short and focused sessions? I think we all already have the gut feeling that short is better and yet we never want to abandon a long session. We usually like the first response from an agent, but the 10th iteration, where it’s running in loops and still making the same mistakes is where it starts to get annoying.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Context is a voting chamber",
+  "datePublished": "2026-08-31T10:00:00+02:00",
+  "dateModified": "2026-08-31T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/outvoted/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/outvoted/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Context is a voting chamber</h1>
+      <em class="post-meta">
+        <time>Aug 31, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>Should you have a long agent session that has all the context you need, or should you aim for short and focused sessions? I think we all already have the gut feeling that short is better and yet we never want to abandon a long session. We usually like the first response from an agent, but the 10th iteration, where it’s running in loops and still making the same mistakes is where it starts to get annoying.</p>
+
+<p>The reason people usually quote against long sessions is “it gets expensive”. Partially true. The models do bill for input and output tokens, and the more context you input, the more expensive the call is. However the main argument against long sessions isn’t economics, but something else. To understand why long sessions are both okay and not okay, we need to understand two mechanisms that are at play in the background: caching and attention.</p>
+
+<hr />
+
+<h3 id="caching-the-reason-long-sessions-arent-as-expensive-as-you-think">Caching: the reason long sessions aren’t as expensive as you think</h3>
+
+<p>When you look at any diagram of “how LLMs work”, you’ll see these scary looking images: a token going in one side, climbing through eighty-some stacked layers, something coming out the other end.</p>
+
+<p style="text-align: center;">
+  <img src="/images/outvoted/token-journey.svg" alt="One token climbing through the layers of a model, meeting attention heads and neurons at every layer, emerging as an output vector" style="max-width: 100%;" />
+</p>
+
+<p>For today, forget all of that. The only thing you need to know is that every token you send gets turned into a set of numbers, and those numbers are what the model actually works with to figure out what comes next.</p>
+
+<p><img src="/images/outvoted/tokens-to-vectors.svg" alt="A sentence split into four tokens, each turning into its own key/value vector of numbers, which get stored for reuse" /></p>
+
+<p>The model bills for every one of those tokens, in and out. But underneath, there are two more meters running that you usually never look at, cache write and cache read. Here’s what all of that costs on Opus 5, per million tokens:</p>
+
+<ul>
+  <li><strong>Input:</strong> $5.00, for every token the model has to actually work through for the first time</li>
+  <li><strong>Output:</strong> $25.00, for every token it generates back (this includes thinking tokens)</li>
+  <li><strong>Cache write (5-minute):</strong> $6.25, for storing the current prefix so it can be reused later</li>
+  <li><strong>Cache write (1-hour):</strong> $10.00, for storing it on the longer-lived tier instead</li>
+  <li><strong>Cache read:</strong> $0.50, for reusing something that’s already sitting in the cache</li>
+</ul>
+
+<p>That last number is the one that matters. If the start of your conversation hasn’t changed since your last message, the vectors behind it haven’t changed either, so nothing forces the model to recompute them. It just reads what’s already stored, at a tenth of the input price. That’s prompt caching. Most of a long conversation genuinely does bill at that cache-read rate, because most of it is being read, not reprocessed.</p>
+
+<p>Except it isn’t only your prompts that get billed this way. An agent doesn’t wait for you to type before it acts. Every tool call it makes, every time it decides what to do next, is its own request to the model, and each one rebills the entire accumulated prefix at that same read rate, not just whatever’s new since the last call.</p>
+
+<p><img src="/images/outvoted/reread-cards.svg" alt="Calls 1, 2, 5, and 10 of an agent fixing a rounding bug in Sales-Post.Codeunit.al, each one rereading everything before it, ending at a 23,000-token conversation" /></p>
+
+<p>Ten steps into a session whose final context sits at 23k tokens, you’ve billed something like 119k cache-read tokens across those ten calls. The context grew linearly. The bill grew quadratically.</p>
+
+<p>But let’s look at the number again. 119k tokens at a tenth of input price is roughly the same bill as 12k tokens at full rate. For ten steps of agent work, that’s nothing. Quadratic growth is real but also boringly affordable.</p>
+
+<p>Do remember though that cache isn’t forever. Anthropic offers two lifetimes, five minutes or an hour, and which one you’re on depends on how you’re working. <strong><em>Claude Code</em></strong> defaults its main conversation to the one-hour cache, though subagents still run on the five-minute one. Go through the API directly on usage-based billing, and you default to five minutes too. Either way it refreshes on every hit, so a session you keep working stays warm indefinitely for free. Walk away longer than that, for lunch or a meeting, and you’re paying for the whole prefix again.</p>
+
+<p><em>Side note for the <strong>GitHub Copilot</strong> crowd: if you’re on an OpenAI model, the default cache is on a similar clock, five to ten minutes of inactivity, up to an hour in some cases. For supported OpenAI models, VS Code now sets <code class="language-plaintext highlighter-rouge">prompt_cache_retention: "24h"</code> on your behalf, which trades a slower cache tier for surviving a lunch break intact.</em></p>
+
+<p>So: while the cache is warm, long sessions are genuinely manageable. Carry on.</p>
+
+<hr />
+
+<h3 id="attention-the-reason-long-sessions-are-still-a-bad-idea">Attention: the reason long sessions are still a bad idea</h3>
+
+<p><strong>Cost, then, isn’t the problem. Attention is</strong>, but there’s no meter for this one.</p>
+
+<p>Remember that diagram from earlier, the layers the token climbed through? The brown boxes in there are attention heads, dozens of them per layer, each one deciding for itself how much of the surrounding context matters right now. That’s the model’s actual mechanism for attention. Every one of those heads divides one unit of attention across everything in its context, every single time it produces the next token, and none of them can opt out of spending it. That’s what softmax does, for anyone who wants to look it up later.</p>
+
+<p>What that means in practice: relevance is not a fixed property of a token, it’s a share, and shares get diluted. In a context of five tokens, one genuinely relevant token might command something like a third of the model’s attention. Surround that same token with a few hundred tokens of ordinary session chatter, tool output, file contents nobody needed, and its share drops sharply. Nothing about that token changed. It was outvoted by a room full of tokens that, individually, mean almost nothing.</p>
+
+<p><img src="/images/outvoted/dilution-bars.svg" alt="The same relevant token drawn as a wide bar in a 5-token context, then as a thin sliver in a ~200-token context" /></p>
+
+<p>Position makes this worse before it makes it better. Models attend well to the end of the context, because recent tokens are usually the most predictive of what comes next, and reasonably well to the very start. The middle just sits there. That’s measured on how well models actually retrieve things, not on the attention weights directly, but it shows up consistently. Whatever you told the agent at the top of a long session, your actual objective, is now buried in exactly the part of context that gets the least attention of anyone in the room.</p>
+
+<p><img src="/images/outvoted/position-curve.svg" alt="Attention drawn as a curve over the context window, high at both ends, dipping in the middle where your original objective sits" /></p>
+
+<hr />
+
+<h3 id="the-voting-chamber">The voting chamber</h3>
+
+<p>Here’s the way I’ve started thinking about it. Context isn’t a desk where old information sits quietly until you need it. <strong>It’s a voting chamber.</strong> Everything inside votes on the next token, every time, weighted by relevance, always summing to one, with no option to abstain.</p>
+
+<p>Three situations this explains better than “the agent forgot”:</p>
+
+<p>You read a file, edit it, read it again, edit it again, read it a third time. Context now holds three versions of that file. Three voters, all confidently answering “what’s actually in this file”, all convinced they’re right, because at the time each was written, each was. The current version has no special standing. It’s one of three votes, slightly favoured by recency.</p>
+
+<p>You ask the agent for an email, and it writes one. You don’t like the subject line, so you fix that. The close feels off, so you fix that too. A few rounds in, everything still leans back toward that first draft’s structure and tone no matter what you correct, because the first email is still sitting in context, complete and confident, the only voter with a full answer to “what does an email look like around here.” Every correction you send is one voice arguing against a voter that showed up with an entire draft behind it. It doesn’t stand a chance. Scrap the thread instead, and rewrite the original prompt with everything you’ve learned since folded in from the start.</p>
+
+<p>An approach the agent tried, and you told it to abandon, is still sitting in context as a voter. The note saying “this failed” is four tokens. The description of the approach that failed is two hundred. Four tokens don’t outvote two hundred.</p>
+
+<p><img src="/images/outvoted/chamber-3-abandoned-bars.svg" alt="A four-token retraction next to the two-hundred-token approach description it's arguing against" /></p>
+
+<p><img src="/images/outvoted/chamber-2-vignettes.svg" alt="Three chamber panels, one per scenario: three file versions, one email draft against its two corrections, one approach description against its retraction, all voting for the next token" /></p>
+
+<p>The obvious instinct is that the only way to clear the room is to end the session and start over. That’s not quite right. Your harness already retires some voters on its own, <em>Claude Code</em> keeps one running todo list instead of ten stale copies, plan mode edits the plan itself instead of appending revision after revision, and old tool results age out or get replaced with placeholders as the session goes on, exactly the retirement mechanism the read-edit-read example above needs. You do have the tool, but it’s the harness that decides which voter goes and when, not you.</p>
+
+<p><strong>You cannot mark something as irrelevant from inside the conversation.</strong> Telling the agent “ignore that email format” doesn’t remove a voter. It adds one. Now there’s a fourth voice in the room, arguing against the third, and the third hasn’t gone anywhere. Whatever gets retired automatically retires on the harness’s schedule, not yours. Anything else still means summarizing what matters yourself, and starting over.</p>
+
+<hr />
+
+<h3 id="what-to-do-instead">What to do instead</h3>
+
+<p>What the harness can’t automate is judgment: which of your abandoned approaches are worth a full paragraph and which aren’t, when a conversation has drifted so far from its actual goal that no more correcting will fix it. That’s still yours to do. Here’s what to do about it.</p>
+
+<p>Write plans, and hand off between them, more often than feels necessary. Break the work into sections, give each section to a fresh session, have it write a handoff for the next one, and start that one clean. A handoff should preserve the eliminated options, not the narrative. “We tried X, it broke Y, so we went with Z instead” is the expensive, hard-won part. Drop it, and the next session just tries X again.</p>
+
+<p>Use subagents for anything that involves reading a lot. <strong><em><a href="/blog/2026/copilot-fancy-autocomplete-vol3/">Vol.3</a></em></strong> has the example: three subagents digging through the base app, the docs, and a specialist in parallel, each one burning its own context on the reading, and handing the main session back a condensed report instead of the transcript. Same benefit as a handoff, just paid before the pollution reaches the main conversation instead of cleaned up afterwards.</p>
+
+<p>Resuming an old session runs into the same problem, and <em>Claude Code</em> will actually warn you about it now:</p>
+
+<p><img src="/images/outvoted/resume-from-summary.png" alt="Claude Code prompting to resume a 6-day-old, 644.6k-token session from a summary instead of in full" /></p>
+
+<p>Even at the cache-read rate, 644.6k tokens is the equivalent of about 64k tokens at full input price, and that’s not a one-time cost, it’s what every single agent decision from that point on drags along with it. Don’t resume old sessions in full if you can help it. If you do resume one, resume from a summary.</p>
+
+<hr />
+
+<h3 id="the-trade-youre-making">The trade you’re making</h3>
+
+<p>The two mechanisms in this post want opposite things. Caching rewards never touching what came before, append only, everything stays warm. Attention rewards removing what’s gone stale, which means rewriting the prefix, and that burns the cache.</p>
+
+<p>So every handoff is a deliberate cache burn, and it’s worth it: you’re spending real money to buy back the one resource in this whole system that has no meter attached to it.</p>
+
+<p>And it’s cheaper than “deliberate cache burn” makes it sound. A handoff costs one fresh cache write at 1.25 times the base rate, but on a small prefix, because the new session starts lean. That’s a rounding error next to what staying unfocused would have cost you instead.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

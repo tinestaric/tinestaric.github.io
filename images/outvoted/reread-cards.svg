@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 360" font-family="Helvetica, Arial, sans-serif">
+  <text x="525" y="24" text-anchor="middle" font-size="16" fill="#333">calls 1, 2, 5, and 10 of the same ten-call loop</text>
+
+  <!-- Card 1: call 1 -->
+  <g>
+    <rect x="25" y="60" width="180" height="135" rx="10" fill="#fafafa" stroke="#999" stroke-width="1.5"/>
+    <text x="115" y="82" text-anchor="middle" font-size="13" fill="#555">call 1</text>
+    <rect x="38" y="96" width="154" height="20" rx="10" fill="#e4e4e4" stroke="#999"/>
+    <text x="46" y="110" font-size="9.5" fill="#333">you: "fix the rounding bug"</text>
+    <rect x="38" y="122" width="154" height="20" rx="10" fill="#c9dcf5" stroke="#5b84c4"/>
+    <text x="46" y="136" font-size="9.5" fill="#1a1a1a">agent: read Sales-Post.Codeunit.al</text>
+    <text x="115" y="166" text-anchor="middle" font-size="11.5"><tspan fill="#3f6bab">input 2,100</tspan></text>
+    <text x="115" y="184" text-anchor="middle" font-size="11.5" fill="#555">→ output 200</text>
+  </g>
+
+  <!-- Card 2: call 2 -->
+  <g>
+    <rect x="225" y="60" width="210" height="145" rx="10" fill="#fafafa" stroke="#c99a3f" stroke-width="1.5"/>
+    <text x="330" y="80" text-anchor="middle" font-size="13" fill="#555">call 2</text>
+    <rect x="238" y="92" width="184" height="20" rx="10" fill="#efe3d3" stroke="#c9ac7a" stroke-dasharray="3 2"/>
+    <text x="246" y="106" font-size="9.5" fill="#7a6746">... call 1, replayed in full ...</text>
+    <rect x="238" y="116" width="184" height="20" rx="10" fill="#bfe3bf" stroke="#4c9a4c"/>
+    <text x="246" y="130" font-size="9.5" fill="#1a1a1a">tool result: codeunit source</text>
+    <rect x="238" y="140" width="184" height="20" rx="10" fill="#c9dcf5" stroke="#5b84c4"/>
+    <text x="246" y="154" font-size="9.5" fill="#1a1a1a">agent: locate rounding logic</text>
+    <text x="330" y="182" text-anchor="middle" font-size="11.5"><tspan fill="#2f7a2f">cache read 2,300</tspan><tspan fill="#888"> + </tspan><tspan fill="#3f6bab">input 2,100</tspan></text>
+    <text x="330" y="198" text-anchor="middle" font-size="11.5" fill="#555">→ output 200</text>
+  </g>
+
+  <!-- Card 3: call 5 -->
+  <g>
+    <rect x="455" y="60" width="240" height="190" rx="10" fill="#fafafa" stroke="#b4791f" stroke-width="1.5"/>
+    <text x="575" y="80" text-anchor="middle" font-size="13" fill="#555">call 5</text>
+    <rect x="468" y="92" width="214" height="20" rx="10" fill="#efe3d3" stroke="#c9ac7a" stroke-dasharray="3 2"/>
+    <text x="476" y="106" font-size="10" fill="#7a6746">... 4 earlier calls, replayed in full ...</text>
+    <rect x="468" y="116" width="214" height="20" rx="10" fill="#bfe3bf" stroke="#4c9a4c"/>
+    <text x="476" y="130" font-size="10" fill="#1a1a1a">tool result: latest object state</text>
+    <rect x="468" y="140" width="214" height="20" rx="10" fill="#c9dcf5" stroke="#5b84c4"/>
+    <text x="476" y="154" font-size="10" fill="#1a1a1a">agent: adjust CalcInvDiscAmount</text>
+    <text x="575" y="188" text-anchor="middle" font-size="12.5"><tspan fill="#2f7a2f">cache read 9,200</tspan><tspan fill="#888"> + </tspan><tspan fill="#3f6bab">input 2,100</tspan></text>
+    <text x="575" y="206" text-anchor="middle" font-size="12.5" fill="#555">→ output 200</text>
+  </g>
+
+  <!-- Card 4: call 10 -->
+  <g>
+    <rect x="715" y="60" width="270" height="280" rx="10" fill="#fafafa" stroke="#b23b3b" stroke-width="2"/>
+    <text x="850" y="80" text-anchor="middle" font-size="13" fill="#555">call 10</text>
+    <rect x="728" y="92" width="244" height="20" rx="10" fill="#efe3d3" stroke="#c9ac7a" stroke-dasharray="3 2"/>
+    <text x="736" y="106" font-size="10" fill="#7a6746">... 8 earlier calls, replayed in full ...</text>
+    <rect x="728" y="116" width="244" height="20" rx="10" fill="#bfe3bf" stroke="#4c9a4c"/>
+    <text x="736" y="130" font-size="10" fill="#1a1a1a">tool result: AL tests passed</text>
+    <rect x="728" y="140" width="244" height="20" rx="10" fill="#c9dcf5" stroke="#5b84c4"/>
+    <text x="736" y="154" font-size="10" fill="#1a1a1a">agent: "done, rounding fixed"</text>
+    <text x="850" y="188" text-anchor="middle" font-size="12.5"><tspan fill="#2f7a2f">cache read 20,700</tspan><tspan fill="#888"> + </tspan><tspan fill="#3f6bab">input 2,300</tspan></text>
+    <text x="850" y="206" text-anchor="middle" font-size="12.5" fill="#555">→ output 200</text>
+    <text x="850" y="234" text-anchor="middle" font-size="12.5" fill="#b23b3b">context now: 23,000 tokens</text>
+  </g>
+
+</svg>
