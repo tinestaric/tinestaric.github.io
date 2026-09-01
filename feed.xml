@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 01 Sep 2026 15:42:11 +0200</pubDate>
-    <lastBuildDate>Tue, 01 Sep 2026 15:42:11 +0200</lastBuildDate>
+    <pubDate>Tue, 01 Sep 2026 16:22:37 +0200</pubDate>
+    <lastBuildDate>Tue, 01 Sep 2026 16:22:37 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -63,9 +63,9 @@
 
 &lt;p&gt;Remember that diagram from earlier, the layers the token climbed through? The brown boxes in there are attention heads, dozens of them per layer, each one deciding for itself how much of the surrounding context matters right now. That’s the model’s actual mechanism for attention. Every one of those heads divides one unit of attention across everything in its context, every single time it produces the next token, and none of them can opt out of spending it. That’s what softmax does, for anyone who wants to look it up later.&lt;/p&gt;
 
-&lt;p&gt;What that means in practice: relevance is not a fixed property of a token, it’s a share, and shares get diluted. In a context of five tokens, one genuinely relevant token might command something like a third of the model’s attention. Surround that same token with a few hundred tokens of ordinary session chatter, tool output, file contents nobody needed, and its share drops sharply. Nothing about that token changed. It was outvoted by a room full of tokens that, individually, mean almost nothing.&lt;/p&gt;
+&lt;p&gt;What that means in practice: every voter’s weight depends on one thing: how much it looks like the answer to the question being asked right now. A token that clearly isn’t the answer gets almost nothing, and two hundred of them together still get almost nothing. What splits the vote is a handful of tokens that each look like they might be it. And a long session is made of exactly those: the same file read three times, the same plan revised twice, the same error pasted back from four tool calls. Nothing about the relevant token changed. It’s sharing the room with its own near-copies.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/outvoted/dilution-bars.svg&quot; alt=&quot;The same relevant token drawn as a wide bar in a 5-token context, then as a thin sliver in a ~200-token context&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/dilution-bars.svg&quot; alt=&quot;The same relevant token holding steady against 200 off-topic tokens, then splitting its share three ways against near-duplicates of itself&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Position makes this worse before it makes it better. Models attend well to the end of the context, because recent tokens are usually the most predictive of what comes next, and reasonably well to the very start. The middle just sits there. That’s measured on how well models actually retrieve things, not on the attention weights directly, but it shows up consistently. Whatever you told the agent at the top of a long session, your actual objective, is now buried in exactly the part of context that gets the least attention of anyone in the room.&lt;/p&gt;
 
@@ -75,7 +75,7 @@
 
 &lt;h3 id=&quot;the-voting-chamber&quot;&gt;The voting chamber&lt;/h3&gt;
 
-&lt;p&gt;Here’s the way I’ve started thinking about it. Context isn’t a desk where old information sits quietly until you need it. &lt;strong&gt;It’s a voting chamber.&lt;/strong&gt; Everything inside votes on the next token, every time, weighted by relevance, always summing to one, with no option to abstain.&lt;/p&gt;
+&lt;p&gt;Here’s the way I’ve started thinking about it. Context isn’t a desk where old information sits quietly until you need it. &lt;strong&gt;It’s a voting chamber.&lt;/strong&gt; Everything inside votes on the next token, every time, weighted by relevance, always summing to one. Nobody sits out completely, most just end up with almost nothing to say.&lt;/p&gt;
 
 &lt;p&gt;Three situations this explains better than “the agent forgot”:&lt;/p&gt;
 
@@ -83,9 +83,9 @@
 
 &lt;p&gt;You ask the agent for an email, and it writes one. You don’t like the subject line, so you fix that. The close feels off, so you fix that too. A few rounds in, everything still leans back toward that first draft’s structure and tone no matter what you correct, because the first email is still sitting in context, complete and confident, the only voter with a full answer to “what does an email look like around here.” Every correction you send is one voice arguing against a voter that showed up with an entire draft behind it. It doesn’t stand a chance. Scrap the thread instead, and rewrite the original prompt with everything you’ve learned since folded in from the start.&lt;/p&gt;
 
-&lt;p&gt;An approach the agent tried, and you told it to abandon, is still sitting in context as a voter. The note saying “this failed” is four tokens. The description of the approach that failed is two hundred. Four tokens don’t outvote two hundred.&lt;/p&gt;
+&lt;p&gt;An approach you told the agent to abandon is still in the room. “Drop it” wins for a few turns, while it’s freshest. Then both get buried and the approach creeps back, because every vote is a vote on what to write next, and “drop it” proposes nothing. The only voter holding actual lines is the approach you abandoned, so those get written again, slightly disguised.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/outvoted/chamber-3-abandoned-bars.svg&quot; alt=&quot;A four-token retraction next to the two-hundred-token approach description it&apos;s arguing against&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/outvoted/chamber-3-abandoned-bars.svg&quot; alt=&quot;Right after &amp;quot;drop it&amp;quot;, the retraction is loud and the approach fades; a few turns later the retraction has faded out while the approach still holds actual lines to write&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/outvoted/chamber-2-vignettes.svg&quot; alt=&quot;Three chamber panels, one per scenario: three file versions, one email draft against its two corrections, one approach description against its retraction, all voting for the next token&quot; /&gt;&lt;/p&gt;
 
