@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Sentence -->
+  <text x="450" y="30" text-anchor="middle" font-size="18" fill="#333">"the cache stays warm"</text>
+
+  <!-- Token boxes -->
+  <g font-size="16" fill="#1a1a1a">
+    <rect x="60"  y="55" width="110" height="46" rx="8" fill="#c9dcf5" stroke="#5b84c4" stroke-width="1.5"/>
+    <text x="115" y="83" text-anchor="middle">the</text>
+
+    <rect x="230" y="55" width="130" height="46" rx="8" fill="#c9dcf5" stroke="#5b84c4" stroke-width="1.5"/>
+    <text x="295" y="83" text-anchor="middle">cache</text>
+
+    <rect x="420" y="55" width="130" height="46" rx="8" fill="#c9dcf5" stroke="#5b84c4" stroke-width="1.5"/>
+    <text x="485" y="83" text-anchor="middle">stays</text>
+
+    <rect x="610" y="55" width="130" height="46" rx="8" fill="#c9dcf5" stroke="#5b84c4" stroke-width="1.5"/>
+    <text x="675" y="83" text-anchor="middle">warm</text>
+  </g>
+  <text x="800" y="83" font-size="14" fill="#666">tokens</text>
+
+  <!-- Arrows -->
+  <g stroke="#555" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="115" y1="101" x2="115" y2="150"/>
+    <line x1="295" y1="101" x2="295" y2="150"/>
+    <line x1="485" y1="101" x2="485" y2="150"/>
+    <line x1="675" y1="101" x2="675" y2="150"/>
+  </g>
+
+  <!-- Vector boxes -->
+  <g font-size="12.5" fill="#1a1a1a" font-family="Consolas, Menlo, monospace">
+    <rect x="35"  y="155" width="160" height="70" rx="8" fill="#bfe3bf" stroke="#4c9a4c" stroke-width="1.5"/>
+    <text x="115" y="184" text-anchor="middle">[ 0.91, -1.4,</text>
+    <text x="115" y="202" text-anchor="middle">0.07, ... ]</text>
+
+    <rect x="215" y="155" width="160" height="70" rx="8" fill="#bfe3bf" stroke="#4c9a4c" stroke-width="1.5"/>
+    <text x="295" y="184" text-anchor="middle">[-0.22, 0.63,</text>
+    <text x="295" y="202" text-anchor="middle">1.05, ... ]</text>
+
+    <rect x="405" y="155" width="160" height="70" rx="8" fill="#bfe3bf" stroke="#4c9a4c" stroke-width="1.5"/>
+    <text x="485" y="184" text-anchor="middle">[ 0.34, 0.11,</text>
+    <text x="485" y="202" text-anchor="middle">-0.88, ... ]</text>
+
+    <rect x="595" y="155" width="160" height="70" rx="8" fill="#bfe3bf" stroke="#4c9a4c" stroke-width="1.5"/>
+    <text x="675" y="184" text-anchor="middle">[ 1.12, -0.05,</text>
+    <text x="675" y="202" text-anchor="middle">0.47, ... ]</text>
+  </g>
+  <text x="800" y="195" font-size="14" fill="#666">key / value</text>
+  <text x="800" y="212" font-size="14" fill="#666">vectors</text>
+</svg>

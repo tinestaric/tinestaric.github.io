@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" font-family="Helvetica, Arial, sans-serif">
+  <text x="200" y="35" font-size="12.5" fill="#555">"this failed", 4 tokens</text>
+  <rect x="200" y="45" width="12" height="30" fill="#f0743a" stroke="#c95a24"/>
+
+  <text x="200" y="100" font-size="12.5" fill="#555">the approach it's negating, 200 tokens</text>
+  <rect x="200" y="110" width="600" height="30" fill="#e4e4e4" stroke="#999"/>
+</svg>
