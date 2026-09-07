@@ -5,8 +5,8 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Sep 2026 10:16:07 +0200</pubDate>
-    <lastBuildDate>Mon, 07 Sep 2026 10:16:07 +0200</lastBuildDate>
+    <pubDate>Mon, 07 Sep 2026 10:28:19 +0200</pubDate>
+    <lastBuildDate>Mon, 07 Sep 2026 10:28:19 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -18,6 +18,17 @@
 &lt;h3 id=&quot;map-a-shortcut-for-new-terminals&quot;&gt;Map a shortcut for new terminals&lt;/h3&gt;
 
 &lt;p&gt;In VS Code, map the &lt;strong&gt;“Terminal: Create Terminal in Editor Area”&lt;/strong&gt; action to a keyboard shortcut so you can spin up a new &lt;em&gt;Claude Code&lt;/em&gt; session without touching the mouse. I have mine on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl + Alt + T&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;stop-the-terminal-from-swallowing-your-shortcuts&quot;&gt;Stop the terminal from swallowing your shortcuts&lt;/h3&gt;
+
+&lt;p&gt;With a terminal focused, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl + B&lt;/code&gt; should toggle VS Code’s sidebar, but the shell running inside the terminal grabs the keypress first and VS Code never sees it. Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workbench.action.toggleSidebarVisibility&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terminal.integrated.commandsToSkipShell&lt;/code&gt; in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.json&lt;/code&gt; and VS Code handles the shortcut itself instead of forwarding it to the shell:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nl&quot;&gt;&quot;terminal.integrated.commandsToSkipShell&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;workbench.action.zoomIn&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;workbench.action.zoomOut&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;workbench.action.toggleSidebarVisibility&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;tui-fullscreen&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tui fullscreen&lt;/code&gt;&lt;/h3&gt;
 

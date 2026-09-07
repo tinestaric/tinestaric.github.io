@@ -114,6 +114,17 @@
 
 <p>In VS Code, map the <strong>“Terminal: Create Terminal in Editor Area”</strong> action to a keyboard shortcut so you can spin up a new <em>Claude Code</em> session without touching the mouse. I have mine on <code class="language-plaintext highlighter-rouge">Ctrl + Alt + T</code>.</p>
 
+<h3 id="stop-the-terminal-from-swallowing-your-shortcuts">Stop the terminal from swallowing your shortcuts</h3>
+
+<p>With a terminal focused, <code class="language-plaintext highlighter-rouge">Ctrl + B</code> should toggle VS Code’s sidebar, but the shell running inside the terminal grabs the keypress first and VS Code never sees it. Add <code class="language-plaintext highlighter-rouge">workbench.action.toggleSidebarVisibility</code> to <code class="language-plaintext highlighter-rouge">terminal.integrated.commandsToSkipShell</code> in your <code class="language-plaintext highlighter-rouge">settings.json</code> and VS Code handles the shortcut itself instead of forwarding it to the shell:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"terminal.integrated.commandsToSkipShell"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"workbench.action.zoomIn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workbench.action.zoomOut"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"workbench.action.toggleSidebarVisibility"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
 <h3 id="tui-fullscreen"><code class="language-plaintext highlighter-rouge">/tui fullscreen</code></h3>
 
 <p>Cleans up the terminal GUI and removes the flicker you get on every redraw.</p>
