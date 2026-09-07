@@ -15,6 +15,18 @@ Here's my go-to list. Note: I use the terminal, not the VS Code extension, so no
 
 In VS Code, map the **"Terminal: Create Terminal in Editor Area"** action to a keyboard shortcut so you can spin up a new *Claude Code* session without touching the mouse. I have mine on `Ctrl + Alt + T`.
 
+### Stop the terminal from swallowing your shortcuts
+
+With a terminal focused, `Ctrl + B` should toggle VS Code's sidebar, but the shell running inside the terminal grabs the keypress first and VS Code never sees it. Add `workbench.action.toggleSidebarVisibility` to `terminal.integrated.commandsToSkipShell` in your `settings.json` and VS Code handles the shortcut itself instead of forwarding it to the shell:
+
+```json
+"terminal.integrated.commandsToSkipShell": [
+    "workbench.action.zoomIn",
+    "workbench.action.zoomOut",
+    "workbench.action.toggleSidebarVisibility"
+]
+```
+
 ### `/tui fullscreen`
 
 Cleans up the terminal GUI and removes the flicker you get on every redraw.
