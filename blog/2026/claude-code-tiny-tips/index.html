@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>Claude Code: Tiny Tips</title>
+<meta name="description"
+    content="When we move devs to Claude Code, I usually give them a quick “here’s what’s good to know about this tool” rundown. After a few rounds of that, a handful of ...">
+
+<meta property="og:title" content="Claude Code: Tiny Tips" />
+<meta property="og:description"
+    content="When we move devs to Claude Code, I usually give them a quick “here’s what’s good to know about this tool” rundown. After a few rounds of that, a handful of ..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/claude-code-tiny-tips/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/claudecodetinytips/main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/claudecodetinytips/main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/claude-code-tiny-tips/",
+  "description": "When we move devs to Claude Code, I usually give them a quick “here’s what’s good to know about this tool” rundown. After a few rounds of that, a handful of commands keep coming up as “huh, didn’t know that.”",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "Claude Code: Tiny Tips",
+  "datePublished": "2026-09-07T10:00:00+02:00",
+  "dateModified": "2026-09-07T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/claude-code-tiny-tips/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/claude-code-tiny-tips/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Claude Code: Tiny Tips</h1>
+      <em class="post-meta">
+        <time>Sep 7, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>When we move devs to <em>Claude Code</em>, I usually give them a quick “here’s what’s good to know about this tool” rundown. After a few rounds of that, a handful of commands keep coming up as <em>“huh, didn’t know that.”</em></p>
+
+<p>Here’s my go-to list. Note: I use the terminal, not the VS Code extension, so not everything below is accessible from there as far as I know.</p>
+
+<h3 id="map-a-shortcut-for-new-terminals">Map a shortcut for new terminals</h3>
+
+<p>In VS Code, map the <strong>“Terminal: Create Terminal in Editor Area”</strong> action to a keyboard shortcut so you can spin up a new <em>Claude Code</em> session without touching the mouse. I have mine on <code class="language-plaintext highlighter-rouge">Ctrl + Alt + T</code>.</p>
+
+<h3 id="tui-fullscreen"><code class="language-plaintext highlighter-rouge">/tui fullscreen</code></h3>
+
+<p>Cleans up the terminal GUI and removes the flicker you get on every redraw.</p>
+
+<h3 id="porting-agents-isnt-a-copy-paste">Porting agents isn’t a copy-paste</h3>
+
+<p>You can’t port agents directly to <em>Claude Code</em> because the tool names are different from <em>Copilot</em>’s. Ask the AI for help translating them, I’ve got a whole separate post on this one alone: <strong><em><a href="/blog/2026/copilot-to-claude-code/">“Copilot is agent-first, Claude Code is skill-first”</a></em></strong>.</p>
+
+<h3 id="doctor"><code class="language-plaintext highlighter-rouge">/doctor</code></h3>
+
+<p>Lets the AI analyze your agents, skills, and instructions. Quite useful right after you’ve ported something over and want to know what can be improved.</p>
+
+<h3 id="model-opusplan"><code class="language-plaintext highlighter-rouge">/model opusplan</code></h3>
+
+<p><em>Opus</em> for planning, <em>Sonnet</em> for execution, switched automatically as you move between the two. This option isn’t selectable through the UI, you have to set it with the command.</p>
+
+<h3 id="advisor"><code class="language-plaintext highlighter-rouge">/advisor</code></h3>
+
+<p>When <em>Sonnet</em> gets stuck, it can reach out to <em>Opus</em> or <em>Fable</em> on its own for a second opinion.</p>
+
+<h3 id="rewind"><code class="language-plaintext highlighter-rouge">/rewind</code></h3>
+
+<p>Undoes changes and resets the state and conversation back to a previous prompt. Cheaper than starting a whole new session when a change went sideways.</p>
+
+<h3 id="left-arrow-key">Left arrow key</h3>
+
+<p>Gets you to the overview of all sessions. I prefer separate terminal windows per session myself, but some people like having this single view instead.</p>
+
+<hr />
+
+<p>Do you have any tiny tips of your own that help you work with <em>Claude Code</em>? I’d genuinely like to hear them.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
