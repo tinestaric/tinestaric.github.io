@@ -68,22 +68,12 @@ Interested in what's under these topics? Well then I won't keep you waiting any 
 document.addEventListener('DOMContentLoaded', async () => {
   const { Markmap } = window.markmap;
   
-  // Fetch markdown content from latest release
+  // Fetch markdown content straight from the repo (raw.githubusercontent.com sends CORS headers, no proxy needed)
   try {
-    // First, get the latest release info
-    const releaseResponse = await fetch('https://api.github.com/repos/tinestaric/AreopaAnalyzer/releases/latest');
-    const release = await releaseResponse.json();
-    
-    // Find the videos_markmap.md asset
-    const asset = release.assets.find(a => a.name === 'videos_markmap.md');
-    
-    if (!asset) {
-      throw new Error('videos_markmap.md not found in latest release');
+    const response = await fetch('https://raw.githubusercontent.com/tinestaric/AreopaAnalyzer/main/data/videos_markmap.md');
+    if (!response.ok) {
+      throw new Error('Failed to fetch videos_markmap.md, status ' + response.status);
     }
-    
-    // Use CORS proxy to fetch the asset content
-    const proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(asset.browser_download_url);
-    const response = await fetch(proxyUrl);
     const markdown = await response.text();
 
     // Transform markdown to mindmap data
