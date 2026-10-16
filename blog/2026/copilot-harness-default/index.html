@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>The Copilot harness is now VS Code's default</title>
+<meta name="description"
+    content="One thing that annoyed me for a while: GitHub Copilot CLI, the VS Code Agents window and the GitHub Copilot app all shared the same Copilot runtime, but the ...">
+
+<meta property="og:title" content="The Copilot harness is now VS Code's default" />
+<meta property="og:description"
+    content="One thing that annoyed me for a while: GitHub Copilot CLI, the VS Code Agents window and the GitHub Copilot app all shared the same Copilot runtime, but the ..." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/copilot-harness-default/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/copilotharness/main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/copilotharness/main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/copilot-harness-default/",
+  "description": "One thing that annoyed me for a while: GitHub Copilot CLI, the VS Code Agents window and the GitHub Copilot app all shared the same Copilot runtime, but the one most of us use every day, Copilot Chat in VS Code, ran a VS Code-specific flavor of it. In my experience that made it harder to switch between tools, and some features landed elsewhere first.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": "The Copilot harness is now VS Code's default",
+  "datePublished": "2026-10-16T10:00:00+02:00",
+  "dateModified": "2026-10-16T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/copilot-harness-default/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/copilot-harness-default/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">The Copilot harness is now VS Code's default</h1>
+      <em class="post-meta">
+        <time>Oct 16, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p>One thing that annoyed me for a while: <strong><em>GitHub Copilot CLI</em></strong>, the <em>VS Code Agents window</em> and the <em>GitHub Copilot app</em> all shared the same Copilot runtime, but the one most of us use every day, <em>Copilot Chat in VS Code</em>, ran a VS Code-specific flavor of it. In my experience that made it harder to switch between tools, and some features landed elsewhere first.</p>
+
+<p>With <strong>VS Code 1.142</strong>, that’s over. The <em>Copilot harness</em> is becoming the default for new agent sessions.</p>
+
+<p><img src="/images/copilotharness/harness-picker.png" alt="The harness picker in chat: Copilot, Local, Cloud, Claude, Codex" /></p>
+
+<p>The tooltip on <em>Copilot</em> says it well: the agent experience shared consistently across GitHub Copilot products.</p>
+
+<p>So what does that actually get you, and what do you have to do about it?</p>
+
+<hr />
+
+<h3 id="what-changes">What changes</h3>
+
+<p>I won’t claim a huge day-one benefit. I haven’t found any benchmarks, and Microsoft doesn’t claim any either. What you get is structural:</p>
+
+<ul>
+  <li><strong>One behavior</strong> across VS Code, the CLI, the Agents window and the Copilot app, so features stop landing in one place first.</li>
+  <li><strong>Sessions run in the Agent Host</strong>, a separate process from the editor window. They can keep going in the background and be shared between the editor and the Agents window, so you can switch surfaces without copying a chat over.</li>
+  <li><strong>VS Code stops falling behind</strong> the other Copilot surfaces.</li>
+</ul>
+
+<p><em>Local</em> is still in the picker if you want the old behavior, and it still reads your old locations.</p>
+
+<hr />
+
+<h3 id="the-homework">The homework</h3>
+
+<p>Some of your personal setup lives in places the new harness doesn’t read. The first time you open chat, you get this:</p>
+
+<p><img src="/images/copilotharness/migration-notification.png" alt="Notification in chat: 9 user customizations need an update to keep working, with a Review Migrations link" /></p>
+
+<p>It doesn’t migrate anything silently, it takes you to a review list. You can also get there yourself through <strong>Chat: Open Customizations</strong>, then <strong>Migrations</strong>.</p>
+
+<p><img src="/images/copilotharness/migrations-page.png" alt="The Migrations page, listing prompt files to convert to skills and MCP servers to move" /></p>
+
+<p>Each group has its own <em>Migrate</em> and <em>Ignore</em>. <em>Migrate</em> lets VS Code move the files itself. <em>Migrate with Agent</em> does it as a guided session in chat, which uses credits.</p>
+
+<p>Nothing in the repo moves. Instructions, <code class="language-plaintext highlighter-rouge">AGENTS.md</code> and agents under <code class="language-plaintext highlighter-rouge">.github</code> stay where they are. What moves is your <em>personal</em> stuff, into <code class="language-plaintext highlighter-rouge">~/.copilot</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>What</th>
+      <th>Where it goes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Personal instructions</td>
+      <td><code class="language-plaintext highlighter-rouge">~/.copilot/copilot-instructions.md</code> and <code class="language-plaintext highlighter-rouge">~/.copilot/instructions/</code></td>
+    </tr>
+    <tr>
+      <td>Personal agents</td>
+      <td><code class="language-plaintext highlighter-rouge">~/.copilot/agents/</code></td>
+    </tr>
+    <tr>
+      <td>Prompt files (<code class="language-plaintext highlighter-rouge">*.prompt.md</code>)</td>
+      <td>converted to skills, e.g. in <code class="language-plaintext highlighter-rouge">~/.copilot/skills</code></td>
+    </tr>
+    <tr>
+      <td>User MCP servers</td>
+      <td><code class="language-plaintext highlighter-rouge">~/.copilot/mcp-config.json</code></td>
+    </tr>
+    <tr>
+      <td>Workspace MCP servers</td>
+      <td><code class="language-plaintext highlighter-rouge">.mcp.json</code> in the repo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Two things in my own list are worth knowing before you click anything.</p>
+
+<p><strong>Prompt files become skills, and lose some of their powers.</strong> The <code class="language-plaintext highlighter-rouge">agent</code>, <code class="language-plaintext highlighter-rouge">model</code> and <code class="language-plaintext highlighter-rouge">tools</code> headers get dropped, and the converted skills are set to <code class="language-plaintext highlighter-rouge">disable-model-invocation: true</code>. The agent won’t pick them up by itself anymore, you invoke them manually with <code class="language-plaintext highlighter-rouge">/name</code>. If you had a prompt file that was supposed to be triggered automatically, that part is gone.</p>
+
+<p><strong>Migrating MCP servers installed from the registry stops their auto-updates.</strong> The screen warns you about it in orange, right under the server. I migrated mine anyway, but now I’m the one who has to remember to update them.</p>
+
+<hr />
+
+<h3 id="how-id-do-it">How I’d do it</h3>
+
+<p>Commit first, migrate, then test in a fresh Copilot session before touching anything else. The migrated files are copies, not moves, so the originals stay where they were. Delete those last, once you know the new setup works, and don’t leave both active in the meantime.</p>
+
+<p>Also keep in mind that this is a one-time move per machine. I haven’t checked whether <em>Settings Sync</em> carries <code class="language-plaintext highlighter-rouge">~/.copilot</code> over, so don’t assume your personal setup follows you to the next laptop.</p>
+
+<hr />
+
+<p>If you’ve already gone through the migration, I’m curious what broke for you. Mine was mostly prompt files and MCP servers, so I got off easy.</p>
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

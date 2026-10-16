@@ -5,9 +5,109 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Sep 2026 12:29:06 +0200</pubDate>
-    <lastBuildDate>Tue, 08 Sep 2026 12:29:06 +0200</lastBuildDate>
+    <pubDate>Fri, 16 Oct 2026 18:36:39 +0200</pubDate>
+    <lastBuildDate>Fri, 16 Oct 2026 18:36:39 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>The Copilot harness is now VS Code&apos;s default</title>
+        <description>&lt;p&gt;One thing that annoyed me for a while: &lt;strong&gt;&lt;em&gt;GitHub Copilot CLI&lt;/em&gt;&lt;/strong&gt;, the &lt;em&gt;VS Code Agents window&lt;/em&gt; and the &lt;em&gt;GitHub Copilot app&lt;/em&gt; all shared the same Copilot runtime, but the one most of us use every day, &lt;em&gt;Copilot Chat in VS Code&lt;/em&gt;, ran a VS Code-specific flavor of it. In my experience that made it harder to switch between tools, and some features landed elsewhere first.&lt;/p&gt;
+
+&lt;p&gt;With &lt;strong&gt;VS Code 1.142&lt;/strong&gt;, that’s over. The &lt;em&gt;Copilot harness&lt;/em&gt; is becoming the default for new agent sessions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotharness/harness-picker.png&quot; alt=&quot;The harness picker in chat: Copilot, Local, Cloud, Claude, Codex&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The tooltip on &lt;em&gt;Copilot&lt;/em&gt; says it well: the agent experience shared consistently across GitHub Copilot products.&lt;/p&gt;
+
+&lt;p&gt;So what does that actually get you, and what do you have to do about it?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-changes&quot;&gt;What changes&lt;/h3&gt;
+
+&lt;p&gt;I won’t claim a huge day-one benefit. I haven’t found any benchmarks, and Microsoft doesn’t claim any either. What you get is structural:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;One behavior&lt;/strong&gt; across VS Code, the CLI, the Agents window and the Copilot app, so features stop landing in one place first.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sessions run in the Agent Host&lt;/strong&gt;, a separate process from the editor window. They can keep going in the background and be shared between the editor and the Agents window, so you can switch surfaces without copying a chat over.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;VS Code stops falling behind&lt;/strong&gt; the other Copilot surfaces.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Local&lt;/em&gt; is still in the picker if you want the old behavior, and it still reads your old locations.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;the-homework&quot;&gt;The homework&lt;/h3&gt;
+
+&lt;p&gt;Some of your personal setup lives in places the new harness doesn’t read. The first time you open chat, you get this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotharness/migration-notification.png&quot; alt=&quot;Notification in chat: 9 user customizations need an update to keep working, with a Review Migrations link&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It doesn’t migrate anything silently, it takes you to a review list. You can also get there yourself through &lt;strong&gt;Chat: Open Customizations&lt;/strong&gt;, then &lt;strong&gt;Migrations&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/copilotharness/migrations-page.png&quot; alt=&quot;The Migrations page, listing prompt files to convert to skills and MCP servers to move&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each group has its own &lt;em&gt;Migrate&lt;/em&gt; and &lt;em&gt;Ignore&lt;/em&gt;. &lt;em&gt;Migrate&lt;/em&gt; lets VS Code move the files itself. &lt;em&gt;Migrate with Agent&lt;/em&gt; does it as a guided session in chat, which uses credits.&lt;/p&gt;
+
+&lt;p&gt;Nothing in the repo moves. Instructions, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AGENTS.md&lt;/code&gt; and agents under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github&lt;/code&gt; stay where they are. What moves is your &lt;em&gt;personal&lt;/em&gt; stuff, into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot&lt;/code&gt;:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;What&lt;/th&gt;
+      &lt;th&gt;Where it goes&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Personal instructions&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot/copilot-instructions.md&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot/instructions/&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Personal agents&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot/agents/&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Prompt files (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.prompt.md&lt;/code&gt;)&lt;/td&gt;
+      &lt;td&gt;converted to skills, e.g. in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot/skills&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;User MCP servers&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot/mcp-config.json&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Workspace MCP servers&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.mcp.json&lt;/code&gt; in the repo&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Two things in my own list are worth knowing before you click anything.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prompt files become skills, and lose some of their powers.&lt;/strong&gt; The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;agent&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tools&lt;/code&gt; headers get dropped, and the converted skills are set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;disable-model-invocation: true&lt;/code&gt;. The agent won’t pick them up by itself anymore, you invoke them manually with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/name&lt;/code&gt;. If you had a prompt file that was supposed to be triggered automatically, that part is gone.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Migrating MCP servers installed from the registry stops their auto-updates.&lt;/strong&gt; The screen warns you about it in orange, right under the server. I migrated mine anyway, but now I’m the one who has to remember to update them.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;how-id-do-it&quot;&gt;How I’d do it&lt;/h3&gt;
+
+&lt;p&gt;Commit first, migrate, then test in a fresh Copilot session before touching anything else. The migrated files are copies, not moves, so the originals stay where they were. Delete those last, once you know the new setup works, and don’t leave both active in the meantime.&lt;/p&gt;
+
+&lt;p&gt;Also keep in mind that this is a one-time move per machine. I haven’t checked whether &lt;em&gt;Settings Sync&lt;/em&gt; carries &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.copilot&lt;/code&gt; over, so don’t assume your personal setup follows you to the next laptop.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you’ve already gone through the migration, I’m curious what broke for you. Mine was mostly prompt files and MCP servers, so I got off easy.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 16 Oct 2026 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2026/copilot-harness-default/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2026/copilot-harness-default/</guid>
+        
+        
+        <category>al</category>
+        
+      </item>
     
       <item>
         <title>Claude Code: Tiny Tips</title>
@@ -1633,98 +1733,6 @@ Quickly get regex patterns that match the validations I’m looking for&lt;/li&g
         <pubDate>Fri, 03 Jan 2025 09:00:00 +0100</pubDate>
         <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>Trigger Sequence in AL</title>
-        <description>&lt;p&gt;Here’s a small &lt;strong&gt;&lt;em&gt;“let me bookmark this”&lt;/em&gt;&lt;/strong&gt; post.&lt;/p&gt;
-
-&lt;p&gt;I often did not completely understand trigger and event sequences in AL. I &lt;strong&gt;&lt;em&gt;sort of&lt;/em&gt;&lt;/strong&gt; knew them, but I doubted myself just enough to keep going back to the documentation. It’s not like the documentation is bad, but every time it took me just a few additional minutes to figure out the answer, that I decided I wanted to &lt;strong&gt;visualize&lt;/strong&gt; this.&lt;/p&gt;
-
-&lt;p&gt;It came in handy for me, maybe it will for you too. I’d love to hear if you’d add any other sequence!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Few things to remember that I didn’t want to jam into the visualizations&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Apps with &lt;strong&gt;lower IDs&lt;/strong&gt; execute their triggers and subscribers &lt;strong&gt;before those with higher IDs.&lt;/strong&gt;&lt;br /&gt;
-For example, if &lt;em&gt;App A&lt;/em&gt; has an ID like &lt;em&gt;“1bs3..”&lt;/em&gt; and &lt;em&gt;App B&lt;/em&gt; has &lt;em&gt;“c23f..”&lt;/em&gt;, App A’s triggers and subscribers will always run first.&lt;/li&gt;
-  &lt;li&gt;Within the same App, objects with &lt;strong&gt;lower Object IDs&lt;/strong&gt; execute their triggers and subscribers &lt;strong&gt;before those with higher Object IDs&lt;/strong&gt;&lt;br /&gt;
-A subscriber in &lt;em&gt;Codeunit 50000&lt;/em&gt; will execute before one in &lt;em&gt;Codeunit 50001&lt;/em&gt;. Similarly, triggers in &lt;em&gt;Table Extension 50000&lt;/em&gt; will run before those in &lt;em&gt;Table Extension 50001&lt;/em&gt;.&lt;/li&gt;
-  &lt;li&gt;Subscribers in the same codeunit are executed in &lt;strong&gt;alphabetical order&lt;/strong&gt; by procedure name&lt;br /&gt;
-For instance, a procedure named &lt;em&gt;MySubscriber1&lt;/em&gt; will run before &lt;em&gt;MySubscriber2&lt;/em&gt;, regardless of their order in the code.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When looking at the Lookup flow, remember that &lt;strong&gt;only one OnLookup trigger can be executed&lt;/strong&gt; at a time. Once the first one is executed, others are ignored.&lt;/p&gt;
-
-&lt;p&gt;I made a small trigger logger for the purpose of this post, you can find it &lt;strong&gt;&lt;a href=&quot;https://github.com/tinestaric/BCExamples/tree/Master/TriggerLogger&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;. It’s a simple extension that logs the trigger and event sequence to a table.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 style=&quot;text-align: center;&quot;&gt;Trigger Flow Diagrams&lt;/h3&gt;
-
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/graph-demo.css&quot; /&gt;
-
-&lt;div class=&quot;graph-demo-button-group&quot;&gt;
-    &lt;div class=&quot;graph-demo-group-heading&quot;&gt;Record Operation Triggers:&lt;/div&gt;
-    &lt;div class=&quot;graph-demo-button-container&quot;&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;insert&apos;)&quot;&gt;Insert&lt;/button&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;modify&apos;)&quot;&gt;Modify&lt;/button&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;delete&apos;)&quot;&gt;Delete&lt;/button&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;rename&apos;)&quot;&gt;Rename&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;graph-demo-button-group&quot;&gt;
-    &lt;div class=&quot;graph-demo-group-heading&quot;&gt;Field Operation Triggers:&lt;/div&gt;
-    &lt;div class=&quot;graph-demo-button-container&quot;&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;validate&apos;)&quot;&gt;Validate&lt;/button&gt;
-        &lt;button class=&quot;graph-demo-flow-button&quot; onclick=&quot;showFlow(&apos;lookup&apos;)&quot;&gt;Lookup&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;graph-demo-diagram-container&quot;&gt;
-    &lt;div class=&quot;mermaid&quot; id=&quot;flowchart-container&quot;&gt;
-        flowchart TD
-        Start --&amp;gt; NoChart
-        NoChart(Click a button to display trigger flow)
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;script src=&quot;https://unpkg.com/mermaid@9.4.3/dist/mermaid.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;script type=&quot;module&quot;&gt;
-  let mermaidLoaded = false;
-  mermaid.initialize({ 
-    startOnLoad: true,
-    securityLevel: &apos;loose&apos;
-  });
-  // Wait for mermaid to be fully loaded
-  mermaid.init();
-  mermaidLoaded = true;
-  import { loadFlow } from &apos;/assets/scripts/loadFlows.js&apos;;
-  window.showFlow = async function(type) {
-    if (!mermaidLoaded) {
-      await new Promise(resolve =&gt; setTimeout(resolve, 500));
-    }
-    const chart = await loadFlow(type);
-    const container = document.getElementById(&apos;flowchart-container&apos;);
-    container.innerHTML = chart;    
-    mermaid.render(&apos;newFlow&apos;, chart, function(svgCode) {
-      container.innerHTML = svgCode;
-    });
-  }
-&lt;/script&gt;
-
-</description>
-        <pubDate>Wed, 01 Jan 2025 09:00:00 +0100</pubDate>
-        <link>https://tine.staric.net/blog/2025/trigger-sequence/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2025/trigger-sequence/</guid>
         
         
         <category>al</category>
