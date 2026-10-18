@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
+
+<title>"Dev X used 2k tokens with Opus" is not telemetry</title>
+<meta name="description"
+    content="“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.">
+
+<meta property="og:title" content=""Dev X used 2k tokens with Opus" is not telemetry" />
+<meta property="og:description"
+    content="“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything." />
+<meta property="og:url"
+    content="https://tine.staric.net/blog/2026/harness-telemetry/" />
+<meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:image"
+    content="https://tine.staric.net/images/harnesstelemetry/main.png" />
+<meta property="twitter:image"
+    content="https://tine.staric.net/images/harnesstelemetry/main.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
+  "url": "https://tine.staric.net/blog/2026/harness-telemetry/",
+  "description": "“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.",
+  "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
+  "inLanguage": "en",
+  "headline": ""Dev X used 2k tokens with Opus" is not telemetry",
+  "datePublished": "2026-10-18T10:00:00+02:00",
+  "dateModified": "2026-10-18T10:00:00+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Tine Starič",
+    "jobTitle": "Software Architect at Companial and a Microsoft MVP for Business Applications",
+    "url": "https://tine.staric.net",
+    "image": "https://tine.staric.net/images/author.jpg",
+    "description": "Homebrewer, not a hipster. A Business Central enthusiast, with a passion for all things weird with AL.",
+    "sameAs": [
+      "https://github.com/tinestaric",
+      "https://twitter.com/TineStaric",
+      "https://linkedin.com/in/tstaric"
+    ]
+  }
+}
+</script>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="https://tine.staric.net/blog/2026/harness-telemetry/">
+<link rel="alternate" type="application/rss+xml" title="Tech Adventures in Business Central | AL Development & AI Solutions"
+    href="https://tine.staric.net/feed.xml" />
+<link rel="alternate" href="https://tine.staric.net/blog/2026/harness-telemetry/" hreflang="en" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMNY6X1CB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMNY6X1CB8');
+</script>
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Tech Adventures in Business Central</a></small></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/presentations" title="Presentations">Presentations</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">"Dev X used 2k tokens with Opus" is not telemetry</h1>
+      <em class="post-meta">
+        <time>Oct 18, 2026</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      <p><em>“Dev X used 2k tokens with Opus.”</em> That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.</p>
+
+<p>What I actually wanted to know, after rolling <strong><em>Claude Code</em></strong> and <strong><em>GitHub Copilot</em></strong> out to a team with a shared set of plugins, skills and agents: which of those get used, and by how many people? How many people have a plugin installed but never touch it? What does a repository cost us? Is the thing we distributed used at all, or did we just make ourselves feel better?</p>
+
+<p><em>Claude Code</em>’s built-in analytics gets you part of the way. It tells you that 10 of your users used plugins, but not which plugin:</p>
+
+<p><img src="/images/harnesstelemetry/claude-analytics.png" alt="Claude's built-in analytics: tool usage, and feature adoption as a percentage of active users" /></p>
+
+<p>My first attempt at the rest was a hook that posts events to <em>Application Insights</em> myself. It worked. Then I realized I’d own it forever: the schema, the auth, every harness update that renames an event.</p>
+
+<p>Then I found out both tools already emit <em>OpenTelemetry</em>. A setup that works out of the box beats one I maintain, so I threw the hook away.</p>
+
+<p>This post has been a long time coming. I kept wrangling with what <em>Claude Code</em>, the <em>Copilot CLI</em> and <em>VS Code</em> each emit, and <em>VS Code</em> was painfully different from the other two. With the switch to the <a href="/blog/2026/copilot-harness-default/">new Copilot harness</a> that’s finally over: VS Code and the CLI emit the same signals, so one setup covers both.</p>
+
+<p>Below is what the setup looks like, what to collect and what to leave out, what you get to look at, and how to roll it out to every machine. The collector configs, managed settings, queries and dashboards for Claude Code, Copilot and both together are in a <strong><a href="https://github.com/tinestaric/harness-telemetry">sample repo</a></strong>.</p>
+
+<hr />
+
+<h3 id="otel-in-two-minutes">OTEL in two minutes</h3>
+
+<p><em>OpenTelemetry</em> has three signal types: <strong>metrics</strong> (numbers over time), <strong>events</strong>, which it calls logs, and <strong>traces</strong> (one span per operation, nested). That’s all you need. <em>Claude Code</em> sends metrics and events. <em>Copilot</em> sends traces and metrics.</p>
+
+<p>You could point both straight at <em>Application Insights</em>, but it wants an <em>Entra</em> token per developer, not a header you can put in a settings file. So there’s a small collector in the middle:</p>
+
+<p><img src="/images/harnesstelemetry/pipeline.svg" alt="Claude Code and Copilot send OTLP with a bearer token to your collector, which filters, hashes and exports to Application Insights, read by a Workbook or Grafana" /></p>
+
+<p>The collector accepts a bearer ingest token, then filters, transforms and exports with the connection string. To be honest about that token: every client that receives the managed settings can see it. It only stops outsiders. I checked against the hosted collector: no token gets a 401, a wrong token gets a 401, the right one gets a 200.</p>
+
+<p>Hosting it is small. One <em>Container App</em>, one container, one YAML file mounted from a secret, pinned to one replica. The ingest token, the salt and the connection string are secrets. One gotcha: changing only a secret doesn’t create a new revision, so restart it. The sample repo has the details, I won’t write a walkthrough here.</p>
+
+<p>Here’s a trimmed version of the config, with one receiver, one filter, one transform and one exporter:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">receivers</span><span class="pi">:</span>
+  <span class="na">otlp</span><span class="pi">:</span>
+    <span class="na">protocols</span><span class="pi">:</span>
+      <span class="na">http</span><span class="pi">:</span>
+        <span class="na">endpoint</span><span class="pi">:</span> <span class="s">0.0.0.0:4318</span>
+        <span class="na">auth</span><span class="pi">:</span>
+          <span class="na">authenticator</span><span class="pi">:</span> <span class="s">bearertokenauth/ingest</span>
+
+<span class="na">processors</span><span class="pi">:</span>
+  <span class="na">filter/allowlist</span><span class="pi">:</span>
+    <span class="na">logs</span><span class="pi">:</span>
+      <span class="na">log_record</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="pi">&gt;-</span>
+          <span class="s">not (attributes["event.name"] == "skill_activated"</span>
+          <span class="s">or attributes["event.name"] == "plugin_loaded"</span>
+          <span class="s">or attributes["event.name"] == "subagent_completed")</span>
+
+  <span class="na">transform/pseudonymize</span><span class="pi">:</span>
+    <span class="na">log_statements</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">context</span><span class="pi">:</span> <span class="s">log</span>
+        <span class="na">statements</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">set(log.attributes["user.pseudo_id"], Substring(SHA256(Concat(["${env:PSEUDONYM_SALT}", log.attributes["user.email"]], ":")), 0, 16)) where log.attributes["user.email"] != nil</span>
+          <span class="pi">-</span> <span class="s">delete_key(log.attributes, "user.email")</span>
+
+<span class="na">exporters</span><span class="pi">:</span>
+  <span class="na">azure_monitor</span><span class="pi">:</span>
+    <span class="na">connection_string</span><span class="pi">:</span> <span class="s">${env:APPLICATIONINSIGHTS_CONNECTION_STRING}</span>
+</code></pre></div></div>
+
+<p>Why <em>Application Insights</em>? It was already there, it speaks KQL, and workspace access control comes with it.</p>
+
+<hr />
+
+<h3 id="start-from-the-questions-not-the-signals">Start from the questions, not the signals</h3>
+
+<p>The harnesses emit a long list of things: <code class="language-plaintext highlighter-rouge">skill_activated</code>, <code class="language-plaintext highlighter-rouge">subagent_completed</code>, <code class="language-plaintext highlighter-rouge">plugin_loaded</code>, <code class="language-plaintext highlighter-rouge">mcp_server_connection</code>, <code class="language-plaintext highlighter-rouge">tool_result</code>, <code class="language-plaintext highlighter-rouge">cost</code>. You could spend a week deciding which ones matter. The list doesn’t matter, the questions do. Mine:</p>
+
+<ul>
+  <li><strong>What adds value and what doesn’t?</strong> Which skills, agents and plugins are used, and by how many people. Which are loaded but never used.</li>
+  <li><strong>Where should we put effort?</strong> How many people have a plugin but don’t use it. A plugin everyone loads and nobody touches needs a better description or a demo.</li>
+  <li><strong>What does it cost?</strong> Per repository, per model, and which sessions ran away.</li>
+  <li><strong>Is the rollout healthy?</strong> MCP servers failing to connect, client version drift.</li>
+</ul>
+
+<p>The “8 of 10 people use the plugin” question is one KQL query: for each plugin, how many users and sessions loaded it, and how many skill uses came out of it.</p>
+
+<pre><code class="language-kusto">let loaded = traces
+| where timestamp &gt; ago(30d) and message == "claude_code.plugin_loaded"
+| summarize loaded_users = dcount(tostring(customDimensions["user.pseudo_id"])),
+            loaded_sessions = dcount(tostring(customDimensions["session.id"]))
+  by plugin = tostring(customDimensions["plugin.name"]);
+let used = traces
+| where timestamp &gt; ago(30d) and message == "claude_code.skill_activated"
+    and tostring(customDimensions["skill.source"]) == "plugin"
+| summarize skill_uses = count()
+  by plugin = tostring(customDimensions["plugin.name"]);
+loaded
+| join kind=leftouter used on plugin
+| project plugin, loaded_users, loaded_sessions, skill_uses = coalesce(skill_uses, 0)
+</code></pre>
+
+<p>A plugin at the top with lots of sessions and zero skill uses is one people have but don’t use.</p>
+
+<p>One caveat on cost: <em>Claude Code</em>’s cost figure is a client-side estimate in dollars, not a bill. <em>Copilot</em> reports AI credits on its spans instead, and on the CLI runs I compared they matched what the CLI printed. I haven’t compared either against actual billing.</p>
+
+<hr />
+
+<h3 id="collect-the-minimum-and-delete-the-rest-before-its-stored">Collect the minimum, and delete the rest before it’s stored</h3>
+
+<p>The harnesses can emit a lot more than counts: prompts, responses, tool inputs, the user’s email. <em>Claude Code</em> will let you track a user down to every single prompt they type. Try doing that in the EU and GDPR will likely strangle you. And I didn’t want it anyway. I wanted counts and names.</p>
+
+<p>One thing to know about the <em>Claude Code</em> side: to see plugin, skill and agent names you have to turn on <code class="language-plaintext highlighter-rouge">OTEL_LOG_TOOL_DETAILS</code>, and that also sends tool inputs: MCP queries, bash commands. Without it, every non-official plugin, skill and agent collapses to <code class="language-plaintext highlighter-rouge">third-party</code> or <code class="language-plaintext highlighter-rouge">custom</code>, which makes the dashboard pointless. So the collector has to be yours, over HTTPS, and it has to delete the content before anything is stored. I tested it by putting marker strings in an MCP query and a bash command. They showed up nowhere in the output.</p>
+
+<p>Two rules:</p>
+
+<p><strong>Allowlist.</strong> The collector keeps only the events and metrics the questions need. Prompts and responses are off at the client. Lines of code, commits, PRs, tool approvals and API errors are dropped. Lines of code and the like are pointless KPIs, and I don’t want anyone mistaking the dashboard for a productivity score.</p>
+
+<p><strong>Hash the identity you can read, restrict the identity you can’t.</strong> <em>Claude Code</em> sends the email, so the collector replaces it with a salted hash. The salt lives only on the collector, never in managed settings. <em>Copilot</em>’s <code class="language-plaintext highlighter-rouge">enduser.pseudo.id</code> is already opaque, so I pass it through and let workspace access protect it. Same person, same id, so the counts still work without names.</p>
+
+<p>Pseudonymous is still personal data. Restrict access to the workspace, and say out loud what it’s for. I’d rather someone read my browser history than my prompt history.</p>
+
+<hr />
+
+<h3 id="what-you-actually-look-at">What you actually look at</h3>
+
+<p>You have options. <em>Azure Workbooks</em> need nothing extra to host. <em>Azure Managed Grafana</em> is the tool you can take elsewhere. <em>Power BI</em> suits scheduled management reports. I tried Grafana first, and it looks nice:</p>
+
+<p><img src="/images/harnesstelemetry/dashboard-claude-code-top.jpg" alt="Grafana: 15 active users, plugins loaded vs used, skill usage, agents and MCP server connections" /></p>
+
+<p>Then I went with <em>Workbooks</em>. They run the same KQL, use the same Azure access control, and there’s no extra service to run. The sample repo has both versions.</p>
+
+<p><img src="/images/harnesstelemetry/workbook-plugins.png" alt="The Azure Workbook version of the plugins panel" /></p>
+
+<p>Community dashboards exist for both tools, but they expose far too much. Once there are that many data points you stop looking at any of them, which is why I wrote my own queries. The first version of mine had 53 panels and had the same problem. The core dashboard now has nine: active users, plugins loaded vs used, skills, subagents, MCP connections, MCP tool usage, tool usage by name, cost by repository, and a check that no content got stored, which must read 0.</p>
+
+<p><strong>Department comes from the repository.</strong> The email is hashed, so I map repository to department with a small lookup table.</p>
+
+<p><img src="/images/harnesstelemetry/dashboard-cost-by-repo.jpg" alt="Cost by repository with the department mapped in" /></p>
+
+<p>(The repositories and departments in these screenshots are example data.)</p>
+
+<p>One thing the dashboard can’t tell you: which skills are <em>never</em> used. Telemetry only reports what happened. To see the gaps you need a catalog of what each plugin ships, to compare against.</p>
+
+<hr />
+
+<h3 id="getting-it-onto-every-machine">Getting it onto every machine</h3>
+
+<p>Managed settings are the way, for a simple reason: they win over local settings, so developers can’t switch telemetry off, and you don’t need device management.</p>
+
+<p>For <em>Claude Code</em> that’s the <strong>Managed settings</strong> entry in the admin console, where I set it up.</p>
+
+<p><img src="/images/harnesstelemetry/admin-console-managed-settings.png" alt="The Claude Code section of the admin console, with the Managed settings entry at the top" /></p>
+
+<p>It’s mostly an <code class="language-plaintext highlighter-rouge">env</code> block, token redacted here, plus the known marketplace (more on that below):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"extraKnownMarketplaces"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sample-marketplace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/tinestaric/plugin-marketplace-sample.git"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"autoUpdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"CLAUDE_CODE_ENABLE_TELEMETRY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_METRICS_EXPORTER"</span><span class="p">:</span><span class="w"> </span><span class="s2">"otlp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOGS_EXPORTER"</span><span class="p">:</span><span class="w"> </span><span class="s2">"otlp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_EXPORTER_OTLP_PROTOCOL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http/protobuf"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_EXPORTER_OTLP_ENDPOINT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;your-collector&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_EXPORTER_OTLP_HEADERS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Authorization=Bearer &lt;ingest-token&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delta"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_METRICS_INCLUDE_REPOSITORY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOG_USER_PROMPTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOG_ASSISTANT_RESPONSES"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOG_TOOL_DETAILS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOG_TOOL_CONTENT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OTEL_LOG_RAW_API_BODIES"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The only other managed setting I’d use is the known marketplace (<code class="language-plaintext highlighter-rouge">extraKnownMarketplaces</code>), so the shared plugin set is there without anyone adding it by hand. In the sample it points at the repo from <a href="/blog/2026/agent-plugins/">the plugins post</a>, swap in your own. Permissions, MCP and plugin allow/deny lists, forced hooks, minimum version: all available, and I’d skip them for this.</p>
+
+<p><em>Copilot</em> has the same idea under a different name: <strong>enterprise managed settings</strong>, with a <code class="language-plaintext highlighter-rouge">telemetry</code> block that covers VS Code and the agent host behind the CLI. A managed value beats environment variables and user settings. I’ve only set up the <em>Claude Code</em> side so far, so everything below is from GitHub’s docs.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"extraKnownMarketplaces"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sample-marketplace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"repo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tinestaric/plugin-marketplace-sample"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"autoUpdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"telemetry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;your-collector&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http/protobuf"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"captureContent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lockCaptureContent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github-copilot"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The known marketplace works here too, with the same key. It also accepts a <code class="language-plaintext highlighter-rouge">github</code> source (<code class="language-plaintext highlighter-rouge">OWNER/REPO</code>), which is shorter than the git URL.</p>
+
+<p>To set it up, you pick an organization in your enterprise to host the config (in the <strong>AI Controls</strong> tab of the enterprise settings, or through the API), create the file <code class="language-plaintext highlighter-rouge">copilot/managed-settings.json</code> in that organization’s <code class="language-plaintext highlighter-rouge">.github-private</code> repository, and commit it to the default branch. The Agents page under AI controls shows whether it’s active. Clients fetch it when the user signs in and refresh it hourly. The same settings can also be pushed through MDM. We didn’t take that route, because it means a fight with the IT department.</p>
+
+<p>There are two caveats:</p>
+
+<ul>
+  <li><strong>It follows the account.</strong> The server-managed route applies to users with a <em>Copilot Business</em> or <em>Copilot Enterprise</em> seat issued from your enterprise or one of its organizations. A developer signed in with a personal account, or a seat from somewhere else, doesn’t get your settings. I couldn’t find what happens then in the docs, so test that case before you trust the numbers.</li>
+  <li><strong>You need somewhere to host the file.</strong> If you only use GitHub to hand out <em>Copilot Business</em> seats and have no organizations, you need one user with a GitHub Enterprise license to create an organization and the <code class="language-plaintext highlighter-rouge">.github-private</code> repo. The MDM route needs none of that.</li>
+</ul>
+
+<p>One more thing if you set telemetry locally in VS Code instead: the agent harness reads <code class="language-plaintext highlighter-rouge">chat.agentHost.otel.*</code>, and <code class="language-plaintext highlighter-rouge">enabled</code> defaults to <strong>false</strong>. Reload the window after changing it.</p>
+
+<hr />
+
+<h3 id="where-this-leaves-things">Where this leaves things</h3>
+
+<p>A small allowlist, content deleted and identity hashed in a collector you control, managed settings to ship the config, one minimal dashboard, and a re-check after every harness update.</p>
+
+<p>Don’t start with every signal. Write down five questions you’d actually act on, and collect only what answers them. The <strong><a href="https://github.com/tinestaric/harness-telemetry">sample repo</a></strong> has the collector, settings, queries and dashboards to start from.</p>
+
+
+    </div>
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/tinestaric" target="_blank" rel="me"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/TineStaric" target="_blank" rel="me"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/tstaric" target="_blank" rel="me"><i class="icon icon-linkedin"></i></a></li>
+  <li><a href="https://bsky.app/profile/tinestaric.bsky.social" target="_blank" rel="me"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" fill="currentColor" class="icon" viewBox="0 0 16 16"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2026 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>

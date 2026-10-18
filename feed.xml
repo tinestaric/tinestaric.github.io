@@ -5,9 +5,242 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Oct 2026 18:36:39 +0200</pubDate>
-    <lastBuildDate>Fri, 16 Oct 2026 18:36:39 +0200</lastBuildDate>
+    <pubDate>Sun, 18 Oct 2026 11:06:34 +0200</pubDate>
+    <lastBuildDate>Sun, 18 Oct 2026 11:06:34 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>&quot;Dev X used 2k tokens with Opus&quot; is not telemetry</title>
+        <description>&lt;p&gt;&lt;em&gt;“Dev X used 2k tokens with Opus.”&lt;/em&gt; That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.&lt;/p&gt;
+
+&lt;p&gt;What I actually wanted to know, after rolling &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;GitHub Copilot&lt;/em&gt;&lt;/strong&gt; out to a team with a shared set of plugins, skills and agents: which of those get used, and by how many people? How many people have a plugin installed but never touch it? What does a repository cost us? Is the thing we distributed used at all, or did we just make ourselves feel better?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Claude Code&lt;/em&gt;’s built-in analytics gets you part of the way. It tells you that 10 of your users used plugins, but not which plugin:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/claude-analytics.png&quot; alt=&quot;Claude&apos;s built-in analytics: tool usage, and feature adoption as a percentage of active users&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My first attempt at the rest was a hook that posts events to &lt;em&gt;Application Insights&lt;/em&gt; myself. It worked. Then I realized I’d own it forever: the schema, the auth, every harness update that renames an event.&lt;/p&gt;
+
+&lt;p&gt;Then I found out both tools already emit &lt;em&gt;OpenTelemetry&lt;/em&gt;. A setup that works out of the box beats one I maintain, so I threw the hook away.&lt;/p&gt;
+
+&lt;p&gt;This post has been a long time coming. I kept wrangling with what &lt;em&gt;Claude Code&lt;/em&gt;, the &lt;em&gt;Copilot CLI&lt;/em&gt; and &lt;em&gt;VS Code&lt;/em&gt; each emit, and &lt;em&gt;VS Code&lt;/em&gt; was painfully different from the other two. With the switch to the &lt;a href=&quot;/blog/2026/copilot-harness-default/&quot;&gt;new Copilot harness&lt;/a&gt; that’s finally over: VS Code and the CLI emit the same signals, so one setup covers both.&lt;/p&gt;
+
+&lt;p&gt;Below is what the setup looks like, what to collect and what to leave out, what you get to look at, and how to roll it out to every machine. The collector configs, managed settings, queries and dashboards for Claude Code, Copilot and both together are in a &lt;strong&gt;&lt;a href=&quot;https://github.com/tinestaric/harness-telemetry&quot;&gt;sample repo&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;otel-in-two-minutes&quot;&gt;OTEL in two minutes&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;OpenTelemetry&lt;/em&gt; has three signal types: &lt;strong&gt;metrics&lt;/strong&gt; (numbers over time), &lt;strong&gt;events&lt;/strong&gt;, which it calls logs, and &lt;strong&gt;traces&lt;/strong&gt; (one span per operation, nested). That’s all you need. &lt;em&gt;Claude Code&lt;/em&gt; sends metrics and events. &lt;em&gt;Copilot&lt;/em&gt; sends traces and metrics.&lt;/p&gt;
+
+&lt;p&gt;You could point both straight at &lt;em&gt;Application Insights&lt;/em&gt;, but it wants an &lt;em&gt;Entra&lt;/em&gt; token per developer, not a header you can put in a settings file. So there’s a small collector in the middle:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/pipeline.svg&quot; alt=&quot;Claude Code and Copilot send OTLP with a bearer token to your collector, which filters, hashes and exports to Application Insights, read by a Workbook or Grafana&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The collector accepts a bearer ingest token, then filters, transforms and exports with the connection string. To be honest about that token: every client that receives the managed settings can see it. It only stops outsiders. I checked against the hosted collector: no token gets a 401, a wrong token gets a 401, the right one gets a 200.&lt;/p&gt;
+
+&lt;p&gt;Hosting it is small. One &lt;em&gt;Container App&lt;/em&gt;, one container, one YAML file mounted from a secret, pinned to one replica. The ingest token, the salt and the connection string are secrets. One gotcha: changing only a secret doesn’t create a new revision, so restart it. The sample repo has the details, I won’t write a walkthrough here.&lt;/p&gt;
+
+&lt;p&gt;Here’s a trimmed version of the config, with one receiver, one filter, one transform and one exporter:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;receivers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;otlp&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;protocols&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.0.0:4318&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;authenticator&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bearertokenauth/ingest&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;processors&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;filter/allowlist&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;logs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;log_record&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;&amp;gt;-&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;not (attributes[&quot;event.name&quot;] == &quot;skill_activated&quot;&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;or attributes[&quot;event.name&quot;] == &quot;plugin_loaded&quot;&lt;/span&gt;
+          &lt;span class=&quot;s&quot;&gt;or attributes[&quot;event.name&quot;] == &quot;subagent_completed&quot;)&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;transform/pseudonymize&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;log_statements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;log&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;set(log.attributes[&quot;user.pseudo_id&quot;], Substring(SHA256(Concat([&quot;${env:PSEUDONYM_SALT}&quot;, log.attributes[&quot;user.email&quot;]], &quot;:&quot;)), 0, 16)) where log.attributes[&quot;user.email&quot;] != nil&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;delete_key(log.attributes, &quot;user.email&quot;)&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;exporters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;azure_monitor&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;connection_string&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${env:APPLICATIONINSIGHTS_CONNECTION_STRING}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Why &lt;em&gt;Application Insights&lt;/em&gt;? It was already there, it speaks KQL, and workspace access control comes with it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;start-from-the-questions-not-the-signals&quot;&gt;Start from the questions, not the signals&lt;/h3&gt;
+
+&lt;p&gt;The harnesses emit a long list of things: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;skill_activated&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subagent_completed&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plugin_loaded&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mcp_server_connection&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tool_result&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cost&lt;/code&gt;. You could spend a week deciding which ones matter. The list doesn’t matter, the questions do. Mine:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;What adds value and what doesn’t?&lt;/strong&gt; Which skills, agents and plugins are used, and by how many people. Which are loaded but never used.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Where should we put effort?&lt;/strong&gt; How many people have a plugin but don’t use it. A plugin everyone loads and nobody touches needs a better description or a demo.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;What does it cost?&lt;/strong&gt; Per repository, per model, and which sessions ran away.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Is the rollout healthy?&lt;/strong&gt; MCP servers failing to connect, client version drift.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The “8 of 10 people use the plugin” question is one KQL query: for each plugin, how many users and sessions loaded it, and how many skill uses came out of it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-kusto&quot;&gt;let loaded = traces
+| where timestamp &amp;gt; ago(30d) and message == &quot;claude_code.plugin_loaded&quot;
+| summarize loaded_users = dcount(tostring(customDimensions[&quot;user.pseudo_id&quot;])),
+            loaded_sessions = dcount(tostring(customDimensions[&quot;session.id&quot;]))
+  by plugin = tostring(customDimensions[&quot;plugin.name&quot;]);
+let used = traces
+| where timestamp &amp;gt; ago(30d) and message == &quot;claude_code.skill_activated&quot;
+    and tostring(customDimensions[&quot;skill.source&quot;]) == &quot;plugin&quot;
+| summarize skill_uses = count()
+  by plugin = tostring(customDimensions[&quot;plugin.name&quot;]);
+loaded
+| join kind=leftouter used on plugin
+| project plugin, loaded_users, loaded_sessions, skill_uses = coalesce(skill_uses, 0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A plugin at the top with lots of sessions and zero skill uses is one people have but don’t use.&lt;/p&gt;
+
+&lt;p&gt;One caveat on cost: &lt;em&gt;Claude Code&lt;/em&gt;’s cost figure is a client-side estimate in dollars, not a bill. &lt;em&gt;Copilot&lt;/em&gt; reports AI credits on its spans instead, and on the CLI runs I compared they matched what the CLI printed. I haven’t compared either against actual billing.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;collect-the-minimum-and-delete-the-rest-before-its-stored&quot;&gt;Collect the minimum, and delete the rest before it’s stored&lt;/h3&gt;
+
+&lt;p&gt;The harnesses can emit a lot more than counts: prompts, responses, tool inputs, the user’s email. &lt;em&gt;Claude Code&lt;/em&gt; will let you track a user down to every single prompt they type. Try doing that in the EU and GDPR will likely strangle you. And I didn’t want it anyway. I wanted counts and names.&lt;/p&gt;
+
+&lt;p&gt;One thing to know about the &lt;em&gt;Claude Code&lt;/em&gt; side: to see plugin, skill and agent names you have to turn on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OTEL_LOG_TOOL_DETAILS&lt;/code&gt;, and that also sends tool inputs: MCP queries, bash commands. Without it, every non-official plugin, skill and agent collapses to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;third-party&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;custom&lt;/code&gt;, which makes the dashboard pointless. So the collector has to be yours, over HTTPS, and it has to delete the content before anything is stored. I tested it by putting marker strings in an MCP query and a bash command. They showed up nowhere in the output.&lt;/p&gt;
+
+&lt;p&gt;Two rules:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Allowlist.&lt;/strong&gt; The collector keeps only the events and metrics the questions need. Prompts and responses are off at the client. Lines of code, commits, PRs, tool approvals and API errors are dropped. Lines of code and the like are pointless KPIs, and I don’t want anyone mistaking the dashboard for a productivity score.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hash the identity you can read, restrict the identity you can’t.&lt;/strong&gt; &lt;em&gt;Claude Code&lt;/em&gt; sends the email, so the collector replaces it with a salted hash. The salt lives only on the collector, never in managed settings. &lt;em&gt;Copilot&lt;/em&gt;’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enduser.pseudo.id&lt;/code&gt; is already opaque, so I pass it through and let workspace access protect it. Same person, same id, so the counts still work without names.&lt;/p&gt;
+
+&lt;p&gt;Pseudonymous is still personal data. Restrict access to the workspace, and say out loud what it’s for. I’d rather someone read my browser history than my prompt history.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-you-actually-look-at&quot;&gt;What you actually look at&lt;/h3&gt;
+
+&lt;p&gt;You have options. &lt;em&gt;Azure Workbooks&lt;/em&gt; need nothing extra to host. &lt;em&gt;Azure Managed Grafana&lt;/em&gt; is the tool you can take elsewhere. &lt;em&gt;Power BI&lt;/em&gt; suits scheduled management reports. I tried Grafana first, and it looks nice:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/dashboard-claude-code-top.jpg&quot; alt=&quot;Grafana: 15 active users, plugins loaded vs used, skill usage, agents and MCP server connections&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I went with &lt;em&gt;Workbooks&lt;/em&gt;. They run the same KQL, use the same Azure access control, and there’s no extra service to run. The sample repo has both versions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/workbook-plugins.png&quot; alt=&quot;The Azure Workbook version of the plugins panel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Community dashboards exist for both tools, but they expose far too much. Once there are that many data points you stop looking at any of them, which is why I wrote my own queries. The first version of mine had 53 panels and had the same problem. The core dashboard now has nine: active users, plugins loaded vs used, skills, subagents, MCP connections, MCP tool usage, tool usage by name, cost by repository, and a check that no content got stored, which must read 0.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Department comes from the repository.&lt;/strong&gt; The email is hashed, so I map repository to department with a small lookup table.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/dashboard-cost-by-repo.jpg&quot; alt=&quot;Cost by repository with the department mapped in&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(The repositories and departments in these screenshots are example data.)&lt;/p&gt;
+
+&lt;p&gt;One thing the dashboard can’t tell you: which skills are &lt;em&gt;never&lt;/em&gt; used. Telemetry only reports what happened. To see the gaps you need a catalog of what each plugin ships, to compare against.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;getting-it-onto-every-machine&quot;&gt;Getting it onto every machine&lt;/h3&gt;
+
+&lt;p&gt;Managed settings are the way, for a simple reason: they win over local settings, so developers can’t switch telemetry off, and you don’t need device management.&lt;/p&gt;
+
+&lt;p&gt;For &lt;em&gt;Claude Code&lt;/em&gt; that’s the &lt;strong&gt;Managed settings&lt;/strong&gt; entry in the admin console, where I set it up.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/harnesstelemetry/admin-console-managed-settings.png&quot; alt=&quot;The Claude Code section of the admin console, with the Managed settings entry at the top&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s mostly an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;env&lt;/code&gt; block, token redacted here, plus the known marketplace (more on that below):&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;extraKnownMarketplaces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;sample-marketplace&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/tinestaric/plugin-marketplace-sample.git&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;autoUpdate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;env&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;CLAUDE_CODE_ENABLE_TELEMETRY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_METRICS_EXPORTER&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;otlp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOGS_EXPORTER&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;otlp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_EXPORTER_OTLP_PROTOCOL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http/protobuf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_EXPORTER_OTLP_ENDPOINT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://&amp;lt;your-collector&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_EXPORTER_OTLP_HEADERS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Authorization=Bearer &amp;lt;ingest-token&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;delta&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_METRICS_INCLUDE_REPOSITORY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOG_USER_PROMPTS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOG_ASSISTANT_RESPONSES&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOG_TOOL_DETAILS&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOG_TOOL_CONTENT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;OTEL_LOG_RAW_API_BODIES&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The only other managed setting I’d use is the known marketplace (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extraKnownMarketplaces&lt;/code&gt;), so the shared plugin set is there without anyone adding it by hand. In the sample it points at the repo from &lt;a href=&quot;/blog/2026/agent-plugins/&quot;&gt;the plugins post&lt;/a&gt;, swap in your own. Permissions, MCP and plugin allow/deny lists, forced hooks, minimum version: all available, and I’d skip them for this.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Copilot&lt;/em&gt; has the same idea under a different name: &lt;strong&gt;enterprise managed settings&lt;/strong&gt;, with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;telemetry&lt;/code&gt; block that covers VS Code and the agent host behind the CLI. A managed value beats environment variables and user settings. I’ve only set up the &lt;em&gt;Claude Code&lt;/em&gt; side so far, so everything below is from GitHub’s docs.&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;extraKnownMarketplaces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;sample-marketplace&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;github&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;repo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tinestaric/plugin-marketplace-sample&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;autoUpdate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;telemetry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;enabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;endpoint&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://&amp;lt;your-collector&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;protocol&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http/protobuf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;captureContent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;lockCaptureContent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;serviceName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;github-copilot&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The known marketplace works here too, with the same key. It also accepts a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;github&lt;/code&gt; source (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OWNER/REPO&lt;/code&gt;), which is shorter than the git URL.&lt;/p&gt;
+
+&lt;p&gt;To set it up, you pick an organization in your enterprise to host the config (in the &lt;strong&gt;AI Controls&lt;/strong&gt; tab of the enterprise settings, or through the API), create the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copilot/managed-settings.json&lt;/code&gt; in that organization’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github-private&lt;/code&gt; repository, and commit it to the default branch. The Agents page under AI controls shows whether it’s active. Clients fetch it when the user signs in and refresh it hourly. The same settings can also be pushed through MDM. We didn’t take that route, because it means a fight with the IT department.&lt;/p&gt;
+
+&lt;p&gt;There are two caveats:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;It follows the account.&lt;/strong&gt; The server-managed route applies to users with a &lt;em&gt;Copilot Business&lt;/em&gt; or &lt;em&gt;Copilot Enterprise&lt;/em&gt; seat issued from your enterprise or one of its organizations. A developer signed in with a personal account, or a seat from somewhere else, doesn’t get your settings. I couldn’t find what happens then in the docs, so test that case before you trust the numbers.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;You need somewhere to host the file.&lt;/strong&gt; If you only use GitHub to hand out &lt;em&gt;Copilot Business&lt;/em&gt; seats and have no organizations, you need one user with a GitHub Enterprise license to create an organization and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.github-private&lt;/code&gt; repo. The MDM route needs none of that.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One more thing if you set telemetry locally in VS Code instead: the agent harness reads &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chat.agentHost.otel.*&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enabled&lt;/code&gt; defaults to &lt;strong&gt;false&lt;/strong&gt;. Reload the window after changing it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;where-this-leaves-things&quot;&gt;Where this leaves things&lt;/h3&gt;
+
+&lt;p&gt;A small allowlist, content deleted and identity hashed in a collector you control, managed settings to ship the config, one minimal dashboard, and a re-check after every harness update.&lt;/p&gt;
+
+&lt;p&gt;Don’t start with every signal. Write down five questions you’d actually act on, and collect only what answers them. The &lt;strong&gt;&lt;a href=&quot;https://github.com/tinestaric/harness-telemetry&quot;&gt;sample repo&lt;/a&gt;&lt;/strong&gt; has the collector, settings, queries and dashboards to start from.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 18 Oct 2026 10:00:00 +0200</pubDate>
+        <link>https://tine.staric.net/blog/2026/harness-telemetry/</link>
+        <guid isPermaLink="true">https://tine.staric.net/blog/2026/harness-telemetry/</guid>
+        
+        
+        <category>ai</category>
+        
+      </item>
     
       <item>
         <title>The Copilot harness is now VS Code&apos;s default</title>
@@ -1373,366 +1606,6 @@ document.addEventListener(&apos;DOMContentLoaded&apos;, async () =&gt; {
         <pubDate>Sun, 02 Feb 2025 09:00:00 +0100</pubDate>
         <link>https://tine.staric.net/blog/2025/areopa-visualized/</link>
         <guid isPermaLink="true">https://tine.staric.net/blog/2025/areopa-visualized/</guid>
-        
-        
-        <category>al</category>
-        
-      </item>
-    
-      <item>
-        <title>Copilot is just a fancy autocomplete...</title>
-        <description>&lt;p&gt;December was a very &lt;strong&gt;Copilot&lt;/strong&gt; month for me. After seeing some glimpses of new capabilities at &lt;em&gt;Directions&lt;/em&gt; and more later at &lt;em&gt;Ignite&lt;/em&gt;, I decided to spend some time trying out the &lt;em&gt;“new”&lt;/em&gt; features of &lt;em&gt;GitHub Copilot&lt;/em&gt; in &lt;em&gt;Visual Studio Code&lt;/em&gt;. They’re not really new; they’ve been around for a while. I just never used them, as I thought they were &lt;strong&gt;not useful for AL development.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Boy was I wrong…&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Copilot is no longer just a fancy autocomplete…&lt;/em&gt; &lt;strong&gt;&lt;em&gt;it has become much more!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I didn’t want to get my hopes up too much with &lt;em&gt;AL&lt;/em&gt;, so I started testing everything out with more &lt;em&gt;mature&lt;/em&gt; languages like &lt;em&gt;C#&lt;/em&gt; and &lt;em&gt;TypeScript&lt;/em&gt;, but the more I tried the new features with &lt;em&gt;AL&lt;/em&gt;, the more I was convinced that I needed to start sharing that &lt;strong&gt;autocomplete is no longer the only useful part of Copilot!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;They’ve now also introduced a &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/about-github-copilot-free&quot;&gt;free tier for GitHub Copilot&lt;/a&gt;.&lt;/em&gt;&lt;/strong&gt; This means everyone can now &lt;em&gt;“just try it”&lt;/em&gt;, without any commitments!&lt;/p&gt;
-
-&lt;p&gt;For everyone who’s going to try Copilot out, or has been using it for a while, I wanted to share a few &lt;strong&gt;very concrete examples&lt;/strong&gt; of how I’ve been using features like &lt;strong&gt;Inline Chat&lt;/strong&gt;, &lt;strong&gt;Copilot Edits&lt;/strong&gt;, and &lt;strong&gt;Copilot Chat for AL&lt;/strong&gt; (and a few for other languages), that will hopefully move you to explore more than just the &lt;em&gt;“tab, tab, tab”&lt;/em&gt; behavior of AI.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;auto-complete&quot;&gt;Auto-complete&lt;/h2&gt;
-
-&lt;p&gt;I really won’t spend much time here, this is the first use-case you’ve noticed, and it feels most natural. &lt;em&gt;Do you see a grey suggested code you like?&lt;/em&gt; A tab and it’s yours 😉&lt;/p&gt;
-
-&lt;p&gt;I use this all the time, from &lt;em&gt;procedure declaration&lt;/em&gt;, and &lt;em&gt;adding fields&lt;/em&gt;, to &lt;em&gt;commenting code&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-procedure.png&quot; alt=&quot;Auto-complete procedure declaration&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-field.png&quot; alt=&quot;Auto-complete field declaration&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you didn’t write quality ToolTips so far, then don’t expect quality ToolTips from Copilot&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/complete-comment.png&quot; alt=&quot;Auto-complete comment&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Yeah, yeah,&lt;/em&gt; it’s not a meaningful comment, but you get the idea.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;One very important note to keep in mind is &lt;strong&gt;how Copilot knows what to suggest&lt;/strong&gt;. It looks at your open files and takes &lt;strong&gt;up to 4 files as context&lt;/strong&gt;. If you’ve got more than 4 opened, it &lt;strong&gt;&lt;em&gt;tries&lt;/em&gt;&lt;/strong&gt; to do its best to take something, which is not always the most appropriate file. So, if you want to have &lt;strong&gt;better Copilot suggestions&lt;/strong&gt;, close the unrelated tabs and &lt;strong&gt;only keep the relevant ones open.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I was used to having &lt;em&gt;tens of files opened&lt;/em&gt;, so I needed to get used to &lt;em&gt;right-clicking&lt;/em&gt; the tabs a lot and closing anything that was no longer relevant.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/close-tab.png&quot; alt=&quot;Close tabs&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The autocomplete is something you’ll discover immediately, and even this feature alone saves enough time to fully justify the &lt;em&gt;20$&lt;/em&gt; price tag of the &lt;em&gt;Pro&lt;/em&gt; version.&lt;/p&gt;
-
-&lt;p&gt;The most interesting thing about autocomplete though? It’s &lt;strong&gt;&lt;a href=&quot;https://githubnext.com/projects/copilot-next-edit-suggestions/&quot;&gt;what’s coming to it next!&lt;/a&gt;&lt;/strong&gt; Awesome feature, can’t wait for it to be released.&lt;/p&gt;
-
-&lt;p&gt;Anyway, let’s move on.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;copilot-edits&quot;&gt;Copilot edits&lt;/h2&gt;
-
-&lt;p&gt;In my opinion, &lt;strong&gt;this is the game changer!&lt;/strong&gt; This is the feature that &lt;strong&gt;turns coding into a conversation.&lt;/strong&gt; A very brief description of it is a chatbot, that won’t only suggest you a code snippet that you should paste somewhere but goes in and &lt;em&gt;modifies&lt;/em&gt; your files.&lt;/p&gt;
-
-&lt;p&gt;I first used it with a &lt;em&gt;C#&lt;/em&gt; project, and &lt;strong&gt;I was blown away!&lt;/strong&gt; I was working on some old code I wrote a year ago, and I asked Copilot to apply &lt;em&gt;best practices&lt;/em&gt;. Within a few seconds my code was much more readable, had safe &lt;em&gt;typecasting&lt;/em&gt;, used &lt;em&gt;HashSets&lt;/em&gt; instead of &lt;em&gt;Lists&lt;/em&gt;, and was just generally better code than I would ever write on my own. Devs that work with C# daily would still run circles around me as I &lt;em&gt;“craft”&lt;/em&gt; my prompts, but &lt;strong&gt;I made much better progress than I could without it.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/csharp.png&quot; alt=&quot;Apply best practices to C# code&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Later I started playing with some &lt;em&gt;TypeScript&lt;/em&gt;. I have very little knowledge of TypeScript, and it would probably take me days to learn the basics of &lt;em&gt;React&lt;/em&gt; on top. But &lt;strong&gt;within a few hours&lt;/strong&gt;, I was able to make an Azure DevOps extension in TypeScript that allows me to visualize Page Scripting yaml files directly in DevOps. It was such a fun journey. More on that in a separate post one day! :P&lt;/p&gt;
-
-&lt;div style=&quot;display: flex; justify-content: space-between; gap: 10px;&quot;&gt;
-    &lt;img src=&quot;/images/copilotintro/pagescript-raw.png&quot; alt=&quot;Page Scripting YAML in raw view&quot; style=&quot;width: 48%;&quot; /&gt;
-    &lt;img src=&quot;/images/copilotintro/pagescript-pretty.png&quot; alt=&quot;Page Scripting YAML in pretty view&quot; style=&quot;width: 48%;&quot; /&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;em&gt;Okay, okay, Tine, &lt;strong&gt;everything works great with C# and TypeScript&lt;/strong&gt;, we’re here for AL, &lt;strong&gt;does it work with AL?&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;It does! And wonderfully so!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Of course, not to the extent that it works with &lt;em&gt;C#&lt;/em&gt;. You won’t get any meaningful best practices applied in &lt;em&gt;AL&lt;/em&gt;. We still have the same issue of &lt;strong&gt;&lt;em&gt;“There’s not enough AL data to train these models”&lt;/em&gt;&lt;/strong&gt;. But here are two very important parts that make &lt;strong&gt;Copilot Edits work so well for AL.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;First, you can &lt;strong&gt;&lt;em&gt;select a different LLM model&lt;/em&gt;&lt;/strong&gt; to power the code generation. &lt;em&gt;Autocomplete&lt;/em&gt; is powered by &lt;strong&gt;&lt;em&gt;GPT-4o&lt;/em&gt;&lt;/strong&gt;, which is &lt;em&gt;“meh”&lt;/em&gt; for &lt;em&gt;AL&lt;/em&gt;, but in &lt;em&gt;Copilot Edits&lt;/em&gt;, you can switch between models.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/models.png&quot; alt=&quot;Different models in Copilot Edits&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Claude 3.5 Sonnet is so much better when it comes to AL.&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;Why? I have no clue.&lt;/em&gt; But it just is. So, if you’re going to play with Edits (or Chat and Inline) for &lt;em&gt;AL&lt;/em&gt;, &lt;strong&gt;&lt;em&gt;switch to Claude immediately!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you don’t see Claude, you have to enable it in your &lt;a href=&quot;https://github.com/settings/copilot&quot;&gt;GitHub settings&lt;/a&gt; (or if you’re getting your license through an organization, the organization admin has to enable it for you).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;A better model is just part of the story though. The second part is &lt;strong&gt;&lt;em&gt;“limited scope”&lt;/em&gt;&lt;/strong&gt;. I mentioned in the auto-complete part that it will look at &lt;em&gt;up to 4 open files&lt;/em&gt; and try to give you a good suggestion. Well, with Edits &lt;strong&gt;&lt;em&gt;you are in complete control of the context&lt;/em&gt;&lt;/strong&gt; that the model receives.&lt;/p&gt;
-
-&lt;p&gt;You add files you’d like the model to consider to the working set. Either by &lt;em&gt;dragging and dropping&lt;/em&gt; them or by clicking &lt;em&gt;“add files”&lt;/em&gt;. Once you have files in the working set, those are the &lt;em&gt;only files that the model will focus on.&lt;/em&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;em&gt;Okay, enough theory,&lt;/em&gt; let me show you &lt;strong&gt;how I’ve used Edits for some AL workloads.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;A bit of a backstory.&lt;/p&gt;
-
-&lt;p&gt;We were recently working with &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://wair.ai/&quot;&gt;Wair&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, a partner that has a backend service for &lt;strong&gt;AI inventory predictions&lt;/strong&gt;. They wanted to make life easier for ISVs and VARs in the world of BC who would want to integrate a BC solution with their backend system.&lt;/p&gt;
-
-&lt;p&gt;Usually, each partner would have to develop logic that &lt;em&gt;authenticates&lt;/em&gt; against the backend, &lt;em&gt;builds&lt;/em&gt; the HTTP request, and then &lt;em&gt;sends&lt;/em&gt; the request in the correct format. To make life easier we built a library app that introduces a set of temporary tables that match the &lt;strong&gt;HTTP request payload&lt;/strong&gt;, and a set of codeunits that turn these tables into &lt;em&gt;JSON payloads&lt;/em&gt; and send the request to the correct &lt;em&gt;endpoint&lt;/em&gt;. That way, the BC partner needs to insert a record in the table and call a procedure with that table. &lt;strong&gt;That’s it.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;You can imagine that when the backend introduces a new endpoint, we want to add new tables and codeunits to support it.&lt;/p&gt;
-
-&lt;p&gt;So, I tried if I could add a table with &lt;em&gt;Edits&lt;/em&gt; that would follow all the conventions we have in other tables.&lt;/p&gt;
-
-&lt;p&gt;In this case, &lt;strong&gt;Brand is the new endpoint&lt;/strong&gt; I want to support. I create a new Brand.Table.al file (I’ve noticed &lt;em&gt;Copilot&lt;/em&gt; sometimes struggles with creating files, so I prefer to create them on my own and let Copilot fill them in), and pull it in the working set. I added one of the &lt;strong&gt;existing tables&lt;/strong&gt;, so Copilot knows how I want to have it &lt;strong&gt;structured&lt;/strong&gt;, and here comes the prompt:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Create a Brand table with brand ID, code, and description. It should follow the structure of the Category table.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Seconds later&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-table.png&quot; alt=&quot;Copilot Edits with Table&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Everything on the left side was just generated. &lt;strong&gt;Of course, it struggles with Object IDs.&lt;/strong&gt; No one likes object IDs. Not even Copilot! :D&lt;/p&gt;
-
-&lt;p&gt;But you can see that in seconds I have a table with the &lt;em&gt;namespace&lt;/em&gt;, &lt;em&gt;properties&lt;/em&gt; that we use, and even a &lt;em&gt;check for non-empty code&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;You could say &lt;strong&gt;&lt;em&gt;“Yeah, but that’s a simple example”&lt;/em&gt;&lt;/strong&gt;. Fair, but I’d argue the &lt;strong&gt;&lt;em&gt;easy and boring parts are the best ones to automate.&lt;/em&gt;&lt;/strong&gt; Yes, you could &lt;em&gt;copy-paste&lt;/em&gt; the other table and change a few things until it fits your new use case, but &lt;strong&gt;a)&lt;/strong&gt; you’re bound to miss something, &lt;strong&gt;b)&lt;/strong&gt; you’ll still be slower, and &lt;strong&gt;c)&lt;/strong&gt; wouldn’t you rather spend your time on something else?  Who wants to work on boring stuff anyway?&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I suggest you always &lt;strong&gt;&lt;em&gt;finish the Edits session&lt;/em&gt;&lt;/strong&gt; when you’re done with those files and open a new one. &lt;strong&gt;&lt;em&gt;LLM models operate on a limited context window&lt;/em&gt;&lt;/strong&gt;, and even though we hear about context windows in the millions of tokens, anything &lt;strong&gt;&lt;em&gt;above ~8k tokens&lt;/em&gt;&lt;/strong&gt; starts to give &lt;strong&gt;&lt;em&gt;diminishing results&lt;/em&gt;&lt;/strong&gt;, so it’s best to start a new session every time.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-close.png&quot; alt=&quot;Copilot Edits - Close session&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Anyway, let me continue with the example of what else I &lt;em&gt;“made in seconds”&lt;/em&gt;. We now have the table for our new endpoint. We need a codeunit that will &lt;em&gt;transform&lt;/em&gt; the content of this &lt;strong&gt;table into a JSON payload&lt;/strong&gt; and call the appropriate &lt;em&gt;endpoint&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;I’ll again create an empty file where I want my codeunit for handling the &lt;em&gt;Brand API&lt;/em&gt; to be created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/codeunit-empty.png&quot; alt=&quot;Empty Codeunit&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This time, I’m pulling in my &lt;em&gt;empty file&lt;/em&gt;, my &lt;em&gt;existing codeunit&lt;/em&gt;, and the &lt;em&gt;table we just created&lt;/em&gt;, so Copilot knows what properties are available for brands. The prompt is straightforward&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/codeunit-prompt.png&quot; alt=&quot;Copilot Edits prompt for Codeunit&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And a second later, boom, a &lt;strong&gt;codeunit that builds the payload and sends the request&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-codeunit.png&quot; alt=&quot;Copilot Edits with Codeunit&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The important part here is that &lt;strong&gt;&lt;em&gt;I passed a similar implementation as part of the context.&lt;/em&gt;&lt;/strong&gt; Out of curiosity, I tried a similar prompt &lt;strong&gt;without&lt;/strong&gt; including the Category API Handler. I was still &lt;strong&gt;pleasantly surprised&lt;/strong&gt; by the result:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-codeunit-raw.png&quot; alt=&quot;Copilot Edits with Raw Codeunit&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It doesn’t follow the structure I need for this project, but &lt;strong&gt;it knows how HTTP requests are built and sent in AL.&lt;/strong&gt; This would still be a cool start if I needed to build my first handler that I could later spread across other tables.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Okay, &lt;strong&gt;tables?&lt;/strong&gt; &lt;em&gt;Check.&lt;/em&gt; &lt;strong&gt;Codeunits?&lt;/strong&gt; &lt;em&gt;Check.&lt;/em&gt; &lt;strong&gt;Pages?&lt;/strong&gt; &lt;em&gt;Eh, trust me, it works, I don’t want to make more screenshots.&lt;/em&gt; &lt;strong&gt;What about tests?&lt;/strong&gt; &lt;em&gt;Same principle.&lt;/em&gt; Do you have similar tests? Then yes. Look:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-tests.png&quot; alt=&quot;Copilot Edits with Tests&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;These tests worked because &lt;strong&gt;the overall structure was very similar between the existing objects&lt;/strong&gt; and the new ones. But testing can really become a breeze. &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.linkedin.com/in/vjeko&quot;&gt;Vjeko&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; had an awesome session on it at &lt;strong&gt;Directions&lt;/strong&gt;, and hopefully, he’ll do an extended version at &lt;strong&gt;&lt;a href=&quot;https://www.bctechdays.com/event&quot;&gt;BC Tech Days&lt;/a&gt;&lt;/strong&gt;. He’s been preaching &lt;strong&gt;Interfaces as a way of truly testing your code in isolation&lt;/strong&gt; for a few years now, and with Copilot, most of those &lt;strong&gt;tests can now be generated.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;But here’s the catch.&lt;/em&gt;&lt;/strong&gt; You have to use &lt;strong&gt;interfaces&lt;/strong&gt; in your code. Your procedures have to have a &lt;strong&gt;single responsibility&lt;/strong&gt;. Your files have to be &lt;strong&gt;small&lt;/strong&gt;. To get the most out of &lt;em&gt;AI&lt;/em&gt;, your code should be &lt;strong&gt;SOLID&lt;/strong&gt;. But you should be following &lt;em&gt;SOLID&lt;/em&gt; principles for your own sake anyway, so take this as another nudge towards spending more time on writing &lt;em&gt;SOLID&lt;/em&gt; code if you haven’t started already.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I know not everything is a &lt;strong&gt;greenfield project&lt;/strong&gt; and you sometimes have to deal with big codeunits. Here are two prompts that I’ve used on legacy code with Edits&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Move global procedures to local&lt;/em&gt;&lt;br /&gt;
-It analyses all the global variables and moves them to procedures if they’re not used anywhere else.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Extract procedure X to codeunit Y&lt;/em&gt;&lt;br /&gt;
-Unlike a simple extraction, it will also add a codeunit variable in the local scope and replace the call with the codeunit’s procedure call.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Both will still start to &lt;strong&gt;take too long&lt;/strong&gt; if your files go &lt;strong&gt;beyond 500 LoC&lt;/strong&gt;, so please, for the sake of AI, keep your files small :P&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Even in perfect conditions, Copilot may sometimes take long or even get stuck. It happens, it’s best to &lt;strong&gt;accept it&lt;/strong&gt;, stop the execution, discard the changes, and try again:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/edits-stop.png&quot; alt=&quot;Copilot Edits Stop&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;em&gt;This section is getting long&lt;/em&gt;; we have to move on. But I really am excited about this feature, it brings so much joy to me when I get to &lt;em&gt;blitz through code&lt;/em&gt;. &lt;strong&gt;&lt;em&gt;Coding is the boring part, it’s the problem-solving that’s the fun part.&lt;/em&gt;&lt;/strong&gt; That’s also why I don’t believe &lt;strong&gt;AI is replacing devs&lt;/strong&gt;, it’s just helping with the boring parts…&lt;/p&gt;
-
-&lt;p&gt;Let’s take a look at more incremental edits next.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;inline-chat&quot;&gt;Inline Chat&lt;/h2&gt;
-
-&lt;p&gt;This one was available for a while, but I never really found a use case for it that I’d like. Well, now I have a couple, so let me give you some ideas.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;add-comments&quot;&gt;Add comments&lt;/h4&gt;
-
-&lt;p&gt;I’m right now working on a &lt;strong&gt;legacy project&lt;/strong&gt;. &lt;em&gt;Large files&lt;/em&gt;, not much new is created, it’s about &lt;em&gt;maintaining the existing code&lt;/em&gt;. In the days of &lt;em&gt;NAV&lt;/em&gt;, we didn’t have the &lt;em&gt;internal&lt;/em&gt; access modifier, so everything was either &lt;em&gt;public&lt;/em&gt; or &lt;em&gt;global&lt;/em&gt;. The &lt;strong&gt;problem with global&lt;/strong&gt; is that you can’t change a thing, as it’s a &lt;strong&gt;breaking change&lt;/strong&gt;, so on this project, we decided to make all procedures internal. If a procedure needs to be public, it should have &lt;strong&gt;XML documentation&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;So, you start with &lt;em&gt;three slashes&lt;/em&gt; to get the docs snippet&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-snippet.png&quot; alt=&quot;Inline Chat - Comments Snippet&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You accept it, but then you see this: 😮&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-docs-empty.png&quot; alt=&quot;Inline Chat - Empty XML Document&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Well, that’s going to be boring…&lt;/em&gt; The names are self-explanatory, but we agreed on what we agreed, and I have to fill in all the parameters. &lt;em&gt;If I try to autocomplete this, I’ll tab for a while…&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Ctrl + i to the rescue!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-docs-full.png&quot; alt=&quot;Inline Chat - Full XML Documentation&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You could also select the whole procedure and prompt with &lt;strong&gt;&lt;em&gt;“/doc”&lt;/em&gt;&lt;/strong&gt;, but I found this way to give me better results.&lt;/p&gt;
-
-&lt;p&gt;Am I super proud of this comment? No, but hey, &lt;strong&gt;legacy has better fires we can fight.&lt;/strong&gt; :D&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;subscribe-to-events&quot;&gt;Subscribe to events&lt;/h4&gt;
-
-&lt;p&gt;Subscribing to events is something &lt;strong&gt;very common&lt;/strong&gt; for an AL developer. Here’s how I’d go about &lt;strong&gt;&lt;em&gt;before Copilot.&lt;/em&gt;&lt;/strong&gt; Let’s say I’m extending &lt;em&gt;Sales-Post&lt;/em&gt;. I’d first find the event I like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/sales-post-event.png&quot; alt=&quot;Event in Sales - Post codeunit&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, in my subscriber codeunit, I’d use the &lt;strong&gt;&lt;em&gt;eventsub&lt;/em&gt;&lt;/strong&gt; snippet:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/event-subscriber-snippet.png&quot; alt=&quot;Event Subscriber snippet&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Start filling out all the parameters…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-1.png&quot; alt=&quot;Fill the codeunit in the subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Go back to the &lt;em&gt;Sales-Post&lt;/em&gt; codeunit and copy the event name…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-2.png&quot; alt=&quot;Fill the event name in the subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Remove element name, think for a second about skipping the event on missing permissions or license, but then just put &lt;strong&gt;false&lt;/strong&gt;, because hey, I always put false…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-3.png&quot; alt=&quot;Fill remaining parameters in the subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Go back to Sales-Post and copy the signature of the event publisher…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/snippet-4.png&quot; alt=&quot;Add Event signature to subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And now finally, I can &lt;em&gt;add my logic&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;I mean, it’s &lt;strong&gt;not the slowest process&lt;/strong&gt; in the world, but here’s my &lt;strong&gt;new alternative.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I still find the event publisher, but I immediately copy the event signature, go to my codeunit, press &lt;strong&gt;Ctrl + i&lt;/strong&gt; and ask for a subscriber&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-subscribe.png&quot; alt=&quot;Prompt Copilot for a subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Seconds later…&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/copilot-subscribe-generated.png&quot; alt=&quot;Copilot generated subscriber&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is now my preferred way!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;add-fields&quot;&gt;Add fields&lt;/h4&gt;
-
-&lt;p&gt;I mentioned earlier that Edits start to &lt;strong&gt;break down on large files.&lt;/strong&gt; I try to keep them &lt;strong&gt;sub-300 LoC.&lt;/strong&gt; But that’s not always an option, so Inline Chat helps in those cases. I use it for adding multiple fields:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/inline-fields.png&quot; alt=&quot;Inline Chat - Add Fields&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Perfect? No. Faster? Yup.&lt;/em&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;A few more prompts that I occasionally use&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Forward slash&lt;/em&gt;&lt;br /&gt;
-a very lazy way to switch all the pasted paths from backslashes to forward slashes as I’d otherwise have to escape them in JSON files 😅&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Add label for regex that matches 123-1414-2124-223&lt;/em&gt;&lt;br /&gt;
-Quickly get regex patterns that match the validations I’m looking for&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;chat&quot;&gt;Chat&lt;/h2&gt;
-
-&lt;p&gt;This one I admit I don’t use as much for AL, but it’s quite useful for other languages. You can probably tell that &lt;strong&gt;I love Copilot Edits.&lt;/strong&gt; But Edits want to implement something &lt;strong&gt;too quickly.&lt;/strong&gt; Like that junior developer that wants to code before I’m &lt;em&gt;halfway through my sentence…&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s when I turn to chat as a starting point. I discuss what I want to do, and &lt;strong&gt;when I’m happy with the suggested code, I pass that suggestion to Edits&lt;/strong&gt; so it gets added.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/chat-edits.png&quot; alt=&quot;Pass Chat Context to Edits&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Edits will take the conversation as context and will apply the changes in the necessary files. Chat is a nice &lt;em&gt;“safeguard”&lt;/em&gt; when I’m not completely sure how I want to solve the problem.&lt;/p&gt;
-
-&lt;p&gt;It’s also useful when the file is &lt;strong&gt;too big for Edits&lt;/strong&gt; (&amp;gt; 500 Loc), as I can always copy-paste the suggested snippet into the correct place.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;a-few-final-nuggets&quot;&gt;A few final nuggets&lt;/h2&gt;
-
-&lt;p&gt;Here are a few more tiny notes that can help you make the most out of &lt;strong&gt;GitHub Copilot:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;commit-message&quot;&gt;Commit message&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/commit-message.png&quot; alt=&quot;Suggest commit message&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Generate commit messages for staged changes.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;rename&quot;&gt;Rename&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/copilotintro/rename.png&quot; alt=&quot;Suggest names&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Renaming suggestions for just about everything that can be renamed&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;different-models&quot;&gt;Different models&lt;/h4&gt;
-
-&lt;p&gt;If you’re only working with AL, &lt;strong&gt;stick to Claude.&lt;/strong&gt; If you’re working with other languages, here’s how I see and choose models&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Claude:&lt;/em&gt;&lt;/strong&gt; Great for generating new code, but gets “drunk” quickly if there’s too much context and starts suggesting weird things&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;o1:&lt;/em&gt;&lt;/strong&gt; Great for reviewing existing code. It takes longer and there’s a rate limit after which you have to wait for some time before using o1 again&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;GPT 4o:&lt;/em&gt;&lt;/strong&gt; fastest responses but seems to shoot from the hip a lot. Less accurate results with complex requests.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;o1-mini:&lt;/em&gt;&lt;/strong&gt; Somewhere between o1 and GPT 4o, It’s faster than o1, and better at reviewing code than GPT 4o. I usually use it when I hit the rate limit of o1.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Gemini 1.5:&lt;/em&gt;&lt;/strong&gt; No idea yet, I’m still waiting for it to be released&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;free-vs-pro-tier&quot;&gt;Free vs Pro Tier&lt;/h4&gt;
-
-&lt;p&gt;The &lt;em&gt;free tier&lt;/em&gt; right now gives you&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Access to &lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt; models&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;2000&lt;/em&gt; Code completions per month&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;50&lt;/em&gt; chats per month (edits and chat count towards the same limit)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In my opinion, that’s enough for you to test these features out if they work for you. But as I mentioned at the beginning, even the &lt;strong&gt;autocomplete brings enough value to AL developers&lt;/strong&gt; that it’s worth the 20$ for a Pro license.&lt;/p&gt;
-
-&lt;p&gt;Pro has &lt;em&gt;unlimited completions&lt;/em&gt; and chats (except the o1 rate limit)&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;quick-recap&quot;&gt;Quick Recap&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Copilot Edits&lt;/em&gt;&lt;/strong&gt; – Best for large-scale code changes, refactoring, and generating new files.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Inline Chat&lt;/em&gt;&lt;/strong&gt; – Great for small additions, comments, and repetitive edits.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Copilot Chat&lt;/em&gt;&lt;/strong&gt; – A fallback when edits feel too aggressive or when brainstorming solutions.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Autocomplete&lt;/em&gt;&lt;/strong&gt; – The most familiar feature – saves time with quick code suggestions (worth the Pro tier alone).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Model Tip&lt;/em&gt;&lt;/strong&gt; – Use Claude 3.5 Sonnet for AL work; it handles AL better than GPT-4o.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;em&gt;Scope Control&lt;/em&gt;&lt;/strong&gt; – Keep files small and focus Copilot on relevant files for better suggestions.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;final-remarks&quot;&gt;Final remarks&lt;/h2&gt;
-
-&lt;p&gt;This was a very long post. But that’s because there’s so much to say about this &lt;strong&gt;awesome tool&lt;/strong&gt; that we have. I honestly believe it’s the &lt;strong&gt;next big thing.&lt;/strong&gt; Then again, I’ve been an enthusiast for a while :P&lt;/p&gt;
-
-&lt;p&gt;Anyway, I’m playing with the idea of &lt;strong&gt;going deeper into this topic&lt;/strong&gt; at some conferences this year. &lt;em&gt;Share more examples, show more pitfalls, and explain more of the under-the-hood parts.&lt;/em&gt; What do you think? I’d love to know your opinion. You can let me know on &lt;a href=&quot;https://www.linkedin.com/in/tinestaric/&quot;&gt;LinkedIn&lt;/a&gt;, &lt;a href=&quot;https://bsky.app/profile/tinestaric.bsky.social&quot;&gt;BlueSky&lt;/a&gt;, or &lt;a href=&quot;https://twitter.com/TineStaric&quot;&gt;X&lt;/a&gt;!&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 03 Jan 2025 09:00:00 +0100</pubDate>
-        <link>https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</link>
-        <guid isPermaLink="true">https://tine.staric.net/blog/2025/copilot-fancy-autocomplete/</guid>
         
         
         <category>al</category>
