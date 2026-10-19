@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 250" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 1070 250" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ms-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#c9ac7a"/>
+    </marker>
+  </defs>
   <!-- harnesses -->
   <rect x="20" y="40" width="190" height="60" rx="10" fill="#c9dcf5" stroke="#5b84c4" stroke-width="1.5"/>
   <text x="115" y="66" text-anchor="middle" font-size="15" fill="#1a1a1a">Claude Code</text>
@@ -36,6 +41,7 @@
 
   <!-- managed settings -->
   <rect x="20" y="212" width="190" height="28" rx="14" fill="#efe3d3" stroke="#c9ac7a" stroke-dasharray="3 2"/>
-  <text x="115" y="231" text-anchor="middle" font-size="11.5" fill="#7a6746">managed settings point here</text>
-  <path d="M115 212 L115 192" stroke="#c9ac7a" stroke-width="1.5" stroke-dasharray="3 2" fill="none"/>
+  <text x="115" y="231" text-anchor="middle" font-size="11.5" fill="#7a6746">managed settings configure both</text>
+  <path d="M115 212 L115 192" stroke="#c9ac7a" stroke-width="1.5" stroke-dasharray="3 2" fill="none" marker-end="url(#ms-arrow)"/>
+  <path d="M20 226 L2 226 L2 70 L18 70" stroke="#c9ac7a" stroke-width="1.5" stroke-dasharray="3 2" fill="none" marker-end="url(#ms-arrow)"/>
 </svg>

@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "\"Dev X used 2k tokens with Opus\" is not telemetry"
+title: "\"Dev X used 200k tokens with Opus\" is not telemetry"
 date: 2026-10-18 08:00:00
 comments: false
 categories: ai
 image: /images/harnesstelemetry/main.png
 ---
 
-*"Dev X used 2k tokens with Opus."* That's the kind of number you get out of the box, and it's fine for a bill. It's useless for deciding anything.
+*"Dev X used 200k tokens with Opus."* That's the kind of number you get out of the box, and it's fine for a bill. It's useless for deciding anything.
 
 What I actually wanted to know, after rolling ***Claude Code*** and ***GitHub Copilot*** out to a team with a shared set of plugins, skills and agents: which of those get used, and by how many people? How many people have a plugin installed but never touch it? What does a repository cost us? Is the thing we distributed used at all, or did we just make ourselves feel better?
 
@@ -61,7 +61,11 @@ processors:
     log_statements:
       - context: log
         statements:
-          - set(log.attributes["user.pseudo_id"], Substring(SHA256(Concat(["${env:PSEUDONYM_SALT}", log.attributes["user.email"]], ":")), 0, 16)) where log.attributes["user.email"] != nil
+          - >-
+            set(log.attributes["user.pseudo_id"],
+            Substring(SHA256(Concat(["${env:PSEUDONYM_SALT}",
+            log.attributes["user.email"]], ":")), 0, 16))
+            where log.attributes["user.email"] != nil
           - delete_key(log.attributes, "user.email")
 
 exporters:
