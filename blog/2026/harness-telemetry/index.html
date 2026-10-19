@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cmp.osano.com/Azyw2OSBbVi7Vru2/02935cff-0b21-412a-a3c9-350aae41b81e/osano.js"></script>
 
-<title>"Dev X used 2k tokens with Opus" is not telemetry</title>
+<title>"Dev X used 200k tokens with Opus" is not telemetry</title>
 <meta name="description"
-    content="“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.">
+    content="“Dev X used 200k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.">
 
-<meta property="og:title" content=""Dev X used 2k tokens with Opus" is not telemetry" />
+<meta property="og:title" content=""Dev X used 200k tokens with Opus" is not telemetry" />
 <meta property="og:description"
-    content="“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything." />
+    content="“Dev X used 200k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything." />
 <meta property="og:url"
     content="https://tine.staric.net/blog/2026/harness-telemetry/" />
 <meta property="og:site_name" content="Tech Adventures in Business Central | AL Development & AI Solutions" />
@@ -28,10 +28,10 @@
   "@type": "BlogPosting",
   "name": "Tech Adventures in Business Central | AL Development & AI Solutions",
   "url": "https://tine.staric.net/blog/2026/harness-telemetry/",
-  "description": "“Dev X used 2k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.",
+  "description": "“Dev X used 200k tokens with Opus.” That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.",
   "keywords": "tech, technology, blog, azure, devops, dynamics, nav, business central, d365, mvp, bc, AL",
   "inLanguage": "en",
-  "headline": ""Dev X used 2k tokens with Opus" is not telemetry",
+  "headline": ""Dev X used 200k tokens with Opus" is not telemetry",
   "datePublished": "2026-10-18T10:00:00+02:00",
   "dateModified": "2026-10-18T10:00:00+02:00",
   "author": {
@@ -99,14 +99,14 @@
 
   <div class="card">
     <header class="post-header">
-      <h1 class="post-title">"Dev X used 2k tokens with Opus" is not telemetry</h1>
+      <h1 class="post-title">"Dev X used 200k tokens with Opus" is not telemetry</h1>
       <em class="post-meta">
         <time>Oct 18, 2026</time>
       </em>
     </header>
 
     <div class="post-content">
-      <p><em>“Dev X used 2k tokens with Opus.”</em> That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.</p>
+      <p><em>“Dev X used 200k tokens with Opus.”</em> That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.</p>
 
 <p>What I actually wanted to know, after rolling <strong><em>Claude Code</em></strong> and <strong><em>GitHub Copilot</em></strong> out to a team with a shared set of plugins, skills and agents: which of those get used, and by how many people? How many people have a plugin installed but never touch it? What does a repository cost us? Is the thing we distributed used at all, or did we just make ourselves feel better?</p>
 
@@ -159,7 +159,11 @@
     <span class="na">log_statements</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">context</span><span class="pi">:</span> <span class="s">log</span>
         <span class="na">statements</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="s">set(log.attributes["user.pseudo_id"], Substring(SHA256(Concat(["${env:PSEUDONYM_SALT}", log.attributes["user.email"]], ":")), 0, 16)) where log.attributes["user.email"] != nil</span>
+          <span class="pi">-</span> <span class="pi">&gt;-</span>
+            <span class="s">set(log.attributes["user.pseudo_id"],</span>
+            <span class="s">Substring(SHA256(Concat(["${env:PSEUDONYM_SALT}",</span>
+            <span class="s">log.attributes["user.email"]], ":")), 0, 16))</span>
+            <span class="s">where log.attributes["user.email"] != nil</span>
           <span class="pi">-</span> <span class="s">delete_key(log.attributes, "user.email")</span>
 
 <span class="na">exporters</span><span class="pi">:</span>

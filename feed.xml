@@ -5,13 +5,13 @@
     <description>Exploring Business Central, AL coding, and AI-driven ERP solutions for developers and businesses.</description>
     <link>https://tine.staric.net/</link>
     <atom:link href="https://tine.staric.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 18 Oct 2026 11:06:34 +0200</pubDate>
-    <lastBuildDate>Sun, 18 Oct 2026 11:06:34 +0200</lastBuildDate>
+    <pubDate>Mon, 19 Oct 2026 07:06:02 +0200</pubDate>
+    <lastBuildDate>Mon, 19 Oct 2026 07:06:02 +0200</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
-        <title>&quot;Dev X used 2k tokens with Opus&quot; is not telemetry</title>
-        <description>&lt;p&gt;&lt;em&gt;“Dev X used 2k tokens with Opus.”&lt;/em&gt; That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.&lt;/p&gt;
+        <title>&quot;Dev X used 200k tokens with Opus&quot; is not telemetry</title>
+        <description>&lt;p&gt;&lt;em&gt;“Dev X used 200k tokens with Opus.”&lt;/em&gt; That’s the kind of number you get out of the box, and it’s fine for a bill. It’s useless for deciding anything.&lt;/p&gt;
 
 &lt;p&gt;What I actually wanted to know, after rolling &lt;strong&gt;&lt;em&gt;Claude Code&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;GitHub Copilot&lt;/em&gt;&lt;/strong&gt; out to a team with a shared set of plugins, skills and agents: which of those get used, and by how many people? How many people have a plugin installed but never touch it? What does a repository cost us? Is the thing we distributed used at all, or did we just make ourselves feel better?&lt;/p&gt;
 
@@ -64,7 +64,11 @@
     &lt;span class=&quot;na&quot;&gt;log_statements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;log&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;set(log.attributes[&quot;user.pseudo_id&quot;], Substring(SHA256(Concat([&quot;${env:PSEUDONYM_SALT}&quot;, log.attributes[&quot;user.email&quot;]], &quot;:&quot;)), 0, 16)) where log.attributes[&quot;user.email&quot;] != nil&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;&amp;gt;-&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;set(log.attributes[&quot;user.pseudo_id&quot;],&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;Substring(SHA256(Concat([&quot;${env:PSEUDONYM_SALT}&quot;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;log.attributes[&quot;user.email&quot;]], &quot;:&quot;)), 0, 16))&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;where log.attributes[&quot;user.email&quot;] != nil&lt;/span&gt;
           &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;delete_key(log.attributes, &quot;user.email&quot;)&lt;/span&gt;
 
 &lt;span class=&quot;na&quot;&gt;exporters&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
