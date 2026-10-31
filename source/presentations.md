@@ -7,31 +7,45 @@ permalink: /presentations/
 Here's a list of the presentations I did through the years with attached slides, recording, code samples and links to the events. 
 
 ## 2026
+- 2026-12
+    - **Your Copilot Bill is about to explode: Choose wisely** as a webinar for [Areopa][areopa]
+- 2026-11
+    - **Agent Series - How AI is Changing Solution Architecture** with Roberto Corella as a webinar for [Companial][companialhome]: [webinar page][agentseriesarchitecture]
+- 2026-10
+    - **Tvoj problem ni model, ampak ogrodje** as a session at the Alumni EF event "AI v praksi" at Ekonomska fakulteta, Ljubljana: [presentation][ef26press]
+    - Multiple sessions at [Directions EMEA 2026][emea26]:
+        - **Building a Home for Your Agents** with Krzysztof Bialowas: [session link][emea26home], [presentation][emea26homepress]
+        - **Your Copilot Bill Is About to Explode: Choose Wisely**: [session link][emea26bill], [presentation][emea26billpress]
+        - Panelist: **Diversity That Works: Best Practices from the Dynamics Channel**: [session link][emea26diversity]
+        - Panelist: **The Next AL Developer: Coder, Architect, or Agent Manager?**: [session link][emea26nextal]
+    - Technical reviewer for the book [**Copilots and Agents for Dynamics 365 Business Central**][copilotsagentsbook] by Packt
 - 2026-07
-    - **Companial Road to AI Agent Series ep 1: The Role of a Developer in the Age of AI** as a webinar for [Companial][companialhome]: [recording][companialroadtoaiagentep1]
+    - **Agents aren't magic: How they really work in practice** as a session for Comsol: [presentation][companial26agentspress]
+    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session for Comsol: [presentation][companial26copilotpress]
+    - **Companial Road to AI Agent Series ep 1: The Role of a Developer in the Age of AI** as a webinar for [Companial][companialhome]: [presentation][companialroadtoaiagentep1press] and [recording][companialroadtoaiagentep1]
 - 2026-06
     - Multiple sessions at [BC Tech Days][bctechdays]:
-        - Workshop: **Using GitHub Copilot for anything but writing code**
-        - **Where Do I Still Fit? What "BC Developer" Means in the Agentic Era**
+        - Workshop: **Using GitHub Copilot for anything but writing code**: [presentation][bctd26workshoppress]
+        - **Where Do I Still Fit? What "BC Developer" Means in the Agentic Era**: [presentation][bctd26wherepress]
 - 2026-05
     - Multiple sessions at [Directions Asia][directionsasia26]:
-        - **Copilot is just a fancy autocomplete... (vol. 2)**
-        - **Agents aren't magic: How they really work in practice**
+        - **Copilot is just a fancy autocomplete... (vol. 2)**: [presentation][asia26copilotpress]
+        - **Agents aren't magic: How they really work in practice**: [presentation][asia26agentspress]
     - Multiple sessions at [DOK Central][dokcentral26]:
-        - **Copilot is just a fancy autocomplete... (vol. 2)**
-        - **Agents aren't magic: How they really work in practice**
-    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [DynamicsMinds][2023dynamicsminds]
-    - **What even is an Agent?** as a session at [Companial Connect DACH][companialhome]
+        - **Copilot is just a fancy autocomplete... (vol. 2)**: [presentation][dokcentral26copilotpress]
+        - **Agents aren't magic: How they really work in practice**: [presentation][dokcentral26agentspress]
+    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [DynamicsMinds][2023dynamicsminds]: [presentation][dm26copilotpress]
+    - **What even is an Agent?** as a session at [Companial Connect DACH][companialhome]: [presentation][companial26agentspress]
 - 2026-04
     - Multiple sessions at [DOK Nordic][doknordic26]:
-        - **Copilot is just a fancy autocomplete... (vol. 2)**
-        - **Agents aren't magic: How they really work in practice**
-    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [Directions North America][directionsnahome]
-    - **Role of a Developer in the Age of AI** as a session at [Companial Connect ISV][companialhome]
+        - **Copilot is just a fancy autocomplete... (vol. 2)**: [presentation][doknordic26copilotpress]
+        - **Agents aren't magic: How they really work in practice**: [presentation][doknordic26agentspress]
+    - **Copilot is just a fancy autocomplete... (vol. 2)** as a session at [Directions North America][directionsnahome]: [presentation][na26copilotpress]
+    - **Role of a Developer in the Age of AI** as a session at [Companial Connect ISV][companialhome]: [presentation][companialroadtoaiagentep1press]
 - 2026-03
     - Multiple sessions at [DOK UK][dokuk26]:
-        - **Copilot is just a fancy autocomplete... (vol. 2)**
-        - **Agents aren't magic: How they really work in practice**
+        - **Copilot is just a fancy autocomplete... (vol. 2)**: [presentation][dokuk26copilotpress]
+        - **Agents aren't magic: How they really work in practice**: [presentation][dokuk26agentspress]
 - 2026-02
     - **Mountains to MVP, AI Development, Community, and the Road Ahead** as a podcast for Just Peter - Your Dynamics Podcast: [recording][justpetermountainsmvp]
 - 2026-01
@@ -63,15 +77,15 @@ Here's a list of the presentations I did through the years with attached slides,
     - **Power Platform from the perspective of BC development** with [waldo][waldoli] as a webinar for [Areopa][areopa]: [recording][areopapowerplatformbcdevyt]
     - **Automating Code Quality: A Guide to using Custom Code Analysis for AL** as a webinar for [Plataan][plataanhome]
     - **Power Platform from the Perspective of BC Development** as a webinar for [Plataan][plataanhome]
+- 2025-07
+    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
 - 2025-06
     - Multiple sessions at [BC Tech Days][bctechdays]:
         - **Copilot is just a fancy autocomplete...**
         - **Testing is boring... Until Now!** with [Luc van Vugt][lucvanvugtli]
         - Workshop: **Build Your Own AI Pipeline and Let It Draft Your Test Plans** with [Luc van Vugt][lucvanvugtli]
     - **BC Tech Days 2025** as a podcast for [Window on Technology][windowontechnology]: [recording][bctechdays2025podcast]
-- 2025-07
-    - **You need to implement AI now! ...But what even is AI?** as a webinar for [Plataan][plataanhome]
-- 2025-05 
+- 2025-05
     - **You need to implement Agents now! ...But what even is an Agent?** as a session at [Companial Connect Nordic][companialconnectnordic]
     - **Understanding Copilot and AI Agents** as a SofTalk for [Companial][companialhome]: [recording][companialsoftalkcopilot]
     - **Copilot is just a fancy autocomplete...** as a webinar for [DUG Kenya][dugkenya]: [presentation][dugkenyacopilotpress]
@@ -97,8 +111,8 @@ Here's a list of the presentations I did through the years with attached slides,
         - **Copilot is just a fancy autocomplete...**: [presentation][dokuk25copilotpress]
         - **Power Platform from the perspective of BC development** with [waldo][waldoli]: [presentation][dokuk25powerpresss]
 - 2025-02
-- **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
-- **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
+    - **Is Linux Ready for BC Development** as an episode at [BC Coding Stream][bccodingstream]: [recording][islinuxready]
+    - **How to be a Prompt Engineer** as a webinar for [Areopa][areopa]: [presentation][areopapromptengineer] and [recording][areopapromptengineeryt]
 
 ## 2024
 - 2024-12
@@ -269,3 +283,28 @@ Here's a list of the presentations I did through the years with attached slides,
 [doknordic26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/nordic-2026
 [dokuk26]: https://www.directionsforpartners.com/conferences-and-events/days-of-knowledge/uk-2026
 [companialroadtoaiagentep1]: https://youtu.be/sCAc2VEEfeI
+[dokuk26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DOKUK.pdf
+[dokuk26agentspress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Agents%20arent%20magic-DOKUK.pdf
+[doknordic26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DOKNordic.pdf
+[doknordic26agentspress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Agents%20arent%20magic-DOKNordic.pdf
+[dokcentral26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DOKCentral.pdf
+[dokcentral26agentspress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DOK/Agents%20arent%20magic-DOKCentral.pdf
+[na26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DirectionsNA/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DirectionsNA.pdf
+[asia26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DirectionsAsia/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DirectionsAsia.pdf
+[asia26agentspress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DirectionsAsia/Agents%20arent%20magic-DirectionsAsia.pdf
+[dm26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DynamicsMinds/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-DynamicsMinds.pdf
+[companialroadtoaiagentep1press]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/Webinars/The%20role%20of%20a%20developer.pdf
+[emea26homepress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DirectionsEMEA/Building%20a%20Home%20for%20Your%20Agents.pdf
+[emea26billpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/DirectionsEMEA/Your%20Copilot%20Bill%20Is%20About%20to%20Explode.pdf
+[emea26]: https://www.directionsforpartners.com/emea2026
+[emea26home]: https://www.directionsforpartners.com/emea2026/schedule?session=1286036
+[emea26bill]: https://www.directionsforpartners.com/emea2026/schedule?session=1286039
+[companial26agentspress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/Companial/Agents%20arent%20magic-Companial.pdf
+[companial26copilotpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/Companial/Copilot%20is%20just%20a%20fancy%20Autocomplete-vol2-Companial.pdf
+[copilotsagentsbook]: https://www.packtpub.com/en-it/product/copilots-and-agents-for-dynamics-365-business-central-9781806106585
+[agentseriesarchitecture]: https://companial.com/webinars/how-ai-is-changing-solution-architecture/
+[bctd26workshoppress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/BCTechDays/Using%20GitHub%20Copilot%20for%20anything%20but%20writing%20code-BCTechDays.pdf
+[bctd26wherepress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/BCTechDays/Where%20Do%20I%20Still%20Fit-BCTechDays.pdf
+[emea26diversity]: https://www.directionsforpartners.com/emea2026/schedule?session=1324732
+[emea26nextal]: https://www.directionsforpartners.com/emea2026/schedule?session=1360272
+[ef26press]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/Other/Tvoj%20problem%20ni%20model%20ampak%20ogrodje-AlumniEF.pdf
