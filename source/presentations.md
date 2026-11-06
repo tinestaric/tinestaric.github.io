@@ -10,6 +10,7 @@ Here's a list of the presentations I did through the years with attached slides,
 - 2026-12
     - **Your Copilot Bill is about to explode: Choose wisely** as a webinar for [Areopa][areopa]
 - 2026-11
+    - **Your Copilot Bill Is About to Explode: Choose Wisely** as a session at BizSource Event 26 in Belgrade: [presentation][bizsource26billpress]
     - **Agent Series - How AI is Changing Solution Architecture** with Roberto Corella as a webinar for [Companial][companialhome]: [webinar page][agentseriesarchitecture]
 - 2026-10
     - **Tvoj problem ni model, ampak ogrodje** as a session at the Alumni EF event "AI v praksi" at Ekonomska fakulteta, Ljubljana: [presentation][ef26press]
@@ -308,3 +309,4 @@ Here's a list of the presentations I did through the years with attached slides,
 [emea26diversity]: https://www.directionsforpartners.com/emea2026/schedule?session=1324732
 [emea26nextal]: https://www.directionsforpartners.com/emea2026/schedule?session=1360272
 [ef26press]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/Other/Tvoj%20problem%20ni%20model%20ampak%20ogrodje-AlumniEF.pdf
+[bizsource26billpress]: https://github.com/tinestaric/BC-Sessions/raw/Master/2026/BizSource/Your%20Copilot%20Bill%20Is%20About%20to%20Explode-BizSource.pdf
